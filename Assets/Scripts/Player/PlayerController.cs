@@ -1,30 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private PlayerInput playerInput;
     private StateMachine playerStateMachine;
+    public Rigidbody2D rb;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
-    [Tooltip("Rate of change for move speed")]
-    [SerializeField] private float acceleration = 10f;
+    public Vector2 moveVal;
 
-    public CharacterController CharController => charController;
     public StateMachine PlayerStateMachine => playerStateMachine;
 
-    private CharacterController charController;
-    private float targetSpeed;
 
     private void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
-        charController = GetComponent<CharacterController>();
-
         // initialize state machine
         playerStateMachine = new StateMachine(this);
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -38,34 +33,20 @@ public class PlayerController : MonoBehaviour
         playerStateMachine.Update();
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         Move();
     }
 
     private void Move()
     {
-        Vector2 inputVector = playerInput.InputVector;
+        rb.AddForce(new Vector2(moveVal.x * moveSpeed * Time.deltaTime, moveVal.y * moveSpeed * Time.deltaTime), ForceMode2D.Impulse);
+    }
 
-        if (inputVector == Vector2.zero)
-        {
-            targetSpeed = 0;
-        }
 
-        float currentSpeed = new Vector2(charController.velocity.x, charController.velocity.y).magnitude;
-        float tolerance = 0.1f;
-
-        if (currentSpeed < targetSpeed - tolerance! || currentSpeed > targetSpeed + tolerance)
-        {
-            targetSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * acceleration);
-            targetSpeed = Mathf.Round(targetSpeed * 1000f) / 1000f;
-        }
-        else
-        {
-            targetSpeed = moveSpeed;
-        }
-
-        charController.Move(inputVector.normalized * targetSpeed * Time.deltaTime);
+    void OnMove(InputValue value)
+    {
+        moveVal = value.Get<Vector2>();
     }
 
 }

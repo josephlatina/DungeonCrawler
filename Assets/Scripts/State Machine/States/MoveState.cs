@@ -12,14 +12,17 @@ public class MoveState : IState
 
     }
 
+    // code that runs when first entering the state
     public void Enter()
     {
         Debug.Log("Entering Move State");
     }
 
+    // per-frame logic - include condition to transition to new state
     public void Update()
     {
-        if (Mathf.Abs(player.CharController.velocity.x) < 0.1f && Mathf.Abs(player.CharController.velocity.y) < 0.1f)
+        // If movement stops, transition to idle state
+        if (Mathf.Abs(player.rb.velocity.x) < 0.1f && Mathf.Abs(player.rb.velocity.y) < 0.1f)
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.idleState);
         }
@@ -27,6 +30,7 @@ public class MoveState : IState
 
     public void Exit()
     {
+        // code that runs when exiting the state
         Debug.Log("Exiting Move State");
     }
 }

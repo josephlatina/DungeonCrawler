@@ -20,8 +20,8 @@ public class IdleState : IState
     // per-frame logic - include condition to transition to new state
     public void Update()
     {
-        // if we move above a minimum threshold, transition to walking
-        if (Mathf.Abs(player.CharController.velocity.x) > 0.1f || Mathf.Abs(player.CharController.velocity.y) > 0.1f)
+        // if we move above a minimum threshold, transition to move state
+        if (Mathf.Abs(player.rb.velocity.x) > 0.1f || Mathf.Abs(player.rb.velocity.y) > 0.1f)
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.moveState);
         }
