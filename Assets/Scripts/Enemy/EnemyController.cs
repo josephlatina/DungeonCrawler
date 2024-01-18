@@ -2,7 +2,7 @@
  * EnemyController.cs
  * Author: Jehdi Aizon, 
  * Created: January 17, 2024
- * Description: Handles enemy cntroller movements.
+ * Description: Handles enemy controller movements.
  */
 using System.Collections;
 using System.Collections.Generic;
