@@ -16,7 +16,7 @@ using UnityEngine;
 [SerializeField] private float strength;
 // amount of heart a character has
 [SerializeField] private float healthPoints;
-[SerializeField] private enum enemyStatus;
+[SerializeField] private enum enemyStatus { };
 
 
 public class EnemyController : MonoBehaviour
