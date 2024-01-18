@@ -1,7 +1,7 @@
 /*
  * EnemyController.cs
  * Author: Jehdi Aizon, 
- * Created: January 7, 2024
+ * Created: January 17, 2024
  * Description: Handles enemy cntroller movements.
  */
 using System.Collections;
