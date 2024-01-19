@@ -1,7 +1,16 @@
+/*
+ * IdleState.cs
+ * Author: Josh Coss
+ * Created: January 16 2024
+ * Description: Handles state transitions to and from the Idle state, as well as update logic for the state
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Idle state logic
+/// </summary>
 public class IdleState : IState
 {
     private PlayerController player;
@@ -11,13 +20,17 @@ public class IdleState : IState
         this.player = player;
     }
 
+    /// <summary>
+    /// Runs when first entering the idle state
+    /// </summary>
     public void Enter()
     {
-        // code that runs when first entering the state
         Debug.Log("Entering Idle State");
     }
 
-    // per-frame logic - include condition to transition to new state
+    /// <summary>
+    /// Per-frame logic for the idle state - Include condition to transition to new state
+    /// </summary>
     public void Update()
     {
         // if we move above a minimum threshold, transition to move state
@@ -27,9 +40,11 @@ public class IdleState : IState
         }
     }
 
+    /// <summary>
+    /// Runs when exiting the idle state
+    /// </summary>
     public void Exit()
     {
-        // code that runs when exiting the state
         Debug.Log("Exiting Idle State");
     }
 }

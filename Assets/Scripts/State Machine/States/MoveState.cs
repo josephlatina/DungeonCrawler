@@ -1,7 +1,16 @@
+/*
+ * MoveState.cs
+ * Author: Josh Coss
+ * Created: January 16 2024
+ * Description: Handles state transitions to and from the Move state, as well as update logic for the state
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Move state logic
+/// </summary>
 public class MoveState : IState
 {
     private PlayerController player;
@@ -9,16 +18,19 @@ public class MoveState : IState
     public MoveState(PlayerController player)
     {
         this.player = player;
-
     }
 
-    // code that runs when first entering the state
+    /// <summary>
+    /// Runs when first entering the move state
+    /// </summary>
     public void Enter()
     {
         Debug.Log("Entering Move State");
     }
 
-    // per-frame logic - include condition to transition to new state
+    /// <summary>
+    /// Per-frame logic for the move state - Include condition to transition to new state
+    /// </summary>
     public void Update()
     {
         // If movement stops, transition to idle state
@@ -28,6 +40,9 @@ public class MoveState : IState
         }
     }
 
+    /// <summary>
+    /// Runs when exiting the move state
+    /// </summary>
     public void Exit()
     {
         // code that runs when exiting the state
