@@ -14,7 +14,7 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    private StateMachine playerStateMachine;
+    private PlayerStateMachine playerStateMachine;
     public Rigidbody2D rb;
     // Reference to player stats script
     private PlayerStats player;
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     // Vector2 of the normalized vectors of movement for the player
     private Vector2 moveVal;
 
-    public StateMachine PlayerStateMachine => playerStateMachine;
+    public PlayerStateMachine PlayerStateMachine => playerStateMachine;
 
     /// <summary>
     /// Called once when script is initialized
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         // Initialize state machine on player
-        playerStateMachine = new StateMachine(this);
+        playerStateMachine = new PlayerStateMachine(this);
         // Get object's Rigidbody2D
         rb = GetComponent<Rigidbody2D>();
         // Get player object's stats script
