@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8427603901733194542}
   - component: {fileID: 6791611614414006599}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: SlasherEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bfe98b39599e1247b9a0c76b9174340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyStats: {fileID: 0}
+  enemyStats: {fileID: 11400000, guid: e4ca781559a939946901bd59e3a09218, type: 2}
+  rb: {fileID: 0}
   movementSpeed: 0
   attackSpeed: 0
   strength: 0

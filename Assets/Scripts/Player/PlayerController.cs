@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         // Get player object's stats script
         player = GetComponent<PlayerStats>();
+        // Set current movement speed
+        moveSpeed = player.currentMoveSpeed;
     }
 
     /// <summary>
@@ -45,8 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         // Set initial state to IdleState
         playerStateMachine.Initialize(playerStateMachine.idleState);
-        // Set current movement speed
-        moveSpeed = player.currentMoveSpeed;
+
     }
 
     /// <summary>
