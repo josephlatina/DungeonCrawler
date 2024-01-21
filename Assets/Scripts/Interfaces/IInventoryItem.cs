@@ -10,4 +10,5 @@ public interface IInventoryItem
 {
     string Name { get; }
     string Description { get; }
+    int Price { get; }
 }

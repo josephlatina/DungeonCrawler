@@ -11,9 +11,11 @@ using UnityEngine;
 public abstract class InventoryItemBase : MonoBehaviour, IInventoryItem
 {
     public string itemName;
-
     public string Name => itemName;
-    public string itemDescription;
 
+    public string itemDescription;
     public string Description => itemDescription;
+
+    public int itemPrice;
+    public int Price => itemPrice;
 }
