@@ -18,7 +18,7 @@ public class EnemyMoveState : IState
 
     public void Update()
     {
-        if (Mathf.Abs(enemy.rb.velocity.x) < 0.1f || Mathf.Abs(enemy.rb.velocity.y) < 0.1f)
+        if (Mathf.Abs(enemy.rb.velocity.x) < 0.1f && Mathf.Abs(enemy.rb.velocity.y) < 0.1f)
         {
             enemy.EnemyStateMachine.TransitionTo(enemy.EnemyStateMachine.idleState);
         }

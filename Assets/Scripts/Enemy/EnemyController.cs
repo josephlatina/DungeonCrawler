@@ -10,26 +10,29 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    [Header("Enemy Scriptable Object")]
+    [Tooltip("EnemyScriptableObject for initial enemy stats")]
     [SerializeField]
     private EnemyScriptableObject enemyStats;
 
     private EnemyStateMachine enemyStateMachine;
+    [HideInInspector]
     public Rigidbody2D rb;
 
     // movement speed of character
-    [SerializeField] private float movementSpeed;
+    protected float movementSpeed;
     // measured in damage per second
-    [SerializeField] private float attackSpeed;
+    private float attackSpeed;
     // amount of hearts character inflicts to other (full heart or half heart)
-    [SerializeField] private float strength;
+    private float strength;
     // amount of heart a character has
-    [SerializeField] private float healthPoints;
+    private float healthPoints;
     // state of enemy
-    [SerializeField] private enum enemyStatus { };
+    private enum enemyStatus { };
 
     public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
 
-    void Awake()
+    public virtual void Awake()
     {
         enemyStateMachine = new EnemyStateMachine(this);
         rb = GetComponentInChildren<Rigidbody2D>();
@@ -40,12 +43,12 @@ public class EnemyController : MonoBehaviour
         healthPoints = enemyStats.HealthPoints;
     }
 
-    void Start()
+    public virtual void Start()
     {
         enemyStateMachine.Initialize(enemyStateMachine.idleState);
     }
 
-    private void Update()
+    public virtual void Update()
     {
         enemyStateMachine.Update();
     }
