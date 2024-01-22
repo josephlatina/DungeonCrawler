@@ -315,9 +315,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.03448276
     y: 0
-    width: 1
+    width: 0.9310345
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -487,7 +487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7863461255785627678, guid: eb12720810ffd2f46aa613eb9ea2d5cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.153
+      value: -2.042
       objectReference: {fileID: 0}
     - target: {fileID: 7863461255785627678, guid: eb12720810ffd2f46aa613eb9ea2d5cb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -811,7 +811,7 @@ PrefabInstance:
     - target: {fileID: 6984755896152334957, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
       propertyPath: playerInventory
       value: 
-      objectReference: {fileID: 11400000, guid: 89b244c0ce7994c45b288b67a45b5108, type: 2}
+      objectReference: {fileID: 11400000, guid: d402dee68ae49714aab258863b548f14, type: 2}
     - target: {fileID: 6984755896152334962, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
       propertyPath: m_RootOrder
       value: 1
