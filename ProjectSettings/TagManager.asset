@@ -8,6 +8,7 @@ TagManager:
   - decoration1Tilemap
   - decoration2Tilemap
   - collisionTilemap
+  - wallTilemap
   layers:
   - Default
   - TransparentFX
