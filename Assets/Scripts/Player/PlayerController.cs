@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveVal;
 
     public StateMachine PlayerStateMachine => playerStateMachine;
+    
+    // Player Inventory System reference to Scriptable Object
+    public InventorySystem playerInventory;
 
     /// <summary>
     /// Called once when script is initialized
@@ -65,6 +68,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+    }
+    
+    private void OnApplicationQuit()
+    {
+        playerInventory.Reset();
     }
 
     /// <summary>
