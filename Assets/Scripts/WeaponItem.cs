@@ -10,14 +10,30 @@ using UnityEngine;
 
 public class WeaponItem : InventoryItemBase
 {
-    [SerializeField] private float damage;
-    [SerializeField] private float attackSpeed;
-    [SerializeField] private int attackRange;
-    [SerializeField] private float criticalHitDamage;
-    [SerializeField] private int knockback;
-    [SerializeField] private int abilityLifeSteal;
-    [SerializeField] private float abilityPoison;
-    [SerializeField] private float abilityStun;
+    [Header("Basic Weapon Attributes")]
+    [Space(5)]
+    [SerializeField]
+    private float damage;
+    [SerializeField]
+    private float attackSpeed;
+    [SerializeField]
+    private int attackRange;
+    [SerializeField]
+    private float criticalHitDamage;
+    [SerializeField]
+    private int knockback;
+
+    [Header("Specific Weapon Abilities")]
+    [Space(5)]
+    [Tooltip("Value is 0 if ability doesn't exist")]
+    [SerializeField]
+    private int abilityLifeSteal;
+    [Tooltip("Value is 0 if ability doesn't exist")]
+    [SerializeField]
+    private float abilityPoison;
+    [Tooltip("Value is 0 if ability doesn't exist")]
+    [SerializeField]
+    private float abilityStun;
 
     public void Weapon(string name, float damage, float attackSpeed, int attackRange, float criticalHitDamage, int knockback, int abilityLifeSteal, float abilityPoison, float abilityStun)
     {
