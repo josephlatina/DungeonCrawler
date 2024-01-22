@@ -21,12 +21,4 @@ public abstract class InventoryItemBase : MonoBehaviour, IInventoryItem
 
     public int itemPrice;
     public int Price => itemPrice;
-
-    [Header("Extra Item Attributes")]
-    [Tooltip("These attributes are randomly given to the item(weapons or consumable)")]
-    [Space(5)]
-    public float attackStrengthBoost;
-    public float defenceBoost;
-    public float movementSpeedBoost;
-    public float attackSpeedBoost;
 }
