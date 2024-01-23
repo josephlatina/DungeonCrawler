@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Handles player input
+/// Handles player input and movement
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     private PlayerStats player;
 
     private float moveSpeed;
+    private float attackSpeed;
+    private float strength;
+    private float healthPoints;
     // Vector2 of the normalized vectors of movement for the player
     private Vector2 moveVal;
 
@@ -36,8 +39,12 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         // Get player object's stats script
         player = GetComponent<PlayerStats>();
-        // Set current movement speed
+
+        // Set player's stats based on player stats script
         moveSpeed = player.currentMoveSpeed;
+        attackSpeed = player.currentAttackSpeed;
+        strength = player.currentStrength;
+        healthPoints = player.currentHealth;
     }
 
     /// <summary>
@@ -45,7 +52,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        // Set initial state to IdleState
+        // Initialize the state machine with the idle state
         playerStateMachine.Initialize(playerStateMachine.idleState);
 
     }
@@ -55,7 +62,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        // update the current state
+        // Update the state machine logic
         playerStateMachine.Update();
     }
 
