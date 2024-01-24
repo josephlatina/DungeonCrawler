@@ -28,11 +28,13 @@ public class InventorySystem : ScriptableObject
 
     public void DisplayInventory()
     {
-        Debug.Log($"\nINVENTORY=======");
+        string inventoryString = "\nINVENTORY=======";
         foreach (var item in items)
         {
-            Debug.Log($"Item: {item.itemName}");
+            inventoryString += $" {item.itemName},";
         }
+        
+        Debug.Log(inventoryString);
     }
 
     public void Reset()
