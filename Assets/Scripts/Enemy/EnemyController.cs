@@ -35,7 +35,14 @@ public class EnemyController : MonoBehaviour
     private float healthPoints;
 
     // Status effect of the enemy (placeholder enum, could be expanded)
-    private enum EnemyStatus { };
+    private enum EnemyStatus
+    {
+        Normal,
+        Stun,
+        Immobilized,
+        Poison
+    };
+    private EnemyStatus status;
 
     // Expose the EnemyStateMachine for external access
     public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
@@ -56,6 +63,8 @@ public class EnemyController : MonoBehaviour
         attackSpeed = enemyStats.AttackSpeed;
         strength = enemyStats.Strength;
         healthPoints = enemyStats.HealthPoints;
+
+        status = EnemyStatus.Normal;
     }
 
     /// <summary>

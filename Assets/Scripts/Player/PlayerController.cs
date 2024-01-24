@@ -28,6 +28,15 @@ public class PlayerController : MonoBehaviour
 
     public PlayerStateMachine PlayerStateMachine => playerStateMachine;
 
+    private enum PlayerStatus
+    {
+        Normal,
+        Stun,
+        Immobilized,
+        Poison
+    }
+    private PlayerStatus status;
+
     /// <summary>
     /// Called once when script is initialized
     /// </summary>
