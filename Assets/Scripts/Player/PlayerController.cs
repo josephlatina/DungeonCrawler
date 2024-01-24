@@ -10,35 +10,58 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Handles player input
+/// Handles player input and movement
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    private StateMachine playerStateMachine;
+    private PlayerStateMachine playerStateMachine;
     public Rigidbody2D rb;
     // Reference to player stats script
     private PlayerStats player;
 
     private float moveSpeed;
+    private float attackSpeed;
+    private float strength;
+    private float healthPoints;
+    private int defence;
+    private float incomingDamage;
     // Vector2 of the normalized vectors of movement for the player
     private Vector2 moveVal;
 
-    public StateMachine PlayerStateMachine => playerStateMachine;
-    
+    public PlayerStateMachine PlayerStateMachine => playerStateMachine;
+
+    private enum PlayerStatus
+    {
+        Normal,
+        Stun,
+        Immobilized,
+        Poison
+    }
+    private PlayerStatus status;
+
     // Player Inventory System reference to Scriptable Object
     public InventorySystem playerInventory;
-
+    
     /// <summary>
     /// Called once when script is initialized
     /// </summary>
     private void Awake()
     {
         // Initialize state machine on player
-        playerStateMachine = new StateMachine(this);
+        playerStateMachine = new PlayerStateMachine(this);
         // Get object's Rigidbody2D
         rb = GetComponent<Rigidbody2D>();
         // Get player object's stats script
         player = GetComponent<PlayerStats>();
+        status = PlayerStatus.Normal;
+
+        // Set player's stats based on player stats script
+        moveSpeed = player.currentMoveSpeed;
+        attackSpeed = player.currentAttackSpeed;
+        strength = player.currentStrength;
+        healthPoints = player.currentHealth;
+        defence = player.currentDefence;
+        incomingDamage = player.CurrentIncomingDamage;
     }
 
     /// <summary>
@@ -46,10 +69,9 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        // Set initial state to IdleState
+        // Initialize the state machine with the idle state
         playerStateMachine.Initialize(playerStateMachine.idleState);
-        // Set current movement speed
-        moveSpeed = player.currentMoveSpeed;
+
     }
 
     /// <summary>
@@ -57,7 +79,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        // update the current state
+        // Update the state machine logic
         playerStateMachine.Update();
     }
 
@@ -69,7 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
     }
-    
+
     private void OnApplicationQuit()
     {
         playerInventory.Reset();

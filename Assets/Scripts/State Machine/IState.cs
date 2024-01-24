@@ -1,30 +1,31 @@
 /*
  * IState.cs
  * Author: Josh Coss
- * Created: January 16 2024
+ * Created: January 16, 2024
  * Description: Interface that encapsulates logic for initializing, updating, and state transition cleanup.
  */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// State interface logic
+/// Interface defining the common logic for states.
 /// </summary>
 public interface IState
 {
     /// <summary>
-    /// Runs when first entering the state
+    /// Runs when first entering the state.
     /// </summary>
-    public void Enter() { }
+    void Enter();
 
     /// <summary>
-    /// Per-frame logic - Include condition to transition to new state
+    /// Per-frame logic. Include conditions to transition to a new state.
     /// </summary>
-    public void Update() { }
+    void Update();
 
     /// <summary>
-    /// Runs when exiting the state
+    /// Runs when exiting the state.
     /// </summary>
-    public void Exit() { }
+    void Exit();
 }
