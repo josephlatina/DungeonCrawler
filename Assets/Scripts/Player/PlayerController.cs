@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     // Player Inventory System reference to Scriptable Object
     public InventorySystem playerInventory;
-    
+
     /// <summary>
     /// Called once when script is initialized
     /// </summary>
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         strength = player.currentStrength;
         healthPoints = player.currentHealth;
         defence = player.currentDefence;
-        incomingDamage = player.CurrentIncomingDamage;
+        incomingDamage = player.currentIncomingDamage;
     }
 
     /// <summary>
