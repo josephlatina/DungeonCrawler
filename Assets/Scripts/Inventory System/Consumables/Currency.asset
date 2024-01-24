@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f01fbd368d3bd445b74532e11416ff8, type: 3}
-  m_Name: Pill
+  m_Name: Currency
   m_EditorClassIdentifier: 
-  itemName: Pill
-  description: 'Choose a permanent stat upgrade (PERK) when picked up '
+  itemName: Teeth
+  description: 
   price: 0
-  quantity: 1
+  quantity: 100
   healthRestore: 0
-  attackStrengthUpgrade: 1.52
-  attackSpeedUpgrade: 1.22
-  defenceUpgrade: 2.23
+  attackStrengthUpgrade: 0
+  attackSpeedUpgrade: 0
+  defenceUpgrade: 0
   knockback: 0
   abilityPoison: 0
   abilityStun: 0
