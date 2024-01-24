@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private float attackSpeed;
     private float strength;
     private float healthPoints;
+    private int defence;
+    private float incomingDamage;
     // Vector2 of the normalized vectors of movement for the player
     private Vector2 moveVal;
 
@@ -48,12 +50,15 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         // Get player object's stats script
         player = GetComponent<PlayerStats>();
+        status = PlayerStatus.Normal;
 
         // Set player's stats based on player stats script
         moveSpeed = player.currentMoveSpeed;
         attackSpeed = player.currentAttackSpeed;
         strength = player.currentStrength;
         healthPoints = player.currentHealth;
+        defence = player.currentDefence;
+        incomingDamage = player.CurrentIncomingDamage;
     }
 
     /// <summary>

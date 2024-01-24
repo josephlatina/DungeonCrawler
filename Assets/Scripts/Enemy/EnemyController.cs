@@ -34,7 +34,7 @@ public class EnemyController : MonoBehaviour
     // Health points of the enemy
     private float healthPoints;
 
-    // Status effect of the enemy (placeholder enum, could be expanded)
+    // Status effect of the enemy
     private enum EnemyStatus
     {
         Normal,
