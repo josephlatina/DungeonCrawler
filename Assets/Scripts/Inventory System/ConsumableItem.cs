@@ -7,7 +7,7 @@
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ConsumableItem", menuName = "DungeonCrawler/New Consumable Item")]
+[CreateAssetMenu(fileName = "ConsumableItem", menuName = "Inventory System/New Consumable Item")]
 public class ConsumableItem : InventoryItem
 {
     // Any value that is 0, ability doesn't exist or no effect

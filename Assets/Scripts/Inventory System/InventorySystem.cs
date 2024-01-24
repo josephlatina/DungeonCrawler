@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "InventorySystem", menuName = "DungeonCrawler/New Inventory", order = 0)]
+[CreateAssetMenu(fileName = "InventorySystem", menuName = "Inventory System/New Inventory")]
 
 public class InventorySystem : ScriptableObject
 {

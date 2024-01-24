@@ -7,7 +7,7 @@
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WeaponItem", menuName = "DungeonCrawler/New Weapon Type", order = 0)]
+[CreateAssetMenu(fileName = "WeaponItem", menuName = "Inventory System/New Weapon Type", order = 0)]
 public class WeaponItem : InventoryItem
 {
     // Any value that is 0, ability doesn't exist or no effect

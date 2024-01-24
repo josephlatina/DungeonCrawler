@@ -93,7 +93,9 @@ public class PlayerStats : MonoBehaviour
     // Setter / getter for CurrentIncomingDamage
     public float CurrentIncomingDamage
     {
-        get { return CurrentIncomingDamage; }
+        // TODO look at replacement
+        //  get { return CurrentIncomingDamage; }
+        get { return IncomingDamage;}
         set
         {
             if (CurrentIncomingDamage != value)

@@ -315,9 +315,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.03448276
+    x: 0.097070836
     y: 0
-    width: 0.9310345
+    width: 0.80653936
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -477,6 +477,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1320429037554832608, guid: eb12720810ffd2f46aa613eb9ea2d5cb, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: bab14cc87f0a6684da4621773e1e69ce, type: 2}
     - target: {fileID: 4483240998738036880, guid: eb12720810ffd2f46aa613eb9ea2d5cb, type: 3}
       propertyPath: m_Name
       value: WeaponItem
@@ -616,6 +620,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7700069784828806856, guid: f7f0050edf2bcab4ca42650fa37c2510, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: bac78e4896a754f4c89aaee294d3456d, type: 2}
     - target: {fileID: 2360887131288210285, guid: f7f0050edf2bcab4ca42650fa37c2510, type: 3}
       propertyPath: m_Name
       value: ConsumableItem

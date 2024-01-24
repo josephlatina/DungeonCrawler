@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a6ee016bdf567c48a9bc260563dbdc5, type: 3}
-  m_Name: Sword
+  m_Name: Crutch
   m_EditorClassIdentifier: 
-  itemName: Sword
-  description: cxcxc
-  price: 20
-  damage: 0
-  attackSpeed: 0
+  itemName: Crutch
+  description: A perfectly balanced weapon, that funnily enough, also helps you balance
+  price: 10
+  damage: 10
+  attackSpeed: 0.19
   attackRange: 0
   criticalHitDamage: 0
   knockback: 0

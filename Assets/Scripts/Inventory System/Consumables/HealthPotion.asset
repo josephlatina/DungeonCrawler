@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: HealthPotion
   m_EditorClassIdentifier: 
   itemName: HealthPotion
-  description: dvdvdvdfcasc
+  description: Restore hearts or health points
   price: 49
-  healthRestore: 0
+  healthRestore: 5
   knockback: 0
   abilityPoison: 0
   abilityStun: 0
