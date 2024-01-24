@@ -1,5 +1,5 @@
 /*
- * StateMachine.cs
+ * BaseStateMachine.cs
  * Author: Josh Coss
  * Created: January 16 2024
  * Description: Manages how control flow enters and exits different states
@@ -13,29 +13,13 @@ using UnityEngine;
 /// Manages state flow
 /// </summary>
 [Serializable]
-public class StateMachine
+public class BaseStateMachine
 {
     // The current state of the state machine
     public IState CurrentState { get; private set; }
 
-    // Reference to the player's movement state
-    public MoveState moveState;
-    // Reference to the player's idle state
-    public IdleState idleState;
-
     // Event to notify other objects of the state
     public event Action<IState> stateChanged;
-
-    /// <summary>
-    /// Constructor for player state machine
-    /// </summary>
-    /// <param name="player"></param>
-    public StateMachine(PlayerController player)
-    {
-        // create an instance for each state and pass in PlayerController
-        this.moveState = new MoveState(player);
-        this.idleState = new IdleState(player);
-    }
 
     /// <summary>
     /// Sets the initial state of the state machine
