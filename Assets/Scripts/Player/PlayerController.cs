@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private float incomingDamage;
     // Vector2 of the normalized vectors of movement for the player
     private Vector2 moveVal;
+    public bool rolling;
 
     public PlayerStateMachine PlayerStateMachine => playerStateMachine;
 
@@ -58,7 +59,7 @@ public class PlayerController : MonoBehaviour
         strength = player.currentStrength;
         healthPoints = player.currentHealth;
         defence = player.currentDefence;
-        incomingDamage = player.CurrentIncomingDamage;
+        incomingDamage = player.currentIncomingDamage;
     }
 
     /// <summary>
@@ -104,6 +105,11 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveVal = value.Get<Vector2>();
+    }
+
+    void OnRoll(InputValue value)
+    {
+        rolling = value.Get<bool>();
     }
 
 }

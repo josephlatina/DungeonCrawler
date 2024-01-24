@@ -19,6 +19,7 @@ public class PlayerStateMachine : BaseStateMachine
     public PlayerMoveState moveState;
     // Reference to the player's idle state
     public PlayerIdleState idleState;
+    public PlayerRollState rollState;
 
     /// <summary>
     /// Constructor for the player state machine.
@@ -29,5 +30,6 @@ public class PlayerStateMachine : BaseStateMachine
         // Create an instance for each state and pass in the PlayerController
         this.moveState = new PlayerMoveState(player);
         this.idleState = new PlayerIdleState(player);
+        this.rollState = new PlayerRollState(player);
     }
 }

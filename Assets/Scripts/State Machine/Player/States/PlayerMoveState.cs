@@ -15,6 +15,7 @@ public class PlayerMoveState : IState
 {
     private PlayerController player;
 
+    // Constructor to initialize the state with the associated player controller
     public PlayerMoveState(PlayerController player)
     {
         this.player = player;
@@ -37,6 +38,10 @@ public class PlayerMoveState : IState
         if (Mathf.Abs(player.rb.velocity.x) < 0.1f && Mathf.Abs(player.rb.velocity.y) < 0.1f)
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.idleState);
+        }
+        if (player.rolling == true)
+        {
+            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.rollState);
         }
     }
 
