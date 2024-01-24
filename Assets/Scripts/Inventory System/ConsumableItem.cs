@@ -18,6 +18,11 @@ public class ConsumableItem : InventoryItem
     [SerializeField]
     private float healthRestore;
 
+    [Header("Permanent Power Upgrade Attributes (PERK)")] [Space(5)] 
+    [SerializeField] private float attackStrengthUpgrade;
+    [SerializeField] private float attackSpeedUpgrade;
+    [SerializeField] private float defenceUpgrade;
+
     // These attributes are randomly given to the item(weapons or consumable)
     [Header("Extra Item Attributes")]
     [Space(5)]
@@ -25,10 +30,10 @@ public class ConsumableItem : InventoryItem
     [SerializeField]
     private int knockback;
 
-    [Tooltip("ealth points drained per attack by chance")] [SerializeField]
+    [Tooltip("Health points drained per attack by chance")] [SerializeField]
     private float abilityPoison;
 
-    [Tooltip("ealth points drained per attack by chance")] [SerializeField]
+    [Tooltip("Health points drained per attack by chance")] [SerializeField]
     private float abilityStun;
 
     [SerializeField] private float attackStrengthBoost;
