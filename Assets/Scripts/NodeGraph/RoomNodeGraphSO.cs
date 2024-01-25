@@ -17,7 +17,7 @@ public class RoomNodeGraphSO : ScriptableObject
 {
     // contains complete list of room node types
     [HideInInspector] public RoomNodeTypeListSO roomNodeTypeList;
-    // contains list of RoomNodeSO scriptable object assets
+    // contains list of RoomNodeSO scriptable object assets within this room node graph SO
     [HideInInspector] public List<RoomNodeSO> roomNodeList = new List<RoomNodeSO>();
     // create dictionary of RoomNodeSO with the unique guid of each room node as the key
     [HideInInspector] public Dictionary<string, RoomNodeSO> roomNodeDictionary = new Dictionary<string, RoomNodeSO>();

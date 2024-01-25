@@ -1,7 +1,17 @@
+/*
+ * HelperUtilities.cs
+ * Author: Joseph Latina
+ * Created: January 23, 2024
+ * Description: Utility helper tool to be used for other classes in terms of validation, etc.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Helper utility tool
+/// </summary>
 public static class HelperUtilities
 {
     /// <summary>

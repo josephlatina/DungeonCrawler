@@ -1,7 +1,17 @@
+/*
+ * RoomNodeTypeListSO.cs
+ * Author: Joseph Latina
+ * Created: January 23, 2024
+ * Description: Used to create scriptable object assets for Room Node Type List.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// List used in place of an enum to be populated with all different RoomNodeTypeSO
+/// </summary>
 [CreateAssetMenu(fileName = "RoomNodeTypeListSO", menuName = "Scriptable Objects/Dungeon/Room Node Type List")]
 public class RoomNodeTypeListSO : ScriptableObject
 {

@@ -43,6 +43,11 @@ public class RoomNodeTypeSO : ScriptableObject
    [Header("One Type Should Be An Entrance")]
    #endregion Header
    public bool isEntrance;
+   // boolean value to identify if this is an exit type
+   #region Header
+   [Header("One Type Should Be An Exit")]
+   #endregion Header
+   public bool isExit;
    // boolean value to identify if this is a boss room type
    #region Header
    [Header("One Type Should Be A Boss Room")]
