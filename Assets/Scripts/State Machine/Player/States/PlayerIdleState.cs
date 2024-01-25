@@ -25,7 +25,7 @@ public class PlayerIdleState : IState
     /// </summary>
     public void Enter()
     {
-        Debug.Log("Entering Idle State");
+        // Debug.Log("Entering Idle State");
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ public class PlayerIdleState : IState
     public void Update()
     {
         // if we move above a minimum threshold, transition to move state
-        if (Mathf.Abs(player.rb.velocity.x) > 0.1f || Mathf.Abs(player.rb.velocity.y) > 0.1f)
+        if (player.moveVal.x != 0 || player.moveVal.y != 0)
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.moveState);
         }
@@ -45,6 +45,6 @@ public class PlayerIdleState : IState
     /// </summary>
     public void Exit()
     {
-        Debug.Log("Exiting Idle State");
+        // Debug.Log("Exiting Idle State");
     }
 }

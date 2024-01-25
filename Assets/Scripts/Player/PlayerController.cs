@@ -6,6 +6,7 @@
  */
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,8 +27,12 @@ public class PlayerController : MonoBehaviour
     private int defence;
     private float incomingDamage;
     // Vector2 of the normalized vectors of movement for the player
-    private Vector2 moveVal;
+    public Vector2 moveVal;
     public bool rolling;
+    public float rollSpeed;
+    public float rollLength = 0.5f, rollCooldown = 1f;
+    private float rollCounter;
+    private float rollCoolCounter;
 
     public PlayerStateMachine PlayerStateMachine => playerStateMachine;
 
@@ -69,7 +74,6 @@ public class PlayerController : MonoBehaviour
     {
         // Initialize the state machine with the idle state
         playerStateMachine.Initialize(playerStateMachine.idleState);
-
     }
 
     /// <summary>
@@ -79,6 +83,27 @@ public class PlayerController : MonoBehaviour
     {
         // Update the state machine logic
         playerStateMachine.Update();
+
+        if (rolling)
+        {
+            if (rollCoolCounter <= 0 && rollCounter <= 0)
+            {
+                rollCounter = rollLength;
+            }
+        }
+        if (rollCounter > 0)
+        {
+            rollCounter -= Time.deltaTime;
+            if (rollCounter <= 0)
+            {
+                rollCoolCounter = rollCooldown;
+                rolling = false;
+            }
+        }
+        if (rollCoolCounter > 0)
+        {
+            rollCoolCounter -= Time.deltaTime;
+        }
     }
 
     /// <summary>
@@ -87,15 +112,23 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        Move();
+        if (!rolling)
+        {
+            Move();
+        }
     }
 
     /// <summary>
     /// Moves the player in all 8 directions
     /// </summary>
-    private void Move()
+    public void Move()
     {
-        rb.AddForce(new Vector2(moveVal.x * moveSpeed * Time.deltaTime, moveVal.y * moveSpeed * Time.deltaTime), ForceMode2D.Impulse);
+        rb.velocity = moveVal * moveSpeed;
+    }
+
+    public void Roll()
+    {
+        rb.velocity = moveVal * rollSpeed;
     }
 
     /// <summary>
@@ -109,7 +142,10 @@ public class PlayerController : MonoBehaviour
 
     void OnRoll(InputValue value)
     {
-        rolling = value.Get<bool>();
+        if (rollCoolCounter <= 0 && rollCounter <= 0)
+        {
+            rolling = true;
+            Roll();
+        }
     }
-
 }

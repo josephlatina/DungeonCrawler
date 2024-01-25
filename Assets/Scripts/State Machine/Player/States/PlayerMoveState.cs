@@ -26,7 +26,7 @@ public class PlayerMoveState : IState
     /// </summary>
     public void Enter()
     {
-        Debug.Log("Entering Move State");
+        // Debug.Log("Entering Move State");
     }
 
     /// <summary>
@@ -51,6 +51,6 @@ public class PlayerMoveState : IState
     public void Exit()
     {
         // code that runs when exiting the state
-        Debug.Log("Exiting Move State");
+        // Debug.Log("Exiting Move State");
     }
 }

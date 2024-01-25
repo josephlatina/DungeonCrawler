@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Roll State Logic
@@ -26,7 +27,8 @@ public class PlayerRollState : IState
     /// </summary>
     public void Enter()
     {
-        Debug.Log("Player entering roll state");
+        // Debug.Log("Player entering roll state");
+        player.GetComponent<SpriteRenderer>().color = Color.red;
         // Add any additional logic needed when entering the roll state
     }
 
@@ -35,14 +37,22 @@ public class PlayerRollState : IState
     /// </summary>
     public void Update()
     {
-        Debug.Log("Player rolling");
+        // Debug.Log("Player rolling");
         // Add roll-specific logic here
 
         // Check conditions to transition to a different state
         if (player.rolling == false)
         {
-            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.moveState);
+            if (player.moveVal.x > 0.1f || player.moveVal.y > 0.1f)
+            {
+                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.moveState);
+            }
+            else
+            {
+                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.idleState);
+            }
         }
+
     }
 
     /// <summary>
@@ -50,7 +60,8 @@ public class PlayerRollState : IState
     /// </summary>
     public void Exit()
     {
-        Debug.Log("Player exiting roll state");
+        // Debug.Log("Player exiting roll state");
+        player.GetComponent<SpriteRenderer>().color = Color.white;
         // Add any additional logic needed when exiting the roll state
     }
 }
