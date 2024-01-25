@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e821850fb3ae4669bc2ec50ae5888b4, type: 3}
   m_Name: RoomNodeTypeListSO
   m_EditorClassIdentifier: 
-  list: []
+  list:
+  - {fileID: 11400000, guid: 3a9b0681ecd3f4fb0a9ed0008b9c56dc, type: 2}
+  - {fileID: 11400000, guid: 355b445d5bb4d46b5ae213d37aee3f15, type: 2}
+  - {fileID: 11400000, guid: 236a0a85ca3f94ddd8673e3e130e9a40, type: 2}
+  - {fileID: 11400000, guid: bcb4e64e0986e4803af47deb13729fd0, type: 2}
+  - {fileID: 11400000, guid: d3a2b6de56ff34398b4c7ad51c36ba08, type: 2}
+  - {fileID: 11400000, guid: c615436f0795a436eb81f2eccb2d8998, type: 2}
+  - {fileID: 11400000, guid: c7bc17b8a2a964a368f828524a5edc73, type: 2}
+  - {fileID: 11400000, guid: c437fb01854944f869a4d0aa108dbce0, type: 2}
+  - {fileID: 11400000, guid: 8fd6ea5b8dd2041519e75ca2a352c3fe, type: 2}
+  - {fileID: 11400000, guid: c699fd65259a64908833c953fcb59f91, type: 2}
+  - {fileID: 11400000, guid: ff86b8575b8fb418584d289aa4983da9, type: 2}
+  - {fileID: 11400000, guid: d4055ffd1bd9c4e3ca9ca46fffb42bc2, type: 2}

@@ -143,7 +143,7 @@ public class RoomNodeGraphEditor : EditorWindow
     /// Create a room node at the mouse position - overloaded to also pass in RoomNodeType
     /// </summary>
     private void CreateRoomNode(object mousePositionObject, RoomNodeTypeSO roomNodeType) {
-        Vector2 mousePosition = (Vector2) mousePositionObject; 
+        Vector2 mousePosition = (Vector2)mousePositionObject; 
 
         // create a room node scriptable object asset
         RoomNodeSO roomNode = ScriptableObject.CreateInstance<RoomNodeSO>();
