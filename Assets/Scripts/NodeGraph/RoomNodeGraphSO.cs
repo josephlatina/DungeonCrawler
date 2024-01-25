@@ -21,4 +21,48 @@ public class RoomNodeGraphSO : ScriptableObject
     [HideInInspector] public List<RoomNodeSO> roomNodeList = new List<RoomNodeSO>();
     // create dictionary of RoomNodeSO with the unique guid of each room node as the key
     [HideInInspector] public Dictionary<string, RoomNodeSO> roomNodeDictionary = new Dictionary<string, RoomNodeSO>();
+
+    private void Awake() {
+        LoadRoomNodeDictionary();
+    }
+
+    /// <summary>
+    /// Load the room node dictionary from the room node list
+    /// </summary>
+    public void LoadRoomNodeDictionary() {
+        // initialize the dictionary
+        roomNodeDictionary.Clear();
+
+        // Populate the dictionary with room nodes created within this room node graph SO
+        foreach (RoomNodeSO node in roomNodeList) {
+            roomNodeDictionary[node.id] = node;
+        }
+    }
+
+    // These methods below only pertain to within the Node Graph Editor Window:
+    #region Editor Code
+    #if UNITY_EDITOR
+
+    [HideInInspector] public RoomNodeSO roomNodeToDrawLineFrom = null;
+    [HideInInspector] public Vector2 linePosition; // stores the end position of the drag line
+
+    /// <summary>
+    /// Repopulate node dictionary every time a change is made in the editor
+    /// </summary>
+    public void OnValidate() {
+        
+        LoadRoomNodeDictionary();
+    }
+
+    /// <summary>
+    /// Takes room node and position of line and sets the member variables accordingly
+    /// </summary>
+    public void SetNodeToDrawConnectionLineFrom(RoomNodeSO node, Vector2 position) {
+        
+        roomNodeToDrawLineFrom = node;
+        linePosition = position;
+    }
+
+    #endif
+    #endregion Editor Code
 }

@@ -16,11 +16,11 @@ using UnityEngine;
 public class RoomNodeSO : ScriptableObject
 {
     // unique guid for the room node
-    [HideInInspector] public string id;
+    public string id;
     // used to maintain a list of parent room node IDs to reference this room node to
-    [HideInInspector] public List<string> parentRoomNodeIDList = new List<string>();
+    public List<string> parentRoomNodeIDList = new List<string>();
     // used to maintain a list of child room node IDs to reference this room node to
-    [HideInInspector] public List<string> childRoomNodeIDList = new List<string>();
+    public List<string> childRoomNodeIDList = new List<string>();
     // holds a reference to the containing room node graph
     [HideInInspector] public RoomNodeGraphSO roomNodeGraph;
     // holds the particular room node type for this room node
@@ -32,8 +32,9 @@ public class RoomNodeSO : ScriptableObject
     // These methods below only pertain to within the Node Graph Editor Window:
    #region Editor Code
    #if UNITY_EDITOR
-   [HideInInspector] public Rect rect;
-
+   [HideInInspector] public Rect rect; // rectangle box of the room node in the window
+   [HideInInspector] public bool isLeftClickDragging = false; // boolean value to check if box is being dragged
+    [HideInInspector] public bool isSelected = false; // if room node has been selected
     /// <summary>
     /// Initialise node in the Node Graph Editor window
     /// </summary>
@@ -59,11 +60,21 @@ public class RoomNodeSO : ScriptableObject
         // Start Region to Detect Popup Selection Changes
         EditorGUI.BeginChangeCheck();
 
-        // Display a popup using the RoomNodeType name values that can be selected from
-        int selected = roomNodeTypeList.list.FindIndex(x => x == roomNodeType); // if room node already has a selected type
-        int selection = EditorGUILayout.Popup("", selected, GetRoomNodeTypesToDisplay()); // if not, check user's selection from the popup
-        // detect the room type selection user makes and save it to the member variable within this room node SO instance
-        roomNodeType = roomNodeTypeList.list[selection];
+        // If the room node has a parent or is of type entrance,
+        if (parentRoomNodeIDList.Count > 0 || roomNodeType.isEntrance) {
+            // then display a label that can't be changed
+            EditorGUILayout.LabelField(roomNodeType.roomNodeTypeName);
+        }
+        // otherwise, it would be displayed as a popup
+        else {
+            // Display a popup using the RoomNodeType name values that can be selected from
+            int selected = roomNodeTypeList.list.FindIndex(x => x == roomNodeType); // if room node already has a selected type
+            int selection = EditorGUILayout.Popup("", selected, GetRoomNodeTypesToDisplay()); // if not, check user's selection from the popup
+            
+            // detect the room type selection user makes and save it to the member variable within this room node SO instance
+            roomNodeType = roomNodeTypeList.list[selection];
+        }
+
         if (EditorGUI.EndChangeCheck()) {
             // makes sure any changes we make in the displayed popup actually gets saved
             EditorUtility.SetDirty(this);
@@ -88,6 +99,142 @@ public class RoomNodeSO : ScriptableObject
 
         return roomArray;
    }
+
+    /// <summary>
+    /// Process events for this node
+    /// </summary>
+   public void ProcessEvents(Event currentEvent) {
+        
+        switch (currentEvent.type) {
+            // Process Mouse Down Events
+            case EventType.MouseDown:
+                ProcessMouseDownEvent(currentEvent);
+                break;
+                
+            // Process Mouse Up Events (when hold on click is released)
+            case EventType.MouseUp:
+                ProcessMouseUpEvent(currentEvent);
+                break;
+
+            // Process Mouse Drag Events
+            case EventType.MouseDrag:
+                ProcessMouseDragEvent(currentEvent);
+                break;
+
+            default:
+                break;
+        }
+   }
+
+    /// <summary>
+    /// Process mouse down events
+    /// </summary>
+   public void ProcessMouseDownEvent(Event currentEvent) {
+        
+        // left click down
+        if (currentEvent.button == 0) {
+            ProcessLeftClickDownEvent();
+        }
+        // right click down
+        else if (currentEvent.button == 1) {
+            ProcessRightClickDownEvent(currentEvent);
+        }
+   }
+
+    /// <summary>
+    /// Process left click down event
+    /// </summary>
+   public void ProcessLeftClickDownEvent() {
+        
+        // flag this object as the active object being selected in the Unity editor
+        // this will enable any changes applied in the editor window to apply to the asset object it corresponds to (ie. change room node type of room)
+        Selection.activeObject = this;
+
+        // Toggle node selection
+        if (isSelected) {
+            isSelected = false;
+        } else {
+            isSelected = true;
+        }
+   }
+
+    /// <summary>
+    /// Process right click down event
+    /// </summary>
+   public void ProcessRightClickDownEvent(Event currentEvent) {
+        
+        roomNodeGraph.SetNodeToDrawConnectionLineFrom(this, currentEvent.mousePosition);
+   }
+
+    /// <summary>
+    /// Process mouse up event
+    /// </summary>
+   public void ProcessMouseUpEvent(Event currentEvent) {
+        
+        // If left click has been released
+        if (currentEvent.button == 0) {
+            ProcessLeftClickUpEvent();
+        }
+   }
+
+    /// <summary>
+    /// Process left click up event
+    /// </summary>
+   public void ProcessLeftClickUpEvent() {
+        
+        if (isLeftClickDragging) {
+            isLeftClickDragging = false;
+        }
+   }
+
+    /// <summary>
+    /// Process mouse drag event
+    /// </summary>
+   public void ProcessMouseDragEvent(Event currentEvent) {
+        
+        // process left click drag event
+        if (currentEvent.button == 0) {
+            ProcessLeftMouseDragEvent(currentEvent);
+        }
+   }
+
+    /// <summary>
+    /// Process left mouse drag event
+    /// </summary>
+   public void ProcessLeftMouseDragEvent(Event currentEvent) {
+        
+        isLeftClickDragging = true;
+
+        DragNode(currentEvent.delta); //captures relative movement of mouse (how much it's moving by)
+        GUI.changed = true;
+   }
+
+    /// <summary>
+    /// Drag node
+    /// </summary>
+   public void DragNode(Vector2 delta) {
+        
+        rect.position += delta;
+        EditorUtility.SetDirty(this);
+   }
+
+    /// <summary>
+    /// Add childID to the node (return true if node has been added, otherwise return false)
+    /// </summary>
+    public bool AddChildRoomNodeIDToRoomNode(string childID) {
+        
+        childRoomNodeIDList.Add(childID);
+        return true;
+    }
+
+    /// <summary>
+    /// Add parentID to the node (return true if node has been added, otherwise return false)
+    /// </summary>
+    public bool AddParentRoomNodeIDToRoomNode(string parentID) {
+        
+        parentRoomNodeIDList.Add(parentID);
+        return true;
+    }
 
    #endif
    #endregion Editor Code
