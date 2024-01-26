@@ -1,5 +1,5 @@
 /*
- * MoveState.cs
+ * PlayerMoveState.cs
  * Author: Josh Coss
  * Created: January 16 2024
  * Description: Handles state transitions to and from the Move state, as well as update logic for the state
@@ -9,13 +9,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Move state logic
+/// Move state logic for player
 /// </summary>
-public class MoveState : IState
+public class PlayerMoveState : IState
 {
     private PlayerController player;
 
-    public MoveState(PlayerController player)
+    public PlayerMoveState(PlayerController player)
     {
         this.player = player;
     }

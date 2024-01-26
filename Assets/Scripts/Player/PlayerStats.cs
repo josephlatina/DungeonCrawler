@@ -21,6 +21,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] float CurrentAttackSpeed;
     // Represents the player's current attack strength
     [SerializeField] float CurrentStrength;
+    [SerializeField] int CurrentDefence;
+    [SerializeField] float CurrentIncomingDamage;
 
     // Setter / getter for CurrentHealth
     public float currentHealth
@@ -74,4 +76,31 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
+
+    // Setter / getter for CurrentDefence
+    public int currentDefence
+    {
+        get { return CurrentDefence; }
+        set
+        {
+            if (CurrentDefence != value)
+            {
+                CurrentDefence = value;
+            }
+        }
+    }
+
+    // Setter / getter for CurrentIncomingDamage
+    public float currentIncomingDamage
+    {
+        get { return CurrentIncomingDamage; }
+        set
+        {
+            if (CurrentIncomingDamage != value)
+            {
+                CurrentIncomingDamage = value;
+            }
+        }
+    }
+
 }

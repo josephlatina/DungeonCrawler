@@ -1,5 +1,5 @@
 /*
- * IdleState.cs
+ * PlayerIdleState.cs
  * Author: Josh Coss
  * Created: January 16 2024
  * Description: Handles state transitions to and from the Idle state, as well as update logic for the state
@@ -9,13 +9,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Idle state logic
+/// Idle state logic for player
 /// </summary>
-public class IdleState : IState
+public class PlayerIdleState : IState
 {
     private PlayerController player;
 
-    public IdleState(PlayerController player)
+    public PlayerIdleState(PlayerController player)
     {
         this.player = player;
     }
