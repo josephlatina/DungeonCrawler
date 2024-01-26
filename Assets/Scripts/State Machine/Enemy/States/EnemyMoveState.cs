@@ -45,6 +45,11 @@ public class EnemyMoveState : IState
         }
     }
 
+    public void FixedUpdate()
+    {
+
+    }
+
     /// <summary>
     /// Called when exiting the move state.
     /// </summary>

@@ -24,6 +24,8 @@ public interface IState
     /// </summary>
     void Update();
 
+    void FixedUpdate();
+
     /// <summary>
     /// Runs when exiting the state.
     /// </summary>

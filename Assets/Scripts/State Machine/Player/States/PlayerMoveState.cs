@@ -39,10 +39,26 @@ public class PlayerMoveState : IState
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.idleState);
         }
+
         if (player.rolling == true)
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.rollState);
         }
+
+        // if (player.meleeAttacking)
+        // {
+        //     player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.meleeState);
+        // }
+
+        // if (player.rangedAttacking)
+        // {
+        //     player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.rangedState);
+        // }
+    }
+
+    public void FixedUpdate()
+    {
+        player.Move();
     }
 
     /// <summary>

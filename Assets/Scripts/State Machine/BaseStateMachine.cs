@@ -58,4 +58,12 @@ public class BaseStateMachine
             CurrentState.Update();
         }
     }
+
+    public void FixedUpdate()
+    {
+        if (CurrentState != null)
+        {
+            CurrentState.FixedUpdate();
+        }
+    }
 }

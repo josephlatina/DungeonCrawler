@@ -83,7 +83,49 @@ public class PlayerController : MonoBehaviour
     {
         // Update the state machine logic
         playerStateMachine.Update();
+        RollCountdown();
+    }
 
+    /// <summary>
+    /// Called at fixed time intervals, making it suitable for physics-related calculations
+    /// to ensure consistent behavior across varying frame rates.
+    /// </summary>
+    private void FixedUpdate()
+    {
+        if (!rolling)
+        {
+            Move();
+        }
+    }
+
+    /// <summary>
+    /// Listens for the player input and updates moveVal to the current value of movement input
+    /// </summary>
+    /// <param name="value">Movement vector sent from Player Input component</param>
+    void OnMove(InputValue value)
+    {
+        moveVal = value.Get<Vector2>();
+    }
+
+    /// <summary>
+    /// Moves the player in all 8 directions
+    /// </summary>
+    public void Move()
+    {
+        rb.velocity = moveVal * moveSpeed;
+    }
+
+    void OnRoll(InputValue value)
+    {
+        if (rollCoolCounter <= 0 && rollCounter <= 0)
+        {
+            rolling = true;
+            Roll();
+        }
+    }
+
+    void RollCountdown()
+    {
         if (rolling)
         {
             if (rollCoolCounter <= 0 && rollCounter <= 0)
@@ -106,46 +148,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Called at fixed time intervals, making it suitable for physics-related calculations
-    /// to ensure consistent behavior across varying frame rates.
-    /// </summary>
-    private void FixedUpdate()
-    {
-        if (!rolling)
-        {
-            Move();
-        }
-    }
-
-    /// <summary>
-    /// Moves the player in all 8 directions
-    /// </summary>
-    public void Move()
-    {
-        rb.velocity = moveVal * moveSpeed;
-    }
-
     public void Roll()
     {
         rb.velocity = moveVal * rollSpeed;
     }
 
-    /// <summary>
-    /// Listens for the player input and updates moveVal to the current value of movement input
-    /// </summary>
-    /// <param name="value">Movement vector sent from Player Input component</param>
-    void OnMove(InputValue value)
-    {
-        moveVal = value.Get<Vector2>();
-    }
 
-    void OnRoll(InputValue value)
-    {
-        if (rollCoolCounter <= 0 && rollCounter <= 0)
-        {
-            rolling = true;
-            Roll();
-        }
-    }
 }

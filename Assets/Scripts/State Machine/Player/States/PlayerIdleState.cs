@@ -38,6 +38,21 @@ public class PlayerIdleState : IState
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.moveState);
         }
+
+        // if (player.meleeAttacking)
+        // {
+        //     player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.meleeState);
+        // }
+
+        // if (player.rangedAttacking)
+        // {
+        //     player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.rangedState);
+        // }
+    }
+
+    public void FixedUpdate()
+    {
+
     }
 
     /// <summary>

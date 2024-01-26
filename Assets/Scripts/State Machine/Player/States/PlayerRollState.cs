@@ -55,6 +55,11 @@ public class PlayerRollState : IState
 
     }
 
+    public void FixedUpdate()
+    {
+
+    }
+
     /// <summary>
     /// Runs when exiting the move state
     /// </summary>

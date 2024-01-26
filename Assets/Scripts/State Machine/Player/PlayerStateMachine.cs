@@ -20,6 +20,8 @@ public class PlayerStateMachine : BaseStateMachine
     // Reference to the player's idle state
     public PlayerIdleState idleState;
     public PlayerRollState rollState;
+    public PlayerMeleeState meleeState;
+    public PlayerRangedState rangedState;
 
     /// <summary>
     /// Constructor for the player state machine.
@@ -31,5 +33,7 @@ public class PlayerStateMachine : BaseStateMachine
         this.moveState = new PlayerMoveState(player);
         this.idleState = new PlayerIdleState(player);
         this.rollState = new PlayerRollState(player);
+        this.meleeState = new PlayerMeleeState(player);
+        this.rangedState = new PlayerRangedState(player);
     }
 }
