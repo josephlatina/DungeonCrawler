@@ -16,6 +16,9 @@ public class PlayerRollState : IState
 {
     private PlayerController player;
 
+    private float rollCounter;
+    private float rollCoolCounter;
+
     // Constructor to initialize the state with the associated player controller
     public PlayerRollState(PlayerController player)
     {
@@ -27,9 +30,9 @@ public class PlayerRollState : IState
     /// </summary>
     public void Enter()
     {
-        // Debug.Log("Player entering roll state");
         player.GetComponent<SpriteRenderer>().color = Color.red;
         // Add any additional logic needed when entering the roll state
+        Roll();
     }
 
     /// <summary>
@@ -39,6 +42,13 @@ public class PlayerRollState : IState
     {
         // Debug.Log("Player rolling");
         // Add roll-specific logic here
+        RollCountdown();
+
+        if (player.isMeleeAttacking || player.isRangedAttacking)
+        {
+            player.isMeleeAttacking = false;
+            player.isRangedAttacking = false;
+        }
 
         // Check conditions to transition to a different state
         if (player.rolling == false)
@@ -68,5 +78,34 @@ public class PlayerRollState : IState
         // Debug.Log("Player exiting roll state");
         player.GetComponent<SpriteRenderer>().color = Color.white;
         // Add any additional logic needed when exiting the roll state
+        rollCounter = 0;
+        rollCoolCounter = 0;
+    }
+
+    void Roll()
+    {
+        player.rb.velocity = player.moveVal * player.rollSpeed;
+    }
+
+    void RollCountdown()
+    {
+        if (rollCoolCounter <= 0 && rollCounter <= 0)
+        {
+            rollCounter = player.rollLength;
+        }
+
+        if (rollCounter > 0)
+        {
+            rollCounter -= Time.deltaTime;
+            if (rollCounter <= 0)
+            {
+                rollCoolCounter = player.rollCooldown;
+                player.rolling = false;
+            }
+        }
+        if (rollCoolCounter > 0)
+        {
+            rollCoolCounter -= Time.deltaTime;
+        }
     }
 }

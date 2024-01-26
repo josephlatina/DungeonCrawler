@@ -25,7 +25,7 @@ public class PlayerIdleState : IState
     /// </summary>
     public void Enter()
     {
-        // Debug.Log("Entering Idle State");
+
     }
 
     /// <summary>
@@ -38,16 +38,20 @@ public class PlayerIdleState : IState
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.moveState);
         }
+        if (player.rolling)
+        {
+            player.rolling = false;
+        }
 
-        // if (player.meleeAttacking)
-        // {
-        //     player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.meleeState);
-        // }
+        if (player.isMeleeAttacking)
+        {
+            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.meleeState);
+        }
 
-        // if (player.rangedAttacking)
-        // {
-        //     player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.rangedState);
-        // }
+        if (player.isRangedAttacking)
+        {
+            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.rangedState);
+        }
     }
 
     public void FixedUpdate()
@@ -60,6 +64,6 @@ public class PlayerIdleState : IState
     /// </summary>
     public void Exit()
     {
-        // Debug.Log("Exiting Idle State");
+        
     }
 }

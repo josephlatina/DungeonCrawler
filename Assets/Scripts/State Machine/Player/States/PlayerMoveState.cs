@@ -26,7 +26,7 @@ public class PlayerMoveState : IState
     /// </summary>
     public void Enter()
     {
-        // Debug.Log("Entering Move State");
+
     }
 
     /// <summary>
@@ -40,20 +40,20 @@ public class PlayerMoveState : IState
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.idleState);
         }
 
-        if (player.rolling == true)
+        if (player.rolling && !player.isMeleeAttacking && !player.isRangedAttacking)
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.rollState);
         }
 
-        // if (player.meleeAttacking)
-        // {
-        //     player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.meleeState);
-        // }
+        if (player.isMeleeAttacking && !player.rolling && !player.isRangedAttacking)
+        {
+            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.meleeState);
+        }
 
-        // if (player.rangedAttacking)
-        // {
-        //     player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.rangedState);
-        // }
+        if (player.isRangedAttacking)
+        {
+            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.rangedState);
+        }
     }
 
     public void FixedUpdate()
@@ -67,6 +67,5 @@ public class PlayerMoveState : IState
     public void Exit()
     {
         // code that runs when exiting the state
-        // Debug.Log("Exiting Move State");
     }
 }

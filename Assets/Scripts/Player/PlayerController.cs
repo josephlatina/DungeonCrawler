@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private PlayerStats player;
 
     private float moveSpeed;
-    private float attackSpeed;
+    public float attackSpeed;
     private float strength;
     private float healthPoints;
     private int defence;
@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
     public bool rolling;
     public float rollSpeed;
     public float rollLength = 0.5f, rollCooldown = 1f;
-    private float rollCounter;
-    private float rollCoolCounter;
+    // private float rollCounter;
+    // private float rollCoolCounter;
 
     public PlayerStateMachine PlayerStateMachine => playerStateMachine;
 
@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
         Poison
     }
     private PlayerStatus status;
+    public bool isMeleeAttacking, isRangedAttacking;
 
     /// <summary>
     /// Called once when script is initialized
@@ -83,7 +84,6 @@ public class PlayerController : MonoBehaviour
     {
         // Update the state machine logic
         playerStateMachine.Update();
-        RollCountdown();
     }
 
     /// <summary>
@@ -92,10 +92,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        if (!rolling)
-        {
-            Move();
-        }
+        playerStateMachine.FixedUpdate();
     }
 
     /// <summary>
@@ -117,41 +114,16 @@ public class PlayerController : MonoBehaviour
 
     void OnRoll(InputValue value)
     {
-        if (rollCoolCounter <= 0 && rollCounter <= 0)
-        {
-            rolling = true;
-            Roll();
-        }
+        rolling = value.isPressed;
     }
 
-    void RollCountdown()
+    void OnMeleeAttack(InputValue value)
     {
-        if (rolling)
-        {
-            if (rollCoolCounter <= 0 && rollCounter <= 0)
-            {
-                rollCounter = rollLength;
-            }
-        }
-        if (rollCounter > 0)
-        {
-            rollCounter -= Time.deltaTime;
-            if (rollCounter <= 0)
-            {
-                rollCoolCounter = rollCooldown;
-                rolling = false;
-            }
-        }
-        if (rollCoolCounter > 0)
-        {
-            rollCoolCounter -= Time.deltaTime;
-        }
+        isMeleeAttacking = value.isPressed;
     }
 
-    public void Roll()
+    void OnRangedAttack(InputValue value)
     {
-        rb.velocity = moveVal * rollSpeed;
+        isRangedAttacking = value.isPressed;
     }
-
-
 }
