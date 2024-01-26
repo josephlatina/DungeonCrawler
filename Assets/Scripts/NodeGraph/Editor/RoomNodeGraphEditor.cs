@@ -22,8 +22,6 @@ public class RoomNodeGraphEditor : EditorWindow
     // holds reference to the current room node graph SO being opened
     private static RoomNodeGraphSO currentRoomNodeGraph;
 
-    // how much we are offsetting the drawing of grid horizontal/vertical lines
-    private Vector2 graphOffset;
     // holds the amount of drag distance of mouse
     private Vector2 graphDrag;
 
@@ -42,10 +40,6 @@ public class RoomNodeGraphEditor : EditorWindow
     // Connecting line values
     private const float connectingLineWidth = 3f;
     private const float connectingLineArrowSize = 6f;
-
-    // Grid spacing
-    private const float gridLarge = 100f;
-    private const float gridSmall = 25f;
 
     /// <summary>
     /// Method to open an editor window
@@ -113,10 +107,6 @@ public class RoomNodeGraphEditor : EditorWindow
         // Only process if a scriptable object of type RoomNodeGraphSO has been selected
         if (currentRoomNodeGraph != null) {
 
-            // Draw Grid
-            DrawBackgroundGrid(gridSmall, 0.2f, Color.gray);
-            DrawBackgroundGrid(gridLarge, 0.3f, Color.gray);
-
             // Draw a line first if mouse is being dragged (so it appears behind nodes that are drawn after)
             DrawDraggedLine();
 
@@ -134,42 +124,6 @@ public class RoomNodeGraphEditor : EditorWindow
         if (GUI.changed) {
             Repaint();
         }
-    }
-
-    /// <summary>
-    /// Draw a background grid for the room node graph editor
-    /// </summary>
-    private void DrawBackgroundGrid(float gridSize, float gridOpacity, Color gridColor) {
-        
-        // calculate how many vertical lines needed
-        int verticalLineCount = Mathf.CeilToInt((position.width + gridSize) / gridSize);
-        // calculate how many horizontal lines needed
-        int horizontalLineCount = Mathf.CeilToInt((position.height + gridSize) / gridSize);
-
-        // set color of lines
-        Handles.color = new Color(gridColor.r, gridColor.g, gridColor.b, gridOpacity);
-        
-        // calculate how much the whole graph needs to move by based on the distance covered by mouse
-        graphOffset += graphDrag * 0.2f;
-
-        // calculate grid offset - how much we need to offset each individual grid line we are going to draw
-        Vector3 gridOffset = new Vector3(graphOffset.x % gridSize, graphOffset.y % gridSize, 0);
-
-        // loop through number of vertical lines and change their position
-        for (int i = 0; i < verticalLineCount; i++) {
-            // Draw the new position of the line
-            Handles.DrawLine(new Vector3(gridSize * i, -gridSize, 0) + gridOffset, new Vector3(gridSize * i, position.height + gridSize, 0f) + gridOffset);
-        }
-
-        // loop thorugh number of horizontal lines and change their position
-        for (int j = 0; j < horizontalLineCount; j++) {
-            // Draw the new position of the line
-            Handles.DrawLine(new Vector3(-gridSize, gridSize * j, 0) + gridOffset, new Vector3(position.width + gridSize, gridSize * j, 0f) + gridOffset);
-        }
-
-        // reset color to white
-        Handles.color = Color.white;
-
     }
 
     /// <summary>

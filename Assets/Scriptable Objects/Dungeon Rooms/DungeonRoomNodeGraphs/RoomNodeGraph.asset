@@ -80,6 +80,32 @@ MonoBehaviour:
     height: 75
   isLeftClickDragging: 0
   isSelected: 0
+--- !u!114 &-3060333601172280234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03d75d15437e498bb498707340614fb, type: 3}
+  m_Name: RoomNode
+  m_EditorClassIdentifier: 
+  id: 2d8c0924-2944-4611-86b5-810e4124aa67
+  parentRoomNodeIDList: []
+  childRoomNodeIDList: []
+  roomNodeGraph: {fileID: 11400000}
+  roomNodeType: {fileID: 11400000, guid: d4055ffd1bd9c4e3ca9ca46fffb42bc2, type: 2}
+  roomNodeTypeList: {fileID: 11400000, guid: 5f08e0ddcee0a4c65b5bd110a68dcccd, type: 2}
+  rect:
+    serializedVersion: 2
+    x: 464
+    y: 298
+    width: 160
+    height: 75
+  isLeftClickDragging: 0
+  isSelected: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +124,7 @@ MonoBehaviour:
   - {fileID: 4880026111846843749}
   - {fileID: -4379789792345110224}
   - {fileID: -3868830335327673500}
+  - {fileID: -3060333601172280234}
   roomNodeToDrawLineFrom: {fileID: 0}
   linePosition: {x: 0, y: 0}
 --- !u!114 &4880026111846843749
