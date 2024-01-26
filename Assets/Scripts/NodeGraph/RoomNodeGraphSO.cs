@@ -39,6 +39,18 @@ public class RoomNodeGraphSO : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// Get room node by room nodeID
+    /// </summary>
+    public RoomNodeSO GetRoomNode(string roomNodeID) {
+        
+        // retrieve the room node corresponding to the id from the dictionary if it exists
+        if (roomNodeDictionary.TryGetValue(roomNodeID, out RoomNodeSO roomNode)) {
+            return roomNode;
+        }
+        return null;
+    }
+
     // These methods below only pertain to within the Node Graph Editor Window:
     #region Editor Code
     #if UNITY_EDITOR
