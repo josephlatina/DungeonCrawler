@@ -30,7 +30,7 @@ public class GameResources : MonoBehaviour
     }
 
     // PLACE ALL RESOURCES BELOW
-    
+
     // A resource of type roomNodeTypeList
     #region Header DUNGEON
     [Space(10)]
@@ -39,5 +39,12 @@ public class GameResources : MonoBehaviour
     #region Tooltip
     [Tooltip("Populate with the dungeon RoomNodeTypeListSO")]
     #endregion
+    // This resource is for managing the different type of room node types in the game
     public RoomNodeTypeListSO roomNodeTypeList;
+
+    #region Tooltip
+    [Tooltip("Populate with the single instance of player's inventory")]
+    #endregion
+    // This resource is for managing the single instance of inventory that the player holds
+    public InventorySystem inventorySystem;
 }

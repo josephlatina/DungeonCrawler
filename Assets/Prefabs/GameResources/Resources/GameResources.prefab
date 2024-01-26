@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomNodeTypeList: {fileID: 11400000, guid: 5f08e0ddcee0a4c65b5bd110a68dcccd, type: 2}
+  inventorySystem: {fileID: 11400000, guid: d402dee68ae49714aab258863b548f14, type: 2}
