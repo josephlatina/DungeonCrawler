@@ -14,12 +14,13 @@ public abstract class InventoryItem : ScriptableObject
     [TextArea(1, 5)] public string description;
     public int price;
     public int quantity = 1;
+    public GameObject gameObject;
 
     // Add actions that are common in all items
     // but treated differently based on type to an item below 
     public abstract void Add();
     // TODO: ADD MORE
-    
+
     void OnGUI()
     {
         GUIStyle style = new GUIStyle(EditorStyles.textArea);

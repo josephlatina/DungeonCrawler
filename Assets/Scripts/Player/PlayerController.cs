@@ -6,6 +6,7 @@
  */
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     // Player Inventory System reference to Scriptable Object
     public InventorySystem playerInventory;
+    public TextMeshProUGUI text;
 
     /// <summary>
     /// Called once when script is initialized
@@ -71,6 +73,11 @@ public class PlayerController : MonoBehaviour
     {
         // Initialize the state machine with the idle state
         playerStateMachine.Initialize(playerStateMachine.idleState);
+        
+        for (int i = 0; i < playerInventory.maxConsumableSlots + playerInventory.maxConsumableSlots; i++)
+        {
+            playerInventory.AddItem(null);
+        }
 
     }
 
@@ -114,4 +121,8 @@ public class PlayerController : MonoBehaviour
         moveVal = value.Get<Vector2>();
     }
 
+    public void ChangeText(string newText)
+    {
+        text.text = newText;
+    }
 }

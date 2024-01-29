@@ -11,25 +11,34 @@ using UnityEngine;
 public class WeaponItem : InventoryItem
 {
     // Any value that is 0, ability doesn't exist or no effect
-    
-    [Header("Basic Weapon Attributes")] [Space(5)] [SerializeField]
-    private float damage;
+
+    public enum WeaponType
+    {
+        Melee,
+        Ranged
+    };
+
+    [Header("Basic Weapon Attributes")] [Space(5)]
+    public WeaponType weaponType;
+
+    [SerializeField] private float damage;
     [SerializeField] private float attackSpeed;
     [SerializeField] private int attackRange;
     [SerializeField] private float criticalHitDamage;
-    [Tooltip("Tiles enemy is pushed back")]
-    [SerializeField] private int knockback;
 
-    [Header("Specific Weapon Abilities")] [Space(5)]
-    [Tooltip("Health points drained per attack by chance")] [SerializeField]
+    [Tooltip("Tiles enemy is pushed back")] [SerializeField]
+    private int knockback;
+
+    [Header("Specific Weapon Abilities")]
+    [Space(5)]
+    [Tooltip("Health points drained per attack by chance")]
+    [SerializeField]
     private int abilityLifeSteal;
 
-    [Tooltip("Health points drained per attack by chance")] 
-    [SerializeField]
+    [Tooltip("Health points drained per attack by chance")] [SerializeField]
     private float abilityPoison;
 
-    [Tooltip("Value is 0 if ability doesn't exist")]     
-    [SerializeField]
+    [Tooltip("Value is 0 if ability doesn't exist")] [SerializeField]
     private float abilityStun;
 
     [Header("Extra Item Attributes")]
@@ -42,10 +51,20 @@ public class WeaponItem : InventoryItem
     [SerializeField] private float movementSpeedBoost;
     [SerializeField] private float attackSpeedBoost;
 
-    
+
     public override void Add()
     {
         // Implement the specific behavior for adding weapon
         Debug.Log($"Adding {itemName}");
+    }
+
+    public bool isRangedWeapon()
+    {
+        return weaponType == WeaponType.Ranged;
+    }
+
+    public bool isMeleeWeapon()
+    {
+        return weaponType == WeaponType.Melee;
     }
 }

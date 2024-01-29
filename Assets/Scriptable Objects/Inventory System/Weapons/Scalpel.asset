@@ -16,6 +16,8 @@ MonoBehaviour:
   description: A small sharp object that when thrown, magically returns on hand
   price: 0
   quantity: 1
+  gameObject: {fileID: 0}
+  weaponType: 1
   damage: 1
   attackSpeed: 0
   attackRange: 7
