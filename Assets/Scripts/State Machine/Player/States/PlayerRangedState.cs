@@ -105,7 +105,7 @@ public class PlayerRangedState : IState
             if (rangedCounter <= 0)
             {
                 // Initiate cooldown and end the ranged attack.
-                rangedCoolCounter = stats.currentAttackSpeed; // Time between attacks.
+                rangedCoolCounter = stats.CurrentAttackSpeed; // Time between attacks.
                 player.isRangedAttacking = false;
             }
         }

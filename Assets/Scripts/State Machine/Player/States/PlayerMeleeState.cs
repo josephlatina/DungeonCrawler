@@ -104,7 +104,7 @@ public class PlayerMeleeState : IState
             if (meleeCounter <= 0)
             {
                 // Initiate cooldown and end the Melee Attack.
-                meleeCoolCounter = stats.currentAttackSpeed; // Time between attacks
+                meleeCoolCounter = stats.CurrentAttackSpeed; // Time between attacks
                 player.isMeleeAttacking = false;
             }
         }
