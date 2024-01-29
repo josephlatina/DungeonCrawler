@@ -231,12 +231,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2
 --- !u!1 &6984755896152334966
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,10 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  moveSpeed: 0
-  attackSpeed: 0
   moveVal: {x: 0, y: 0}
-  rolling: 0
   rollSpeed: 35
   rollLength: 0.5
   rollCooldown: 0.5
@@ -353,6 +350,9 @@ MonoBehaviour:
   mousePos: {x: 0, y: 0, z: 0}
   isMeleeAttacking: 0
   isRangedAttacking: 0
+  isHealing: 0
+  isRolling: 0
+  playerInventory: {fileID: 11400000, guid: d402dee68ae49714aab258863b548f14, type: 2}
 --- !u!114 &2341849012200123104
 MonoBehaviour:
   m_ObjectHideFlags: 0

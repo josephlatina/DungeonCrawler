@@ -1,9 +1,10 @@
 /*
  * BaseStateMachine.cs
  * Author: Josh Coss
- * Created: January 16 2024
+ * Created: January 16, 2024
  * Description: Manages how control flow enters and exits different states
  */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,12 +31,12 @@ public class BaseStateMachine
         CurrentState = state;
         state.Enter();
 
-        // notify other objects that state has changed
+        // Notify other objects that state has changed
         stateChanged?.Invoke(state);
     }
 
     /// <summary>
-    /// Exit the current state and into another one
+    /// Exits the current state and transitions into another one
     /// </summary>
     /// <param name="nextState">The IState to transition into</param>
     public void TransitionTo(IState nextState)
@@ -44,12 +45,12 @@ public class BaseStateMachine
         CurrentState = nextState;
         nextState.Enter();
 
-        // notify other objects that state has changed
+        // Notify other objects that state has changed
         stateChanged?.Invoke(nextState);
     }
 
     /// <summary>
-    /// Allow the state machine to update the current state
+    /// Allows the state machine to update the current state
     /// </summary>
     public void Update()
     {
@@ -59,6 +60,9 @@ public class BaseStateMachine
         }
     }
 
+    /// <summary>
+    /// Allows the state machine to perform physics-related fixed time step updates
+    /// </summary>
     public void FixedUpdate()
     {
         if (CurrentState != null)

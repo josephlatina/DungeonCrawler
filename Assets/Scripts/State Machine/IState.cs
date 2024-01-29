@@ -24,6 +24,9 @@ public interface IState
     /// </summary>
     void Update();
 
+    /// <summary>
+    /// Physics-related fixed time step logic.
+    /// </summary>
     void FixedUpdate();
 
     /// <summary>
