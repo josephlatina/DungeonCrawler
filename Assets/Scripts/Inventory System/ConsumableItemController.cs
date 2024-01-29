@@ -4,6 +4,7 @@
  * Created: January 21, 2024
  * Description: This is the script that attaches to the consumable prefab.
  * It houses the scriptable object of a Consumable Item.
+ * Determines behaviour of consumable items.
  */
 
 using UnityEngine;

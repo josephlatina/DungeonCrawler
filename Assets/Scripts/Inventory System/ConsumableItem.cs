@@ -2,7 +2,7 @@
  * ConsumableItem.cs
  * Author: Jehdi Aizon
  * Created: January 21, 2024
- * Description:
+ * Description: scriptable object that determines stats and attributes of consumable item
  */
 
 using UnityEngine;

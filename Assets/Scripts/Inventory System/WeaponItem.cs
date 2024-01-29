@@ -2,7 +2,7 @@
  * WeaponItem.cs
  * Author: Jehdi Aizon,
  * Created: January 18, 2024
- * Description:
+ * Description: scriptable object that determines stats and attributes of weapon item
  */
 
 using UnityEngine;

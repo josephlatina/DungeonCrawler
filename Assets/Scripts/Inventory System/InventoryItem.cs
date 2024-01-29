@@ -2,7 +2,7 @@
  * InventoryItem.cs
  * Author: Jehdi Aizon,
  * Created: January 21, 2024
- * Description:
+ * Description: methods created here are used in the consumable item or weapaon item script
  */
 
 using UnityEditor;

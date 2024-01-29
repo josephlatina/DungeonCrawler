@@ -4,6 +4,7 @@
  * Created: January 22, 2024
  * Description: This is the script that attaches to the weapon prefab.
  * It houses the scriptable object of a Weapon Item.
+ * Determines behaviour of weapon items.
  */
 
 using UnityEngine;
