@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour
     private PlayerStatus status;
     public bool isMeleeAttacking, isRangedAttacking;
 
+    // Player Inventory System reference to Scriptable Object
+    public InventorySystem playerInventory;
+
     /// <summary>
     /// Called once when script is initialized
     /// </summary>
@@ -84,6 +87,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         playerStateMachine.FixedUpdate();
+    }
+
+    private void OnApplicationQuit()
+    {
+        playerInventory.Reset();
     }
 
     /// <summary>
