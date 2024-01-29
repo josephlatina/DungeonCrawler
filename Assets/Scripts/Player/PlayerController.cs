@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="value">Input value for the roll.</param>
     void OnRoll(InputValue value)
     {
-        if (!isHealing && !isRangedAttacking && !isMeleeAttacking)
+        if (!isHealing && !isRangedAttacking && !isMeleeAttacking && moveVal.x != 0 || moveVal.y != 0)
         {
             isRolling = value.isPressed;
         }
