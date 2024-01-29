@@ -365,12 +365,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05cd98e710ce4f44d877f70003d60cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 1
-  CurrentMoveSpeed: 10
-  CurrentAttackSpeed: 1
-  CurrentStrength: 1
-  CurrentDefence: 0
-  CurrentIncomingDamage: 0
+  currentHealth: 1
+  currentMoveSpeed: 10
+  currentAttackSpeed: 1
+  currentStrength: 1
+  currentDefence: 1
+  currentIncomingDamage: 1
 --- !u!114 &6984755896152334956
 MonoBehaviour:
   m_ObjectHideFlags: 0

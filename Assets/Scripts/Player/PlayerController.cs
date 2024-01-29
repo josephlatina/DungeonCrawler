@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Move()
     {
-        rb.velocity = moveVal * player.currentMoveSpeed;
+        rb.velocity = moveVal * player.CurrentMoveSpeed;
     }
 
     /// <summary>
@@ -159,6 +159,7 @@ public class PlayerController : MonoBehaviour
             // change color of interactable object
             Color newColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
             interactableObject.GetComponent<SpriteRenderer>().color = newColor;
+            Debug.Log(interactableObject.name);
         }
     }
 
