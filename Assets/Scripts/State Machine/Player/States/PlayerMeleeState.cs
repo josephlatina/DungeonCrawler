@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMeleeState : IState
 {
     private PlayerController player;
+    private PlayerStats stats;
 
     private float meleeCounter, meleeCoolCounter;
 
@@ -17,6 +18,7 @@ public class PlayerMeleeState : IState
     public void Enter()
     {
         player.GetComponent<SpriteRenderer>().color = Color.blue;
+        stats = player.GetComponent<PlayerStats>();
 
         Attack();
     }
@@ -24,6 +26,12 @@ public class PlayerMeleeState : IState
     public void Update()
     {
         MeleeAttackCooldown();
+
+        // prevent player from rolling when attacking
+        if (player.rolling)
+        {
+            player.rolling = false;
+        }
 
         if (player.isMeleeAttacking == false)
         {
@@ -46,6 +54,7 @@ public class PlayerMeleeState : IState
     public void Exit()
     {
         player.GetComponent<SpriteRenderer>().color = Color.white;
+        player.meleeTrigger.enabled = false;
 
         meleeCounter = 0;
         meleeCoolCounter = 0;
@@ -63,7 +72,7 @@ public class PlayerMeleeState : IState
             meleeCounter -= Time.deltaTime;
             if (meleeCounter <= 0)
             {
-                meleeCoolCounter = player.attackSpeed; //Time between attacks
+                meleeCoolCounter = stats.currentAttackSpeed; //Time between attacks
                 player.isMeleeAttacking = false;
             }
         }
@@ -75,6 +84,7 @@ public class PlayerMeleeState : IState
 
     void Attack()
     {
-        Debug.Log("Player is making a melee attack");
+        player.meleeTrigger.enabled = true;
+        
     }
 }

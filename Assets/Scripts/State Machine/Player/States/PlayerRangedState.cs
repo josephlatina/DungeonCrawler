@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerRangedState : IState
 {
     private PlayerController player;
+    private PlayerStats stats;
 
     private float rangedCounter, rangedCoolCounter;
 
@@ -16,6 +19,7 @@ public class PlayerRangedState : IState
     public void Enter()
     {
         player.GetComponent<SpriteRenderer>().color = Color.yellow;
+        stats = player.GetComponent<PlayerStats>();
 
         Attack();
     }
@@ -23,6 +27,12 @@ public class PlayerRangedState : IState
     public void Update()
     {
         RangedAttackCooldown();
+
+        // Prevent player from rolling when attacking
+        if (player.rolling)
+        {
+            player.rolling = false;
+        }
 
         if (player.isRangedAttacking == false)
         {
@@ -62,7 +72,7 @@ public class PlayerRangedState : IState
             rangedCounter -= Time.deltaTime;
             if (rangedCounter <= 0)
             {
-                rangedCoolCounter = player.attackSpeed; //Time between attacks
+                rangedCoolCounter = stats.currentAttackSpeed; //Time between attacks
                 player.isRangedAttacking = false;
             }
         }
@@ -74,6 +84,12 @@ public class PlayerRangedState : IState
 
     void Attack()
     {
-        Debug.Log("Player is making a ranged attack");
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector3 rotation = mousePos - player.transform.position;
+        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+
+        Debug.DrawRay(player.transform.position, rotation, Color.yellow, 0.25f);
     }
+
+
 }

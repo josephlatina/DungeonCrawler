@@ -20,21 +20,17 @@ public class PlayerController : MonoBehaviour
     // Reference to player stats script
     private PlayerStats player;
 
-    private float moveSpeed;
-    public float attackSpeed;
-    private float strength;
-    private float healthPoints;
-    private int defence;
-    private float incomingDamage;
     // Vector2 of the normalized vectors of movement for the player
     public Vector2 moveVal;
     public bool rolling;
     public float rollSpeed;
     public float rollLength = 0.5f, rollCooldown = 1f;
-    // private float rollCounter;
-    // private float rollCoolCounter;
 
     public PlayerStateMachine PlayerStateMachine => playerStateMachine;
+    [HideInInspector] public Collider2D meleeTrigger;
+    private Collider2D interactTrigger;
+    private Transform interactableObject;
+    [HideInInspector] public Vector3 mousePos;
 
     private enum PlayerStatus
     {
@@ -58,14 +54,8 @@ public class PlayerController : MonoBehaviour
         // Get player object's stats script
         player = GetComponent<PlayerStats>();
         status = PlayerStatus.Normal;
-
-        // Set player's stats based on player stats script
-        moveSpeed = player.currentMoveSpeed;
-        attackSpeed = player.currentAttackSpeed;
-        strength = player.currentStrength;
-        healthPoints = player.currentHealth;
-        defence = player.currentDefence;
-        incomingDamage = player.currentIncomingDamage;
+        meleeTrigger = transform.Find("AimPivot/MeleeCollider").GetComponent<Collider2D>();
+        interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
     }
 
     /// <summary>
@@ -84,6 +74,7 @@ public class PlayerController : MonoBehaviour
     {
         // Update the state machine logic
         playerStateMachine.Update();
+        // mousePos = aimPivot.mousePos;
     }
 
     /// <summary>
@@ -109,7 +100,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Move()
     {
-        rb.velocity = moveVal * moveSpeed;
+        rb.velocity = moveVal * player.currentMoveSpeed;
     }
 
     void OnRoll(InputValue value)
@@ -125,5 +116,31 @@ public class PlayerController : MonoBehaviour
     void OnRangedAttack(InputValue value)
     {
         isRangedAttacking = value.isPressed;
+    }
+
+    void OnInteract(InputValue value)
+    {
+        if (interactableObject)
+        {
+            // Debug.Log("You are interacting with " + interactableObject.name);
+            Color newColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+            interactableObject.GetComponent<SpriteRenderer>().color = newColor;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "interactableObject" && interactableObject == null)
+        {
+            interactableObject = other.transform;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "interactableObject" && interactableObject != null)
+        {
+            interactableObject = null;
+        }
     }
 }

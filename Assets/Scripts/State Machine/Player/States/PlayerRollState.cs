@@ -44,6 +44,7 @@ public class PlayerRollState : IState
         // Add roll-specific logic here
         RollCountdown();
 
+        // Prevent player from attacking while rolling
         if (player.isMeleeAttacking || player.isRangedAttacking)
         {
             player.isMeleeAttacking = false;
