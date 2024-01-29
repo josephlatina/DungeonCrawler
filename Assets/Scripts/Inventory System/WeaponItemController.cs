@@ -30,6 +30,7 @@ public class WeaponItemController : MonoBehaviour
 
             playerInventory.AddItem(item);
             playerInventory.DisplayInventory();
+            gameObject.SetActive(false); // hides object from scene
         }
     }
 }

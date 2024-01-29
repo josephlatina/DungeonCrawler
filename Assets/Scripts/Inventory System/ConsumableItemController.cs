@@ -27,9 +27,10 @@ public class ConsumableItemController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             InventorySystem playerInventory = other.gameObject.GetComponent<PlayerController>().playerInventory;
-
+    
             playerInventory.AddItem(item);
             playerInventory.DisplayInventory();
+            gameObject.SetActive(false); // hides object from scene
         }
     }
 }
