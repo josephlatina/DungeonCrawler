@@ -61,6 +61,8 @@ public class RoomTemplateSO : ScriptableObject
     #endregion Tooltip
     public Vector2Int[] spawnPositionArray;
 
+    // TODO: list all other variables that contain room spawn parameters (ie. enemies)
+
     /// <summary>
     /// Returns the list of Entrances for the room template
     /// </summary>
