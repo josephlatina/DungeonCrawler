@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "InventorySystem", menuName = "Inventory System/New Inventory")]
 public class InventorySystem : MonoBehaviour
 {
     // List of InventoryItem ScriptableObjects
@@ -69,6 +68,14 @@ public class InventorySystem : MonoBehaviour
         }
 
         Debug.Log(inventoryString);
+    }
+
+    public void InitializeInventory()
+    {
+        for (int i = 0; i <= maxConsumableSlots + maxConsumableSlots; i++)
+        {
+            AddItem(null);
+        }
     }
 
     public void Reset()

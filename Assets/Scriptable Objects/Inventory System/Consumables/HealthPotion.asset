@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f01fbd368d3bd445b74532e11416ff8, type: 3}
   m_Name: HealthPotion
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Health Potion
   description: 
   price: 0
   quantity: 1
+  gameObject: {fileID: 0}
   healthRestore: 0
   attackStrengthUpgrade: 0
   attackSpeedUpgrade: 0

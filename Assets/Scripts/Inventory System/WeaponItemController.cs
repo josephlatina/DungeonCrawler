@@ -19,16 +19,11 @@ public class WeaponItemController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"{item.name} {item.description} {item.price}");
-        item.gameObject = gameObject;
+        item.gameObject = gameObject; // reference current game object to scriptable object
         PlayerController playerController =
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
-    }
-
-    private void Update()
-    {
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -46,11 +41,11 @@ public class WeaponItemController : MonoBehaviour
                 // check if weapon slot is full replace, if not pick up
                 if (playerInventory.isRangeWeaponFull())
                 {
-                    actionText.text = $"Press E to replace range weapon with {item.name}";
+                    actionText.text = $"Press E to replace range weapon with {item.itemName}";
                 }
                 else
                 {
-                    actionText.text = $"Press E to pick up range weapon {item.name}";
+                    actionText.text = $"Press E to pick up range weapon {item.itemName}";
                 }
             }
             // If item in a melee weapon
@@ -59,15 +54,21 @@ public class WeaponItemController : MonoBehaviour
                 // check if weapon slot is full replace, if not pick up
                 if (playerInventory.isMeleeWeaponFull())
                 {
-                    actionText.text = $"Press E to replace melee weapon with {item.name}";
+                    actionText.text = $"Press E to replace melee weapon with {item.itemName}";
                 }
                 else
                 {
-                    actionText.text = $"Press E to pick up melee weapon {item.name}";
+                    actionText.text = $"Press E to pick up melee weapon {item.itemName}";
                 }
             }
 
             // playerInventory.DisplayInventory();
         }
+    }
+
+    public void DropItemAt(Vector2 dropPosition)
+    {
+        item.gameObject.transform.position = dropPosition;
+        item.gameObject.SetActive(true);
     }
 }

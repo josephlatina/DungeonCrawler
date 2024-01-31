@@ -1,6 +1,6 @@
 /*
  * PlayerController.cs
- * Author: Josh Coss
+ * Author: Josh Coss, Jehdi Aizon
  * Created: January 16, 2024
  * Description: Handles player input, movement, and interactions.
  */
@@ -41,8 +41,10 @@ public class PlayerController : MonoBehaviour
     private PlayerStatus status;
     [HideInInspector] public bool isMeleeAttacking, isRangedAttacking, isHealing, isRolling;
 
+    [Header("Inventory System"), Space(5)]
     // Player Inventory System reference to Scriptable Object
     public InventorySystem playerInventory;
+
     public TextMeshProUGUI text;
 
     /// <summary>
@@ -71,11 +73,8 @@ public class PlayerController : MonoBehaviour
     {
         // Initialize the state machine with the idle state
         playerStateMachine.Initialize(playerStateMachine.idleState);
-
-        for (int i = 0; i < playerInventory.maxConsumableSlots + playerInventory.maxConsumableSlots; i++)
-        {
-            playerInventory.AddItem(null);
-        }
+        // Initialize inventory
+        playerInventory.InitializeInventory();
     }
 
     /// <summary>
@@ -170,37 +169,45 @@ public class PlayerController : MonoBehaviour
             interactableObject.GetComponent<SpriteRenderer>().color = newColor;
             Debug.Log(interactableObject.name);
 
+            // if object is a weapon
             if (interactableObject.gameObject.GetComponent<WeaponItemController>())
             {
                 WeaponItemController weapon = interactableObject.gameObject.GetComponent<WeaponItemController>();
 
                 weapon.gameObject.SetActive(false); // hides object from scene
 
+                // check if range weapon slot is full replace, if not pick up
+                if (playerInventory.isRangeWeaponFull() || playerInventory.isMeleeWeaponFull())
+                {
+                    weapon.DropItemAt(transform.position);
+                }
+
+                // weapon is ranged
                 if (weapon.item.isRangedWeapon())
                 {
-                    // check if range weapon slot is full replace, if not pick up
-                    if (playerInventory.isRangeWeaponFull())
-                    {
-                        GameObject droppedItem = playerInventory.GetItemAt(1).gameObject;
-                        droppedItem.transform.position = transform.position;
-                        droppedItem.SetActive(true);
-                    }
-                    
                     playerInventory.SwapItemAt(weapon.item, 1);
                 }
-
+                // weapon in melee
                 else if (weapon.item.isMeleeWeapon())
                 {
-                    // check if melee weapon slot is full replace, if not pick up
-                    if (playerInventory.isMeleeWeaponFull())
-                    {
-                        GameObject droppedItem = playerInventory.GetItemAt(0).gameObject;
-                        droppedItem.transform.position = transform.position;
-                        droppedItem.SetActive(true);
-                    }
-
                     playerInventory.SwapItemAt(weapon.item, 0);
                 }
+            }
+            // if object is a consumable
+            else if (interactableObject.gameObject.GetComponent<ConsumableItemController>())
+            {
+                ConsumableItemController consumable =
+                    interactableObject.gameObject.GetComponent<ConsumableItemController>();
+
+                consumable.gameObject.SetActive(false); // hides object from scene
+
+                // check if consumable slots are full replace, if not pick up
+                if (playerInventory.isConsumableFull())
+                {
+                    consumable.DropItemAt(transform.position);
+                }
+
+                playerInventory.SwapItemAt(consumable.item, 2);
             }
         }
     }
@@ -232,10 +239,5 @@ public class PlayerController : MonoBehaviour
         {
             interactableObject = null;
         }
-    }
-
-    public void ChangeText(string newText)
-    {
-        text.text = newText;
     }
 }
