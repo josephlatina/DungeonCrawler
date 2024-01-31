@@ -50,13 +50,7 @@ public class WeaponItem : InventoryItem
     [SerializeField] private float defenceBoost;
     [SerializeField] private float movementSpeedBoost;
     [SerializeField] private float attackSpeedBoost;
-
-
-    public override void Add()
-    {
-        // Implement the specific behavior for adding weapon
-        Debug.Log($"Adding {itemName}");
-    }
+    
 
     public bool isRangedWeapon()
     {

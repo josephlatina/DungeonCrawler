@@ -66,6 +66,10 @@ public class WeaponItemController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Drop current item into given position
+    /// </summary>
+    /// <param name="dropPosition">position where to drop this current item</param>
     public void DropItemAt(Vector2 dropPosition)
     {
         item.gameObject.transform.position = dropPosition;

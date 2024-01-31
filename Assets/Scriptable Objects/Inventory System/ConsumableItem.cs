@@ -38,10 +38,5 @@ public class ConsumableItem : InventoryItem
     [SerializeField] private float defenceBoost;
     [SerializeField] private float movementSpeedBoost;
     [SerializeField] private float attackSpeedBoost;
-
-    public override void Add()
-    {
-        // Implement the specific behavior for adding consumable
-        Debug.Log($"Adding {itemName}");
-    }
+    
 }
