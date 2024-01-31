@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
         Immobilized,
         Poison
     }
+
     private PlayerStatus status;
     [HideInInspector] public bool isMeleeAttacking, isRangedAttacking, isHealing, isRolling;
 
@@ -70,12 +71,11 @@ public class PlayerController : MonoBehaviour
     {
         // Initialize the state machine with the idle state
         playerStateMachine.Initialize(playerStateMachine.idleState);
-        
+
         for (int i = 0; i < playerInventory.maxConsumableSlots + playerInventory.maxConsumableSlots; i++)
         {
             playerInventory.AddItem(null);
         }
-
     }
 
     /// <summary>
@@ -169,6 +169,39 @@ public class PlayerController : MonoBehaviour
             Color newColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
             interactableObject.GetComponent<SpriteRenderer>().color = newColor;
             Debug.Log(interactableObject.name);
+
+            if (interactableObject.gameObject.GetComponent<WeaponItemController>())
+            {
+                WeaponItemController weapon = interactableObject.gameObject.GetComponent<WeaponItemController>();
+
+                weapon.gameObject.SetActive(false); // hides object from scene
+
+                if (weapon.item.isRangedWeapon())
+                {
+                    // check if range weapon slot is full replace, if not pick up
+                    if (playerInventory.isRangeWeaponFull())
+                    {
+                        GameObject droppedItem = playerInventory.GetItemAt(1).gameObject;
+                        droppedItem.transform.position = transform.position;
+                        droppedItem.SetActive(true);
+                    }
+                    
+                    playerInventory.SwapItemAt(weapon.item, 1);
+                }
+
+                else if (weapon.item.isMeleeWeapon())
+                {
+                    // check if melee weapon slot is full replace, if not pick up
+                    if (playerInventory.isMeleeWeaponFull())
+                    {
+                        GameObject droppedItem = playerInventory.GetItemAt(0).gameObject;
+                        droppedItem.transform.position = transform.position;
+                        droppedItem.SetActive(true);
+                    }
+
+                    playerInventory.SwapItemAt(weapon.item, 0);
+                }
+            }
         }
     }
 
@@ -183,6 +216,7 @@ public class PlayerController : MonoBehaviour
             isHealing = value.isPressed;
         }
     }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -199,6 +233,7 @@ public class PlayerController : MonoBehaviour
             interactableObject = null;
         }
     }
+
     public void ChangeText(string newText)
     {
         text.text = newText;

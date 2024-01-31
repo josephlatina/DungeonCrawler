@@ -46,27 +46,11 @@ public class WeaponItemController : MonoBehaviour
                 // check if weapon slot is full replace, if not pick up
                 if (playerInventory.isRangeWeaponFull())
                 {
-                    actionText.text = "Press 2 to replace range weapon";
-
-                    if (Input.GetKeyDown(KeyCode.Alpha2))
-                    {
-                        gameObject.SetActive(false); // hides object from scene
-
-                        GameObject droppedItem = playerInventory.GetItemAt(1).gameObject;
-                        droppedItem.transform.position = transform.position;
-                        droppedItem.SetActive(true);
-
-                        playerInventory.SwapItemAt(item, 1);
-                    }
+                    actionText.text = $"Press E to replace range weapon with {item.name}";
                 }
                 else
                 {
-                    actionText.text = "Press E to pick up range weapon";
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        gameObject.SetActive(false); // hides object from scene
-                        playerInventory.SwapItemAt(item, 1);
-                    }
+                    actionText.text = $"Press E to pick up range weapon {item.name}";
                 }
             }
             // If item in a melee weapon
@@ -75,27 +59,11 @@ public class WeaponItemController : MonoBehaviour
                 // check if weapon slot is full replace, if not pick up
                 if (playerInventory.isMeleeWeaponFull())
                 {
-                    actionText.text = "Press 1 to replace melee weapon";
-
-                    if (Input.GetKeyDown(KeyCode.Alpha1))
-                    {
-                        gameObject.SetActive(false); // hides object from scene
-
-                        GameObject droppedItem = playerInventory.GetItemAt(0).gameObject;
-                        droppedItem.transform.position = transform.position;
-                        droppedItem.SetActive(true);
-
-                        playerInventory.SwapItemAt(item, 0);
-                    }
+                    actionText.text = $"Press E to replace melee weapon with {item.name}";
                 }
                 else
                 {
-                    actionText.text = "Press E to pickup melee weapon";
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        gameObject.SetActive(false); // hides object from scene
-                        playerInventory.SwapItemAt(item, 0);
-                    }
+                    actionText.text = $"Press E to pick up melee weapon {item.name}";
                 }
             }
 

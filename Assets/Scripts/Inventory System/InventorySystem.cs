@@ -10,7 +10,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "InventorySystem", menuName = "Inventory System/New Inventory")]
-public class InventorySystem : ScriptableObject
+public class InventorySystem : MonoBehaviour
 {
     // List of InventoryItem ScriptableObjects
     public List<InventoryItem> items;

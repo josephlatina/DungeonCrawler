@@ -20,11 +20,13 @@ public abstract class InventoryItem : ScriptableObject
     // but treated differently based on type to an item below 
     public abstract void Add();
     // TODO: ADD MORE
-
+    
+    
     void OnGUI()
     {
         GUIStyle style = new GUIStyle(EditorStyles.textArea);
         style.wordWrap = true; // Allow for string wrapping in the inspector
         description = EditorGUILayout.TextArea(description, style);
     }
+
 }
