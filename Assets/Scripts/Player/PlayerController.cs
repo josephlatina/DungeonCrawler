@@ -1,9 +1,10 @@
 /*
  * PlayerController.cs
  * Author: Josh Coss
- * Created: January 16 2024
- * Description: Handle player movement and input
+ * Created: January 16, 2024
+ * Description: Handles player input, movement, and interactions.
  */
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,25 +12,23 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Handles player input and movement
+/// Handles player input, movement, and interactions.
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
     private PlayerStateMachine playerStateMachine;
-    public Rigidbody2D rb;
-    // Reference to player stats script
+    [HideInInspector] public Rigidbody2D rb;
     private PlayerStats player;
 
-    private float moveSpeed;
-    private float attackSpeed;
-    private float strength;
-    private float healthPoints;
-    private int defence;
-    private float incomingDamage;
-    // Vector2 of the normalized vectors of movement for the player
-    private Vector2 moveVal;
+    [HideInInspector] public Vector2 moveVal;
+    public float rollSpeed;
+    public float rollLength = 0.5f, rollCooldown = 1f;
 
     public PlayerStateMachine PlayerStateMachine => playerStateMachine;
+    [HideInInspector] public Collider2D meleeTrigger;
+    private Collider2D interactTrigger;
+    private Transform interactableObject;
+    [HideInInspector] public Vector3 mousePos;
 
     private enum PlayerStatus
     {
@@ -39,13 +38,14 @@ public class PlayerController : MonoBehaviour
         Poison
     }
     private PlayerStatus status;
+    [HideInInspector] public bool isMeleeAttacking, isRangedAttacking, isHealing, isRolling;
 
     // Player Inventory System reference to Scriptable Object
     public InventorySystem playerInventory;
     public TextMeshProUGUI text;
 
     /// <summary>
-    /// Called once when script is initialized
+    /// Called once when script is initialized.
     /// </summary>
     private void Awake()
     {
@@ -55,19 +55,16 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         // Get player object's stats script
         player = GetComponent<PlayerStats>();
+        // Set initial status to normal
         status = PlayerStatus.Normal;
-
-        // Set player's stats based on player stats script
-        moveSpeed = player.currentMoveSpeed;
-        attackSpeed = player.currentAttackSpeed;
-        strength = player.currentStrength;
-        healthPoints = player.currentHealth;
-        defence = player.currentDefence;
-        incomingDamage = player.currentIncomingDamage;
+        // Get player object's melee trigger
+        meleeTrigger = transform.Find("AimPivot/MeleeCollider").GetComponent<Collider2D>();
+        // Get player object's interaction trigger
+        interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
     }
 
     /// <summary>
-    /// Called once after Awake
+    /// Called once after Awake.
     /// </summary>
     private void Start()
     {
@@ -82,7 +79,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Called once per frame
+    /// Called once per frame.
     /// </summary>
     private void Update()
     {
@@ -96,31 +93,112 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        Move();
+        playerStateMachine.FixedUpdate();
     }
 
+    /// <summary>
+    /// Called when the application is quitting.
+    /// </summary>
     private void OnApplicationQuit()
     {
         playerInventory.Reset();
     }
 
     /// <summary>
-    /// Moves the player in all 8 directions
+    /// Listens for the player input and updates moveVal to the current value of movement input.
     /// </summary>
-    private void Move()
-    {
-        rb.AddForce(new Vector2(moveVal.x * moveSpeed * Time.deltaTime, moveVal.y * moveSpeed * Time.deltaTime), ForceMode2D.Impulse);
-    }
-
-    /// <summary>
-    /// Listens for the player input and updates moveVal to the current value of movement input
-    /// </summary>
-    /// <param name="value">Movement vector sent from Player Input component</param>
+    /// <param name="value">Movement vector sent from Player Input component.</param>
     void OnMove(InputValue value)
     {
         moveVal = value.Get<Vector2>();
     }
 
+    /// <summary>
+    /// Moves the player in all 8 directions.
+    /// </summary>
+    public void Move()
+    {
+        rb.velocity = moveVal * player.CurrentMoveSpeed;
+    }
+
+    /// <summary>
+    /// Listens for the roll input.
+    /// </summary>
+    /// <param name="value">Input value for the roll.</param>
+    void OnRoll(InputValue value)
+    {
+        if (!isHealing && !isRangedAttacking && !isMeleeAttacking && moveVal.x != 0 || moveVal.y != 0)
+        {
+            isRolling = value.isPressed;
+        }
+    }
+
+    /// <summary>
+    /// Listens for the melee attack input.
+    /// </summary>
+    /// <param name="value">Input value for the melee attack.</param>
+    void OnMeleeAttack(InputValue value)
+    {
+        if (!isHealing && !isRangedAttacking && !isRolling)
+        {
+            isMeleeAttacking = value.isPressed;
+        }
+    }
+
+    /// <summary>
+    /// Listens for the ranged attack input.
+    /// </summary>
+    /// <param name="value">Input value for the ranged attack.</param>
+    void OnRangedAttack(InputValue value)
+    {
+        if (!isHealing && !isMeleeAttacking && !isRolling)
+        {
+            isRangedAttacking = value.isPressed;
+        }
+    }
+
+    /// <summary>
+    /// Listens for the interact input.
+    /// </summary>
+    /// <param name="value">Input value for the interact action.</param>
+    void OnInteract(InputValue value)
+    {
+        if (interactableObject)
+        {
+            // change color of interactable object
+            Color newColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+            interactableObject.GetComponent<SpriteRenderer>().color = newColor;
+            Debug.Log(interactableObject.name);
+        }
+    }
+
+    /// <summary>
+    /// Listens for the heal input.
+    /// </summary>
+    /// <param name="value">Input value for the heal action.</param>
+    void OnHeal(InputValue value)
+    {
+        if (!isHealing)
+        {
+            isHealing = value.isPressed;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "interactableObject" && interactableObject == null)
+        {
+            interactableObject = other.transform;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "interactableObject" && interactableObject != null)
+        {
+            interactableObject = null;
+        }
+    }
     public void ChangeText(string newText)
     {
         text.text = newText;

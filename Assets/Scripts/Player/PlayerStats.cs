@@ -1,106 +1,130 @@
 /*
  * PlayerStats.cs
  * Author: Josh Coss
- * Created: January 18 2024
+ * Created: January 18, 2024
  * Description: Handles the storing and manipulation of the player's stats
  */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Stores and manipulates the player's stats
+/// Handles the storing and manipulation of the player's stats.
 /// </summary>
 public class PlayerStats : MonoBehaviour
 {
     // Represents the player's current health
-    [SerializeField] float CurrentHealth;
+    [SerializeField] private float currentHealth;
+
     // Represents the player's current movement speed
-    [SerializeField] float CurrentMoveSpeed;
+    [SerializeField] private float currentMoveSpeed;
+
     // Represents the player's current speed of attack
-    [SerializeField] float CurrentAttackSpeed;
+    [SerializeField] private float currentAttackSpeed;
+
     // Represents the player's current attack strength
-    [SerializeField] float CurrentStrength;
-    [SerializeField] int CurrentDefence;
-    [SerializeField] float CurrentIncomingDamage;
+    [SerializeField] private float currentStrength;
 
-    // Setter / getter for CurrentHealth
-    public float currentHealth
+    // Represents the player's current defence
+    [SerializeField] private int currentDefence;
+
+    // Represents the player's current incoming damage
+    [SerializeField] private float currentIncomingDamage;
+
+    /// <summary>
+    /// Getter and setter for CurrentHealth.
+    /// </summary>
+    public float CurrentHealth
     {
-        get { return CurrentHealth; }
+        get { return currentHealth; }
         set
         {
-            //Check if the value has changed
-            if (CurrentHealth != value)
+            // Check if the value has changed
+            if (currentHealth != value)
             {
-                CurrentHealth = value;
+                currentHealth = value;
             }
         }
     }
 
-    // Setter / getter for CurrentMoveSpeed
-    public float currentMoveSpeed
+    /// <summary>
+    /// Getter and setter for CurrentMoveSpeed.
+    /// </summary>
+    public float CurrentMoveSpeed
     {
-        get { return CurrentMoveSpeed; }
+        get { return currentMoveSpeed; }
         set
         {
-            if (CurrentMoveSpeed != value)
+            // Check if the value has changed
+            if (currentMoveSpeed != value)
             {
-                CurrentMoveSpeed = value;
+                currentMoveSpeed = value;
             }
         }
     }
 
-    // Setter / getter for CurrentAttackSpeed
-    public float currentAttackSpeed
+    /// <summary>
+    /// Getter and setter for CurrentAttackSpeed.
+    /// </summary>
+    public float CurrentAttackSpeed
     {
-        get { return CurrentAttackSpeed; }
+        get { return currentAttackSpeed; }
         set
         {
-            if (CurrentAttackSpeed != value)
+            // Check if the value has changed
+            if (currentAttackSpeed != value)
             {
-                CurrentAttackSpeed = value;
+                currentAttackSpeed = value;
             }
         }
     }
 
-    // Setter / getter for CurrentStrength
-    public float currentStrength
+    /// <summary>
+    /// Getter and setter for CurrentStrength.
+    /// </summary>
+    public float CurrentStrength
     {
-        get { return CurrentStrength; }
+        get { return currentStrength; }
         set
         {
-            if (CurrentStrength != value)
+            // Check if the value has changed
+            if (currentStrength != value)
             {
-                CurrentStrength = value;
+                currentStrength = value;
             }
         }
     }
 
-    // Setter / getter for CurrentDefence
-    public int currentDefence
+    /// <summary>
+    /// Getter and setter for CurrentDefence.
+    /// </summary>
+    public int CurrentDefence
     {
-        get { return CurrentDefence; }
+        get { return currentDefence; }
         set
         {
-            if (CurrentDefence != value)
+            // Check if the value has changed
+            if (currentDefence != value)
             {
-                CurrentDefence = value;
+                currentDefence = value;
             }
         }
     }
 
-    // Setter / getter for CurrentIncomingDamage
-    public float currentIncomingDamage
+    /// <summary>
+    /// Getter and setter for CurrentIncomingDamage.
+    /// </summary>
+    public float CurrentIncomingDamage
     {
-        get { return CurrentIncomingDamage; }
+        get { return currentIncomingDamage; }
         set
         {
-            if (CurrentIncomingDamage != value)
+            // Check if the value has changed
+            if (currentIncomingDamage != value)
             {
-                CurrentIncomingDamage = value;
+                currentIncomingDamage = value;
             }
         }
     }
-
 }

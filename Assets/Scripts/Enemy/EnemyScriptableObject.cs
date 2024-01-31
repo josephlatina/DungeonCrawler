@@ -11,7 +11,7 @@ using UnityEngine;
 /// <summary>
 /// Define a ScriptableObject for an Enemy
 /// </summary>
-[CreateAssetMenu(fileName = "EnemyScriptableObject", menuName = "ScriptableObjects/Enemy")]
+[CreateAssetMenu(fileName = "EnemyScriptableObject", menuName = "Scriptable Objects/Enemy")]
 public class EnemyScriptableObject : ScriptableObject
 {
     // Serialized field for movement speed

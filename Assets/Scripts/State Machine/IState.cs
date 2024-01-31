@@ -25,6 +25,11 @@ public interface IState
     void Update();
 
     /// <summary>
+    /// Physics-related fixed time step logic.
+    /// </summary>
+    void FixedUpdate();
+
+    /// <summary>
     /// Runs when exiting the state.
     /// </summary>
     void Exit();

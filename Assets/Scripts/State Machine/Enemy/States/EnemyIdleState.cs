@@ -38,9 +38,15 @@ public class EnemyIdleState : IState
         }
     }
 
+    public void FixedUpdate()
+    {
+
+    }
+
     // Called when exiting the idle state
     public void Exit()
     {
         Debug.Log("Enemy exiting idle state");
     }
+
 }
