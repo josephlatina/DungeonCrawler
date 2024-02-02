@@ -21,13 +21,17 @@ public class ConsumableItemController : MonoBehaviour
     private void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
-        Debug.Log($"{item.name} {item.description} {item.price}");
         PlayerController playerController =
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
     }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        actionText.text = "";
+    }
+    
     private void OnTriggerStay2D(Collider2D other)
     {
         // check if consumable slots are full replace, if not pick up

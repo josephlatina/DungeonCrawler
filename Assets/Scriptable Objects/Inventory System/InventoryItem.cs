@@ -20,6 +20,15 @@ public abstract class InventoryItem : ScriptableObject
     // but treated differently based on type to an item below 
     // TODO: ADD MORE
     
+    /// <summary>
+    /// Drop current item into given position
+    /// </summary>
+    /// <param name="dropPosition">position where to drop this current item</param>
+    public void DropItemAt(Vector2 dropPosition)
+    {
+        gameObject.transform.position = dropPosition;
+        gameObject.SetActive(true);
+    }
     void OnGUI()
     {
         GUIStyle style = new GUIStyle(EditorStyles.textArea);

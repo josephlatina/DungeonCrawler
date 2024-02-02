@@ -5,11 +5,13 @@
  * Description: Handles player input, movement, and interactions.
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// Handles player input, movement, and interactions.
@@ -164,47 +166,53 @@ public class PlayerController : MonoBehaviour
     {
         if (interactableObject)
         {
-            // change color of interactable object
+            // change color of interactable object (To delete after)
             Color newColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
-            interactableObject.GetComponent<SpriteRenderer>().color = newColor;
+            if (interactableObject.GetComponent<SpriteRenderer>() != null)
+            {
+                interactableObject.GetComponent<SpriteRenderer>().color = newColor;
+            }
+            else
+            {
+                interactableObject.GetComponentInChildren<SpriteRenderer>().color = newColor;
+            }
+
             Debug.Log(interactableObject.name);
 
+            WeaponItemController weapon =
+                interactableObject.gameObject.GetComponent<WeaponItemController>();
+            ConsumableItemController consumable =
+                interactableObject.gameObject.GetComponent<ConsumableItemController>();
             // if object is a weapon
-            if (interactableObject.gameObject.GetComponent<WeaponItemController>())
+            if (weapon != null)
             {
-                WeaponItemController weapon = interactableObject.gameObject.GetComponent<WeaponItemController>();
+                int weaponIndex = weapon.item.isRangedWeapon() ? 1 : 0;
+                InventoryItem dropItem = playerInventory.GetItemAt(weaponIndex);
 
                 weapon.gameObject.SetActive(false); // hides object from scene
 
                 // check if range weapon slot is full replace, if not pick up
                 if (playerInventory.isRangeWeaponFull() || playerInventory.isMeleeWeaponFull())
                 {
-                    weapon.DropItemAt(transform.position);
+                    if (dropItem != null)
+                    {
+                        dropItem.DropItemAt(transform.position);
+                    }
                 }
 
-                // weapon is ranged
-                if (weapon.item.isRangedWeapon())
-                {
-                    playerInventory.SwapItemAt(weapon.item, 1);
-                }
-                // weapon in melee
-                else if (weapon.item.isMeleeWeapon())
-                {
-                    playerInventory.SwapItemAt(weapon.item, 0);
-                }
+                playerInventory.SwapItemAt(weapon.item, weaponIndex);
             }
             // if object is a consumable
-            else if (interactableObject.gameObject.GetComponent<ConsumableItemController>())
+            else if (consumable != null)
             {
-                ConsumableItemController consumable =
-                    interactableObject.gameObject.GetComponent<ConsumableItemController>();
+                InventoryItem dropItem = playerInventory.GetItemAt(2);
 
                 consumable.gameObject.SetActive(false); // hides object from scene
 
                 // check if consumable slots are full replace, if not pick up
                 if (playerInventory.isConsumableFull())
                 {
-                    consumable.DropItemAt(transform.position);
+                    dropItem.DropItemAt(transform.position);
                 }
 
                 playerInventory.SwapItemAt(consumable.item, 2);
@@ -228,6 +236,14 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "interactableObject" && interactableObject == null)
+        {
+            interactableObject = other.transform;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("interactableObject") && interactableObject == null)
         {
             interactableObject = other.transform;
         }

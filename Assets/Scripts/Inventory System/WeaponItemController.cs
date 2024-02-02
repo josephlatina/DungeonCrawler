@@ -7,7 +7,9 @@
  * Determines behaviour of weapon items.
  */
 
+using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponItemController : MonoBehaviour
@@ -64,15 +66,5 @@ public class WeaponItemController : MonoBehaviour
 
             // playerInventory.DisplayInventory();
         }
-    }
-
-    /// <summary>
-    /// Drop current item into given position
-    /// </summary>
-    /// <param name="dropPosition">position where to drop this current item</param>
-    public void DropItemAt(Vector2 dropPosition)
-    {
-        item.gameObject.transform.position = dropPosition;
-        item.gameObject.SetActive(true);
     }
 }

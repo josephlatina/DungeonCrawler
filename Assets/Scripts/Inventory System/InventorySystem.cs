@@ -27,6 +27,11 @@ public class InventorySystem : MonoBehaviour
         items.Remove(item);
     }
 
+    /// <summary>
+    /// Swap what is in items[index] with item
+    /// </summary>
+    /// <param name="item">item replacing current</param>
+    /// <param name="index">position at which to replace</param>
     public void SwapItemAt(InventoryItem item, int index)
     {
         items[index] = item;
