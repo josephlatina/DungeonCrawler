@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a6ee016bdf567c48a9bc260563dbdc5, type: 3}
-  m_Name: Scalpel
+  m_Name: Scalpel 1
   m_EditorClassIdentifier: 
-  itemName: Scalpel
+  itemName: Scalpel 1
   description: A small sharp object that when thrown, magically returns on hand
   price: 0
   quantity: 1

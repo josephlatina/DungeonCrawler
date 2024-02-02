@@ -4,32 +4,54 @@
  * Created: January 21, 2024
  * Description: This is the script that attaches to the consumable prefab.
  * It houses the scriptable object of a Consumable Item.
+ * Determines behaviour of consumable items.
  */
 
+using System;
+using TMPro;
 using UnityEngine;
 
 public class ConsumableItemController : MonoBehaviour
 {
     // Reference to the ScriptableObject of the Consumable Item type
     public ConsumableItem item;
-
+    private InventorySystem playerInventory;
+    private TextMeshProUGUI actionText;
+    
     private void Start()
     {
-        Debug.Log($"{item.name} {item.description} {item.price}");
+        item.gameObject = gameObject; // reference current game object to scriptable object
+        PlayerController playerController =
+            GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
+        playerInventory = playerController.playerInventory;
+        actionText = playerController.text;
     }
 
-    private void Update()
+    private void OnTriggerExit2D(Collider2D other)
     {
+        actionText.text = "";
     }
-
-    private void OnCollisionEnter2D(Collision2D other)
+    
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        // check if consumable slots are full replace, if not pick up
+        if (playerInventory.isConsumableFull())
         {
-            InventorySystem playerInventory = other.gameObject.GetComponent<PlayerController>().playerInventory;
-
-            playerInventory.AddItem(item);
-            playerInventory.DisplayInventory();
+            actionText.text = $"Press E to replace consumable item with {item.itemName}";
         }
+        else
+        {
+            actionText.text = $"Press E to pick up consumable item {item.itemName}";
+        }
+    }
+    
+    /// <summary>
+    /// Drop current item into given position
+    /// </summary>
+    /// <param name="dropPosition">position where to drop this current item</param>
+    public void DropItemAt(Vector2 dropPosition)
+    {
+        item.gameObject.transform.position = dropPosition;
+        item.gameObject.SetActive(true);
     }
 }
