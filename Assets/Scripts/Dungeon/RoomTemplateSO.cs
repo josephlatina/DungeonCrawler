@@ -2,13 +2,16 @@
  * Doorway.cs
  * Author: Joseph Latina
  * Created: January 30, 2024
- * Description: Used to hold information (ie. position, orientation) regarding this doorway object.
+ * Description: Used to create Room Template Scriptable Object, which will hold information like doorway positions, spawn parameters, etc
  */
 
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Represents the room template object
+/// </summary>
 [CreateAssetMenu(fileName = "Room_ ", menuName = "Scriptable Objects/Dungeon/Room")]
 public class RoomTemplateSO : ScriptableObject
 {
