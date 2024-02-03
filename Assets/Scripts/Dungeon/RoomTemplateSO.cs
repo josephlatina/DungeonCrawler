@@ -23,7 +23,7 @@ public class RoomTemplateSO : ScriptableObject
     // The room template prefab object
     #region Header ROOM PREFAB
     [Space(10)]
-    [Header("ROOM prefab")]
+    [Header("ROOM PREFAB")]
     #endregion Header ROOM PREFAB
     #region Tooltip
     [Tooltip("The gameobject prefab for the room (contains all tilemaps for the room and environment game objects)")]
