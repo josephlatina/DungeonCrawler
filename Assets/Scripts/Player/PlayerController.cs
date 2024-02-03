@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private PlayerStateMachine playerStateMachine;
     [HideInInspector] public Rigidbody2D rb;
     private PlayerStats player;
+    public Animator anim;
 
     [HideInInspector] public Vector2 moveVal;
     public float rollSpeed;
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
         meleeTrigger = transform.Find("AimPivot/MeleeCollider").GetComponent<Collider2D>();
         // Get player object's interaction trigger
         interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     /// <summary>
@@ -102,6 +104,14 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveVal = value.Get<Vector2>();
+        if (moveVal.x > 0)
+        {
+            anim.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else if (moveVal.x < 0)
+        {
+            anim.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     /// <summary>

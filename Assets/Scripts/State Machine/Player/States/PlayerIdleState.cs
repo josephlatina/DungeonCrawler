@@ -28,7 +28,7 @@ public class PlayerIdleState : IState
     public void Enter()
     {
         // Code that runs when entering the idle state.
-        // This method is currently empty.
+        player.anim.SetBool("isWalking", false);
     }
 
     /// <summary>
