@@ -9,7 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac7311b45d05ee41a3c68e07a3ded4f, type: 3}
-  m_Name: InventorySystem
+  m_Script: {fileID: 11500000, guid: e1df07bf8258a432fb2534119ebf0c20, type: 3}
+  m_Name: CorridorEW
   m_EditorClassIdentifier: 
-  items: []
+  guid: 
+  previousPrefab: {fileID: 0}
+  prefab: {fileID: 0}
+  roomNodeType: {fileID: 0}
+  lowerBounds: {x: 0, y: 0}
+  upperBounds: {x: 0, y: 0}
+  doorwayList: []
+  spawnPositionArray: []
