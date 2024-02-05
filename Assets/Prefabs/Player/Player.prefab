@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 71667594541600393}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ea661890370ea6747a8a9a1c35eeb913, type: 2}
+  m_Controller: {fileID: 9100000, guid: f737b77322bcb9748a5786284dcd6f6e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -408,6 +408,7 @@ MonoBehaviour:
   isHealing: 0
   isRolling: 0
   playerInventory: {fileID: 11400000, guid: d402dee68ae49714aab258863b548f14, type: 2}
+  text: {fileID: 0}
 --- !u!114 &2341849012200123104
 MonoBehaviour:
   m_ObjectHideFlags: 0

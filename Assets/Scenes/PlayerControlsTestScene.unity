@@ -429,9 +429,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: 0.12407407
+    width: 0.39062503
+    height: 0.390625
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1411,30 +1411,6 @@ PrefabInstance:
       propertyPath: labelText
       value: 
       objectReference: {fileID: 1331487149}
-    - target: {fileID: 2341849012200123104, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
-      propertyPath: currentHealth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2341849012200123104, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
-      propertyPath: currentDefence
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2341849012200123104, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
-      propertyPath: currentStrength
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2341849012200123104, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
-      propertyPath: currentMoveSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2341849012200123104, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
-      propertyPath: currentAttackSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2341849012200123104, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
-      propertyPath: currentIncomingDamage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6984755896152334962, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
       propertyPath: m_RootOrder
       value: 1
