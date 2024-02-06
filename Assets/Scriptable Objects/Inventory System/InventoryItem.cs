@@ -16,6 +16,8 @@ public abstract class InventoryItem : ScriptableObject
     public int quantity = 1;
     [HideInInspector] public GameObject gameObject;
 
+    public Sprite itemSprite;
+
     // Add actions that are common in all items
     // but treated differently based on type to an item below 
     // TODO: ADD MORE
