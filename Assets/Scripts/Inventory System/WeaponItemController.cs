@@ -35,7 +35,7 @@ public class WeaponItemController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("interactTrigger"))
         {
             // If item in a ranged weapon
             if (item.isRangedWeapon())

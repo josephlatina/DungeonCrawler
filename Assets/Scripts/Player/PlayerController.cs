@@ -28,9 +28,9 @@ public class PlayerController : MonoBehaviour
     public float rollLength = 0.5f, rollCooldown = 1f;
 
     public PlayerStateMachine PlayerStateMachine => playerStateMachine;
-    [HideInInspector] public Collider2D meleeTrigger;
     private Collider2D interactTrigger;
     private Transform interactableObject;
+    public PlayerWeaponController weaponController;
     [HideInInspector] public Vector3 mousePos;
 
     private enum PlayerStatus
@@ -64,9 +64,10 @@ public class PlayerController : MonoBehaviour
         // Set initial status to normal
         status = PlayerStatus.Normal;
         // Get player object's melee trigger
-        meleeTrigger = transform.Find("AimPivot/MeleeCollider").GetComponent<Collider2D>();
+        // meleeTrigger = transform.Find("AimPivot/MeleeCollider").GetComponent<Collider2D>();
         // Get player object's interaction trigger
         interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
+        weaponController = GetComponentInChildren<PlayerWeaponController>();
         anim = GetComponentInChildren<Animator>();
     }
 
@@ -177,15 +178,15 @@ public class PlayerController : MonoBehaviour
         if (interactableObject)
         {
             // change color of interactable object (To delete after)
-            Color newColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
-            if (interactableObject.GetComponent<SpriteRenderer>() != null)
-            {
-                interactableObject.GetComponent<SpriteRenderer>().color = newColor;
-            }
-            else
-            {
-                interactableObject.GetComponentInChildren<SpriteRenderer>().color = newColor;
-            }
+            // Color newColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+            // if (interactableObject.GetComponent<SpriteRenderer>() != null)
+            // {
+            //     interactableObject.GetComponent<SpriteRenderer>().color = newColor;
+            // }
+            // else
+            // {
+            //     interactableObject.GetComponentInChildren<SpriteRenderer>().color = newColor;
+            // }
 
             Debug.Log(interactableObject.name);
 
@@ -199,7 +200,8 @@ public class PlayerController : MonoBehaviour
                 int weaponIndex = weapon.item.isRangedWeapon() ? 1 : 0;
                 InventoryItem dropItem = playerInventory.GetItemAt(weaponIndex);
 
-                weapon.gameObject.SetActive(false); // hides object from scene
+                // weapon.gameObject.SetActive(false); // hides object from scene
+
 
                 // check if range weapon slot is full replace, if not pick up
                 if (playerInventory.isRangeWeaponFull() || playerInventory.isMeleeWeaponFull())
@@ -207,10 +209,13 @@ public class PlayerController : MonoBehaviour
                     if (dropItem != null)
                     {
                         dropItem.DropItemAt(transform.position);
+                        weaponController.DropWeapon(weaponIndex, weaponController.transform.position);
                     }
                 }
 
                 playerInventory.SwapItemAt(weapon.item, weaponIndex);
+                weaponController.SetWeapon(weapon.gameObject, weaponIndex); interactableObject = null;
+                text.text = "";
             }
             // if object is a consumable
             else if (consumable != null)

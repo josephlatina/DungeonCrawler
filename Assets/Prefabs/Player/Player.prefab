@@ -194,6 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5548287083483491668}
   - component: {fileID: 3679745447294539134}
+  - component: {fileID: 93921750}
   m_Layer: 6
   m_Name: Weapon
   m_TagString: Untagged
@@ -210,7 +211,7 @@ Transform:
   m_GameObject: {fileID: 6439124077417498503}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.7, y: 0, z: 0}
-  m_LocalScale: {x: 0.66, y: 0.75, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2901085479736846717}
@@ -257,7 +258,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 1c577980f7bd8a045b542d60916816a0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -265,9 +266,23 @@ SpriteRenderer:
   m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &93921750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6439124077417498503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd93a8f23432fc4f96f411ba5f37d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeTrigger: {fileID: 0}
+  mousePos: {x: 0, y: 0, z: 0}
 --- !u!1 &6523951103297536405
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +295,7 @@ GameObject:
   - component: {fileID: 3808724677652691981}
   m_Layer: 6
   m_Name: InteractTrigger
-  m_TagString: Untagged
+  m_TagString: interactTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -315,7 +330,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.25
 --- !u!1 &6984755896152334966
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,13 +390,12 @@ MonoBehaviour:
   rollLength: 0.5
   rollCooldown: 0.5
   meleeTrigger: {fileID: 0}
-  weaponController: {fileID: 0}
   mousePos: {x: 0, y: 0, z: 0}
   isMeleeAttacking: 0
   isRangedAttacking: 0
   isHealing: 0
   isRolling: 0
-  playerInventory: {fileID: 11400000, guid: d402dee68ae49714aab258863b548f14, type: 2}
+  playerInventory: {fileID: 0}
   text: {fileID: 0}
 --- !u!114 &2341849012200123104
 MonoBehaviour:
