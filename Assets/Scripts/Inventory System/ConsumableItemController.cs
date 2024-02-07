@@ -51,14 +51,5 @@ public class ConsumableItemController : MonoBehaviour
             actionText.text = $"Press E to pick up consumable item {item.itemName}";
         }
     }
-
-    /// <summary>
-    /// Drop current item into given position
-    /// </summary>
-    /// <param name="dropPosition">position where to drop this current item</param>
-    public void DropItemAt(Vector2 dropPosition)
-    {
-        item.gameObject.transform.position = dropPosition;
-        item.gameObject.SetActive(true);
-    }
+    
 }

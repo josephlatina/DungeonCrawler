@@ -5,9 +5,11 @@
  * Description: Houses the actions used in an Inventory System. Must be a Scriptable Object
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -15,7 +17,12 @@ public class InventorySystem : MonoBehaviour
     public List<InventoryItem> items;
     public int maxWeaponSlots = 2;
     public int maxConsumableSlots = 3;
+    [SerializeField] private GridLayoutGroup inventoryGridLayoutGroup;
 
+    private void Update()
+    {
+        DisplayInventory();
+    }
 
     public void AddItem(InventoryItem item)
     {
@@ -44,7 +51,7 @@ public class InventorySystem : MonoBehaviour
 
     public bool isConsumableFull()
     {
-        return items.OfType<ConsumableItem>().Count() == maxConsumableSlots;
+        return items.OfType<ConsumableItem>().Count() == maxConsumableSlots-1;
     }
 
     public bool isWeaponFull()
@@ -65,19 +72,20 @@ public class InventorySystem : MonoBehaviour
     // Watch https://www.youtube.com/watch?v=oJAE6CbsQQA
     public void DisplayInventory()
     {
-        string inventoryString = "\nINVENTORY=======";
-        foreach (var item in items)
+        for (int i = 0; i < items.Count(); i++)
         {
-            if (item != null)
-                inventoryString += $" {item.itemName},";
+            GameObject itemSlot = inventoryGridLayoutGroup.transform.GetChild(i).transform.GetChild(0).gameObject;
+            Debug.Log(itemSlot);
+            if (items[i])
+            {
+                itemSlot.GetComponent<Image>().sprite = items[i].itemSprite;
+            }
         }
-
-        Debug.Log(inventoryString);
     }
 
     public void InitializeInventory()
     {
-        for (int i = 0; i <= maxConsumableSlots + maxConsumableSlots; i++)
+        for (int i = 0; i < maxConsumableSlots + maxConsumableSlots; i++)
         {
             AddItem(null);
         }
