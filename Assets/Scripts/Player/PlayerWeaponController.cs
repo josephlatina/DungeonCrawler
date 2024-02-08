@@ -5,9 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerWeaponController : MonoBehaviour
 {
-    private GameObject melee;
+    public GameObject melee;
     public Collider2D meleeTrigger;
-    private GameObject ranged;
+    public GameObject ranged;
+
+    private Transform meleeHolder;
+    private Transform rangedHolder;
 
     private Camera mainCam;
     public Vector3 mousePos;
@@ -19,6 +22,8 @@ public class PlayerWeaponController : MonoBehaviour
     {
         // Get the main camera reference.
         mainCam = Camera.main;
+        meleeHolder = transform.Find("Melee").GetComponent<Transform>();
+        rangedHolder = transform.Find("Ranged").GetComponent<Transform>();
     }
 
     public void SetWeapon(GameObject newWeapon, int weaponIndex)
@@ -26,8 +31,8 @@ public class PlayerWeaponController : MonoBehaviour
         if (weaponIndex == 0)
         {
             melee = newWeapon;
-            melee.transform.parent = transform;
-            melee.transform.position = transform.position;
+            melee.transform.parent = meleeHolder;
+            melee.transform.position = meleeHolder.position;
             melee.transform.localRotation = Quaternion.Euler(0, 0, -135);
             melee.tag = "Untagged";
 
@@ -36,8 +41,9 @@ public class PlayerWeaponController : MonoBehaviour
         else if (weaponIndex == 1)
         {
             ranged = newWeapon;
-            ranged.transform.parent = transform;
-            ranged.transform.position = transform.position;
+            ranged.transform.parent = rangedHolder;
+            ranged.transform.position = rangedHolder.position;
+            ranged.transform.localRotation = Quaternion.identity;
             ranged.tag = "Untagged";
         }
     }
@@ -62,10 +68,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     void Update()
     {
-        // if (melee)
-        // {
-        //     melee.transform.rotation = transform.parent.rotation;
-        // }
+
     }
 
     public GameObject GetMelee()

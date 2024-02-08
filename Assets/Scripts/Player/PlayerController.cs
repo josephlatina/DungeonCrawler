@@ -214,8 +214,10 @@ public class PlayerController : MonoBehaviour
                 }
 
                 playerInventory.SwapItemAt(weapon.item, weaponIndex);
-                weaponController.SetWeapon(weapon.gameObject, weaponIndex); interactableObject = null;
-                text.text = "";
+                weaponController.SetWeapon(weapon.gameObject, weaponIndex);
+
+                interactableObject = null;
+
             }
             // if object is a consumable
             else if (consumable != null)

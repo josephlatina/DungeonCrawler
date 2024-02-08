@@ -38,7 +38,7 @@ public class WeaponItemController : MonoBehaviour
         if (other.gameObject.CompareTag("interactTrigger"))
         {
             // If item in a ranged weapon
-            if (item.isRangedWeapon())
+            if (item.isRangedWeapon() && gameObject.tag == "interactableObject")
             {
                 // check if weapon slot is full replace, if not pick up
                 if (playerInventory.isRangeWeaponFull())
@@ -51,7 +51,7 @@ public class WeaponItemController : MonoBehaviour
                 }
             }
             // If item in a melee weapon
-            else if (item.isMeleeWeapon())
+            else if (item.isMeleeWeapon() && gameObject.tag == "interactableObject")
             {
                 // check if weapon slot is full replace, if not pick up
                 if (playerInventory.isMeleeWeaponFull())
@@ -62,6 +62,10 @@ public class WeaponItemController : MonoBehaviour
                 {
                     actionText.text = $"Press E to pick up melee weapon {item.itemName}";
                 }
+            }
+            else
+            {
+                actionText.text = "";
             }
 
             // playerInventory.DisplayInventory();
