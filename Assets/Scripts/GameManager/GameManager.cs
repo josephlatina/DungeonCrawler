@@ -12,7 +12,7 @@ using UnityEngine;
 /// Game Manager class that is of singleton mono behaviour type
 /// </summary>
 [DisallowMultipleComponent] // attribute for preventing us from adding the same component more than once in the game
-public class GameManager : SingletonMonobehaviour<GameManager>
+public class GameManager : SingletonMonoBehavior<GameManager>
 {
     // serialized private field for containing the list of dungeon levels for this game session
     #region Header DUNGEON LEVELS
@@ -63,11 +63,11 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         switch (gameState) {
 
             // Game Started State
-            case gameState.gameStarted:
+            case GameState.gameStarted:
                 // Play first level
                 PlayDungeonLevel(currentDungeonLevelListIndex);
                 // Set the state to Playing Level
-                gameState = gameState.playingLevel;
+                gameState = GameState.playingLevel;
                 break;
         }
     }
