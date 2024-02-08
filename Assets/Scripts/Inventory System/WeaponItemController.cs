@@ -18,6 +18,8 @@ public class WeaponItemController : MonoBehaviour
     public WeaponItem item;
     private InventorySystem playerInventory;
     private TextMeshProUGUI actionText;
+    private SpriteRenderer sprite;
+
 
     private void Start()
     {
@@ -26,6 +28,12 @@ public class WeaponItemController : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
+        sprite = gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        if (item.itemSprite)
+        {
+            sprite.sprite = item.itemSprite;
+            sprite.color = Color.white;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
