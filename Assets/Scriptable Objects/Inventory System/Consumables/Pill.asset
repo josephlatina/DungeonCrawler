@@ -16,6 +16,8 @@ MonoBehaviour:
   description: 'Choose a permanent stat upgrade (PERK) when picked up '
   price: 0
   quantity: 1
+  gameObject: {fileID: 0}
+  itemSprite: {fileID: 667925829, guid: 80bd65d8bfbda3d4abfa7ff291ad65f4, type: 3}
   healthRestore: 0
   attackStrengthUpgrade: 1.52
   attackSpeedUpgrade: 1.22

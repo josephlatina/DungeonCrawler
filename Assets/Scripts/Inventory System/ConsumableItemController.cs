@@ -17,7 +17,8 @@ public class ConsumableItemController : MonoBehaviour
     public ConsumableItem item;
     private InventorySystem playerInventory;
     private TextMeshProUGUI actionText;
-    
+    private SpriteRenderer sprite;
+
     private void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
@@ -25,13 +26,19 @@ public class ConsumableItemController : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
+        sprite = gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        if (item.itemSprite)
+        {
+            sprite.sprite = item.itemSprite;
+            sprite.color = Color.white;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         actionText.text = "";
     }
-    
+
     private void OnTriggerStay2D(Collider2D other)
     {
         // check if consumable slots are full replace, if not pick up
@@ -45,13 +52,4 @@ public class ConsumableItemController : MonoBehaviour
         }
     }
     
-    /// <summary>
-    /// Drop current item into given position
-    /// </summary>
-    /// <param name="dropPosition">position where to drop this current item</param>
-    public void DropItemAt(Vector2 dropPosition)
-    {
-        item.gameObject.transform.position = dropPosition;
-        item.gameObject.SetActive(true);
-    }
 }

@@ -330,10 +330,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.095319435
-    y: 0
-    width: 0.80901945
-    height: 1
+    x: 0
+    y: 0.13513514
+    width: 0.6559617
+    height: 0.8108108
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1422,7 +1422,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items: []
   maxWeaponSlots: 2
-  maxConsumableSlots: 1
+  maxConsumableSlots: 2
+  inventoryGridLayoutGroup: {fileID: 1763257923}
 --- !u!4 &1225842681
 Transform:
   m_ObjectHideFlags: 0
