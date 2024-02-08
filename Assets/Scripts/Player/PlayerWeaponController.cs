@@ -43,7 +43,7 @@ public class PlayerWeaponController : MonoBehaviour
             ranged = newWeapon;
             ranged.transform.parent = rangedHolder;
             ranged.transform.position = rangedHolder.position;
-            ranged.transform.localRotation = Quaternion.identity;
+            ranged.transform.localRotation = Quaternion.Euler(0, 0, -135);
             ranged.tag = "Untagged";
         }
     }
