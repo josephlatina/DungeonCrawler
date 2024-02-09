@@ -667,9 +667,9 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: USE_PHYSICS2D
-    WebGL: USE_PHYSICS2D
-    Windows Store Apps: USE_PHYSICS2D
+    Standalone: USE_PHYSICS2D;TMP_PRESENT
+    WebGL: USE_PHYSICS2D;TMP_PRESENT
+    Windows Store Apps: USE_PHYSICS2D;TMP_PRESENT
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
