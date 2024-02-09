@@ -11,9 +11,8 @@ public class PlayerWeaponController : MonoBehaviour
     public Collider2D rangedTrigger;
 
     private Transform meleeHolder;
-    private WeaponItemController meleeWeaponController;
     private Transform rangedHolder;
-    private ScalpelController rangedWeaponController;
+    private RangedWeaponController rangedController;
 
     private Camera mainCam;
     public Vector3 mousePos;
@@ -38,7 +37,7 @@ public class PlayerWeaponController : MonoBehaviour
             melee.transform.position = meleeHolder.position;
             melee.transform.localRotation = Quaternion.Euler(0, 0, -135);
             melee.tag = "Untagged";
-            meleeWeaponController = melee.GetComponent<WeaponItemController>();
+            // meleeWeaponController = melee.GetComponent<WeaponItemController>();
 
             meleeTrigger = melee.GetComponent<Collider2D>();
         }
@@ -49,7 +48,8 @@ public class PlayerWeaponController : MonoBehaviour
             ranged.transform.position = rangedHolder.position;
             ranged.transform.localRotation = Quaternion.Euler(0, 0, -135);
             ranged.tag = "Untagged";
-            rangedWeaponController = ranged.GetComponent<ScalpelController>();
+            rangedController = ranged.GetComponent<RangedWeaponController>();
+            rangedController.OnPickup();
         }
     }
 
@@ -71,9 +71,8 @@ public class PlayerWeaponController : MonoBehaviour
         }
     }
 
-    public void FireRanged(Vector3 direction)
+    public void FireRanged()
     {
-        ranged.GetComponent<ScalpelBehaviour>().SetDirection(direction.normalized);
-        rangedWeaponController.Fire();
+        rangedController.Fire();
     }
 }

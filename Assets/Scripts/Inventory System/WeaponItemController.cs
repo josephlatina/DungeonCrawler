@@ -16,12 +16,12 @@ public class WeaponItemController : MonoBehaviour
 {
     // Reference to the ScriptableObject of the Weapon Item type
     public WeaponItem item;
-    private InventorySystem playerInventory;
-    private TextMeshProUGUI actionText;
-    private SpriteRenderer sprite;
+    public InventorySystem playerInventory;
+    public TextMeshProUGUI actionText;
+    public SpriteRenderer sprite;
 
 
-    private void Start()
+    protected virtual void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
         PlayerController playerController =

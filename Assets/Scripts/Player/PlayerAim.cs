@@ -17,6 +17,7 @@ public class PlayerAim : MonoBehaviour
 {
     private Camera mainCam;
     public Vector3 mousePos;
+    public Vector3 rotation;
 
     /// <summary>
     /// Called when the script is initialized.
@@ -36,7 +37,7 @@ public class PlayerAim : MonoBehaviour
         mousePos = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         // Calculate rotation based on mouse position.
-        Vector3 rotation = mousePos - transform.position;
+        rotation = mousePos - transform.position;
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
         // Apply the calculated rotation to the object.
