@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class RangedWeaponController : WeaponItemController
 {
-    public PlayerAim aim;
+    private PlayerAim aim;
     private float currentSpeed;
     private Transform playerParent;
     private float counter;
-    public float countdown;
+    public float countdown = 1;
     Vector3 direction;
 
     protected override void Start()
@@ -20,6 +20,13 @@ public class RangedWeaponController : WeaponItemController
     {
         playerParent = transform.parent;
         aim = GetComponentInParent<PlayerAim>();
+    }
+
+    public void OnDrop() {
+        playerParent = null;
+        transform.parent = null;
+        aim = null;
+        transform.localRotation = Quaternion.identity;
     }
 
     public void Fire()

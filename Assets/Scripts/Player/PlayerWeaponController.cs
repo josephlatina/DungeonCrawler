@@ -11,6 +11,7 @@ public class PlayerWeaponController : MonoBehaviour
     public Collider2D rangedTrigger;
 
     private Transform meleeHolder;
+    private MeleeWeaponController meleeController;
     private Transform rangedHolder;
     private RangedWeaponController rangedController;
 
@@ -37,9 +38,8 @@ public class PlayerWeaponController : MonoBehaviour
             melee.transform.position = meleeHolder.position;
             melee.transform.localRotation = Quaternion.Euler(0, 0, -135);
             melee.tag = "Untagged";
-            // meleeWeaponController = melee.GetComponent<WeaponItemController>();
-
-            meleeTrigger = melee.GetComponent<Collider2D>();
+            meleeController = melee.GetComponent<MeleeWeaponController>();
+            meleeController.OnPickup();
         }
         else if (weaponIndex == 1)
         {
@@ -60,6 +60,8 @@ public class PlayerWeaponController : MonoBehaviour
             melee.transform.parent = null;
             melee.transform.localRotation = Quaternion.identity;
             melee.tag = "interactableObject";
+            meleeController.OnDrop();
+            meleeController = null;
             melee = null;
         }
         else if (weaponIndex == 1)
@@ -67,12 +69,20 @@ public class PlayerWeaponController : MonoBehaviour
             ranged.transform.parent = null;
             ranged.transform.rotation = Quaternion.identity;
             ranged.tag = "interactableObject";
+            rangedController.OnDrop();
+            rangedController = null;
             ranged = null;
+
         }
     }
 
     public void FireRanged()
     {
         rangedController.Fire();
+    }
+
+    public void MeleeAttack()
+    {
+        meleeController.Attack();
     }
 }

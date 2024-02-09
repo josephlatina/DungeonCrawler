@@ -34,7 +34,7 @@ public class PlayerRangedState : IState
     public void Enter()
     {
         // Change player's color to yellow when entering the ranged state.
-        player.anim.GetComponent<SpriteRenderer>().color = Color.yellow;
+        player.anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().color = Color.yellow;
         // Get player's stats script.
         stats = player.GetComponent<PlayerStats>();
         if (player.weaponController.ranged)
@@ -84,7 +84,7 @@ public class PlayerRangedState : IState
     public void Exit()
     {
         // Reset player's color to white when exiting the ranged state.
-        player.anim.GetComponent<SpriteRenderer>().color = Color.white;
+        player.anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().color = Color.white;
 
         // Reset counters.
         rangedCounter = 0;

@@ -117,11 +117,11 @@ public class PlayerController : MonoBehaviour
         moveVal = value.Get<Vector2>();
         if (moveVal.x > 0)
         {
-            anim.GetComponent<SpriteRenderer>().flipX = false;
+            anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().flipX = false;
         }
         else if (moveVal.x < 0)
         {
-            anim.GetComponent<SpriteRenderer>().flipX = true;
+            anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().flipX = true;
         }
     }
 
