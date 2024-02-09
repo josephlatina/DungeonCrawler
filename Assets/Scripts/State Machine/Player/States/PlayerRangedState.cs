@@ -131,6 +131,8 @@ public class PlayerRangedState : IState
         Vector3 rotation = mousePos - rangedWeapon.position;
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
+        player.weaponController.FireRanged(rotation);
+
         // Debug draw the ray for visualizing the ranged attack.
         Debug.DrawRay(rangedWeapon.position, rotation, Color.yellow, 0.25f);
     }
