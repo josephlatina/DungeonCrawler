@@ -73,8 +73,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        Debug.Log("hello");
-
         // Initialize the state machine with the idle state
         playerStateMachine.Initialize(playerStateMachine.idleState);
         // Initialize inventory
@@ -168,19 +166,6 @@ public class PlayerController : MonoBehaviour
     {
         if (interactableObject)
         {
-            // change color of interactable object (To delete after)
-            Color newColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
-            if (interactableObject.GetComponent<SpriteRenderer>() != null)
-            {
-                interactableObject.GetComponent<SpriteRenderer>().color = newColor;
-            }
-            else
-            {
-                interactableObject.GetComponentInChildren<SpriteRenderer>().color = newColor;
-            }
-
-            Debug.Log(interactableObject.name);
-
             WeaponItemController weapon =
                 interactableObject.gameObject.GetComponent<WeaponItemController>();
             ConsumableItemController consumable =

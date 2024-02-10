@@ -16,6 +16,8 @@ MonoBehaviour:
   description: 
   price: 0
   quantity: 100
+  gameObject: {fileID: 0}
+  itemSprite: {fileID: 1818620689, guid: 80bd65d8bfbda3d4abfa7ff291ad65f4, type: 3}
   healthRestore: 0
   attackStrengthUpgrade: 0
   attackSpeedUpgrade: 0
