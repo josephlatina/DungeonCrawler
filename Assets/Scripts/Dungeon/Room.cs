@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Represents the room object being placed during Dungeon Builder algorithm (not the instantiated room)
+/// Represents the room object being placed during Dungeon Builder algorithm (not the instantiated room). Member variables basically mimic the Room Template class
 /// </summary>
 public class Room
 {
