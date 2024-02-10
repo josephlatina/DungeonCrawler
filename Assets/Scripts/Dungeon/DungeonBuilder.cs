@@ -264,6 +264,7 @@ public class DungeonBuilder : SingletonMonoBehavior<DungeonBuilder>
         // If room type is a corridor,
         if (roomNode.roomNodeType.isCorridor) {
             // determine the parent's doorway orientation and find the corridor template that matches orientation
+            // note that the corridor type (corridorNS or corridorEW) gets set in this method depending on the orientation of the selected random doorway from the parent room
             switch (doorwayParent.orientation) {
 
                 // Corridor NS
@@ -372,7 +373,7 @@ public class DungeonBuilder : SingletonMonoBehavior<DungeonBuilder>
         // Now if there is an available doorway, calculate the 'world' grid parent doorway position
         // this is done by calculating the distance from the position of the doorway relative to the corner of the room
         Vector2Int doorwayPosition = doorwayParent.position - parentRoom.templateLowerBounds;
-        // and add that to the actual position of the corner of the room within the scene (so 'world' coordinates)
+        // and add that to the 'world' position of the corner of the room
         Vector2Int parentDoorwayPosition = parentRoom.lowerBounds + doorwayPosition;
         
         // Now calculate the adjustment needed to the positioning of the room based on parent doorway position to align correctly
@@ -546,6 +547,29 @@ public class DungeonBuilder : SingletonMonoBehavior<DungeonBuilder>
     /// </summary>
     private void InstantiateRoomGameobjects() {
         
+        // Iterate through all of the dungeon rooms in the room dictionary
+        foreach (KeyValuePair<string, Room> keyvaluepair in dungeonBuilderRoomDictionary) {
+
+            Room room = keyvaluepair.Value;
+
+            // Calculate the actual room position within the scene in the game (needs to be adjusted by room template bounds)
+            Vector3 roomPosition = new Vector3(room.lowerBounds.x - room.templateLowerBounds.x, room.lowerBounds.y - room.templateLowerBounds.y, 0f);
+        
+            // Instantiate the room
+            GameObject roomGameobject = Instantiate(room.prefab, roomPosition, Quaternion.identity, transform);
+        
+            // Get the 'Instantiated Room' component from this newly instantiated room prefab
+            InstantiatedRoom instantiatedRoom = roomGameobject.GetComponentInChildren<InstantiatedRoom>();
+
+            // save the game object reference of the room object to the corresponding member variable in the 'Instantiated Room' class
+            instantiatedRoom.room = room;
+
+            // Initialize the instantiated room (basically populate the member variables)
+            instantiatedRoom.Initialize(roomGameobject);
+
+            // save the game object reference for this instantiated room in this class' member variable
+            room.instantiatedRoom = instantiatedRoom;
+        }
        
     }
 

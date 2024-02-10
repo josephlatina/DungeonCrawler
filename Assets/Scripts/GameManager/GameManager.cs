@@ -33,6 +33,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     // public variable for holding the current game state
     [HideInInspector] public GameState gameState;
 
+    protected override void Awake()
+    {
+        // Call base class
+        base.Awake();
+    }
+
     /// <summary>
     /// Start method - called before the first frame update
     /// </summary>

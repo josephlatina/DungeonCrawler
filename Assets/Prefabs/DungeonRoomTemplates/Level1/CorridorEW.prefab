@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5648205922195720869}
   - component: {fileID: 8497884323289505741}
+  - component: {fileID: 3377937791585263765}
   m_Layer: 7
   m_Name: CorridorEW
   m_TagString: Untagged
@@ -60,6 +61,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 25, y: 7}
   m_EdgeRadius: 0
+--- !u!114 &3377937791585263765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875396859818147482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89331a322c9af4618b453a9b5f7841f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 0}
+  groundTilemap: {fileID: 0}
+  decoration1Tilemap: {fileID: 0}
+  decoration2Tilemap: {fileID: 0}
+  wallTilemap: {fileID: 0}
+  collisionTilemap: {fileID: 0}
+  roomColliderBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1 &2135488939248496281
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +96,7 @@ GameObject:
   - component: {fileID: 1712029462682343733}
   - component: {fileID: 3300571399884058738}
   - component: {fileID: 8101308215623674223}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap5_Collision
   m_TagString: collisionTilemap
   m_Icon: {fileID: 0}
@@ -1561,7 +1583,7 @@ GameObject:
   - component: {fileID: 7728252952601056858}
   - component: {fileID: 114415542054129099}
   - component: {fileID: 2696039786548447127}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap4_Wall
   m_TagString: wallTilemap
   m_Icon: {fileID: 0}
@@ -2801,7 +2823,7 @@ GameObject:
   - component: {fileID: 482222343110295160}
   - component: {fileID: 2277581144617424049}
   - component: {fileID: 8009597479966754394}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap1_Ground
   m_TagString: groundTilemap
   m_Icon: {fileID: 0}
@@ -3730,7 +3752,7 @@ GameObject:
   - component: {fileID: 4397703299538889909}
   - component: {fileID: 5039067975883538010}
   - component: {fileID: 4516986448987815386}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap2_Decoration1
   m_TagString: decoration1Tilemap
   m_Icon: {fileID: 0}
@@ -3849,7 +3871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7529575094083444754}
   - component: {fileID: 2252418170005074992}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3899,7 +3921,7 @@ GameObject:
   - component: {fileID: 3385607585224586497}
   - component: {fileID: 4314876960804673969}
   - component: {fileID: 6680235179218605546}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap3_Decoration2
   m_TagString: decoration2Tilemap
   m_Icon: {fileID: 0}

@@ -73,6 +73,8 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        Debug.Log("hello");
+
         // Initialize the state machine with the idle state
         playerStateMachine.Initialize(playerStateMachine.idleState);
         // Initialize inventory
