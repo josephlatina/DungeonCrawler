@@ -2,7 +2,7 @@
  * DungeonBuilder.cs
  * Author: Joseph Latina
  * Created: February 7, 2024
- * Description: Logic for the dungeon builder algorithm
+ * Description: Contains logic for the dungeon builder algorithm and when added as a component to a game object, will hold all of the instantiated rooms within the scene
  */
 
 using System.Collections.Generic;
@@ -11,17 +11,18 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 /// <summary>
-/// This will be a singleton class that can be called from any game component (ie. game manager)
+/// This will be a singleton class that can be called from any game component (ie. game manager) - mainly to call on the GenerateDungeon() method
 /// </summary>
 [DisallowMultipleComponent]
 public class DungeonBuilder : SingletonMonoBehavior<DungeonBuilder>
 {
-    // Dictionaries for both room and room templates
+    // Dictionary for room objects (to keep track of rooms being created and placed during the dungeon builder process)
     public Dictionary<string, Room> dungeonBuilderRoomDictionary = new Dictionary<string, Room>();
+    // Dictionary for room templates for easy access based on room type wanted
     private Dictionary<string, RoomTemplateSO> roomTemplateDictionary = new Dictionary<string, RoomTemplateSO>();
-    // List of room templates
+    // List of room templates given for the current dungeon level passed in
     private List<RoomTemplateSO> roomTemplateList = null;
-    // Scriptable object for the room node type list
+    // container to hold all of the different type of room node types that exist in the game
     private RoomNodeTypeListSO roomNodeTypeList;
     // boolean value to determine if the dungeon build was successful or not
     private bool dungeonBuildSuccessful;
@@ -37,7 +38,7 @@ public class DungeonBuilder : SingletonMonoBehavior<DungeonBuilder>
     }
 
     /// <summary>
-    /// Helper function: loads the room node type list from game resources
+    /// Loads the room node type list from game resources
     /// </summary>
     private void LoadRoomNodeTypeList() {
 
@@ -46,7 +47,7 @@ public class DungeonBuilder : SingletonMonoBehavior<DungeonBuilder>
     }
 
     /// <summary>
-    /// Helper function: Load the scriptable object room templates into a dictionary
+    /// Helper function: Load the scriptable object room templates into a dictionary (for later easy access)
     /// </summary>
     private void LoadRoomTemplatesIntoDictionary() {
         
@@ -62,7 +63,7 @@ public class DungeonBuilder : SingletonMonoBehavior<DungeonBuilder>
     }
 
      /// <summary>
-    /// Helper function: Randomly select a room node graph
+    /// Helper function: Randomly select a room node graph out of the list provided
     /// </summary>
     private RoomNodeGraphSO SelectRandomRoomNodeGraph(List<RoomNodeGraphSO> roomNodeGraphList) {
         
@@ -83,10 +84,10 @@ public class DungeonBuilder : SingletonMonoBehavior<DungeonBuilder>
         // assign the given dungeon level's room template list to this variable
         roomTemplateList = currentDungeonLevel.roomTemplateList;
 
-        // load the scriptable object room templates into a dictionary
+        // load those room templates into a dictionary for later easy access
         LoadRoomTemplatesIntoDictionary();
 
-        // initialize values
+        // initialize values for loop
         dungeonBuildSuccessful = false;
         int dungeonBuildAttempts = 0;
 
@@ -105,7 +106,7 @@ public class DungeonBuilder : SingletonMonoBehavior<DungeonBuilder>
             // inner loop for maximizing build attempts with the selected random room node graph
             while (!dungeonBuildSuccessful && dungeonRebuildAttemptsForNodeGraph <= Settings.maxDungeonRebuildAttemptsForRoomGraph) {
 
-                // Clean the slate and increment
+                // Clean the slate (destroy gameobjects from last attempt) and increment attempt count
                 ClearDungeon();
                 dungeonRebuildAttemptsForNodeGraph++;
 
@@ -113,7 +114,7 @@ public class DungeonBuilder : SingletonMonoBehavior<DungeonBuilder>
                 dungeonBuildSuccessful = AttemptToBuildRandomDungeon(roomNodeGraph);
             }
 
-            // If successful, instantiate the room gameobjects
+            // If successful, instantiate the room gameobjects within the scene
             if (dungeonBuildSuccessful) {
                 InstantiateRoomGameobjects();
             }
@@ -564,7 +565,7 @@ public class DungeonBuilder : SingletonMonoBehavior<DungeonBuilder>
             // save the game object reference of the room object to the corresponding member variable in the 'Instantiated Room' class
             instantiatedRoom.room = room;
 
-            // Initialize the instantiated room (basically populate the member variables)
+            // Initialize the instantiated room (basically populate the member variables and block off unused doorways)
             instantiatedRoom.Initialize(roomGameobject);
 
             // save the game object reference for this instantiated room in this class' member variable
@@ -574,7 +575,7 @@ public class DungeonBuilder : SingletonMonoBehavior<DungeonBuilder>
     }
 
     /// <summary>
-    /// Helper function: clear dungeon room game objects and dungeon room dictionary
+    /// Helper function: destroy dungeon room game objects and dungeon room dictionary from last dungeon builder attempt
     /// </summary>
     private void ClearDungeon() {
         

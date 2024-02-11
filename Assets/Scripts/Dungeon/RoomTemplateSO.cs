@@ -2,7 +2,7 @@
  * Doorway.cs
  * Author: Joseph Latina
  * Created: January 30, 2024
- * Description: Used to create Room Template Scriptable Object, which will hold information like doorway positions, spawn parameters, etc
+ * Description: Used to create Room Template Scriptable Object, which will hold information like prefab objects, doorway positions, spawn parameters, etc
  */
 
 using System.Collections.Generic;

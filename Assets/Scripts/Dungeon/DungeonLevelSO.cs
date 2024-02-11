@@ -2,7 +2,7 @@
  * DungeonLevelSO.cs
  * Author: Joseph Latina
  * Created: February 01, 2024
- * Description: Script for creating dungeon level scriptable object
+ * Description: Designed to be passed in as an argument to the Dungeon Builder function, this script is for creating dungeon level scriptable object for each dungeon level we want in the game
  */
 
 using System.Collections;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Represents the dungeon level that contains linked room nodes
+/// Contains information on the dungeon level we want to instantiate (pass in list of room node graphs and list of room templates we want for this level)
 /// </summary>
 [CreateAssetMenu(fileName = "DungeonLevel_", menuName = "Scriptable Objects/Dungeon/Dungeon Level")]
 public class DungeonLevelSO : ScriptableObject {

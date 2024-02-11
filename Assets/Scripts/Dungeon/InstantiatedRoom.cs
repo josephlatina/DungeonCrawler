@@ -2,7 +2,7 @@
  * InstantiatedRoom.cs
  * Author: Joseph Latina
  * Created: February 09, 2024
- * Description: Script that will hold details about the instantiated room prefab
+ * Description: Script that will hold details about the instantiated room prefab (designed to be added as a component to room template prefabs)
  */
 
 using System.Collections;
@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 /// <summary>
-/// Represents the actual room instantiated within the scene of the game
+/// Represents the actual room game object instantiated within the scene of the game
 /// </summary>
 [DisallowMultipleComponent]
 [RequireComponent(typeof(BoxCollider2D))]
