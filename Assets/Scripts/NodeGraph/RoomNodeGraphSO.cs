@@ -40,6 +40,32 @@ public class RoomNodeGraphSO : ScriptableObject
     }
 
     /// <summary>
+    /// Get room node by roomNodeType
+    /// </summary>
+    public RoomNodeSO GetRoomNode(RoomNodeTypeSO roomNodeType) {
+        
+        // iterates through the room node list and returns the node matching the room node type specified
+        foreach (RoomNodeSO node in roomNodeList) {
+            if (node.roomNodeType == roomNodeType) {
+                return node;
+            }
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Get room node by roomNodeType
+    /// </summary>
+    public IEnumerable<RoomNodeSO> GetChildRoomNodes(RoomNodeSO parentRoomNode) {
+        
+        // iterates through all of the children node of the given parent room node and returns all of them
+        foreach (string childNodeID in parentRoomNode.childRoomNodeIDList) {
+            yield return GetRoomNode(childNodeID);
+        }
+
+    }
+
+    /// <summary>
     /// Get room node by room nodeID
     /// </summary>
     public RoomNodeSO GetRoomNode(string roomNodeID) {

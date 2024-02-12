@@ -2,13 +2,16 @@
  * Doorway.cs
  * Author: Joseph Latina
  * Created: January 30, 2024
- * Description: Used to hold information (ie. position, orientation) regarding this doorway object.
+ * Description: Used to create Room Template Scriptable Object, which will hold information like prefab objects, doorway positions, spawn parameters, etc
  */
 
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Represents the room template object
+/// </summary>
 [CreateAssetMenu(fileName = "Room_ ", menuName = "Scriptable Objects/Dungeon/Room")]
 public class RoomTemplateSO : ScriptableObject
 {
@@ -20,7 +23,7 @@ public class RoomTemplateSO : ScriptableObject
     // The room template prefab object
     #region Header ROOM PREFAB
     [Space(10)]
-    [Header("ROOM prefab")]
+    [Header("ROOM PREFAB")]
     #endregion Header ROOM PREFAB
     #region Tooltip
     [Tooltip("The gameobject prefab for the room (contains all tilemaps for the room and environment game objects)")]
