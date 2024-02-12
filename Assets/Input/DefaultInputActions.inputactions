@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AdvanceDialogue",
+                    "type": "Button",
+                    "id": "513f44db-c36b-44cc-b819-bc1ccd2b79a4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -263,6 +272,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82361dbc-99f3-4aa0-832e-2d4cde9e846c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AdvanceDialogue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
