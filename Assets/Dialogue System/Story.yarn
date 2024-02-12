@@ -1,0 +1,27 @@
+﻿title: Start
+tags:
+position: -215,-117
+---
+NPC: Oh, hello! You're in Unity! Remember to tailor your resume to the specific job description and company culture of the position you're applying for. Highlighting your relevant skills and experiences while demonstrating your enthusiasm for UX content analysis will help you stand out as a strong candidate for the role.
+    -> Hi, where am I?
+        NPC: what u want?
+        Player: nothing much
+        NPC: then i think it's time to piss off, yeah?
+        -> Oh.
+        <<jump Oh>>
+        -> How did I get here?
+        <<jump Unity>>
+    -> Gello.
+===
+
+title: Oh
+position: 42,-86
+---
+NPC: Yeah, fun, right? Remember to tailor your resume to the specific job description and company culture of the position you're applying for. Highlighting your relevant skills and experiences while demonstrating your enthusiasm for UX content analysis will help you stand out as a strong candidate for the role.
+===
+
+title: Unity
+position: -235,159
+---
+NPC: Someone read the Beginner's Guide! 
+===
