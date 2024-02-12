@@ -39,7 +39,13 @@ public static class HelperUtilities
         bool error = false;
         int count = 0;
 
-        // iterate through the enumerable object to check for null values
+        // check if the enumerable object itself is null
+        if (enumerableObjectToCheck == null) {
+            Debug.Log(fieldName + " is null in object " + thisObject.name.ToString());
+            return true;
+        }
+
+        // iterate through the enumerable objects to check for null values
         foreach (var item in enumerableObjectToCheck) {
             if (item == null) {
                 Debug.Log(fieldName + " has null values in object " + thisObject.name.ToString());

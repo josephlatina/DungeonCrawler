@@ -14,6 +14,12 @@ using UnityEngine;
 /// </summary>
 public static class Settings
 {
+     #region DUNGEON BUILD SETTINGS
+    // Max number of attempts for building the dungeon using the algorithm
+    public const int maxDungeonRebuildAttemptsForRoomGraph = 1000;
+    public const int maxDungeonBuildAttempts = 10;
+    #endregion
+
     #region ROOM SETTINGS
     // Max number of child corridors leading from a room
     public const int maxChildCorridors = 3; 
