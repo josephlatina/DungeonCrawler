@@ -57,6 +57,9 @@ TagManager:
   - name: Ground Decoration 2
     uniqueID: 735367477
     locked: 0
+  - name: Instances
+    uniqueID: 3270641241
+    locked: 0
   - name: Collision
     uniqueID: 3703597361
     locked: 0

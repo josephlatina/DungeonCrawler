@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1df07bf8258a432fb2534119ebf0c20, type: 3}
   m_Name: UpgradeRoom_1
   m_EditorClassIdentifier: 
-  guid: 37e47d3d69b7749bc8b6fa5506232624
-  previousPrefab: {fileID: 1875396859818147482, guid: 5b1efd5ccbbfc4c8a9126e1eedc7e68e, type: 3}
-  prefab: {fileID: 1875396859818147482, guid: 5b1efd5ccbbfc4c8a9126e1eedc7e68e, type: 3}
-  roomNodeType: {fileID: 11400000, guid: c7bc17b8a2a964a368f828524a5edc73, type: 2}
+  guid: 00f96d4b572bf401a824c006bcea8046
+  previousPrefab: {fileID: 1875396859818147482, guid: a1e2c2e71d4014d879d4241b9e65b1c6, type: 3}
+  prefab: {fileID: 1875396859818147482, guid: a1e2c2e71d4014d879d4241b9e65b1c6, type: 3}
+  roomNodeType: {fileID: 11400000, guid: c437fb01854944f869a4d0aa108dbce0, type: 2}
   lowerBounds: {x: -10, y: -13}
   upperBounds: {x: 25, y: 13}
   doorwayList:
