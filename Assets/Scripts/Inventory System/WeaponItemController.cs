@@ -28,7 +28,7 @@ public class WeaponItemController : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
-        sprite = gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        sprite = GetComponent<SpriteRenderer>();
         // set the sorting layer
         sprite.sortingLayerName = "Instances";
         if (item.itemSprite)

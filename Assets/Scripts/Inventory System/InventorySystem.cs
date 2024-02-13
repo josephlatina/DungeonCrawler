@@ -75,7 +75,6 @@ public class InventorySystem : MonoBehaviour
         for (int i = 0; i < items.Count(); i++)
         {
             GameObject itemSlot = inventoryGridLayoutGroup.transform.GetChild(i).transform.GetChild(0).gameObject;
-            Debug.Log(itemSlot);
             if (items[i])
             {
                 itemSlot.GetComponent<Image>().sprite = items[i].itemSprite;

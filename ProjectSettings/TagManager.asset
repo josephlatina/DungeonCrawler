@@ -10,6 +10,7 @@ TagManager:
   - collisionTilemap
   - wallTilemap
   - interactableObject
+  - NPC
   layers:
   - Default
   - TransparentFX
