@@ -1,34 +1,51 @@
+/*
+ * RangedWeaponController.cs
+ * Author: Josh Coss
+ * Created: February 12, 2024
+ * Description: Controls the behavior of ranged weapons.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RangedWeaponController : WeaponItemController
 {
-    private PlayerAim aim;
-    private float currentSpeed;
-    private Transform playerParent;
-    private float counter;
-    public float countdown = 1;
-    Vector3 direction;
+    private PlayerAim aim; // Reference to the player's aim script.
+    private float currentSpeed; // Current speed of the projectile.
+    private Transform playerParent; // Reference to the parent transform of the player.
+    private float counter; // Counter for the attack cooldown.
+    public float countdown = 1; // Duration of the attack cooldown.
+    Vector3 direction; // Direction of the projectile.
 
     protected override void Start()
     {
         base.Start();
     }
 
+    /// <summary>
+    /// Called when the weapon is picked up.
+    /// </summary>
     public void OnPickup()
     {
         playerParent = transform.parent;
         aim = GetComponentInParent<PlayerAim>();
     }
 
-    public void OnDrop() {
+    /// <summary>
+    /// Called when the weapon is dropped.
+    /// </summary>
+    public void OnDrop()
+    {
         playerParent = null;
         transform.parent = null;
         aim = null;
         transform.localRotation = Quaternion.identity;
     }
 
+    /// <summary>
+    /// Fires the ranged weapon.
+    /// </summary>
     public void Fire()
     {
         if (transform.parent)
@@ -50,6 +67,9 @@ public class RangedWeaponController : WeaponItemController
         }
     }
 
+    /// <summary>
+    /// Returns the projectile to the player after a certain time.
+    /// </summary>
     public void ReturnToPlayer()
     {
         transform.parent = playerParent;
@@ -57,6 +77,9 @@ public class RangedWeaponController : WeaponItemController
         transform.localRotation = Quaternion.Euler(0, 0, playerParent.rotation.z - 135);
     }
 
+    /// <summary>
+    /// Manages the cooldown for the ranged weapon attack.
+    /// </summary>
     void AttackCooldown()
     {
         if (counter > 0)

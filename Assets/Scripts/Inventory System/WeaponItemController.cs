@@ -16,8 +16,8 @@ public class WeaponItemController : MonoBehaviour
 {
     // Reference to the ScriptableObject of the Weapon Item type
     public WeaponItem item;
-    public InventorySystem playerInventory;
-    public TextMeshProUGUI actionText;
+    private InventorySystem playerInventory;
+    private TextMeshProUGUI actionText;
     public SpriteRenderer sprite;
 
 

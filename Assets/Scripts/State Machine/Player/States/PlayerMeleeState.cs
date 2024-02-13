@@ -35,7 +35,10 @@ public class PlayerMeleeState : IState
         // Get player's stats component.
         stats = player.GetComponent<PlayerStats>();
         // Initiate the melee attack logic.
-        Attack();
+        if (player.weaponController.melee)
+        {
+            Attack();
+        }
     }
 
     /// <summary>
@@ -122,5 +125,6 @@ public class PlayerMeleeState : IState
     {
         // Enable the melee trigger collider to detect hits.
         // player.meleeTrigger.enabled = true;
+        player.weaponController.MeleeAttack();
     }
 }
