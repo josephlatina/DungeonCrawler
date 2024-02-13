@@ -10,11 +10,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Yarn.Unity;
 using Yarn.Unity.Addons.SpeechBubbles;
+using Random = System.Random;
 
 public class NpcController : MonoBehaviour
 {
+    // Scriptable object of NPC information
+    [Tooltip("The Scriptable Object of NPC. Create > Scriptable Objects > New NPC")]
     public NPC npc;
 
     private CharacterBubbleAnchor bubbleAnchor;
@@ -23,28 +27,32 @@ public class NpcController : MonoBehaviour
     public bool showIndictator = false;
 
     public YarnProject project;
-    [YarnNode(nameof(project))] public string nodeName;
 
-    // Set this to the bubble dialogue view you want to control
-    public DialogueRunner dialogueRunner;
+    [Space, Header("Dialogue Bubble Settings")]
+    public bool randomizeDialogue = true;
+    public float dialogueDetectRange = 1f;
+    private CapsuleCollider2D collider;
 
     // Start is called before the first frame update
     void Start()
     {
+        collider = GetComponent<CapsuleCollider2D>();
+        collider.size = new Vector2(dialogueDetectRange, collider.size.y);
     }
 
     // Update is called once per frame
     void Update()
     {
+        collider.size = new Vector2(dialogueDetectRange, collider.size.y);
+
     }
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if (showIndictator)
-            {
-                interactableIndicator.SetActive(true);
-            }
+            ShowIndicator(showIndictator);
         }
     }
 
@@ -54,7 +62,7 @@ public class NpcController : MonoBehaviour
         {
             if (showIndictator)
             {
-                interactableIndicator.SetActive(true);
+                ShowIndicator(showIndictator);
             }
         }
     }
@@ -63,7 +71,7 @@ public class NpcController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            interactableIndicator.SetActive(false);
+            ShowIndicator(false);
         }
     }
 
@@ -71,13 +79,40 @@ public class NpcController : MonoBehaviour
     {
         return project;
     }
+
     public string[] GetNodes()
     {
         return project.NodeNames;
     }
 
+    /// <summary>
+    /// Get the node name of the very first element in the list
+    /// </summary>
+    /// <returns>string of the node name</returns>
     public string GetNode()
     {
-        return nodeName;
+        return npc.nodeNames[0];
+    }
+
+    public string GetRandomNode()
+    {
+        if (npc.nodeNames.Count > 1)
+        {
+            var rand = new Random();
+
+            // return a random integer from 0 to amount of nodes
+            // e.g. rand.Next (10) to generate 0 - 9
+            return npc.nodeNames[rand.Next(npc.nodeNames.Count)];
+        }
+
+        return npc.nodeNames[0];
+    }
+
+    void ShowIndicator(bool visibility = true)
+    {
+        if (showIndictator)
+        {
+            interactableIndicator.SetActive(visibility);
+        }
     }
 }

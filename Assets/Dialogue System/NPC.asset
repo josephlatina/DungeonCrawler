@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef13e30407b63489d9c0c3b70674e32a, type: 3}
   m_Name: NPC
   m_EditorClassIdentifier: 
-  characterDisplayName: NPC
+  characterDisplayName: Grizzy
   textColor: {r: 1, g: 1, b: 1, a: 1}
   nameplateBackgroundColor: {r: 0, g: 1, b: 1, a: 1}
   nameplateTextColor: {r: 0, g: 0, b: 0, a: 1}

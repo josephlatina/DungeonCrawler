@@ -216,8 +216,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!dialogueView.IsShowingBubble)
             {
-                string node = interactNPC.GetComponent<NpcController>().GetNode();
-                dialogueRunner.StartDialogue(node);
+                StartNPCDialogue();
             }
         }
     }
@@ -265,6 +264,7 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag("NPC") && interactNPC == null)
         {
             interactNPC = other.transform;
+            StartNPCDialogue();
         }
     }
 
@@ -277,6 +277,7 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag("NPC") && interactNPC == null)
         {
             interactNPC = other.transform;
+            StartNPCDialogue();
         }
     }
 
@@ -289,6 +290,16 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag("NPC") && interactNPC != null)
         {
             interactNPC = null;
+        }
+    }
+
+    void StartNPCDialogue()
+    {
+        if (!dialogueView.IsShowingBubble)
+        {
+            NpcController npcController = interactNPC.GetComponent<NpcController>();
+            string node = npcController.randomizeDialogue ? npcController.GetRandomNode() : npcController.GetNode();
+            dialogueRunner.StartDialogue(node);
         }
     }
 }

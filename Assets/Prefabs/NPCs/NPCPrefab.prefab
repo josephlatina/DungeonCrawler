@@ -161,9 +161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b8dc8e61e600946a94f08539d3b140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npc: {fileID: 0}
   interactableIndicator: {fileID: 7063379284962241378}
-  npc: {fileID: 11400000, guid: e120aeccb872f224683af65c8a07b3fe, type: 2}
   showIndictator: 0
+  project: {fileID: 0}
+  randomizeDialogue: 1
+  dialogueDetectRange: 1
 --- !u!114 &2689758854705385788
 MonoBehaviour:
   m_ObjectHideFlags: 0

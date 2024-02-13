@@ -396,8 +396,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0
-    height: 0
+    width: 0.99923366
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1034,8 +1034,36 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1010064372148747060, guid: c17f77c15c2385a4da31e3f6439731ed, type: 3}
+      propertyPath: dialogueRunner
+      value: 
+      objectReference: {fileID: 1643545324}
+    - target: {fileID: 1010064372148747060, guid: c17f77c15c2385a4da31e3f6439731ed, type: 3}
       propertyPath: showIndictator
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010064372148747060, guid: c17f77c15c2385a4da31e3f6439731ed, type: 3}
+      propertyPath: dialogueDetectRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010064372148747060, guid: c17f77c15c2385a4da31e3f6439731ed, type: 3}
+      propertyPath: nodeName.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010064372148747060, guid: c17f77c15c2385a4da31e3f6439731ed, type: 3}
+      propertyPath: nodeName.Array.data[0]
+      value: Bark2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010064372148747060, guid: c17f77c15c2385a4da31e3f6439731ed, type: 3}
+      propertyPath: nodeName.Array.data[1]
+      value: Bark3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010064372148747060, guid: c17f77c15c2385a4da31e3f6439731ed, type: 3}
+      propertyPath: nodeName.Array.data[2]
+      value: Bark4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010064372148747060, guid: c17f77c15c2385a4da31e3f6439731ed, type: 3}
+      propertyPath: nodeName.Array.data[3]
+      value: BarkScript
       objectReference: {fileID: 0}
     - target: {fileID: 2689758854705385788, guid: c17f77c15c2385a4da31e3f6439731ed, type: 3}
       propertyPath: CharacterName
@@ -1113,6 +1141,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5008678979815922720, guid: c17f77c15c2385a4da31e3f6439731ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.64
+      objectReference: {fileID: 0}
     - target: {fileID: 7063379284962241378, guid: c17f77c15c2385a4da31e3f6439731ed, type: 3}
       propertyPath: m_Layer
       value: 5
@@ -1178,7 +1210,7 @@ MonoBehaviour:
   bubblePrefab: {fileID: 96125403}
   bubbleCanvas: {fileID: 523482288}
   PlayerName: Player
-  autoAdvance: 0
+  autoAdvance: 1
   bubbleHideDuration: 0.4
   bubbleShowDuration: 0.4
   bubbleAdjustSizeDuration: 0.25
@@ -3143,7 +3175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5883760576658661533, guid: e24bcf9ee65e241c394bd2e9e2012938, type: 3}
       propertyPath: width
-      value: 54
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 5883760576658661533, guid: e24bcf9ee65e241c394bd2e9e2012938, type: 3}
       propertyPath: m_Color.b
