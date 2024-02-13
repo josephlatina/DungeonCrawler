@@ -28,7 +28,7 @@ public class PlayerMoveState : IState
     public void Enter()
     {
         // Code that runs when entering the move state.
-        // This method is currently empty.
+        player.anim.SetBool("isWalking", true);
     }
 
     /// <summary>
@@ -36,6 +36,7 @@ public class PlayerMoveState : IState
     /// </summary>
     public void Update()
     {
+
         // If movement stops, transition to idle state.
         if (Mathf.Abs(player.rb.velocity.x) < 0.1f && Mathf.Abs(player.rb.velocity.y) < 0.1f)
         {
@@ -79,6 +80,6 @@ public class PlayerMoveState : IState
     public void Exit()
     {
         // Code that runs when exiting the move state.
-        // This method is currently empty.
+
     }
 }

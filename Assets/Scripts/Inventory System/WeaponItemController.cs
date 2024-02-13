@@ -18,10 +18,10 @@ public class WeaponItemController : MonoBehaviour
     public WeaponItem item;
     private InventorySystem playerInventory;
     private TextMeshProUGUI actionText;
-    private SpriteRenderer sprite;
+    public SpriteRenderer sprite;
 
 
-    private void Start()
+    protected virtual void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
         PlayerController playerController =
@@ -45,10 +45,10 @@ public class WeaponItemController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("interactTrigger"))
         {
             // If item in a ranged weapon
-            if (item.isRangedWeapon())
+            if (item.isRangedWeapon() && gameObject.tag == "interactableObject")
             {
                 // check if weapon slot is full replace, if not pick up
                 if (playerInventory.isRangeWeaponFull())
@@ -61,7 +61,7 @@ public class WeaponItemController : MonoBehaviour
                 }
             }
             // If item in a melee weapon
-            else if (item.isMeleeWeapon())
+            else if (item.isMeleeWeapon() && gameObject.tag == "interactableObject")
             {
                 // check if weapon slot is full replace, if not pick up
                 if (playerInventory.isMeleeWeaponFull())
@@ -72,6 +72,10 @@ public class WeaponItemController : MonoBehaviour
                 {
                     actionText.text = $"Press E to pick up melee weapon {item.itemName}";
                 }
+            }
+            else
+            {
+                actionText.text = "";
             }
 
             // playerInventory.DisplayInventory();

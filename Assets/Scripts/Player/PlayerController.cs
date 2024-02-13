@@ -21,15 +21,16 @@ public class PlayerController : MonoBehaviour
     private PlayerStateMachine playerStateMachine;
     [HideInInspector] public Rigidbody2D rb;
     private PlayerStats player;
+    public Animator anim;
 
     [HideInInspector] public Vector2 moveVal;
     public float rollSpeed;
     public float rollLength = 0.5f, rollCooldown = 1f;
 
     public PlayerStateMachine PlayerStateMachine => playerStateMachine;
-    [HideInInspector] public Collider2D meleeTrigger;
     private Collider2D interactTrigger;
     private Transform interactableObject;
+    public PlayerWeaponController weaponController;
     [HideInInspector] public Vector3 mousePos;
 
     private enum PlayerStatus
@@ -63,9 +64,11 @@ public class PlayerController : MonoBehaviour
         // Set initial status to normal
         status = PlayerStatus.Normal;
         // Get player object's melee trigger
-        meleeTrigger = transform.Find("AimPivot/MeleeCollider").GetComponent<Collider2D>();
+        // meleeTrigger = transform.Find("AimPivot/MeleeCollider").GetComponent<Collider2D>();
         // Get player object's interaction trigger
         interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
+        weaponController = GetComponentInChildren<PlayerWeaponController>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     /// <summary>
@@ -112,6 +115,14 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveVal = value.Get<Vector2>();
+        if (moveVal.x > 0)
+        {
+            anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else if (moveVal.x < 0)
+        {
+            anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     /// <summary>
@@ -176,7 +187,8 @@ public class PlayerController : MonoBehaviour
                 int weaponIndex = weapon.item.isRangedWeapon() ? 1 : 0;
                 InventoryItem dropItem = playerInventory.GetItemAt(weaponIndex);
 
-                weapon.gameObject.SetActive(false); // hides object from scene
+                // weapon.gameObject.SetActive(false); // hides object from scene
+
 
                 // check if range weapon slot is full replace, if not pick up
                 if (playerInventory.isRangeWeaponFull() || playerInventory.isMeleeWeaponFull())
@@ -184,10 +196,15 @@ public class PlayerController : MonoBehaviour
                     if (dropItem != null)
                     {
                         dropItem.DropItemAt(transform.position);
+                        weaponController.DropWeapon(weaponIndex, weaponController.transform.position);
                     }
                 }
 
                 playerInventory.SwapItemAt(weapon.item, weaponIndex);
+                weaponController.SetWeapon(weapon.gameObject, weaponIndex);
+
+                interactableObject = null;
+
             }
             // if object is a consumable
             else if (consumable != null)
