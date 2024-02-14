@@ -177,10 +177,10 @@ public class PlayerController : MonoBehaviour
     {
         if (interactableObject)
         {
+            HandleConsumable();
+
             WeaponItemController weapon =
                 interactableObject.gameObject.GetComponent<WeaponItemController>();
-            ConsumableItemController consumable =
-                interactableObject.gameObject.GetComponent<ConsumableItemController>();
             // if object is a weapon
             if (weapon != null)
             {
@@ -204,10 +204,21 @@ public class PlayerController : MonoBehaviour
                 weaponController.SetWeapon(weapon.gameObject, weaponIndex);
 
                 interactableObject = null;
-
             }
-            // if object is a consumable
-            else if (consumable != null)
+        }
+    }
+
+    void HandleConsumable()
+    {
+        ConsumableItemController consumable =
+            interactableObject.gameObject.GetComponent<ConsumableItemController>();
+        if (consumable != null)
+        {
+            if (consumable.item.itemName == "Pill")
+            {
+                Debug.Log("ITs a pill");
+            }
+            else
             {
                 InventoryItem dropItem = playerInventory.GetItemAt(2);
 
