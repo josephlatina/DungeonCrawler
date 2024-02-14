@@ -26,7 +26,7 @@ public class ConsumableItemController : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
-        sprite = GetComponent<SpriteRenderer>();
+        sprite = gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         // set the sorting layer
         sprite.sortingLayerName = "Instances";
         if (item.itemSprite)
