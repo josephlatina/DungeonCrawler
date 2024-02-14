@@ -14,8 +14,9 @@ using Yarn.Unity;
 [CreateAssetMenu(fileName = "NPC", menuName = "Scriptable Objects/New NPC", order = 0)]
 public class NPC : ScriptableObject
 {
-    // list of node titles character can use
-    public List<string> nodes = new List<string>();
+    public string displayName;
+    public string description;
+    
     [SerializeField] private YarnProject project;
 
     [Tooltip("A list of nodes an NPC is able to speak"), YarnNode(nameof(project))]

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0871e8be24e3a204fb4ab76336cd796a, type: 3}
   m_Name: Shopkeeper
   m_EditorClassIdentifier: 
-  nodes: []
+  displayName: Grizzy
   project: {fileID: 7545569452688597077, guid: dedffbe1bc41013438200d17eae8a64f, type: 3}
   nodeNames:
   - BarkScript

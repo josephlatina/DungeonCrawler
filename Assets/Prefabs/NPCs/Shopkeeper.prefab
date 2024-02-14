@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1010064372148747060}
   - component: {fileID: 2689758854705385788}
   m_Layer: 15
-  m_Name: NPCPrefab
+  m_Name: Shopkeeper
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b8dc8e61e600946a94f08539d3b140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npc: {fileID: 0}
+  npc: {fileID: 11400000, guid: e120aeccb872f224683af65c8a07b3fe, type: 2}
   interactableIndicator: {fileID: 7063379284962241378}
   showIndictator: 1
   project: {fileID: 7545569452688597077, guid: dedffbe1bc41013438200d17eae8a64f, type: 3}

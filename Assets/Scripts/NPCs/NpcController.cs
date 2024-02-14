@@ -38,6 +38,8 @@ public class NpcController : MonoBehaviour
     {
         collider = GetComponent<CapsuleCollider2D>();
         collider.size = new Vector2(dialogueDetectRange, collider.size.y);
+        bubbleAnchor = GetComponent<CharacterBubbleAnchor>();
+        bubbleAnchor.CharacterName = npc.displayName;
     }
 
     // Update is called once per frame
