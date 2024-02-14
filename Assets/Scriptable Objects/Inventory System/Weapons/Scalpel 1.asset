@@ -20,7 +20,7 @@ MonoBehaviour:
   itemSprite: {fileID: -787876971, guid: c2d05ccd526638c4c86fde28754a41d4, type: 3}
   weaponType: 1
   damage: 1
-  attackSpeed: 0
+  attackSpeed: 5
   attackRange: 7
   criticalHitDamage: 0
   knockback: 0

@@ -18,7 +18,8 @@ public class WeaponItem : InventoryItem
         Ranged
     };
 
-    [Header("Basic Weapon Attributes")] [Space(5)]
+    [Header("Basic Weapon Attributes")]
+    [Space(5)]
     public WeaponType weaponType;
 
     [SerializeField] private float damage;
@@ -26,7 +27,8 @@ public class WeaponItem : InventoryItem
     [SerializeField] private int attackRange;
     [SerializeField] private float criticalHitDamage;
 
-    [Tooltip("Tiles enemy is pushed back")] [SerializeField]
+    [Tooltip("Tiles enemy is pushed back")]
+    [SerializeField]
     private int knockback;
 
     [Header("Specific Weapon Abilities")]
@@ -35,14 +37,16 @@ public class WeaponItem : InventoryItem
     [SerializeField]
     private int abilityLifeSteal;
 
-    [Tooltip("Health points drained per attack by chance")] [SerializeField]
+    [Tooltip("Health points drained per attack by chance")]
+    [SerializeField]
     private float abilityPoison;
 
-    [Tooltip("Value is 0 if ability doesn't exist")] [SerializeField]
+    [Tooltip("Value is 0 if ability doesn't exist")]
+    [SerializeField]
     private float abilityStun;
 
     [Header("Extra Item Attributes")]
-    // These attributes are randomly given to the item(weapons or consumable) 
+    // These attributes are randomly given to the item(weapons or consumable)
     [Space(5)]
     [SerializeField]
     private float attackStrengthBoost;
@@ -50,7 +54,7 @@ public class WeaponItem : InventoryItem
     [SerializeField] private float defenceBoost;
     [SerializeField] private float movementSpeedBoost;
     [SerializeField] private float attackSpeedBoost;
-    
+
 
     public bool isRangedWeapon()
     {
@@ -60,5 +64,15 @@ public class WeaponItem : InventoryItem
     public bool isMeleeWeapon()
     {
         return weaponType == WeaponType.Melee;
+    }
+
+    public float GetRange()
+    {
+        return attackRange;
+    }
+
+    public float GetSpeed()
+    {
+        return attackSpeed;
     }
 }

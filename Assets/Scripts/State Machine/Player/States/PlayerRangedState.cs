@@ -17,6 +17,7 @@ using UnityEngine.Rendering;
 public class PlayerRangedState : IState
 {
     private PlayerController player;
+    private Transform rangedWeapon;
     private PlayerStats stats;
 
     private float rangedCounter, rangedCoolCounter;
@@ -33,12 +34,15 @@ public class PlayerRangedState : IState
     public void Enter()
     {
         // Change player's color to yellow when entering the ranged state.
-        player.GetComponent<SpriteRenderer>().color = Color.yellow;
+        player.anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().color = Color.yellow;
         // Get player's stats script.
         stats = player.GetComponent<PlayerStats>();
-
-        // Initiate the ranged attack.
-        Attack();
+        if (player.weaponController.ranged)
+        {
+            rangedWeapon = player.weaponController.ranged.transform;
+            // Initiate the ranged attack.
+            Attack();
+        }
     }
 
     /// <summary>
@@ -80,7 +84,7 @@ public class PlayerRangedState : IState
     public void Exit()
     {
         // Reset player's color to white when exiting the ranged state.
-        player.GetComponent<SpriteRenderer>().color = Color.white;
+        player.anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().color = Color.white;
 
         // Reset counters.
         rangedCounter = 0;
@@ -121,13 +125,8 @@ public class PlayerRangedState : IState
     /// </summary>
     void Attack()
     {
-        // Get the mouse position in the world.
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        // Calculate the rotation towards the mouse.
-        Vector3 rotation = mousePos - player.transform.position;
-        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-
         // Debug draw the ray for visualizing the ranged attack.
-        Debug.DrawRay(player.transform.position, rotation, Color.yellow, 0.25f);
+        // Debug.DrawRay(rangedWeapon.position, rotation, Color.yellow, 0.25f);
+        player.weaponController.FireRanged();
     }
 }

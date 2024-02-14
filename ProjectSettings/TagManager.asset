@@ -10,6 +10,7 @@ TagManager:
   - collisionTilemap
   - wallTilemap
   - interactableObject
+  - interactTrigger
   - NPC
   layers:
   - Default

@@ -43,15 +43,20 @@ public class ConsumableItemController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        // check if consumable slots are full replace, if not pick up
-        if (playerInventory.isConsumableFull())
+        if (other.gameObject.CompareTag("interactTrigger"))
         {
-            actionText.text = $"Press E to replace consumable item with {item.itemName}";
-        }
-        else
-        {
-            actionText.text = $"Press E to pick up consumable item {item.itemName}";
+            if (gameObject.tag == "interactableObject")
+            { // check if consumable slots are full replace, if not pick up
+                if (playerInventory.isConsumableFull())
+                {
+                    actionText.text = $"Press E to replace consumable item with {item.itemName}";
+                }
+                else
+                {
+                    actionText.text = $"Press E to pick up consumable item {item.itemName}";
+                }
+            }
         }
     }
-    
+
 }
