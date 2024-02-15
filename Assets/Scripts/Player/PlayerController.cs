@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Yarn.Unity;
+using Yarn.Unity.Addons.SpeechBubbles;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -32,6 +34,11 @@ public class PlayerController : MonoBehaviour
     private Transform interactableObject;
     public PlayerWeaponController weaponController;
     [HideInInspector] public Vector3 mousePos;
+    private Transform interactNPC;
+
+    // Set this to the bubble dialogue view you want to control
+    public BubbleDialogueView dialogueView;
+    public DialogueRunner dialogueRunner;
 
     private enum PlayerStatus
     {
@@ -222,6 +229,34 @@ public class PlayerController : MonoBehaviour
                 playerInventory.SwapItemAt(consumable.item, 2);
             }
         }
+        else if (interactNPC)
+        {
+            if (!dialogueView.IsShowingBubble)
+            {
+                StartNPCDialogue();
+            }
+        }
+    }
+
+    void OnAdvanceDialogue(InputValue value)
+    {
+        // If we're not showing bubbles, do nothing
+        if (dialogueView.IsShowingBubble == false)
+        {
+            return;
+        }
+
+        switch (dialogueView.CurrentContentType)
+        {
+            case BubbleDialogueView.ContentType.Options:
+                // If we're showing options, select the current option
+                dialogueView.SelectOption();
+                break;
+            case BubbleDialogueView.ContentType.Line:
+                // If we're showing a line, advance to the next line
+                dialogueView.UserRequestedViewAdvancement();
+                break;
+        }
     }
 
     /// <summary>
@@ -243,6 +278,11 @@ public class PlayerController : MonoBehaviour
         {
             interactableObject = other.transform;
         }
+        else if (other.CompareTag("NPC") && interactNPC == null)
+        {
+            interactNPC = other.transform;
+            StartNPCDialogue();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -251,6 +291,11 @@ public class PlayerController : MonoBehaviour
         {
             interactableObject = other.transform;
         }
+        else if (other.CompareTag("NPC") && interactNPC == null)
+        {
+            interactNPC = other.transform;
+            StartNPCDialogue();
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -258,6 +303,20 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "interactableObject" && interactableObject != null)
         {
             interactableObject = null;
+        }
+        else if (other.CompareTag("NPC") && interactNPC != null)
+        {
+            interactNPC = null;
+        }
+    }
+
+    void StartNPCDialogue()
+    {
+        if (!dialogueView.IsShowingBubble)
+        {
+            NpcController npcController = interactNPC.GetComponent<NpcController>();
+            string node = npcController.randomizeDialogue ? npcController.GetRandomNode() : npcController.GetNode();
+            dialogueRunner.StartDialogue(node);
         }
     }
 }
