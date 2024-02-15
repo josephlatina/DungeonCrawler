@@ -247,7 +247,21 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
-
+    
+    /// <summary>
+    /// Listener for when dialogue for nodeName is complete
+    /// </summary>
+    /// <param name="nodeName">string name of node</param>
+    void HandleNodeComplete(string nodeName)
+    {
+        GetComponent<PlayerInput>().enabled = true;
+        dialogueRunner.onNodeComplete.RemoveListener(HandleNodeComplete);
+    }
+    
+    /// <summary>
+    /// Handles how consumables should be used
+    /// </summary>
+    /// <param name="consumable">ConsumableItemController reference</param>
     void HandleConsumable(ConsumableItemController consumable)
     {
         consumable.gameObject.SetActive(false); // hides object from scene
@@ -257,6 +271,13 @@ public class PlayerController : MonoBehaviour
             ConsumableItem item = consumable.item;
             UpdatePlayerStats(currentStrength: item.attackStrengthUpgrade,
                 currentAttackSpeed: item.attackSpeedUpgrade, currentDefence: item.defenceUpgrade);
+            
+            // listener for when node is complete
+            dialogueRunner.onNodeComplete.AddListener(HandleNodeComplete);
+            
+            // pause game when pill is picked up
+            GetComponent<PlayerInput>().enabled = false;
+            dialogueRunner.StartDialogue("PillUpgrade");
         }
         else
         {
@@ -272,6 +293,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update player stats. Adds/subtract the number given to the current value of player stat.
+    /// </summary>
+    /// <param name="currentHealth"></param>
+    /// <param name="currentMoveSpeed"></param>
+    /// <param name="currentAttackSpeed"></param>
+    /// <param name="currentStrength"></param>
+    /// <param name="currentDefence"></param>
+    /// <param name="currentIncomingDamage"></param>
     void UpdatePlayerStats(float currentHealth = 0f, float currentMoveSpeed = 0f, float currentAttackSpeed = 0f,
         float currentStrength = 0f,
         int currentDefence = 0, float currentIncomingDamage = 0f)

@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
-  sprite: {fileID: 457473072459232033}
+  sprite: {fileID: 8633936828065341969}
 --- !u!58 &-4557363968842590587
 CircleCollider2D:
   m_ObjectHideFlags: 0
