@@ -19,18 +19,18 @@ public class SpawnTest : MonoBehaviour
 
     private void Update() {
 
-        // if (Input.GetKeyDown(KeyCode.T)) {
+        if (Input.GetKeyDown(KeyCode.T)) {
 
-        //     if (instantiatedEnemy != null) {
-        //         Destroy(instantiatedEnemy);
-        //     }
+            if (instantiatedEnemy != null) {
+                Destroy(instantiatedEnemy);
+            }
 
-        //     EnemyScriptableObject spawnedEnemy = randomEnemyHelperClass.GetItem();
+            EnemyScriptableObject spawnedEnemy = randomEnemyHelperClass.GetItem();
 
-        //     // if enemy is picked, instantiate it close to player (without rotation)
-        //     if (spawnedEnemy != null) {
-        //         instantiatedEnemy = Instantiate(spawnedEnemy.enemyPrefab, HelperUtilities.GetSpawnPositionNearestToPlayer(HelperUtilities.GetMouseWorldPosition()), Quaternion.identity);
-        //     }
-        // }
+            // if enemy is picked, instantiate it close to player (without rotation)
+            if (spawnedEnemy != null) {
+                instantiatedEnemy = Instantiate(spawnedEnemy.prefab, HelperUtilities.GetSpawnPositionNearestToPlayer(HelperUtilities.GetMouseWorldPosition()), Quaternion.identity);
+            }
+        }
     }
 }

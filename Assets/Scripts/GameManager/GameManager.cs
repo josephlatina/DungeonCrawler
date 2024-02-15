@@ -30,6 +30,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     #endregion Tooltip
     [SerializeField] private int currentDungeonLevelListIndex = 0;
 
+    // private field for indicating current room the player is on
+    private Room currentRoom;
+
     // public variable for holding the current game state
     [HideInInspector] public GameState gameState;
 
@@ -98,6 +101,22 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public DungeonLevelSO GetCurrentDungeonLevel() {
 
         return dungeonLevelList[currentDungeonLevelListIndex];
+    }
+
+    /// <summary>
+    /// Get the current room the player is in
+    /// </summary>
+    public Room GetCurrentRoom()
+    {
+        return currentRoom;
+    }
+
+    /// <summary>
+    /// Set the current room the player in in
+    /// </summary>
+    public void SetCurrentRoom(Room room)
+    {
+        currentRoom = room;
     }
 
     #region Validation
