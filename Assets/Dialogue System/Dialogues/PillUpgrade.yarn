@@ -2,7 +2,11 @@
 tags:
 position: 0,0
 ---
+// stat_upgrade(float attackSpeed, float strength, int defence)
 -> Attack Speed
+    <<stat_upgrade Player 1 0 0>>
 -> Strength
+    <<stat_upgrade Player 0 1 0>>
 -> Defence
+    <<stat_upgrade Player 0 0 1>>
 ===

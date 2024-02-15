@@ -247,7 +247,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
-    
+
     /// <summary>
     /// Listener for when dialogue for nodeName is complete
     /// </summary>
@@ -257,7 +257,7 @@ public class PlayerController : MonoBehaviour
         GetComponent<PlayerInput>().enabled = true;
         dialogueRunner.onNodeComplete.RemoveListener(HandleNodeComplete);
     }
-    
+
     /// <summary>
     /// Handles how consumables should be used
     /// </summary>
@@ -268,13 +268,9 @@ public class PlayerController : MonoBehaviour
 
         if (consumable.item.itemName == "Pill")
         {
-            ConsumableItem item = consumable.item;
-            UpdatePlayerStats(currentStrength: item.attackStrengthUpgrade,
-                currentAttackSpeed: item.attackSpeedUpgrade, currentDefence: item.defenceUpgrade);
-            
             // listener for when node is complete
             dialogueRunner.onNodeComplete.AddListener(HandleNodeComplete);
-            
+
             // pause game when pill is picked up
             GetComponent<PlayerInput>().enabled = false;
             dialogueRunner.StartDialogue("PillUpgrade");
@@ -296,22 +292,35 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Update player stats. Adds/subtract the number given to the current value of player stat.
     /// </summary>
-    /// <param name="currentHealth"></param>
-    /// <param name="currentMoveSpeed"></param>
-    /// <param name="currentAttackSpeed"></param>
-    /// <param name="currentStrength"></param>
-    /// <param name="currentDefence"></param>
-    /// <param name="currentIncomingDamage"></param>
-    void UpdatePlayerStats(float currentHealth = 0f, float currentMoveSpeed = 0f, float currentAttackSpeed = 0f,
-        float currentStrength = 0f,
-        int currentDefence = 0, float currentIncomingDamage = 0f)
+    /// <param name="health"></param>
+    /// <param name="moveSpeed"></param>
+    /// <param name="attackSpeed"></param>
+    /// <param name="strength"></param>
+    /// <param name="defence"></param>
+    /// <param name="incomingDamage"></param>
+    void UpdatePlayerStats(float health = 0f, float moveSpeed = 0f, float attackSpeed = 0f,
+        float strength = 0f,
+        int defence = 0, float incomingDamage = 0f)
     {
-        player.CurrentHealth += currentHealth;
-        player.CurrentMoveSpeed += currentMoveSpeed;
-        player.CurrentAttackSpeed += currentAttackSpeed;
-        player.CurrentStrength += currentStrength;
-        player.CurrentDefence += currentDefence;
-        player.CurrentIncomingDamage += currentIncomingDamage;
+        player.CurrentHealth += health;
+        player.CurrentMoveSpeed += moveSpeed;
+        player.CurrentAttackSpeed += attackSpeed;
+        player.CurrentStrength += strength;
+        player.CurrentDefence += defence;
+        player.CurrentIncomingDamage += incomingDamage;
+    }
+
+    /// <summary>
+    /// Function used in yarn script to
+    /// update stat when upgrade item is picked up
+    /// </summary>
+    /// <param name="attackSpeed"></param>
+    /// <param name="strength"></param>
+    /// <param name="defence"></param>
+    [YarnCommand("stat_upgrade")]
+    public void StatUpgrade(float attackSpeed, float strength, int defence)
+    {
+        UpdatePlayerStats(attackSpeed: attackSpeed, strength: strength, defence: defence);
     }
 
     /// <summary>
