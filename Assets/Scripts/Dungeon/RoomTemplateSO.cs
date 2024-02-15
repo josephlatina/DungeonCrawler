@@ -64,7 +64,18 @@ public class RoomTemplateSO : ScriptableObject
     #endregion Tooltip
     public Vector2Int[] spawnPositionArray;
 
-    // TODO: list all other variables that contain room spawn parameters (ie. enemies)
+    // ENEMY SPAWN PARAMETERS
+    #region Header ENEMY DETAILS
+    [Space(10)]
+    [Header("ENEMY DETAILS")]
+    #endregion Header ENEMY DETAILS
+    
+    #region Tooltip
+    [Tooltip("Populate the list with all enemies that can be spawned in this room by dungeon level. That includes the spawn ratio.")]
+    #endregion Tooltip
+
+    public List<SpawnableObjectsByLevel<EnemyScriptableObject>> enemiesByLevelList;
+
 
     /// <summary>
     /// Returns the list of Entrances for the room template

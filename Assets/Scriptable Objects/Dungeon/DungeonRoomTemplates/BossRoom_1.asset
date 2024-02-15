@@ -53,3 +53,6 @@ MonoBehaviour:
     isUnavailable: 0
   spawnPositionArray:
   - {x: 8, y: -1}
+  enemiesByLevelList:
+  - dungeonLevel: {fileID: 0}
+    spawnableObjectRatios: []

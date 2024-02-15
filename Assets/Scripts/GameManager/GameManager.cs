@@ -92,6 +92,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         }
     }
 
+    /// <summary>
+    /// Get the current dungeon level
+    /// </summary>
+    public DungeonLevelSO GetCurrentDungeonLevel() {
+
+        return dungeonLevelList[currentDungeonLevelListIndex];
+    }
+
     #region Validation
 
     // Only to be executed in the unity editor
