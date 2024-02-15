@@ -177,12 +177,17 @@ public class PlayerController : MonoBehaviour
     {
         if (interactableObject)
         {
-            HandleConsumable();
-
+            ConsumableItemController consumable =
+                interactableObject.gameObject.GetComponent<ConsumableItemController>();
             WeaponItemController weapon =
                 interactableObject.gameObject.GetComponent<WeaponItemController>();
+
+            if (consumable != null)
+            {
+                HandleConsumable(consumable);
+            }
             // if object is a weapon
-            if (weapon != null)
+            else if (weapon != null)
             {
                 int weaponIndex = weapon.item.isRangedWeapon() ? 1 : 0;
                 InventoryItem dropItem = playerInventory.GetItemAt(weaponIndex);
@@ -208,31 +213,40 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void HandleConsumable()
+    void HandleConsumable(ConsumableItemController consumable)
     {
-        ConsumableItemController consumable =
-            interactableObject.gameObject.GetComponent<ConsumableItemController>();
-        if (consumable != null)
+        consumable.gameObject.SetActive(false); // hides object from scene
+
+        if (consumable.item.itemName == "Pill")
         {
-            if (consumable.item.itemName == "Pill")
-            {
-                Debug.Log("ITs a pill");
-            }
-            else
-            {
-                InventoryItem dropItem = playerInventory.GetItemAt(2);
-
-                consumable.gameObject.SetActive(false); // hides object from scene
-
-                // check if consumable slots are full replace, if not pick up
-                if (playerInventory.isConsumableFull())
-                {
-                    dropItem.DropItemAt(transform.position);
-                }
-
-                playerInventory.SwapItemAt(consumable.item, 2);
-            }
+            ConsumableItem item = consumable.item;
+            UpdatePlayerStats(currentStrength: item.attackStrengthUpgrade,
+                currentAttackSpeed: item.attackSpeedUpgrade, currentDefence: item.defenceUpgrade);
         }
+        else
+        {
+            InventoryItem dropItem = playerInventory.GetItemAt(2);
+
+            // check if consumable slots are full replace, if not pick up
+            if (playerInventory.isConsumableFull())
+            {
+                dropItem.DropItemAt(transform.position);
+            }
+
+            playerInventory.SwapItemAt(consumable.item, 2);
+        }
+    }
+
+    void UpdatePlayerStats(float currentHealth = 0f, float currentMoveSpeed = 0f, float currentAttackSpeed = 0f,
+        float currentStrength = 0f,
+        int currentDefence = 0, float currentIncomingDamage = 0f)
+    {
+        player.CurrentHealth += currentHealth;
+        player.CurrentMoveSpeed += currentMoveSpeed;
+        player.CurrentAttackSpeed += currentAttackSpeed;
+        player.CurrentStrength += currentStrength;
+        player.CurrentDefence += currentDefence;
+        player.CurrentIncomingDamage += currentIncomingDamage;
     }
 
     /// <summary>

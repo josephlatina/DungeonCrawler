@@ -19,7 +19,7 @@ public class ConsumableItemController : MonoBehaviour
     private TextMeshProUGUI actionText;
     public SpriteRenderer sprite;
 
-    protected virtual void Start()
+     void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
         PlayerController playerController =

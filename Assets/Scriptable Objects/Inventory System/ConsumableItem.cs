@@ -15,28 +15,26 @@ public class ConsumableItem : InventoryItem
     [Header("Basic Consumable Attributes")]
     [Space(5)]
     [Tooltip("How many hearts(1) or half hearts(0.5) the item restores. Value is 0 if ability doesn't exist")]
-    [SerializeField]
-    private float healthRestore;
+    public float healthRestore;
 
-    [Header("Permanent Power Upgrade Attributes (PERK)")] [Space(5)] [SerializeField]
-    private float attackStrengthUpgrade;
+    [Header("Permanent Power Upgrade Attributes (PERK)")] [Space(5)]
+    public float attackStrengthUpgrade;
 
-    [SerializeField] private float attackSpeedUpgrade;
-    [SerializeField] private float defenceUpgrade;
+    public float attackSpeedUpgrade;
+    public int defenceUpgrade;
 
     // These attributes are randomly given to the item(weapons or consumable)
-    [Header("Extra Item Attributes")] [Space(5)] [Tooltip("Tiles enemy is pushed back")] [SerializeField]
-    private int knockback;
+    [Header("Extra Item Attributes")] [Space(5)] [Tooltip("Tiles enemy is pushed back")]
+    public int knockback;
 
-    [Tooltip("Health points drained per attack by chance")] [SerializeField]
-    private float abilityPoison;
+    [Tooltip("Health points drained per attack by chance")]
+    public float abilityPoison;
 
-    [Tooltip("Health points drained per attack by chance")] [SerializeField]
-    private float abilityStun;
+    [Tooltip("Health points drained per attack by chance")]
+    public float abilityStun;
 
-    [SerializeField] private float attackStrengthBoost;
-    [SerializeField] private float defenceBoost;
-    [SerializeField] private float movementSpeedBoost;
-    [SerializeField] private float attackSpeedBoost;
-    
+    public float attackStrengthBoost;
+    public float defenceBoost;
+    public float movementSpeedBoost;
+    public float attackSpeedBoost;
 }
