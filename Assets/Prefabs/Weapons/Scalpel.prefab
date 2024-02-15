@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 4d40ad07e12700c45a29561437b5782a, type: 2}
-  sprite: {fileID: 0}
+  sprite: {fileID: 7371977559124324002}
   countdown: 1
 --- !u!1 &2547958190598049076
 GameObject:

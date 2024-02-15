@@ -1,0 +1,48 @@
+﻿title: Yellow
+tags:
+---
+
+Player: Hey my man what's your whole deal
+Yellow: Hey what's up I'm a little yellow freak
+-> Nice
+    Yellow: *sunglasses emoji*
+-> Whoa
+    Yellow: Yeah it's pretty sick
+-> Yeah
+    Yellow: I mean yeah
+===
+title: Background
+---
+// This node is run on the Background dialogue runner.
+Pink: Line 1
+Beige: Line 2
+Pink: Line 1
+Beige: Line 2
+Pink: Line 1
+Beige: Line 2
+Pink: Line 1
+Beige: Line 2
+===
+title: Platform
+---
+Blue: I'm on a platform!!
+===
+title: Offscreen
+tags: 
+position: 100.98386192321777,-1.7411012649536133
+---
+Yellow: Hey!
+Player: What?
+Yellow: I'm off-screen! You should come back!
+Player: Okay!
+===
+title: Ladybug
+tags: 
+position: -34.822021484375,225.47259140014648
+---
+Ladybug: I am a very prim and proper ladybug.
+Player: I see that.
+Ladybug: As such, I am very neat and tidy in my phrasing and mannerisms.
+Player: This I also see.
+Ladybug: Wh-- why are you listening in on my daily affirmations?!
+===
