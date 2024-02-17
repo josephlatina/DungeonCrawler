@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemsForSale : MonoBehaviour
+public class ItemPriceView : MonoBehaviour
 {
     public List<GameObject> spawnableItems;
 

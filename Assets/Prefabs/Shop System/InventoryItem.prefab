@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 1270034704451029358}
   - component: {fileID: 1968030081288472930}
   m_Layer: 15
-  m_Name: ItemForSale
+  m_Name: InventoryItem
   m_TagString: interactableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
