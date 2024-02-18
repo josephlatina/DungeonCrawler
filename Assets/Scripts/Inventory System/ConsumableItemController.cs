@@ -13,6 +13,7 @@ using UnityEngine;
 
 public class ConsumableItemController : InventoryItemController
 {
+    [Header("Item Settings"), Space]
     // Reference to the ScriptableObject of the Consumable Item type
     public ConsumableItem item;
     private InventorySystem playerInventory;
