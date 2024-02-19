@@ -33,8 +33,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     // private field for indicating current room the player is on
     private Room currentRoom;
 
-    // public variable for holding the current game state
+    // public variable for holding the current and previous game state
     [HideInInspector] public GameState gameState;
+    [HideInInspector] public GameState previousGameState;
 
     protected override void Awake()
     {
@@ -42,10 +43,33 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         base.Awake();
     }
 
+     private void OnEnable()
+    {
+        // Subscribe to room changed event.
+        StaticEventHandler.OnRoomChanged += StaticEventHandler_OnRoomChanged;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from room changed event
+        StaticEventHandler.OnRoomChanged -= StaticEventHandler_OnRoomChanged;
+    }
+
+    /// <summary>
+    /// Handle room changed event
+    /// </summary>
+    private void StaticEventHandler_OnRoomChanged(RoomChangedEventArgs roomChangedEventArgs)
+    {
+        // set the new room as the current room
+        SetCurrentRoom(roomChangedEventArgs.room);
+    }
+
     /// <summary>
     /// Start method - called before the first frame update
     /// </summary>
     private void Start() {
+        // keep track of previous and current game states
+        previousGameState = GameState.gameStarted;
         gameState = GameState.gameStarted; 
     }
 
@@ -75,7 +99,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             case GameState.gameStarted:
                 // Play first level
                 PlayDungeonLevel(currentDungeonLevelListIndex);
-                // Set the state to Playing Level
+                // Set the current game state to Playing Level
                 gameState = GameState.playingLevel;
                 break;
         }

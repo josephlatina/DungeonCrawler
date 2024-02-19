@@ -53,3 +53,14 @@ MonoBehaviour:
     isUnavailable: 0
   spawnPositionArray:
   - {x: 8, y: -1}
+  enemiesByLevelList:
+  - dungeonLevel: {fileID: 0}
+    spawnableObjectRatios: []
+  roomEnemySpawnParametersList:
+  - dungeonLevel: {fileID: 0}
+    minTotalEnemiesToSpawn: 0
+    maxTotalEnemiesToSpawn: 0
+    minConcurrentEnemies: 0
+    maxConcurrentEnemies: 0
+    minSpawnInterval: 0
+    maxSpawnInterval: 0
