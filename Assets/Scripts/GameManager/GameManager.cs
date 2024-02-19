@@ -93,6 +93,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if (!dungeonBuiltSuccessfully) {
             Debug.LogError("Couldn't build dungeon from specified rooms and node graphs");
         }
+
+        // Call static event that room has changed due to play start of level (with room being the entrance)
+        StaticEventHandler.CallRoomChangedEvent(currentRoom);
     }
 
     /// <summary>
