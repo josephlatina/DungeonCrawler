@@ -38,6 +38,7 @@ public class ConsumableItemController : InventoryItemController
         
         UpdatePriceView(item, itemLocked);
         priceText.GetComponent<Renderer>().sortingLayerName = "Instances";
+        inventoryItem = item;
     }
 
     private void Update()
