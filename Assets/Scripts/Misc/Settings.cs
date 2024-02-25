@@ -24,4 +24,8 @@ public static class Settings
     // Max number of child corridors leading from a room
     public const int maxChildCorridors = 3; 
     #endregion
+
+    #region GAMEOBJECT TAGS
+    public const string playerTag = "Player";
+    #endregion
 }

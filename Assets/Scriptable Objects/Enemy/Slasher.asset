@@ -16,3 +16,4 @@ MonoBehaviour:
   attackSpeed: 1
   strength: 1
   healthPoints: 1
+  prefab: {fileID: 811109188997130492, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}

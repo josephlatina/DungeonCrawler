@@ -30,6 +30,7 @@ public class RoomTemplateSO : ScriptableObject
     #endregion Tooltip
     public GameObject prefab;
 
+    // ROOM DETAILS
     // Hold details on which room type this SO relates to
     #region Header ROOM CONFIGURATION
     [Space(10)]
@@ -64,7 +65,24 @@ public class RoomTemplateSO : ScriptableObject
     #endregion Tooltip
     public Vector2Int[] spawnPositionArray;
 
-    // TODO: list all other variables that contain room spawn parameters (ie. enemies)
+    // ENEMY DETAILS
+    #region Header ENEMY DETAILS
+    [Space(10)]
+    [Header("ENEMY DETAILS")]
+    #endregion Header ENEMY DETAILS
+    
+    // Define the list of possible enemies that can be spawned (and spawn ratio)
+    #region Tooltip
+    [Tooltip("Populate the list with all enemies that can be spawned in this room by dungeon level. That includes the spawn ratio.")]
+    #endregion Tooltip
+    public List<SpawnableObjectsByLevel<EnemyScriptableObject>> enemiesByLevelList;
+
+    // Define the spawn parameters of those enemies
+    #region Tooltip
+    [Tooltip("Populate the list with the spawn parameters for the enemies")]
+    #endregion Tooltip
+    public List<RoomEnemySpawnParameters> roomEnemySpawnParametersList;
+
 
     /// <summary>
     /// Returns the list of Entrances for the room template
@@ -93,6 +111,12 @@ public class RoomTemplateSO : ScriptableObject
 
         // validate list of doorways (check if empty or have null values)
         HelperUtilities.ValidateCheckEnumerableValues(this, nameof(doorwayList), doorwayList);
+
+        // validate that list of enemies are populated
+        if (enemiesByLevelList.Count > 0 || roomEnemySpawnParametersList.Count > 0) {
+            HelperUtilities.ValidateCheckEnumerableValues(this, nameof(enemiesByLevelList), enemiesByLevelList);
+            HelperUtilities.ValidateCheckEnumerableValues(this, nameof(roomEnemySpawnParametersList), roomEnemySpawnParametersList);
+        }
 
         // validate array of the spawn positions (check if empty or have null values)
         HelperUtilities.ValidateCheckEnumerableValues(this, nameof(spawnPositionArray), spawnPositionArray);
