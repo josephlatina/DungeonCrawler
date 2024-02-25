@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+
 /*
  * InventoryItemController.cs
  * Author: Jehdi Aizon
@@ -10,17 +11,25 @@ using UnityEngine.Serialization;
  */
 public class InventoryItemController : MonoBehaviour
 {
+    protected PlayerController playerController;
+
     [Header("Shop System"), Space] public bool showPrice = false;
     public GameObject priceView;
+    public bool itemLocked;
+    [SerializeField] protected TextMesh priceText;
 
-    protected void UpdatePriceView(InventoryItem item)
+    public void UpdatePriceView(InventoryItem item, bool isLocked)
     {
         priceView.SetActive(showPrice); // show price above item
+
         if (showPrice)
         {
-            TextMesh priceText = priceView.GetComponent<TextMesh>();
-            priceText.GetComponent<Renderer>().sortingLayerName = "Instances";
             priceText.text = $"{item.price}";
+        }
+
+        if (isLocked)
+        {
+            priceText.color = Color.red;
         }
     }
 }

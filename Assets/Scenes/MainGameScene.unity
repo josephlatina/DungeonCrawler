@@ -4500,6 +4500,10 @@ PrefabInstance:
       propertyPath: currentDefence
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2341849012200123104, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
+      propertyPath: currentCurrency
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6030082295736081354, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
       propertyPath: m_RootOrder
       value: 3

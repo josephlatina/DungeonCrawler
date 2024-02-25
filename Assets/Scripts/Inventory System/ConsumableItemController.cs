@@ -23,7 +23,7 @@ public class ConsumableItemController : InventoryItemController
      void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
-        PlayerController playerController =
+        playerController =
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
@@ -36,7 +36,15 @@ public class ConsumableItemController : InventoryItemController
             sprite.color = Color.white;
         }
         
-        UpdatePriceView(item);
+        UpdatePriceView(item, itemLocked);
+        priceText.GetComponent<Renderer>().sortingLayerName = "Instances";
+    }
+
+    private void Update()
+    {
+        itemLocked = (playerController.player.CurrentCurrency < item.price) && showPrice;
+        
+        UpdatePriceView(item, itemLocked);
     }
 
     private void OnTriggerExit2D(Collider2D other)

@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerStateMachine playerStateMachine;
     [HideInInspector] public Rigidbody2D rb;
-    private PlayerStats player;
+    public PlayerStats player;
     public Animator anim;
 
     [HideInInspector] public Vector2 moveVal;
@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
             WeaponItemController weapon =
                 interactableObject.gameObject.GetComponent<WeaponItemController>();
 
-            if (consumable != null)
+            if (consumable != null && !consumable.itemLocked)
             {
                 HandleConsumable(consumable);
             }
