@@ -2,24 +2,25 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
-
+/*
+ * InventoryItemController.cs
+ * Author: Jehdi Aizon
+ * Created: February 20, 2024
+ * Description: Base class for Consumable and Weapon Items
+ */
 public class InventoryItemController : MonoBehaviour
 {
-    [Header("Shop System"), Space]
-    public bool showPrice = false;
-    public List<Sprite> numberSprites;
-    public GameObject numberPrefab;
-    protected InventoryItem itemScriptObject;
+    [Header("Shop System"), Space] public bool showPrice = false;
     public GameObject priceView;
-    public Transform numbersContainer;
 
-    public void UpdatePriceView(InventoryItem item)
+    protected void UpdatePriceView(InventoryItem item)
     {
-        foreach (char num in item.price.ToString())
+        priceView.SetActive(showPrice); // show price above item
+        if (showPrice)
         {
-            int number = num - '0';
-            numberPrefab.GetComponent<SpriteRenderer>().sprite = numberSprites[number];
-            Instantiate(numberPrefab, numbersContainer);
+            TextMesh priceText = priceView.GetComponent<TextMesh>();
+            priceText.GetComponent<Renderer>().sortingLayerName = "Instances";
+            priceText.text = $"{item.price}";
         }
     }
 }

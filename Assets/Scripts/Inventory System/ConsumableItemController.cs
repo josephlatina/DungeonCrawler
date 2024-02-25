@@ -35,16 +35,7 @@ public class ConsumableItemController : InventoryItemController
             sprite.sprite = item.itemSprite;
             sprite.color = Color.white;
         }
-
-        itemScriptObject = item; // pass information to InventoryItemController
-        priceView.SetActive(showPrice); // show price above item
-
-        // foreach (char num in item.price.ToString())
-        // {
-        //     int number = num - '0';
-        //     numberPrefab.GetComponent<SpriteRenderer>().sprite = sprites[number];
-        //     Instantiate(numberPrefab, numbersContainer);
-        // }
+        
         UpdatePriceView(item);
     }
 
