@@ -58,11 +58,17 @@ public class MeleeWeaponController : WeaponItemController
         }
     }
 
+    public float CalculateDamageDone()
+    {
+        return item.GetDamage() * GetComponentInParent<PlayerStats>().CurrentStrength * -1;
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            col.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(-item.GetDamage());
+            Debug.Log(CalculateDamageDone());
+            col.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(CalculateDamageDone());
             GetComponent<Collider2D>().enabled = false;
         }
     }

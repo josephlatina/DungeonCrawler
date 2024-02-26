@@ -81,6 +81,7 @@ public class PlayerMeleeState : IState
     {
         // Reset player's color to white when exiting the Melee Attack state.
         player.anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().color = Color.white;
+
         // Disable the melee trigger collider.
         if (player.weaponController.melee)
         {

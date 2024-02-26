@@ -12,6 +12,7 @@ TagManager:
   - interactableObject
   - interactTrigger
   - NPC
+  - Enemy
   layers:
   - Default
   - TransparentFX

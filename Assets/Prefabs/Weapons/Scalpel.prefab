@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7205465cba51d143896869987977d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 4d40ad07e12700c45a29561437b5782a, type: 2}
+  item: {fileID: 11400000, guid: 932b7ff2f0efbbc428e6854c38dfa793, type: 2}
   sprite: {fileID: 7371977559124324002}
   countdown: 1
 --- !u!60 &1394467208963758866

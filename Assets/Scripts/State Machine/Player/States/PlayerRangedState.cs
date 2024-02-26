@@ -125,8 +125,9 @@ public class PlayerRangedState : IState
     /// </summary>
     void Attack()
     {
-        // Debug draw the ray for visualizing the ranged attack.
-        // Debug.DrawRay(rangedWeapon.position, rotation, Color.yellow, 0.25f);
+        // Enable the ranged trigger collider to detect hits.
+
         player.weaponController.FireRanged();
+
     }
 }

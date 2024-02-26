@@ -50,11 +50,12 @@ public class RangedWeaponController : WeaponItemController
     {
         if (transform.parent)
         {
+            GetComponent<Collider2D>().enabled = true;
             counter = countdown;
             currentSpeed = item.GetSpeed();
             transform.parent = null;
             direction = aim.transform.right;
-            Debug.DrawRay(transform.position, direction * 100, Color.yellow, 0.25f);
+            // Debug.DrawRay(transform.position, direction * 100, Color.yellow, 0.25f);
         }
     }
 
@@ -72,6 +73,8 @@ public class RangedWeaponController : WeaponItemController
     /// </summary>
     public void ReturnToPlayer()
     {
+        GetComponentInChildren<SpriteRenderer>().enabled = true;
+        GetComponent<Collider2D>().enabled = false;
         transform.parent = playerParent;
         transform.position = playerParent.position;
         transform.localRotation = Quaternion.Euler(0, 0, playerParent.rotation.z - 135);
@@ -90,6 +93,16 @@ public class RangedWeaponController : WeaponItemController
                 currentSpeed = 0;
                 ReturnToPlayer();
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            col.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(-item.GetDamage());
+            GetComponent<Collider2D>().enabled = false;
+            GetComponentInChildren<SpriteRenderer>().enabled = false;
         }
     }
 }

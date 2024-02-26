@@ -71,8 +71,7 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<PlayerStats>();
         // Set initial status to normal
         status = PlayerStatus.Normal;
-        // Get player object's melee trigger
-        // meleeTrigger = transform.Find("AimPivot/MeleeCollider").GetComponent<Collider2D>();
+        playerHealth = GetComponent<PlayerHealth>();
         // Get player object's interaction trigger
         interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
         weaponController = GetComponentInChildren<PlayerWeaponController>();
@@ -304,6 +303,7 @@ public class PlayerController : MonoBehaviour
         int defence = 0, float incomingDamage = 0f)
     {
         playerHealth.ChangeHealth(health);
+        // player.CurrentHealthPoints += health;
         player.CurrentMoveSpeed += moveSpeed;
         player.CurrentAttackSpeed += attackSpeed;
         player.CurrentStrength += strength;

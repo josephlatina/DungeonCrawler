@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfeb94b182621541b0263997b6d6113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: 0642899e386ab9544905951b66823fe0, type: 2}
   sprite: {fileID: 8633936828065341969}
 --- !u!58 &-4557363968842590587
 CircleCollider2D:

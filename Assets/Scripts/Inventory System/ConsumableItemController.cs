@@ -19,14 +19,14 @@ public class ConsumableItemController : MonoBehaviour
     private TextMeshProUGUI actionText;
     public SpriteRenderer sprite;
 
-     void Start()
+    void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
         PlayerController playerController =
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
-        
+
         // set the sorting layer
         sprite.sortingLayerName = "Instances";
         if (item.itemSprite)
@@ -45,7 +45,7 @@ public class ConsumableItemController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("interactTrigger"))
         {
-            if (gameObject.tag == "interactableObject")
+            if (gameObject.CompareTag("interactableObject"))
             { // check if consumable slots are full replace, if not pick up
                 if (playerInventory.isConsumableFull())
                 {

@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd7a8c433aa85b4798122b32c81720d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: 5539c34478fd26845a8916f2438767db, type: 2}
   sprite: {fileID: 6704431098750362222}
   aim: {fileID: 0}
 --- !u!60 &9158984006660020303

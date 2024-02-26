@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
     {
         playerStats = GetComponent<PlayerStats>();
         maxHealthPoints = playerStats.MaxHealthPoints;
-        currentHealthPoints = maxHealthPoints;
+        currentHealthPoints = maxHealthPoints - 1.5f;
     }
 
     public void ChangeHealth(float healthChange)
