@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private EnemyController enemyController;
+    public float currentHealthPoints;
+
+    void Awake()
     {
-        
+        enemyController = GetComponent<EnemyController>();
+        currentHealthPoints = enemyController.GetHealthPoints();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeHealth(float healthChange)
     {
-        
+        currentHealthPoints += healthChange;
+
+        if (currentHealthPoints <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

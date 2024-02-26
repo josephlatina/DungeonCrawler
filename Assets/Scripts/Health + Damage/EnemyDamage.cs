@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    private SlasherController slasherController;
+    private EnemyController enemyController;
 
     void Awake()
     {
-        slasherController = GetComponentInParent<SlasherController>();
+        enemyController = GetComponentInParent<EnemyController>();
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            col.gameObject.GetComponent<PlayerHealth>().ChangeHealth(-slasherController.strength);
+            col.gameObject.GetComponent<PlayerHealth>().ChangeHealth(-enemyController.strength);
         }
     }
 }

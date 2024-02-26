@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8427603901733194542}
   - component: {fileID: 8415736795681347316}
+  - component: {fileID: 8463067697980369379}
   m_Layer: 0
   m_Name: SlasherEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +48,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: e4ca781559a939946901bd59e3a09218, type: 2}
   rb: {fileID: 0}
+  strength: 0
+--- !u!114 &8463067697980369379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811109188997130492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987b904ede426564d8e880f812766354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyController: {fileID: 0}
+  currentHealthPoints: 0
 --- !u!1 &5231178730306845711
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +78,7 @@ GameObject:
   - component: {fileID: 1503561577501233611}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

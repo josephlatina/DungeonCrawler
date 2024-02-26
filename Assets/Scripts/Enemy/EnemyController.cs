@@ -92,4 +92,9 @@ public class EnemyController : MonoBehaviour
     {
         this.enemyStats = enemySO;
     }
+
+    public float GetHealthPoints()
+    {
+        return healthPoints;
+    }
 }

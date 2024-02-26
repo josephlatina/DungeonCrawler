@@ -31,6 +31,7 @@ public class MeleeWeaponController : WeaponItemController
         aim = playerParent.GetComponentInParent<PlayerAim>();
         // Get the Animator component from the parent of the parent of the parent (PlayerController).
         anim = aim.transform.GetComponentInParent<PlayerWeaponController>().GetComponentInParent<PlayerController>().anim;
+        GetComponent<Collider2D>().enabled = false;
     }
 
     /// <summary>
@@ -42,6 +43,7 @@ public class MeleeWeaponController : WeaponItemController
         transform.parent = null;
         aim = null;
         transform.localRotation = Quaternion.identity;
+        GetComponent<Collider2D>().enabled = true;
     }
 
     /// <summary>
@@ -51,7 +53,17 @@ public class MeleeWeaponController : WeaponItemController
     {
         if (transform.parent)
         {
+            // GetComponent<Collider2D>().enabled = true;
             anim.SetTrigger("attack");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            col.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(-item.GetDamage());
+            GetComponent<Collider2D>().enabled = false;
         }
     }
 }
