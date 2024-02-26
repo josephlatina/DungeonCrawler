@@ -2,10 +2,9 @@
  * Room.cs
  * Author: Joseph Latina
  * Created: February 04, 2024
- * Description: Script for room objects only for the purpose of checking room overlap during Dungeon Builder algorithm (not the actual room instantiated)
+ * Description: Script for room objects for the purpose of checking room overlap during Dungeon Builder algorithm (not the actual room instantiated) and holding instances details within room
  */
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,6 +29,10 @@ public class Room
     public Vector2Int templateUpperBounds;
     // the spawn position array variable defined in the room template scriptable object
     public Vector2Int[] spawnPositionArray;
+    // enemy spawn variables that's populated from room templates member variables during the dungeon builder algorithm process
+    public List<SpawnableObjectsByLevel<EnemyScriptableObject>> enemiesByLevelList;
+    public List<RoomEnemySpawnParameters> roomLevelEnemySpawnParametersList;
+
     // child room ID list
     public List<string> childRoomIDList;
     // the parent room id of this room
@@ -52,5 +55,39 @@ public class Room
         
         childRoomIDList = new List<string>();
         doorWayList = new List<Doorway>();
+    }
+
+    /// <summary>
+    /// Get the number of enemies to spawn for this room in given dungeon level
+    /// </summary>
+    public int GetNumberOfEnemiesToSpawn(DungeonLevelSO dungeonLevel) {
+
+        foreach (RoomEnemySpawnParameters roomEnemySpawnParameters in roomLevelEnemySpawnParametersList) {
+
+            if (roomEnemySpawnParameters.dungeonLevel == dungeonLevel) {
+
+                return Random.Range(roomEnemySpawnParameters.minTotalEnemiesToSpawn, roomEnemySpawnParameters.maxTotalEnemiesToSpawn);
+            }
+        }
+
+        // if no matching dungeon level, return none
+        return 0;
+    }
+
+    /// <summary>
+    /// Get the room enemy spawn parameters for this dungeon level
+    /// </summary>
+    public RoomEnemySpawnParameters GetRoomEnemySpawnParameters(DungeonLevelSO dungeonLevel) {
+
+        foreach (RoomEnemySpawnParameters roomEnemySpawnParameters in roomLevelEnemySpawnParametersList) {
+
+            if (roomEnemySpawnParameters.dungeonLevel == dungeonLevel) {
+
+                return roomEnemySpawnParameters;
+            }
+        }
+
+        // if no matching dungeon level, return none
+        return null;
     }
 }

@@ -1,0 +1,28 @@
+﻿title: Start
+tags: 
+position: -260,-120
+---
+NPC: Oh, hello! 
+    -> Hi, where am I?
+        NPC: what u want?
+        Nothing much
+        NPC: then i think it's time to piss off, yeah?
+        -> Oh.
+        <<jump Oh>>
+        -> How did I get here?
+        <<jump Unity>>
+    -> Gello.
+===
+
+title: Oh
+tags: 
+position: 46.999999046325684,-102
+---
+NPC: Yeah, fun, right?
+===
+
+title: Unity
+position: -235,159
+---
+NPC: Someone read the Beginner's Guide! 
+===

@@ -46,6 +46,22 @@ public class InstantiatedRoom : MonoBehaviour
     }
 
     /// <summary>
+    /// Called when an object with a Collider2D component (player) enters trigger zone of another Collider2D (room) with 'is Trigger' property enabled
+    /// </summary>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // If the player triggered the collider
+        if (collision.tag == Settings.playerTag && room != GameManager.Instance.GetCurrentRoom())
+        {
+            // Set room as visited
+            this.room.isPreviouslyVisited = true;
+
+            // Call room changed event and pass in the current room as the parameter
+            StaticEventHandler.CallRoomChangedEvent(room);
+        }
+    }
+
+    /// <summary>
     /// Initialize the instantiated room
     /// </summary>
     public void Initialize(GameObject roomGameObject) {

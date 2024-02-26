@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Yarn.Unity;
+using Yarn.Unity.Addons.SpeechBubbles;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -32,6 +34,11 @@ public class PlayerController : MonoBehaviour
     private Transform interactableObject;
     public PlayerWeaponController weaponController;
     [HideInInspector] public Vector3 mousePos;
+    private Transform interactNPC;
+
+    // Set this to the bubble dialogue view you want to control
+    public BubbleDialogueView dialogueView;
+    public DialogueRunner dialogueRunner;
 
     private enum PlayerStatus
     {
@@ -177,12 +184,17 @@ public class PlayerController : MonoBehaviour
     {
         if (interactableObject)
         {
-            WeaponItemController weapon =
-                interactableObject.gameObject.GetComponent<WeaponItemController>();
             ConsumableItemController consumable =
                 interactableObject.gameObject.GetComponent<ConsumableItemController>();
+            WeaponItemController weapon =
+                interactableObject.gameObject.GetComponent<WeaponItemController>();
+
+            if (consumable != null)
+            {
+                HandleConsumable(consumable);
+            }
             // if object is a weapon
-            if (weapon != null)
+            else if (weapon != null)
             {
                 int weaponIndex = weapon.item.isRangedWeapon() ? 1 : 0;
                 InventoryItem dropItem = playerInventory.GetItemAt(weaponIndex);
@@ -204,24 +216,111 @@ public class PlayerController : MonoBehaviour
                 weaponController.SetWeapon(weapon.gameObject, weaponIndex);
 
                 interactableObject = null;
-
-            }
-            // if object is a consumable
-            else if (consumable != null)
-            {
-                InventoryItem dropItem = playerInventory.GetItemAt(2);
-
-                consumable.gameObject.SetActive(false); // hides object from scene
-
-                // check if consumable slots are full replace, if not pick up
-                if (playerInventory.isConsumableFull())
-                {
-                    dropItem.DropItemAt(transform.position);
-                }
-
-                playerInventory.SwapItemAt(consumable.item, 2);
             }
         }
+        else if (interactNPC)
+        {
+            if (!dialogueView.IsShowingBubble)
+            {
+                StartNPCDialogue();
+            }
+        }
+    }
+
+    void OnAdvanceDialogue(InputValue value)
+    {
+        // If we're not showing bubbles, do nothing
+        if (dialogueView.IsShowingBubble == false)
+        {
+            return;
+        }
+
+        switch (dialogueView.CurrentContentType)
+        {
+            case BubbleDialogueView.ContentType.Options:
+                // If we're showing options, select the current option
+                dialogueView.SelectOption();
+                break;
+            case BubbleDialogueView.ContentType.Line:
+                // If we're showing a line, advance to the next line
+                dialogueView.UserRequestedViewAdvancement();
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Listener for when dialogue for nodeName is complete
+    /// </summary>
+    /// <param name="nodeName">string name of node</param>
+    void HandleNodeComplete(string nodeName)
+    {
+        GetComponent<PlayerInput>().enabled = true;
+        dialogueRunner.onNodeComplete.RemoveListener(HandleNodeComplete);
+    }
+
+    /// <summary>
+    /// Handles how consumables should be used
+    /// </summary>
+    /// <param name="consumable">ConsumableItemController reference</param>
+    void HandleConsumable(ConsumableItemController consumable)
+    {
+        consumable.gameObject.SetActive(false); // hides object from scene
+
+        if (consumable.item.itemName == "Pill")
+        {
+            // listener for when node is complete
+            dialogueRunner.onNodeComplete.AddListener(HandleNodeComplete);
+
+            // pause game when pill is picked up
+            GetComponent<PlayerInput>().enabled = false;
+            dialogueRunner.StartDialogue("PillUpgrade");
+        }
+        else
+        {
+            InventoryItem dropItem = playerInventory.GetItemAt(2);
+
+            // check if consumable slots are full replace, if not pick up
+            if (playerInventory.isConsumableFull())
+            {
+                dropItem.DropItemAt(transform.position);
+            }
+
+            playerInventory.SwapItemAt(consumable.item, 2);
+        }
+    }
+
+    /// <summary>
+    /// Update player stats. Adds/subtract the number given to the current value of player stat.
+    /// </summary>
+    /// <param name="health"></param>
+    /// <param name="moveSpeed"></param>
+    /// <param name="attackSpeed"></param>
+    /// <param name="strength"></param>
+    /// <param name="defence"></param>
+    /// <param name="incomingDamage"></param>
+    void UpdatePlayerStats(float health = 0f, float moveSpeed = 0f, float attackSpeed = 0f,
+        float strength = 0f,
+        int defence = 0, float incomingDamage = 0f)
+    {
+        player.CurrentHealth += health;
+        player.CurrentMoveSpeed += moveSpeed;
+        player.CurrentAttackSpeed += attackSpeed;
+        player.CurrentStrength += strength;
+        player.CurrentDefence += defence;
+        player.CurrentIncomingDamage += incomingDamage;
+    }
+
+    /// <summary>
+    /// Function used in yarn script to
+    /// update stat when upgrade item is picked up
+    /// </summary>
+    /// <param name="attackSpeed"></param>
+    /// <param name="strength"></param>
+    /// <param name="defence"></param>
+    [YarnCommand("stat_upgrade")]
+    public void StatUpgrade(float attackSpeed, float strength, int defence)
+    {
+        UpdatePlayerStats(attackSpeed: attackSpeed, strength: strength, defence: defence);
     }
 
     /// <summary>
@@ -243,6 +342,11 @@ public class PlayerController : MonoBehaviour
         {
             interactableObject = other.transform;
         }
+        else if (other.CompareTag("NPC") && interactNPC == null)
+        {
+            interactNPC = other.transform;
+            StartNPCDialogue();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -251,6 +355,11 @@ public class PlayerController : MonoBehaviour
         {
             interactableObject = other.transform;
         }
+        else if (other.CompareTag("NPC") && interactNPC == null)
+        {
+            interactNPC = other.transform;
+            StartNPCDialogue();
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -258,6 +367,20 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "interactableObject" && interactableObject != null)
         {
             interactableObject = null;
+        }
+        else if (other.CompareTag("NPC") && interactNPC != null)
+        {
+            interactNPC = null;
+        }
+    }
+
+    void StartNPCDialogue()
+    {
+        if (!dialogueView.IsShowingBubble)
+        {
+            NpcController npcController = interactNPC.GetComponent<NpcController>();
+            string node = npcController.randomizeDialogue ? npcController.GetRandomNode() : npcController.GetNode();
+            dialogueRunner.StartDialogue(node);
         }
     }
 }

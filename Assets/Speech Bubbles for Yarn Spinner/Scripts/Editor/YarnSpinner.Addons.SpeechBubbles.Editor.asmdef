@@ -1,0 +1,18 @@
+{
+    "name": "YarnSpinner.AddOns.SpeechBubbles.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:71c08673113bf476ea5bd945e1f4a23c"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

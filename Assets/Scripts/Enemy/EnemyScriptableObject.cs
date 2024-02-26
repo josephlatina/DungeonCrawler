@@ -41,4 +41,14 @@ public class EnemyScriptableObject : ScriptableObject
 
     // Property for accessing health points with private setter
     public float HealthPoints { get => healthPoints; private set => healthPoints = value; }
+
+     // The enemy prefab object
+    #region Header ENEMY PREFAB
+    [Space(10)]
+    [Header("ENEMY PREFAB")]
+    #endregion Header ENEMY PREFAB
+    #region Tooltip
+    [Tooltip("The gameobject prefab for the enemy)")]
+    #endregion Tooltip
+    public GameObject prefab;
 }

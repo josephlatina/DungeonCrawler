@@ -17,16 +17,16 @@ public class ConsumableItemController : MonoBehaviour
     public ConsumableItem item;
     private InventorySystem playerInventory;
     private TextMeshProUGUI actionText;
-    private SpriteRenderer sprite;
+    public SpriteRenderer sprite;
 
-    private void Start()
+     void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
         PlayerController playerController =
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
-        sprite = gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        
         // set the sorting layer
         sprite.sortingLayerName = "Instances";
         if (item.itemSprite)

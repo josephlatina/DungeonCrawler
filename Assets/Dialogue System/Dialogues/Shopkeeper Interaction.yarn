@@ -1,0 +1,20 @@
+﻿title: Shopkeeper_Interaction
+tags: 
+position: -45,35.00000333786011
+colorID: 4
+---
+Grizzy: Hello, come and take a look at what I have!
+Grizzy: Guarantee It'll be worth your time!
+    -> I'd like to buy something.
+        <<jump buy>>
+    -> Just browsing, thanks.
+        Grizzy: Well, shit.
+        ...
+===
+title: buy
+tags: 
+position: 206,-114
+---
+Grizzy: Good, good.
+Grizzy: Take a look then.
+===
