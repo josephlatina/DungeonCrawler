@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private PlayerStateMachine playerStateMachine;
     [HideInInspector] public Rigidbody2D rb;
     private PlayerStats player;
+    private PlayerHealth playerHealth;
     public Animator anim;
 
     [HideInInspector] public Vector2 moveVal;
@@ -302,7 +303,7 @@ public class PlayerController : MonoBehaviour
         float strength = 0f,
         int defence = 0, float incomingDamage = 0f)
     {
-        player.CurrentHealth += health;
+        playerHealth.ChangeHealth(health);
         player.CurrentMoveSpeed += moveSpeed;
         player.CurrentAttackSpeed += attackSpeed;
         player.CurrentStrength += strength;

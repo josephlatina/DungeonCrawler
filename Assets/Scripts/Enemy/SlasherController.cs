@@ -30,4 +30,9 @@ public class SlasherController : EnemyController
         // Note: Using Time.deltaTime to make the movement frame-rate independent
         // rb.AddForce(new Vector2(movementSpeed * Time.deltaTime, 0), ForceMode2D.Impulse);
     }
+
+    public float DoDamage()
+    {
+        return strength;
+    }
 }

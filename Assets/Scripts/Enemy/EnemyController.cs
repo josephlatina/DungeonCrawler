@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
     private float attackSpeed;
 
     // Strength: amount of damage inflicted by the enemy
-    private float strength;
+    public float strength;
 
     // Health points of the enemy
     private float healthPoints;
