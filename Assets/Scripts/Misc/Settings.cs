@@ -28,4 +28,8 @@ public static class Settings
     #region GAMEOBJECT TAGS
     public const string playerTag = "Player";
     #endregion
+
+    #region ANIMATOR PARAMETERS
+    public static int use = Animator.StringToHash("use");
+    #endregion
 }

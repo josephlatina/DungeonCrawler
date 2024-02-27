@@ -47,4 +47,20 @@ public class GameResources : MonoBehaviour
     #endregion
     // This resource is for managing the single instance of inventory that the player holds
     public InventorySystem inventorySystem;
+
+    #region Header CHESTS
+    [Space(10)]
+    [Header("CHESTS")]
+    #endregion
+    #region Tooltip
+    [Tooltip("Chest item prefab")]
+    #endregion
+    // This resource is holding the prefab for chest item
+    public GameObject chestItemPrefab;
+
+    #region Tooltip
+    [Tooltip("Populate with weapon sprite")]
+    #endregion
+    // This resource is for chest item sprite - weapon
+    public Sprite weaponIcon;
 }
