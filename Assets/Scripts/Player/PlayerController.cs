@@ -216,8 +216,6 @@ public class PlayerController : MonoBehaviour
                 playerInventory.SwapItemAt(weapon.item, weaponIndex);
                 weaponController.SetWeapon(weapon.gameObject, weaponIndex);
             }
-
-            interactableObject = null;
         }
         else if (onSaleItem)
         {
@@ -234,13 +232,6 @@ public class PlayerController : MonoBehaviour
                 item.itemLocked = false;
                 onSaleItem.SetParent(null);
                 onSaleItem.tag = "interactableObject";
-            }
-        }
-        else if (interactNPC)
-        {
-            if (!dialogueView.IsShowingBubble)
-            {
-                StartNPCDialogue();
             }
         }
     }
@@ -287,6 +278,7 @@ public class PlayerController : MonoBehaviour
         if (consumable.item.itemName == "Pill")
         {
             HandlePillItem();
+            Destroy(consumable.gameObject);
         }
         else
         {
@@ -304,12 +296,17 @@ public class PlayerController : MonoBehaviour
 
     void HandlePillItem()
     {
+        dialogueRunner.Stop();
+
         // listener for when node is complete
         dialogueRunner.onNodeComplete.AddListener(HandleNodeComplete);
 
-        // pause game when pill is picked up
+        // player input is disabled when pill is picked up and dialogue is triggered
         GetComponent<PlayerInput>().enabled = false;
-        dialogueRunner.StartDialogue("PillUpgrade");
+        if (!dialogueView.IsShowingBubble)
+        {
+            dialogueRunner.StartDialogue("PillUpgrade");
+        }
     }
 
     /// <summary>
@@ -389,7 +386,6 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag("NPC") && interactNPC == null)
         {
             interactNPC = other.transform;
-            StartNPCDialogue();
         }
     }
 
@@ -413,9 +409,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!dialogueView.IsShowingBubble)
         {
-            // listener for when node is complete
-            dialogueRunner.onNodeComplete.AddListener(HandleNodeComplete);
-
             NpcController npcController = interactNPC.GetComponent<NpcController>();
             string node = npcController.randomizeDialogue ? npcController.GetRandomNode() : npcController.GetNode();
             dialogueRunner.StartDialogue(node);

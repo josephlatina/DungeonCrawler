@@ -12,7 +12,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class WeaponItemController : MonoBehaviour
+public class WeaponItemController : InventoryItemController
 {
     // Reference to the ScriptableObject of the Weapon Item type
     public WeaponItem item;
@@ -35,6 +35,10 @@ public class WeaponItemController : MonoBehaviour
             sprite.sprite = item.itemSprite;
             sprite.color = Color.white;
         }
+        
+        UpdatePriceView(item, itemLocked);
+        priceText.GetComponent<Renderer>().sortingLayerName = "Instances";
+        inventoryItem = item;
     }
 
     private void OnTriggerExit2D(Collider2D other)

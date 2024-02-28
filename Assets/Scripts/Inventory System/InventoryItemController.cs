@@ -13,7 +13,7 @@ public class InventoryItemController : MonoBehaviour
 {
     protected PlayerController playerController;
 
-    [Header("Shop System"), Space] public bool showPrice = false;
+    [Header("Inventory Item Shop System"), Space] public bool showPrice = false;
     public GameObject priceView;
     public bool itemLocked;
     [SerializeField] protected TextMesh priceText;
