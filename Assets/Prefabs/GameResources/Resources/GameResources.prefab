@@ -46,5 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomNodeTypeList: {fileID: 11400000, guid: 5f08e0ddcee0a4c65b5bd110a68dcccd, type: 2}
   inventorySystem: {fileID: 11400000, guid: d402dee68ae49714aab258863b548f14, type: 2}
+  variableLitShader: {fileID: -6465566751694194690, guid: 304a236819d488f409a1dfccdc33ea46, type: 3}
+  materializeShader: {fileID: -6465566751694194690, guid: 5fec8f8e6ea244648a3c6ede24a56288, type: 3}
   chestItemPrefab: {fileID: 903073116703789633, guid: 2913bd63f7e3b4cfe873314deff6e9dd, type: 3}
   weaponIcon: {fileID: 1203317424, guid: c2d05ccd526638c4c86fde28754a41d4, type: 3}

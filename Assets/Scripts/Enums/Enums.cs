@@ -22,9 +22,7 @@ public enum ChestState {
     closed,
     healthPotionItem,
     weaponItem,
-    pillItem,
-    teethItem,
-    empty
+    pillItem
 }
 
 public enum GameState {

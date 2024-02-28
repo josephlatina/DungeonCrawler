@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8884210851014244282}
   - component: {fileID: -1628805411008656896}
+  - component: {fileID: -1079541011924674270}
   m_Layer: 0
   m_Name: ChestItem
   m_TagString: Untagged
@@ -84,3 +85,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-1079541011924674270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903073116703789633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19b786b8af1464f0e979646477c0e5d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

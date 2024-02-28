@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7948666933383880891}
   - component: {fileID: -7731883144486563399}
   - component: {fileID: 901959763623363206}
+  - component: {fileID: -3963722882987153376}
+  - component: {fileID: 8331422169961066509}
   m_Layer: 12
   m_Name: Chest
   m_TagString: Untagged
@@ -156,6 +158,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3963722882987153376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500052024457644246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740cf9fc348f7430eacf9719d9bf09a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8331422169961066509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500052024457644246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f021d2b62b84179bc1045981bf854a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materializeColor: {r: 15.999729, g: 12.481464, b: 1.507828, a: 0}
+  materializeTime: 3
+  itemSpawnPoint: {fileID: 1120321011912460404}
 --- !u!1 &6097707591506304498
 GameObject:
   m_ObjectHideFlags: 0

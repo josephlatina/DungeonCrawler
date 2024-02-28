@@ -48,6 +48,20 @@ public class GameResources : MonoBehaviour
     // This resource is for managing the single instance of inventory that the player holds
     public InventorySystem inventorySystem;
 
+    #region Tooltip
+    [Tooltip("Sprite-Lit-Default Material")]
+    #endregion
+    public Material litMaterial;
+
+    #region Tooltip
+    [Tooltip("Populate with the Variable Lit Shader")]
+    #endregion
+    public Shader variableLitShader;
+    #region Tooltip
+    [Tooltip("Populate with the Materialize Shader")]
+    #endregion
+    public Shader materializeShader;
+
     #region Header CHESTS
     [Space(10)]
     [Header("CHESTS")]
@@ -59,8 +73,20 @@ public class GameResources : MonoBehaviour
     public GameObject chestItemPrefab;
 
     #region Tooltip
+    [Tooltip("Populate with health potion sprite")]
+    #endregion
+    // This resource is for chest item sprite - health potion
+    public Sprite healthPotionIcon;
+
+    #region Tooltip
     [Tooltip("Populate with weapon sprite")]
     #endregion
     // This resource is for chest item sprite - weapon
     public Sprite weaponIcon;
+
+    #region Tooltip
+    [Tooltip("Populate with pill sprite")]
+    #endregion
+    // This resource is for chest item sprite - pill
+    public Sprite pillIcon;
 }
