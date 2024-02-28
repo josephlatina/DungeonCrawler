@@ -84,4 +84,12 @@ public class EnemyController : MonoBehaviour
         // Update the state machine logic
         enemyStateMachine.Update();
     }
+
+    /// <summary>
+    /// Initialize the enemy
+    /// </summary>
+    public void EnemyInitialization(EnemyScriptableObject enemySO, int enemySpawnNumber, DungeonLevelSO dungeonLevel)
+    {
+        this.enemyStats = enemySO;
+    }
 }

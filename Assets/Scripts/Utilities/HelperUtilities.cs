@@ -14,6 +14,9 @@ using UnityEngine;
 /// </summary>
 public static class HelperUtilities
 {
+    // reference to the main camera
+     public static Camera mainCamera;
+
     /// <summary>
     /// Empty string debug check
     /// </summary>
