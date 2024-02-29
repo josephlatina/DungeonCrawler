@@ -23,7 +23,6 @@ public class StaticEventHandler
     /// </summary>
     public static void CallRoomChangedEvent(Room room)
     {
-        Debug.Log("hello4");
         // pass in room object as the event argument for the room changed event
         OnRoomChanged?.Invoke(new RoomChangedEventArgs() { room = room });
     }

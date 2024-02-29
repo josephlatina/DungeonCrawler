@@ -127,7 +127,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -5281422124547630143, guid: beeb19d9abdca5b4fae733163f7ad375, type: 3}
-  m_Color: {r: 0.735849, g: 0.4494714, b: 0.21173012, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -239,6 +239,10 @@ PrefabInstance:
     - target: {fileID: 903073116703789633, guid: 2913bd63f7e3b4cfe873314deff6e9dd, type: 3}
       propertyPath: m_Name
       value: ChestItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 903073116703789633, guid: 2913bd63f7e3b4cfe873314deff6e9dd, type: 3}
+      propertyPath: m_TagString
+      value: interactableObject
       objectReference: {fileID: 0}
     - target: {fileID: 8884210851014244282, guid: 2913bd63f7e3b4cfe873314deff6e9dd, type: 3}
       propertyPath: m_RootOrder

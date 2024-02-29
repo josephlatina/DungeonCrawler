@@ -85,6 +85,21 @@ public class GameResources : MonoBehaviour
     public GameObject consumablePrefab;
 
     #region Tooltip
+    [Tooltip("Pill")]
+    #endregion
+    public ConsumableItem pillSO;
+
+    #region Tooltip
+    [Tooltip("Health Potion")]
+    #endregion
+    public ConsumableItem healthPotionSO;
+
+    #region Tooltip
+    [Tooltip("Scalpel")]
+    #endregion
+    public ConsumableItem scalpelSO;
+    
+    #region Tooltip
     [Tooltip("Populate with health potion sprite")]
     #endregion
     // This resource is for chest item sprite - health potion

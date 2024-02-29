@@ -35,8 +35,6 @@ public class Chest : MonoBehaviour, IUseable
 
     // hold reference to the weapon item SO, animator, sprite renderer and materialize effect components
     private WeaponItem weaponItem;
-    private ConsumableItem healthPotionitem;
-    private ConsumableItem pillItem;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private MaterializeEffect materializeEffect;
@@ -161,6 +159,7 @@ public class Chest : MonoBehaviour, IUseable
         }
 
         GetComponent<BoxCollider2D>().enabled = false;
+        this.gameObject.tag = "Untagged";
     }
 
     /// <summary>
@@ -170,6 +169,8 @@ public class Chest : MonoBehaviour, IUseable
 
         // Instantiate the chest item prefab as a game object within the scene
         chestItemGameObject = Instantiate(GameResources.Instance.chestItemPrefab, this.transform);
+
+        chestItemGameObject.tag = "interactableObject";
 
         // Get the Chest Item component embedded on the instantiated chest item prefab
         chestItem = chestItemGameObject.GetComponent<ChestItem>();
@@ -183,6 +184,11 @@ public class Chest : MonoBehaviour, IUseable
         // Instantiate the chest item
         InstantiateItem();
 
+        ConsumableItemController consumableItem = chestItemGameObject.AddComponent<ConsumableItemController>();
+        consumableItem.item = GameResources.Instance.healthPotionSO;
+        consumableItem.sprite = GetComponent<SpriteRenderer>();
+        chestItemGameObject.AddComponent<CircleCollider2D>();
+
         // From the Chest Item component pulled from the instantiation, initialize the health potion item by rendering the sprite and materializing it
         chestItem.Initialize(GameResources.Instance.healthPotionIcon, itemSpawnPoint.position, materializeColor);
     }
@@ -195,6 +201,11 @@ public class Chest : MonoBehaviour, IUseable
         // Instantiate the chest item
         InstantiateItem();
 
+        WeaponItemController weaponItemController = weaponItem.isRangedWeapon() ? chestItemGameObject.AddComponent<RangedWeaponController>() : chestItemGameObject.AddComponent<MeleeWeaponController>();
+        weaponItemController.item = weaponItem;
+        weaponItemController.sprite = GetComponent<SpriteRenderer>();
+        chestItemGameObject.AddComponent<BoxCollider2D>();
+
         // From the Chest Item component pulled from the instantiation, initialize the weapon item by rendering the sprite and materializing it
         chestItem.Initialize(weaponItem.itemSprite, itemSpawnPoint.position, materializeColor);
     }
@@ -206,6 +217,11 @@ public class Chest : MonoBehaviour, IUseable
 
         // Instantiate the chest item
         InstantiateItem();
+
+        ConsumableItemController consumableItem = chestItemGameObject.AddComponent<ConsumableItemController>();
+        consumableItem.item = GameResources.Instance.pillSO;
+        consumableItem.sprite = GetComponent<SpriteRenderer>();
+        chestItemGameObject.AddComponent<CircleCollider2D>();
 
         // From the Chest Item component pulled from the instantiation, initialize the pill item by rendering the sprite and materializing it
         chestItem.Initialize(GameResources.Instance.pillIcon, itemSpawnPoint.position, materializeColor);
