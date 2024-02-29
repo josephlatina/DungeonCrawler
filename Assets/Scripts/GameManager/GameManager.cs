@@ -43,6 +43,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         // Call base class
         base.Awake();
+
+        player = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();    
+    
     }
 
      private void OnEnable()

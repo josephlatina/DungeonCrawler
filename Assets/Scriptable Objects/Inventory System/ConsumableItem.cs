@@ -37,4 +37,15 @@ public class ConsumableItem : InventoryItem
     public float defenceBoost;
     public float movementSpeedBoost;
     public float attackSpeedBoost;
+
+    // The consumable item prefab object
+    #region Header CONSUMABLE PREFAB
+    [Space(10)]
+    [Header("CONSUMABLE PREFAB")]
+    #endregion Header CONSUMABLE PREFAB
+    #region Tooltip
+    [Tooltip("The gameobject prefab for the consumable item)")]
+    #endregion Tooltip
+    public GameObject prefab;
+
 }

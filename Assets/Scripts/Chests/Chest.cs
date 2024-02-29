@@ -35,6 +35,8 @@ public class Chest : MonoBehaviour, IUseable
 
     // hold reference to the weapon item SO, animator, sprite renderer and materialize effect components
     private WeaponItem weaponItem;
+    private ConsumableItem healthPotionitem;
+    private ConsumableItem pillItem;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private MaterializeEffect materializeEffect;
@@ -157,6 +159,8 @@ public class Chest : MonoBehaviour, IUseable
             default:
                 return;
         }
+
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 
     /// <summary>
@@ -192,7 +196,7 @@ public class Chest : MonoBehaviour, IUseable
         InstantiateItem();
 
         // From the Chest Item component pulled from the instantiation, initialize the weapon item by rendering the sprite and materializing it
-         chestItemGameObject.GetComponent<ChestItem>().Initialize(weaponItem.itemSprite, itemSpawnPoint.position, materializeColor);
+        chestItem.Initialize(weaponItem.itemSprite, itemSpawnPoint.position, materializeColor);
     }
 
     /// <summary>

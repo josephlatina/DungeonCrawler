@@ -72,6 +72,24 @@ public class ChestSpawner : MonoBehaviour
     // reference to the room object that this chest is in
     private Room chestRoom;
 
+    private void OnEnable()
+    {
+        // Subscribe to room changed event
+        StaticEventHandler.OnRoomChanged += StaticEventHandler_OnRoomChanged;
+
+        // Subscribe to room enemies defeated event
+        StaticEventHandler.OnRoomEnemiesDefeated += StaticEventHandler_OnRoomEnemiesDefeated;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from room changed event
+        StaticEventHandler.OnRoomChanged -= StaticEventHandler_OnRoomChanged;
+
+        // Unsubscribe from room enemies defeated event
+        StaticEventHandler.OnRoomEnemiesDefeated -= StaticEventHandler_OnRoomEnemiesDefeated;
+    }
+
     /// <summary>
     /// Subscriber method for On Room Changed Event that requires the current room object as parameter
     /// </summary>

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8331422169961066509}
   m_Layer: 12
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: interactableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,7 +227,11 @@ PrefabInstance:
     - target: {fileID: -1628805411008656896, guid: 2913bd63f7e3b4cfe873314deff6e9dd, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -959722727, guid: c2d05ccd526638c4c86fde28754a41d4, type: 3}
+      objectReference: {fileID: -549660333, guid: c2d05ccd526638c4c86fde28754a41d4, type: 3}
+    - target: {fileID: -1628805411008656896, guid: 2913bd63f7e3b4cfe873314deff6e9dd, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -1628805411008656896, guid: 2913bd63f7e3b4cfe873314deff6e9dd, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
