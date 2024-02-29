@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
         interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
         weaponController = GetComponentInChildren<PlayerWeaponController>();
         anim = GetComponentInChildren<Animator>();
+        GameManager.Instance.SetPlayer(this);
     }
 
     /// <summary>
@@ -188,6 +189,7 @@ public class PlayerController : MonoBehaviour
                 interactableObject.gameObject.GetComponent<ConsumableItemController>();
             WeaponItemController weapon =
                 interactableObject.gameObject.GetComponent<WeaponItemController>();
+            IUseable iUseable = GetComponent<Collider2D>().GetComponent<IUseable>();
 
             if (consumable != null)
             {
@@ -216,6 +218,10 @@ public class PlayerController : MonoBehaviour
                 weaponController.SetWeapon(weapon.gameObject, weaponIndex);
 
                 interactableObject = null;
+            }
+            else if (iUseable != null)
+            {
+                iUseable.UseItem();
             }
         }
         else if (interactNPC)

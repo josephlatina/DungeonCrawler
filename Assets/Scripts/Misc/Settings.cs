@@ -14,7 +14,7 @@ using UnityEngine;
 /// </summary>
 public static class Settings
 {
-     #region DUNGEON BUILD SETTINGS
+    #region DUNGEON BUILD SETTINGS
     // Max number of attempts for building the dungeon using the algorithm
     public const int maxDungeonRebuildAttemptsForRoomGraph = 1000;
     public const int maxDungeonBuildAttempts = 10;

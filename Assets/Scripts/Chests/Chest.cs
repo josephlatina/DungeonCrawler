@@ -12,7 +12,7 @@ using UnityEngine;
 // need to implement the use method
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
-public class Chest : MonoBehaviour
+public class Chest : MonoBehaviour, IUseable
 {
     // color we want to use when materializing the chest
     #region Tooltip
@@ -101,7 +101,7 @@ public class Chest : MonoBehaviour
     /// <summary>
     /// Check state of the chest and perform appropriate action using a state machine
     /// </summary>
-    private void UseItem() {
+    public void UseItem() {
 
         // check if chest is enabled
         if (!isEnabled) return;
@@ -184,7 +184,7 @@ public class Chest : MonoBehaviour
     }
 
     /// <summary>
-    /// Instantiate and materialize the weapon item for player to collect
+    /// Instantiate and materialize the weapon item for player to collect (only item that's not using default icon from GameResources)
     /// </summary>
     private void InstantiateWeaponItem() {
 
@@ -192,7 +192,7 @@ public class Chest : MonoBehaviour
         InstantiateItem();
 
         // From the Chest Item component pulled from the instantiation, initialize the weapon item by rendering the sprite and materializing it
-        chestItem.Initialize(GameResources.Instance.weaponIcon, itemSpawnPoint.position, materializeColor);
+         chestItemGameObject.GetComponent<ChestItem>().Initialize(weaponItem.itemSprite, itemSpawnPoint.position, materializeColor);
     }
 
     /// <summary>
