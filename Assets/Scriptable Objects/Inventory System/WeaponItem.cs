@@ -55,6 +55,16 @@ public class WeaponItem : InventoryItem
     [SerializeField] private float movementSpeedBoost;
     [SerializeField] private float attackSpeedBoost;
 
+    // The weapon prefab object
+    #region Header WEAPON PREFAB
+    [Space(10)]
+    [Header("WEAPON PREFAB")]
+    #endregion Header WEAPON PREFAB
+    #region Tooltip
+    [Tooltip("The gameobject prefab for the weapon)")]
+    #endregion Tooltip
+    public GameObject prefab;
+
 
     public bool isRangedWeapon()
     {
