@@ -216,22 +216,25 @@ public class PlayerController : MonoBehaviour
                 playerInventory.SwapItemAt(weapon.item, weaponIndex);
                 weaponController.SetWeapon(weapon.gameObject, weaponIndex);
             }
+
+            interactableObject = null;
         }
         else if (onSaleItem)
         {
             InventoryItemController item = onSaleItem.GetComponent<InventoryItemController>();
-            if (item.itemLocked)
+
+            if (item.inventoryItem.price < player.CurrentCurrency && item.itemLocked == false)
             {
-                // what do do when locked items are interacted with
+                // subtract item price from current player currency
+                player.CurrentCurrency -= item.inventoryItem.price;
+
+                item.tag = "interactableObject";    // adding the tag will trigger interactbleObject behaviour
+                onSaleItem.SetParent(null);      // remove item relation from NPC object
+                onSaleItem = null;                 // set to null when interaction with item is done
             }
             else
             {
-                // have enough coins, subtract money from player
-                player.CurrentCurrency -= item.inventoryItem.price;
-                item.showPrice = false;
-                item.itemLocked = false;
-                onSaleItem.SetParent(null);
-                onSaleItem.tag = "interactableObject";
+                Debug.Log("LOCKED");
             }
         }
     }

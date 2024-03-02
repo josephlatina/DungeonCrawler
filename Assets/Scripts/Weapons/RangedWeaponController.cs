@@ -18,11 +18,6 @@ public class RangedWeaponController : WeaponItemController
     public float countdown = 1; // Duration of the attack cooldown.
     Vector3 direction; // Direction of the projectile.
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     /// <summary>
     /// Called when the weapon is picked up.
     /// </summary>
@@ -58,13 +53,15 @@ public class RangedWeaponController : WeaponItemController
         }
     }
 
-    void Update()
+    protected override void Update()
     {
         if (counter > 0)
         {
             transform.position += 10 * currentSpeed * Time.deltaTime * direction;
             AttackCooldown();
         }
+
+        base.Update();
     }
 
     /// <summary>

@@ -13,24 +13,56 @@ public class InventoryItemController : MonoBehaviour
 {
     protected PlayerController playerController;
 
-    [Header("Inventory Item Shop System"), Space] public bool showPrice = false;
+    [Header("Inventory Item Shop System"), Space]
+    public bool showPrice = false;
+
     public GameObject priceView;
-    public bool itemLocked;
+    public bool itemLocked = false;
     [SerializeField] protected TextMesh priceText;
     [HideInInspector] public InventoryItem inventoryItem;
 
-    public void UpdatePriceView(InventoryItem item, bool isLocked)
+    protected virtual void Start()
     {
-        priceView.SetActive(showPrice); // show price above item
+        priceText.text = $"{inventoryItem.price}";
+    }
 
-        if (showPrice)
+    /// <summary>
+    /// Check if player has enough currency to purchase.
+    /// </summary>
+    /// <param name="color">color used on text when item is not buyable</param>
+    public void UpdateText(Color color)
+    {
+        if (playerController.player.CurrentCurrency < inventoryItem.price)
         {
-            priceText.text = $"{item.price}";
+            priceText.color = color;
         }
-
-        if (isLocked)
+        else
         {
-            priceText.color = Color.red;
+            priceText.color = Color.white;
+        }
+    }
+
+    /// <summary>
+    /// Toggle price view
+    /// </summary>
+    /// <param name="showPriceView"></param>
+    public void ShowPriceView(bool showPriceView)
+    {
+        showPrice = showPriceView;
+        priceView.SetActive(showPriceView);
+    }
+
+    protected virtual void Update()
+    {
+        if (CompareTag("onSaleItem"))
+        {
+            UpdateText(Color.red);
+            ShowPriceView(true);
+        }
+        else
+        {
+            itemLocked = false;
+            ShowPriceView(false);
         }
     }
 }

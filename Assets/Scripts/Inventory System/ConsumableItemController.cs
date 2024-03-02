@@ -16,18 +16,19 @@ public class ConsumableItemController : InventoryItemController
     [Header("Item Settings"), Space]
     // Reference to the ScriptableObject of the Consumable Item type
     public ConsumableItem item;
+
     private InventorySystem playerInventory;
     private TextMeshProUGUI actionText;
     public SpriteRenderer sprite;
 
-     void Start()
+    protected override void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
         playerController =
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
-        
+
         // set the sorting layer
         sprite.sortingLayerName = "Instances";
         if (item.itemSprite)
@@ -35,17 +36,10 @@ public class ConsumableItemController : InventoryItemController
             sprite.sprite = item.itemSprite;
             sprite.color = Color.white;
         }
-        
-        UpdatePriceView(item, itemLocked);
+
         priceText.GetComponent<Renderer>().sortingLayerName = "Instances";
         inventoryItem = item;
-    }
-
-    private void Update()
-    {
-        itemLocked = (playerController.player.CurrentCurrency < item.price) && showPrice;
-        
-        UpdatePriceView(item, itemLocked);
+        base.Start();
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -71,5 +65,4 @@ public class ConsumableItemController : InventoryItemController
             }
         }
     }
-
 }

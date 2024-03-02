@@ -24,7 +24,7 @@ public class WeaponItemController : InventoryItemController
     protected virtual void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
-        PlayerController playerController =
+        playerController =
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
@@ -36,9 +36,9 @@ public class WeaponItemController : InventoryItemController
             sprite.color = Color.white;
         }
         
-        UpdatePriceView(item, itemLocked);
         priceText.GetComponent<Renderer>().sortingLayerName = "Instances";
         inventoryItem = item;
+        base.Start();
     }
 
     private void OnTriggerExit2D(Collider2D other)
