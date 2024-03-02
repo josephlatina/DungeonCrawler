@@ -19,13 +19,22 @@ public class StaticEventHandler
     public static event Action<RoomChangedEventArgs> OnRoomChanged;
 
     /// <summary>
-    /// Method for invoking the static event with a room argument
+    /// Method for invoking the static event 'RoomChangedEvent' with a room argument
     /// </summary>
     public static void CallRoomChangedEvent(Room room)
     {
-        Debug.Log("hello4");
         // pass in room object as the event argument for the room changed event
         OnRoomChanged?.Invoke(new RoomChangedEventArgs() { room = room });
+    }
+
+    /// <summary>
+    /// Method for invoking the static event 'RoomEnemiesDefeatedEvent' with a room argument
+    /// </summary>
+    public static event Action<RoomEnemiesDefeatedArgs> OnRoomEnemiesDefeated;
+
+    public static void CallRoomEnemiesDefeatedEvent(Room room)
+    {
+        OnRoomEnemiesDefeated?.Invoke(new RoomEnemiesDefeatedArgs() { room = room });
     }
 }
 
@@ -33,6 +42,11 @@ public class StaticEventHandler
 /// Defines the arguments needed for an event (in this case, room object)
 /// </summary>
 public class RoomChangedEventArgs : EventArgs
+{
+    public Room room;
+}
+
+public class RoomEnemiesDefeatedArgs : EventArgs
 {
     public Room room;
 }

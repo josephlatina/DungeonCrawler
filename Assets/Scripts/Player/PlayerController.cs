@@ -189,7 +189,12 @@ public class PlayerController : MonoBehaviour
                 interactableObject.gameObject.GetComponent<ConsumableItemController>();
             WeaponItemController weapon =
                 interactableObject.gameObject.GetComponent<WeaponItemController>();
+            Chest chest = interactableObject.gameObject.GetComponent<Chest>();
 
+            if (chest != null)
+                {
+                    chest.UseItem();
+                }
             if (consumable != null)
             {
                 HandleConsumable(consumable);
