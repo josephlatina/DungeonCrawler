@@ -51,6 +51,9 @@ public class PlayerController : MonoBehaviour
     private PlayerStatus status;
     [HideInInspector] public bool isMeleeAttacking, isRangedAttacking, isHealing, isRolling;
 
+    [Header("Conditional Screen UI"), Space(5)]
+    public GameObject upgradeScreen;
+    
     [Header("Inventory System"), Space(5)]
     // Player Inventory System reference to Scriptable Object
     public InventorySystem playerInventory;
@@ -254,16 +257,6 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Listener for when dialogue for nodeName is complete
-    /// </summary>
-    /// <param name="nodeName">string name of node</param>
-    void HandleNodeComplete(string nodeName)
-    {
-        GetComponent<PlayerInput>().enabled = true;
-        dialogueRunner.onNodeComplete.RemoveListener(HandleNodeComplete);
-    }
-
-    /// <summary>
     /// Handles how consumables should be used
     /// </summary>
     /// <param name="consumable">ConsumableItemController reference</param>
@@ -273,12 +266,7 @@ public class PlayerController : MonoBehaviour
 
         if (consumable.item.itemName == "Pill")
         {
-            // listener for when node is complete
-            dialogueRunner.onNodeComplete.AddListener(HandleNodeComplete);
-
-            // pause game when pill is picked up
-            GetComponent<PlayerInput>().enabled = false;
-            dialogueRunner.StartDialogue("PillUpgrade");
+            upgradeScreen.SetActive(true);
         }
         else
         {
