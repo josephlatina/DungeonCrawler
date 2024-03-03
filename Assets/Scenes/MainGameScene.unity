@@ -3747,6 +3747,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1136449475}
     - target: {fileID: 6984755896152334957, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 92fe25c1036f7f241a700156d440d8bc, type: 3}
+    - target: {fileID: 6984755896152334957, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
       propertyPath: dialogueView
       value: 
       objectReference: {fileID: 692285386}

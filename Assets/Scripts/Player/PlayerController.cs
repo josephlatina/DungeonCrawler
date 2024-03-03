@@ -53,13 +53,17 @@ public class PlayerController : MonoBehaviour
 
     [Header("Conditional Screen UI"), Space(5)]
     public GameObject upgradeScreen;
-    
+
     [Header("Inventory System"), Space(5)]
     // Player Inventory System reference to Scriptable Object
     public InventorySystem playerInventory;
 
     public TextMeshProUGUI text;
 
+    [Header("Audio"), Space] 
+    public AudioClip pickupSound;
+    private AudioSource audioSource;
+    
     /// <summary>
     /// Called once when script is initialized.
     /// </summary>
@@ -79,6 +83,8 @@ public class PlayerController : MonoBehaviour
         interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
         weaponController = GetComponentInChildren<PlayerWeaponController>();
         anim = GetComponentInChildren<Animator>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -187,6 +193,8 @@ public class PlayerController : MonoBehaviour
     {
         if (interactableObject)
         {
+            audioSource.PlayOneShot(pickupSound, .5f);
+            
             ConsumableItemController consumable =
                 interactableObject.gameObject.GetComponent<ConsumableItemController>();
             WeaponItemController weapon =
@@ -194,9 +202,10 @@ public class PlayerController : MonoBehaviour
             Chest chest = interactableObject.gameObject.GetComponent<Chest>();
 
             if (chest != null)
-                {
-                    chest.UseItem();
-                }
+            {
+                chest.UseItem();
+            }
+
             if (consumable != null)
             {
                 HandleConsumable(consumable);
