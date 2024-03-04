@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] public float maxHealthPoints;
     [SerializeField] private int defence;
     [SerializeField] private float incomingDamage;
-    public static event Action OnPlayerDamaged;
+    public static event Action OnHealthChanged;
 
     [SerializeField] private PlayerStats playerStats;
 
@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
     public void ChangeHealth(float healthChange)
     {
         currentHealthPoints += healthChange;
-        OnPlayerDamaged?.Invoke();
+        OnHealthChanged?.Invoke();
 
         if (currentHealthPoints <= 0)
         {

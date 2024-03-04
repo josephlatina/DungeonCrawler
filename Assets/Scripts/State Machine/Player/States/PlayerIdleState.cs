@@ -53,7 +53,7 @@ public class PlayerIdleState : IState
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.rangedState);
         }
 
-        if (player.isHealing)
+        if (player.isHealing && !player.isMeleeAttacking && !player.isRangedAttacking && !player.isRolling && player.playerInventory.isConsumableFull())
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.healState);
         }

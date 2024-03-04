@@ -54,6 +54,15 @@ public class InventorySystem : MonoBehaviour
         return items.OfType<ConsumableItem>().Count() == maxConsumableSlots - 1;
     }
 
+    public ConsumableItem GetConsumable()
+    {
+        if (isConsumableFull())
+        {
+            return (ConsumableItem)GetItemAt(2);
+        }
+        return null;
+    }
+
     public bool isWeaponFull()
     {
         return items.OfType<WeaponItem>().Count() == maxWeaponSlots;
@@ -79,6 +88,10 @@ public class InventorySystem : MonoBehaviour
             if (items[i])
             {
                 itemSlot.GetComponent<Image>().sprite = items[i].itemSprite;
+            }
+            else if (!items[i])
+            {
+                itemSlot.GetComponent<Image>().sprite = null;
             }
         }
     }
