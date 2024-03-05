@@ -52,10 +52,10 @@ MonoBehaviour:
   chestItemPrefab: {fileID: 903073116703789633, guid: 2913bd63f7e3b4cfe873314deff6e9dd, type: 3}
   weaponPrefab: {fileID: 4483240998738036880, guid: eb12720810ffd2f46aa613eb9ea2d5cb, type: 3}
   consumablePrefab: {fileID: 2360887131288210285, guid: f7f0050edf2bcab4ca42650fa37c2510, type: 3}
+  pricePrefab: {fileID: 3381491085019717092, guid: 1d7003f3366004f83a1be9272fc528da, type: 3}
   pillSO: {fileID: 11400000, guid: f11f146ca08ab9a47ad3fdf3d246414c, type: 2}
   healthPotionSO: {fileID: 11400000, guid: 0642899e386ab9544905951b66823fe0, type: 2}
   scalpelSO: {fileID: 0}
-  chestIcon: {fileID: -5281422124547630143, guid: beeb19d9abdca5b4fae733163f7ad375, type: 3}
   healthPotionIcon: {fileID: 1472682641, guid: a720362be5df15140958337462fac675, type: 3}
   weaponIcon: {fileID: 1203317424, guid: c2d05ccd526638c4c86fde28754a41d4, type: 3}
   pillIcon: {fileID: -1213312351, guid: a720362be5df15140958337462fac675, type: 3}

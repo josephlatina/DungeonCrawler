@@ -18,7 +18,7 @@ public class InventoryItemController : MonoBehaviour
 
     public GameObject priceView;
     public bool itemLocked = false;
-    [SerializeField] protected TextMesh priceText;
+    [SerializeField] public TextMesh priceText;
     [HideInInspector] public InventoryItem inventoryItem;
 
     protected virtual void Start()
