@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Pill
   description: 'Choose a permanent stat upgrade (PERK) when picked up '
-  price: 0
+  price: 90
   quantity: 1
   gameObject: {fileID: 0}
   itemSprite: {fileID: 667925829, guid: 80bd65d8bfbda3d4abfa7ff291ad65f4, type: 3}

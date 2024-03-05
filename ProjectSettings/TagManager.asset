@@ -12,6 +12,7 @@ TagManager:
   - interactableObject
   - interactTrigger
   - NPC
+  - onSaleItem
   layers:
   - Default
   - TransparentFX
