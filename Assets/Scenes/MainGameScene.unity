@@ -3581,36 +3581,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 971927850224402529, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 971927850224402529, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: daf9f424463547940ac8c6cfff10e843, type: 2}
-    - target: {fileID: 3275937855083862122, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300004, guid: d0c6eca6cc5868741929b855ed4c4be0, type: 3}
     - target: {fileID: 4183139009168690266, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4183139009168690266, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.39
-      objectReference: {fileID: 0}
-    - target: {fileID: 4183139009168690266, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.39
-      objectReference: {fileID: 0}
-    - target: {fileID: 4183139009168690266, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.39
-      objectReference: {fileID: 0}
-    - target: {fileID: 4183139009168690266, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.31
+      value: 6.24
       objectReference: {fileID: 0}
     - target: {fileID: 4183139009168690266, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 4183139009168690266, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3644,17 +3632,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4183139009168690266, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4602257652636676963, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
       propertyPath: m_Name
       value: Shopkeeper
       objectReference: {fileID: 0}
-    - target: {fileID: 5008678979815922720, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.9
+    - target: {fileID: 7063379284962241378, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
