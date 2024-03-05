@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &353482138822876341
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3330438210690943455, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330438210690943455, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330438210690943455, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330438210690943455, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330438210690943455, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330438210690943455, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330438210690943455, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330438210690943455, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330438210690943455, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330438210690943455, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330438210690943455, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6784117912464136820, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: m_Name
+      value: ChestSpawner_ChestRoomEntry
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681548566630017952, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: chestPrefab
+      value: 
+      objectReference: {fileID: 500052024457644246, guid: db8a440170f11461da262664de98dfc3, type: 3}
+    - target: {fileID: 7681548566630017952, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: chestSpawnChanceMin
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681548566630017952, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681548566630017952, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: weaponSpawnByLevelList.Array.data[0].spawnableObjectRatios.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681548566630017952, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: weaponSpawnByLevelList.Array.data[0].spawnableObjectRatios.Array.data[0].ratio
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681548566630017952, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: weaponSpawnByLevelList.Array.data[0].spawnableObjectRatios.Array.data[1].ratio
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681548566630017952, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: weaponSpawnByLevelList.Array.data[0].spawnableObjectRatios.Array.data[0].dungeonObject
+      value: 
+      objectReference: {fileID: 11400000, guid: bab14cc87f0a6684da4621773e1e69ce, type: 2}
+    - target: {fileID: 7681548566630017952, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: weaponSpawnByLevelList.Array.data[0].spawnableObjectRatios.Array.data[1].dungeonObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d40ad07e12700c45a29561437b5782a, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}

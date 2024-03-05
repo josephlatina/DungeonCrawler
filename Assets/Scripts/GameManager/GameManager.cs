@@ -32,6 +32,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     // private field for indicating current room the player is on
     private Room currentRoom;
+    private PlayerController player;
+
 
     // public variable for holding the current and previous game state
     [HideInInspector] public GameState gameState;
@@ -41,6 +43,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         // Call base class
         base.Awake();
+
+        player = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();    
+    
     }
 
      private void OnEnable()
@@ -144,6 +149,22 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public void SetCurrentRoom(Room room)
     {
         currentRoom = room;
+    }
+
+     /// <summary>
+    /// Get the player
+    /// </summary>
+    public PlayerController GetPlayer()
+    {
+        return player;
+    }
+
+    /// <summary>
+    /// Set the player
+    /// </summary>
+    public void SetPlayer(PlayerController currentPlayer)
+    {
+        player = currentPlayer;
     }
 
     #region Validation
