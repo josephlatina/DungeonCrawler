@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4620372116627147865}
   m_Layer: 0
   m_Name: Pill
-  m_TagString: onSaleItem
+  m_TagString: interactableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
   itemLocked: 0
   priceText: {fileID: 2033589107500767766}
   inventoryItem: {fileID: 0}
-  item: {fileID: 11400000, guid: 876f532a05269894793f3107c9a98459, type: 2}
+  item: {fileID: 11400000, guid: f11f146ca08ab9a47ad3fdf3d246414c, type: 2}
   sprite: {fileID: 4117109265330573257}
 --- !u!58 &5027003897113977868
 CircleCollider2D:
