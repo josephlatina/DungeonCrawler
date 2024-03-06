@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private PlayerStatus status;
-    [HideInInspector] public bool isMeleeAttacking, isRangedAttacking, isHealing, isRolling;
+    [HideInInspector] public bool isMeleeAttacking, isRangedAttacking, isHealing, isRolling, isWalking;
 
     [Header("Conditional Screen UI"), Space(5)]
     public GameObject upgradeScreen;
@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip rangedAttackSound;
     public AudioClip rollSound;
     public AudioClip purchaseSound;
+    public List<AudioClip> footstepSound;
     private AudioSource audioSource;
 
     /// <summary>
@@ -110,6 +111,11 @@ public class PlayerController : MonoBehaviour
     {
         // Update the state machine logic
         playerStateMachine.Update();
+
+        if (rb.velocity != Vector2.zero && !isWalking)
+        {
+            StartCoroutine(PlayFootStepSound());
+        }
     }
 
     /// <summary>
@@ -144,6 +150,19 @@ public class PlayerController : MonoBehaviour
         {
             anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().flipX = true;
         }
+    }
+
+    /// <summary>
+    /// Play a random footstep sound with delay
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator PlayFootStepSound()
+    {
+        isWalking = true;
+        AudioClip randFootstep = footstepSound[Random.Range(0, footstepSound.Count)];
+        audioSource.PlayOneShot(randFootstep, .4f);
+        yield return new WaitForSeconds(randFootstep.length + .2f);
+        isWalking = false;
     }
 
     /// <summary>
@@ -257,7 +276,7 @@ public class PlayerController : MonoBehaviour
             if (item.inventoryItem.price < player.CurrentCurrency && item.itemLocked == false)
             {
                 audioSource.PlayOneShot(purchaseSound);
-                
+
                 // subtract item price from current player currency
                 player.CurrentCurrency -= item.inventoryItem.price;
 
