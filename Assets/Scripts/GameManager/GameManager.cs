@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; // used to reload the main scene
 
 /// <summary>
 /// Game Manager class that is of singleton mono behaviour type
@@ -30,7 +31,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     #endregion Tooltip
     [SerializeField] private int currentDungeonLevelListIndex = 0;
 
-    // private field for indicating current room the player is on
+    // private fields
     private Room currentRoom;
     private PlayerController player;
 
@@ -67,6 +68,16 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         // set the new room as the current room
         SetCurrentRoom(roomChangedEventArgs.room);
+
+        // if player enters boss room
+        if (currentRoom.roomNodeType.isBossRoom) {
+            EnterBossRoom();
+        }
+
+        // if player enters the exit room, apply logic to determine whether player has level completed or game is won
+        if (currentRoom.roomNodeType.isExit) {
+            BossRoomEnemyDefeated(currentRoom);
+        }
     }
 
     /// <summary>
@@ -106,8 +117,157 @@ public class GameManager : SingletonMonoBehavior<GameManager>
                 PlayDungeonLevel(currentDungeonLevelListIndex);
                 // Set the current game state to Playing Level
                 gameState = GameState.playingLevel;
+
+                break;
+
+            // Level Completed
+            case GameState.levelCompleted:
+                // Display level completed UI
+                StartCoroutine(LevelCompleted());
+                break;
+
+            // Game won (only triggered once)
+            case GameState.gameWon:
+                // check if this is the first time entering this game state
+                if (previousGameState != GameState.gameWon) {
+                    // if it is, proceed
+                    StartCoroutine(GameWon());
+                }
+                break;
+
+            // Game lost (only triggered once)
+            case GameState.gameLost:
+                // check if this is the first time entering this game state
+                if (previousGameState != GameState.gameLost) {
+                    // if it is, stop all currently running coroutines and proceed
+                    StopAllCoroutines(); // if you clear the level just as you get killed, prevent the 'level clear' messages from appearing
+                    StartCoroutine(GameLost());
+                }
+                break;
+
+            // Restart the game
+            case GameState.restartGame:
+                RestartGame();
                 break;
         }
+    }
+
+    private void EnterBossRoom() {
+
+        // set the game state to boss stage. This should trigger SpawnEnemies() in EnemySpawner script
+        gameState = GameState.bossStage;
+        StartCoroutine(BossStage());
+    }
+
+    /// <summary>
+    /// Enter the boss stage - TODO: lock doors
+    /// </summary>
+    private IEnumerator BossStage()
+    {
+
+        // TODO: Room Lock Functionality
+       // Unlock boss room
+    //    bossRoom.UnlockDoors(0f);
+       // Wait 2 seconds
+       yield return new WaitForSeconds(2f);
+
+    }
+
+    /// <summary>
+    /// Room enemies defeated - if boss is defeated, load next dungeon game level
+    /// </summary>
+    private void BossRoomEnemyDefeated(Room bossRoom)
+    {
+
+        // check if boss has been cleared
+        if (bossRoom.isClearedOfEnemies) {
+
+            // if there are more dungeon levels to traverse through
+            if (currentDungeonLevelListIndex < dungeonLevelList.Count - 1) {
+                // then set game state to have current level completed
+                gameState = GameState.levelCompleted;
+            }
+            // if we've defeated the boss in the last level,
+            else {
+                // game has been won
+                gameState = GameState.gameWon;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Handles game state of level being completed
+    /// </summary>
+    private IEnumerator LevelCompleted()
+    {
+        // Play next level
+        gameState = GameState.playingLevel;
+
+        // Wait 2 seconds
+        yield return new WaitForSeconds(2f);
+
+        Debug.Log("Level Completed - Press Enter to Progress to the Next Level");
+
+        // Wait for player to press return key
+        while (!Input.GetKeyDown(KeyCode.Return)) {
+            yield return null;
+        }
+
+        // to avoid enter being detected twice
+        yield return null;
+
+        // Increase the index to next level
+        currentDungeonLevelListIndex++;
+        
+        // pass in next dungeon level 
+        PlayDungeonLevel(currentDungeonLevelListIndex);
+
+    }
+
+    /// <summary>
+    /// Handles game state of game being won
+    /// </summary>
+    private IEnumerator GameWon()
+    {
+        // Set previous state as game won to avoid game won being called multiple times
+        previousGameState = GameState.gameWon;
+
+        Debug.Log("Game Won! All levels completed and boss defeated. Game will restart in 10 seconds.");
+
+        // Wait 10 seconds
+        yield return new WaitForSeconds(10f);
+
+        // Set game to restart
+        gameState = GameState.restartGame;
+
+    }
+
+    /// <summary>
+    /// Handles game state of game being lost
+    /// </summary>
+    private IEnumerator GameLost()
+    {
+        // Set previous state as game won to avoid game lost being called multiple times
+        previousGameState = GameState.gameLost;
+
+        Debug.Log("Game Lost! Better luck next time. Game will restart in 10 seconds.");
+
+        // Wait 10 seconds
+        yield return new WaitForSeconds(10f);
+
+        // Set game to restart
+        gameState = GameState.restartGame;
+
+    }
+
+    /// <summary>
+    /// Handles game state to Game Restart
+    /// </summary>
+    private void RestartGame()
+    {
+        // Reload scene
+        SceneManager.LoadScene("MainGameScene");
+
     }
 
     /// <summary>
