@@ -334,6 +334,10 @@ MonoBehaviour:
   playerInventory: {fileID: 11400000, guid: d402dee68ae49714aab258863b548f14, type: 2}
   text: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: 92fe25c1036f7f241a700156d440d8bc, type: 3}
+  meleeAttackSound: {fileID: 8300000, guid: 55512036361308e48bc2fbbf9007c9d0, type: 3}
+  rangedAttackSound: {fileID: 8300000, guid: a3898d2bcfe2a014abf99420704b0030, type: 3}
+  rollSound: {fileID: 8300000, guid: c1a69c846d9d72d4f91cec7d40f6b623, type: 3}
+  purchaseSound: {fileID: 8300000, guid: 028c320a8800174418f0437dbdb4292a, type: 3}
 --- !u!114 &2341849012200123104
 MonoBehaviour:
   m_ObjectHideFlags: 0

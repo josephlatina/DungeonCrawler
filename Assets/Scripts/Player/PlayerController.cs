@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip meleeAttackSound;
     public AudioClip rangedAttackSound;
     public AudioClip rollSound;
+    public AudioClip purchaseSound;
     private AudioSource audioSource;
 
     /// <summary>
@@ -255,6 +256,8 @@ public class PlayerController : MonoBehaviour
 
             if (item.inventoryItem.price < player.CurrentCurrency && item.itemLocked == false)
             {
+                audioSource.PlayOneShot(purchaseSound);
+                
                 // subtract item price from current player currency
                 player.CurrentCurrency -= item.inventoryItem.price;
 
