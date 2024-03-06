@@ -21,6 +21,7 @@ using Random = UnityEngine.Random;
 public class PlayerController : MonoBehaviour
 {
     private PlayerStateMachine playerStateMachine;
+    private PlayerStatusEffect statusEffect;
     [HideInInspector] public Rigidbody2D rb;
     private PlayerStats player;
     private PlayerHealth playerHealth;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public float rollLength = 0.5f, rollCooldown = 1f;
 
     public PlayerStateMachine PlayerStateMachine => playerStateMachine;
+    public PlayerStatusEffect StatusEffect => statusEffect;
     private Collider2D interactTrigger;
     private Transform interactableObject;
     public PlayerWeaponController weaponController;
@@ -41,15 +43,15 @@ public class PlayerController : MonoBehaviour
     public BubbleDialogueView dialogueView;
     public DialogueRunner dialogueRunner;
 
-    private enum PlayerStatus
-    {
-        Normal,
-        Stun,
-        Immobilized,
-        Poison
-    }
+    // private enum PlayerStatus
+    // {
+    //     Normal,
+    //     Stun,
+    //     Immobilized,
+    //     Poison
+    // }
 
-    private PlayerStatus status;
+    // private PlayerStatus status;
     [HideInInspector] public bool isMeleeAttacking, isRangedAttacking, isHealing, isRolling;
 
     [Header("Inventory System"), Space(5)]
@@ -65,12 +67,13 @@ public class PlayerController : MonoBehaviour
     {
         // Initialize state machine on player
         playerStateMachine = new PlayerStateMachine(this);
+        statusEffect = new PlayerStatusEffect(this);
         // Get object's Rigidbody2D
         rb = GetComponent<Rigidbody2D>();
         // Get player object's stats script
         player = GetComponent<PlayerStats>();
-        // Set initial status to normal
-        status = PlayerStatus.Normal;
+        // // Set initial status to normal
+        // status = PlayerStatus.Normal;
         playerHealth = GetComponent<PlayerHealth>();
         // Get player object's interaction trigger
         interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
@@ -85,6 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         // Initialize the state machine with the idle state
         playerStateMachine.Initialize(playerStateMachine.idleState);
+        statusEffect.Initialize(statusEffect.normal);
         // Initialize inventory
         playerInventory.InitializeInventory();
     }
@@ -96,6 +100,7 @@ public class PlayerController : MonoBehaviour
     {
         // Update the state machine logic
         playerStateMachine.Update();
+        statusEffect.Update();
     }
 
     /// <summary>
@@ -191,9 +196,9 @@ public class PlayerController : MonoBehaviour
             Chest chest = interactableObject.gameObject.GetComponent<Chest>();
 
             if (chest != null)
-                {
-                    chest.UseItem();
-                }
+            {
+                chest.UseItem();
+            }
             if (consumable != null)
             {
                 HandleConsumable(consumable);
