@@ -53,7 +53,7 @@ MonoBehaviour:
   itemLocked: 0
   priceText: {fileID: 8731523179524820994}
   inventoryItem: {fileID: 0}
-  item: {fileID: 11400000, guid: 876f532a05269894793f3107c9a98459, type: 2}
+  item: {fileID: 11400000, guid: 0642899e386ab9544905951b66823fe0, type: 2}
   sprite: {fileID: 6435072539096122544}
 --- !u!58 &-4557363968842590587
 CircleCollider2D:
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_SortingLayerID: -1024326055
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1981115667, guid: a720362be5df15140958337462fac675, type: 3}
+  m_Sprite: {fileID: 667925829, guid: 80bd65d8bfbda3d4abfa7ff291ad65f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -185,7 +185,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2375222679657170150, guid: 1d7003f3366004f83a1be9272fc528da, type: 3}
       propertyPath: m_Text
-      value: 12
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3381491085019717092, guid: 1d7003f3366004f83a1be9272fc528da, type: 3}
       propertyPath: m_Name

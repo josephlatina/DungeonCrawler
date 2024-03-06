@@ -279,10 +279,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1024326055
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1047386174, guid: c2d05ccd526638c4c86fde28754a41d4, type: 3}
+  m_Sprite: {fileID: -681953929, guid: c2d05ccd526638c4c86fde28754a41d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -310,7 +310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8467740460497227592
 Transform:
   m_ObjectHideFlags: 0
@@ -365,8 +365,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1024326055
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!102 &1560871941237670064
@@ -377,7 +377,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8024341555707015589}
-  m_Text: 123
+  m_Text: 40
   m_OffsetZ: 0
   m_CharacterSize: 0.01
   m_LineSpacing: 1
