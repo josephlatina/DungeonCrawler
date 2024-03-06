@@ -53,7 +53,7 @@ MonoBehaviour:
   itemLocked: 0
   priceText: {fileID: 8731523179524820994}
   inventoryItem: {fileID: 0}
-  item: {fileID: 11400000, guid: 0642899e386ab9544905951b66823fe0, type: 2}
+  item: {fileID: 11400000, guid: f11f146ca08ab9a47ad3fdf3d246414c, type: 2}
   sprite: {fileID: 6435072539096122544}
 --- !u!58 &-4557363968842590587
 CircleCollider2D:
