@@ -333,7 +333,7 @@ MonoBehaviour:
   upgradeScreen: {fileID: 0}
   playerInventory: {fileID: 11400000, guid: d402dee68ae49714aab258863b548f14, type: 2}
   text: {fileID: 0}
-  pickupSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 92fe25c1036f7f241a700156d440d8bc, type: 3}
 --- !u!114 &2341849012200123104
 MonoBehaviour:
   m_ObjectHideFlags: 0
