@@ -18,7 +18,7 @@ MonoBehaviour:
   quantity: 1
   gameObject: {fileID: 0}
   itemSprite: {fileID: -1981115667, guid: a720362be5df15140958337462fac675, type: 3}
-  healthRestore: 1
+  healthRestore: 0
   attackStrengthUpgrade: 0
   attackSpeedUpgrade: 0
   defenceUpgrade: 0
@@ -29,4 +29,3 @@ MonoBehaviour:
   defenceBoost: 0
   movementSpeedBoost: 0
   attackSpeedBoost: 0
-  prefab: {fileID: 0}

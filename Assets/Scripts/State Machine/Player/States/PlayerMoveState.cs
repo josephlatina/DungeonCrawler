@@ -54,7 +54,7 @@ public class PlayerMoveState : IState
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.meleeState);
         }
 
-        if (player.isRangedAttacking && !player.isMeleeAttacking && !player.isRangedAttacking && !player.isHealing)
+        if (player.isRangedAttacking && !player.isMeleeAttacking && !player.isRangedAttacking && player.isHealing)
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.rangedState);
         }
