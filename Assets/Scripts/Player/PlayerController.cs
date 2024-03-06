@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Yarn.Unity;
 using Yarn.Unity.Addons.SpeechBubbles;
 using Random = UnityEngine.Random;
@@ -61,10 +62,12 @@ public class PlayerController : MonoBehaviour
 
     public TextMeshProUGUI text;
 
-    [Header("Audio"), Space] 
-    public AudioClip pickupSound;
+    [Header("Audio"), Space] public AudioClip pickupSound;
+    public AudioClip meleeAttackSound;
+    public AudioClip rangedAttackSound;
+    public AudioClip rollSound;
     private AudioSource audioSource;
-    
+
     /// <summary>
     /// Called once when script is initialized.
     /// </summary>
@@ -159,6 +162,7 @@ public class PlayerController : MonoBehaviour
         if (!isHealing && !isRangedAttacking && !isMeleeAttacking && moveVal.x != 0 || moveVal.y != 0)
         {
             isRolling = value.isPressed;
+            audioSource.PlayOneShot(rollSound, .5f);
         }
     }
 
@@ -171,6 +175,10 @@ public class PlayerController : MonoBehaviour
         if (!isHealing && !isRangedAttacking && !isRolling)
         {
             isMeleeAttacking = value.isPressed;
+            if (playerInventory.isMeleeWeaponFull())
+            {
+                audioSource.PlayOneShot(meleeAttackSound, .5f);
+            }
         }
     }
 
@@ -183,6 +191,11 @@ public class PlayerController : MonoBehaviour
         if (!isHealing && !isMeleeAttacking && !isRolling)
         {
             isRangedAttacking = value.isPressed;
+
+            if (playerInventory.isRangeWeaponFull())
+            {
+                audioSource.PlayOneShot(rangedAttackSound, .5f);
+            }
         }
     }
 
@@ -195,7 +208,7 @@ public class PlayerController : MonoBehaviour
         if (interactableObject)
         {
             audioSource.PlayOneShot(pickupSound, .5f);
-            
+
             ConsumableItemController consumable =
                 interactableObject.gameObject.GetComponent<ConsumableItemController>();
             WeaponItemController weapon =
@@ -245,9 +258,9 @@ public class PlayerController : MonoBehaviour
                 // subtract item price from current player currency
                 player.CurrentCurrency -= item.inventoryItem.price;
 
-                item.tag = "interactableObject";    // adding the tag will trigger interactbleObject behaviour
-                onSaleItem.SetParent(null);      // remove item relation from NPC object
-                onSaleItem = null;                 // set to null when interaction with item is done
+                item.tag = "interactableObject"; // adding the tag will trigger interactbleObject behaviour
+                onSaleItem.SetParent(null); // remove item relation from NPC object
+                onSaleItem = null; // set to null when interaction with item is done
             }
             else
             {
