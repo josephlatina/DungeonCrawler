@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerStateMachine playerStateMachine;
     [HideInInspector] public Rigidbody2D rb;
-    private PlayerStats player;
+    public PlayerStats player;
     public Animator anim;
 
     [HideInInspector] public Vector2 moveVal;
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public PlayerWeaponController weaponController;
     [HideInInspector] public Vector3 mousePos;
     private Transform interactNPC;
+    private Transform onSaleItem;
 
     // Set this to the bubble dialogue view you want to control
     public BubbleDialogueView dialogueView;
@@ -231,15 +232,26 @@ public class PlayerController : MonoBehaviour
 
                 playerInventory.SwapItemAt(weapon.item, weaponIndex);
                 weaponController.SetWeapon(weapon.gameObject, weaponIndex);
-
-                interactableObject = null;
             }
+
+            interactableObject = null;
         }
-        else if (interactNPC)
+        else if (onSaleItem)
         {
-            if (!dialogueView.IsShowingBubble)
+            InventoryItemController item = onSaleItem.GetComponent<InventoryItemController>();
+
+            if (item.inventoryItem.price < player.CurrentCurrency && item.itemLocked == false)
             {
-                StartNPCDialogue();
+                // subtract item price from current player currency
+                player.CurrentCurrency -= item.inventoryItem.price;
+
+                item.tag = "interactableObject";    // adding the tag will trigger interactbleObject behaviour
+                onSaleItem.SetParent(null);      // remove item relation from NPC object
+                onSaleItem = null;                 // set to null when interaction with item is done
+            }
+            else
+            {
+                Debug.Log("LOCKED");
             }
         }
     }
@@ -344,6 +356,10 @@ public class PlayerController : MonoBehaviour
         {
             interactableObject = other.transform;
         }
+        else if (other.CompareTag("onSaleItem"))
+        {
+            onSaleItem = other.transform;
+        }
         else if (other.CompareTag("NPC") && interactNPC == null)
         {
             interactNPC = other.transform;
@@ -357,10 +373,13 @@ public class PlayerController : MonoBehaviour
         {
             interactableObject = other.transform;
         }
+        else if (other.CompareTag("onSaleItem"))
+        {
+            onSaleItem = other.transform;
+        }
         else if (other.CompareTag("NPC") && interactNPC == null)
         {
             interactNPC = other.transform;
-            StartNPCDialogue();
         }
     }
 
@@ -369,6 +388,10 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "interactableObject" && interactableObject != null)
         {
             interactableObject = null;
+        }
+        else if (other.CompareTag("onSaleItem"))
+        {
+            onSaleItem = null;
         }
         else if (other.CompareTag("NPC") && interactNPC != null)
         {

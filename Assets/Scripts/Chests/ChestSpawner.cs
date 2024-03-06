@@ -65,7 +65,7 @@ public class ChestSpawner : MonoBehaviour
     #region Tooltip
     [Tooltip("The weapons to spawn for each dungeon level and their spawn ratios")]
     #endregion Tooltip
-    [SerializeField] private List<SpawnableObjectsByLevel<WeaponItem>> weaponSpawnByLevelList;
+    [SerializeField] private List<SpawnableObjectsByLevel<GameObject>> weaponSpawnByLevelList;
 
     // member variable for keeping track if we've spawned chest
     private bool chestSpawned = false;
@@ -214,15 +214,16 @@ public class ChestSpawner : MonoBehaviour
     /// <summary>
     /// Get the random weapon item to spawn
     /// </summary>
-    private WeaponItem GetWeaponItemToSpawn()
+    private WeaponItemController GetWeaponItemToSpawn()
     {
         // Create an instance of the class used to select a random item from a list based on the
         // relative 'ratios' of the items specified
-        RandomSpawnableObject<WeaponItem> weaponRandom = new RandomSpawnableObject<WeaponItem>(weaponSpawnByLevelList);
+        RandomSpawnableObject<GameObject> weaponRandomItem = new RandomSpawnableObject<GameObject>(weaponSpawnByLevelList);
 
-        WeaponItem weaponItem = weaponRandom.GetItem();
+        GameObject weaponItem = weaponRandomItem.GetItem();
+        WeaponItemController weaponItemController = weaponItem.GetComponent<WeaponItemController>();
 
-        return weaponItem;
+        return weaponItemController;
     }
 
 }

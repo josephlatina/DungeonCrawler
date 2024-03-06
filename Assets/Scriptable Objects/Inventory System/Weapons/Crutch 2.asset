@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Crutch 2
   description: 
-  price: 0
+  price: 10
   quantity: 1
   gameObject: {fileID: 0}
   itemSprite: {fileID: 1047386174, guid: c2d05ccd526638c4c86fde28754a41d4, type: 3}

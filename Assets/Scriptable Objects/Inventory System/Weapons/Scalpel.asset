@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Scalpel
   description: A small sharp object that when thrown, magically returns on hand
-  price: 0
+  price: 40
   quantity: 1
   gameObject: {fileID: 0}
   itemSprite: {fileID: 21300000, guid: f81ca0ecfc3968b4faa549ed0b02b1be, type: 3}
