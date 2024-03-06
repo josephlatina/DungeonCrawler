@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd7a8c433aa85b4798122b32c81720d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showPrice: 1
+  showPrice: 0
   priceView: {fileID: 5632069490657766369}
   itemLocked: 0
   priceText: {fileID: 4625800535534105315}
@@ -204,7 +204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3381491085019717092, guid: 1d7003f3366004f83a1be9272fc528da, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3634885180722780776, guid: 1d7003f3366004f83a1be9272fc528da, type: 3}
       propertyPath: m_SortingLayer

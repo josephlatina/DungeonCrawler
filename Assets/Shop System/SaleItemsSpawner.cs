@@ -17,8 +17,8 @@ public class SaleItemsSpawner : MonoBehaviour
         foreach (Transform item in itemsForSale)
         {
             InventoryItemController randItem = GetRandomItem().GetComponent<InventoryItemController>();
-            randItem.tag = "onSaleItem";
-            Instantiate(randItem.gameObject, item);
+            GameObject newItem = Instantiate(randItem.gameObject, item);
+            newItem.tag = "onSaleItem";
         }
     }
 

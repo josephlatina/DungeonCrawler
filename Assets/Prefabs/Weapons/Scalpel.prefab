@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7331682965281597793}
   m_Layer: 0
   m_Name: Scalpel
-  m_TagString: onSaleItem
+  m_TagString: interactableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3381491085019717092, guid: 1d7003f3366004f83a1be9272fc528da, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3634885180722780776, guid: 1d7003f3366004f83a1be9272fc528da, type: 3}
       propertyPath: m_SortingLayer
