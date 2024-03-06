@@ -5056,10 +5056,6 @@ PrefabInstance:
       propertyPath: stemEdgeBehaviour
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1390350175871071377, guid: e24bcf9ee65e241c394bd2e9e2012938, type: 3}
-      propertyPath: previewState.target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2963578468650678183, guid: e24bcf9ee65e241c394bd2e9e2012938, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5564,6 +5560,10 @@ PrefabInstance:
     - target: {fileID: 5118959329681203061, guid: 51cd4d4f67fd7af4786ee7ade5140631, type: 3}
       propertyPath: m_Name
       value: InventorySlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284889453040924405, guid: 51cd4d4f67fd7af4786ee7ade5140631, type: 3}
+      propertyPath: m_Sprite
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51cd4d4f67fd7af4786ee7ade5140631, type: 3}
