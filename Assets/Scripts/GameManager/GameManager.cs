@@ -381,7 +381,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     /// <summary>
     /// Handles game state to Game Restart
     /// </summary>
-    private void RestartGame()
+    public void RestartGame()
     {
         // Reload scene
         SceneManager.LoadScene("MainGameScene");
