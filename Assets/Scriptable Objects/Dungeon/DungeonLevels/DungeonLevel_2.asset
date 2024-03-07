@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f727c8dfa8f34aa0ab49dc2ac80737b, type: 3}
+  m_Name: DungeonLevel_2
+  m_EditorClassIdentifier: 
+  levelName: The Morgue
+  roomTemplateList:
+  - {fileID: 11400000, guid: e8b1da5adc24f44b8957b94949fbf3da, type: 2}
+  - {fileID: 11400000, guid: 6c8a19bf9e2864be688a18cba1dfe7fd, type: 2}
+  - {fileID: 11400000, guid: 32e616d3529974c46bf4fc4445a1221a, type: 2}
+  - {fileID: 11400000, guid: 78ec9a76084884218aaef541cd79f344, type: 2}
+  - {fileID: 11400000, guid: 436c9cfc8da0c45488ccf26b6feff3e7, type: 2}
+  roomNodeGraphList:
+  - {fileID: 11400000, guid: 65f3ab4a56be64778b9e16044ebeae1b, type: 2}

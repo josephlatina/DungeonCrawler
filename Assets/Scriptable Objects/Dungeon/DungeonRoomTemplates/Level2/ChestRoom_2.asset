@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1df07bf8258a432fb2534119ebf0c20, type: 3}
-  m_Name: ExitRoom_1
+  m_Name: ChestRoom_2
   m_EditorClassIdentifier: 
-  guid: eece064ba43fd410b9798dc9e33ef829
-  previousPrefab: {fileID: 1875396859818147482, guid: 754510dd4dd194bdeb9748a4b4c18893, type: 3}
-  prefab: {fileID: 1875396859818147482, guid: 754510dd4dd194bdeb9748a4b4c18893, type: 3}
-  roomNodeType: {fileID: 11400000, guid: ff86b8575b8fb418584d289aa4983da9, type: 2}
+  guid: 5379539edb62e455da856401a5d9572a
+  previousPrefab: {fileID: 1875396859818147482, guid: b4b50bf96477a477bb650bf73935af90, type: 3}
+  prefab: {fileID: 1875396859818147482, guid: b4b50bf96477a477bb650bf73935af90, type: 3}
+  roomNodeType: {fileID: 11400000, guid: c7bc17b8a2a964a368f828524a5edc73, type: 2}
   lowerBounds: {x: -10, y: -13}
   upperBounds: {x: 25, y: 13}
   doorwayList:
@@ -53,14 +53,5 @@ MonoBehaviour:
     isUnavailable: 0
   spawnPositionArray:
   - {x: 8, y: -1}
-  enemiesByLevelList:
-  - dungeonLevel: {fileID: 0}
-    spawnableObjectRatios: []
-  roomEnemySpawnParametersList:
-  - dungeonLevel: {fileID: 0}
-    minTotalEnemiesToSpawn: 0
-    maxTotalEnemiesToSpawn: 0
-    minConcurrentEnemies: 0
-    maxConcurrentEnemies: 0
-    minSpawnInterval: 0
-    maxSpawnInterval: 0
+  enemiesByLevelList: []
+  roomEnemySpawnParametersList: []

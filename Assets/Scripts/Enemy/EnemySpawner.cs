@@ -77,13 +77,6 @@ public class EnemySpawner : SingletonMonoBehavior<EnemySpawner>
     /// </summary>
     private void SpawnEnemies() {
 
-        // Set the current game state to be 'engaging enemies' and previous game state to 'playing level'
-        if (GameManager.Instance.gameState == GameState.playingLevel) {
-
-            GameManager.Instance.previousGameState = GameState.playingLevel;
-            GameManager.Instance.gameState = GameState.engagingEnemies;
-        }
-
         // Spawn the enemies
         StartCoroutine(SpawnEnemiesRoutine());
     }
