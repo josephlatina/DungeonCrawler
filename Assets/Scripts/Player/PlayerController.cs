@@ -23,9 +23,10 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerStateMachine playerStateMachine;
     [HideInInspector] public Rigidbody2D rb;
-    private PlayerStats player;
+    [HideInInspector] public PlayerStats player;
     private PlayerHealth playerHealth;
     public Animator anim;
+    private bool paused;
 
     [HideInInspector] public Vector2 moveVal;
     public float rollSpeed;
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Conditional Screen UI"), Space(5)]
     public GameObject upgradeScreen;
+    public GameObject deathScreen;
 
     [Header("Inventory System"), Space(5)]
     // Player Inventory System reference to Scriptable Object
@@ -102,6 +104,7 @@ public class PlayerController : MonoBehaviour
         playerStateMachine.Initialize(playerStateMachine.idleState);
         // Initialize inventory
         playerInventory.InitializeInventory();
+        paused = false;
     }
 
     /// <summary>
@@ -109,12 +112,15 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        // Update the state machine logic
-        playerStateMachine.Update();
-
-        if (rb.velocity != Vector2.zero && !isWalking)
+        if (!paused)
         {
-            StartCoroutine(PlayFootStepSound());
+            // Update the state machine logic
+            playerStateMachine.Update();
+
+            if (rb.velocity != Vector2.zero && !isWalking)
+            {
+                StartCoroutine(PlayFootStepSound());
+            }
         }
     }
 
@@ -124,7 +130,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        playerStateMachine.FixedUpdate();
+        if (!paused)
+        {
+            playerStateMachine.FixedUpdate();
+        }
     }
 
     /// <summary>
@@ -443,5 +452,11 @@ public class PlayerController : MonoBehaviour
             string node = npcController.randomizeDialogue ? npcController.GetRandomNode() : npcController.GetNode();
             dialogueRunner.StartDialogue(node);
         }
+    }
+
+    public void Death()
+    {
+        paused = true;
+        deathScreen.SetActive(true);
     }
 }

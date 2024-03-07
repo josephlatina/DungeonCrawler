@@ -27,8 +27,8 @@ public class PlayerHealthDisplay : MonoBehaviour
     {
         ClearHearts();
 
-        float maxHealthRemainder = (playerHealth.maxHealthPoints) % 2;
-        int heartsToMake = (int)(playerHealth.maxHealthPoints + maxHealthRemainder);
+        // float maxHealthRemainder = (playerHealth.maxHealthPoints) % 2;
+        int heartsToMake = (int)(playerHealth.maxHealthPoints);
         for (int i = 0; i < heartsToMake; i++)
         {
             CreateEmptyHeart();

@@ -92,7 +92,7 @@ public class PlayerHealState : IState
     void Heal()
     {
         health.ChangeHealth(potion.healthRestore);
-        player.playerInventory.RemoveItem(potion);
+        player.playerInventory.EmptyConsumable();
     }
 
     /// <summary>

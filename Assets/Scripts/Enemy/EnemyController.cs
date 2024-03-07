@@ -44,6 +44,9 @@ public class EnemyController : MonoBehaviour
     };
     private EnemyStatus status;
 
+    public Vector2 knockbackVelocity;
+    public float knockbackDuration;
+
     // Expose the EnemyStateMachine for external access
     public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
 
@@ -76,6 +79,11 @@ public class EnemyController : MonoBehaviour
         enemyStateMachine.Initialize(enemyStateMachine.idleState);
     }
 
+    protected virtual void FixedUpdate()
+    {
+
+    }
+
     /// <summary>
     /// Called once per frame.
     /// </summary>
@@ -96,5 +104,15 @@ public class EnemyController : MonoBehaviour
     public float GetHealthPoints()
     {
         return healthPoints;
+    }
+
+    public void Knockback(Vector2 velocity, float duration)
+    {
+        if (knockbackDuration > 0)
+        {
+            return;
+        }
+        knockbackVelocity = velocity;
+        knockbackDuration = duration;
     }
 }

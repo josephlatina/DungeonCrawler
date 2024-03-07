@@ -62,8 +62,13 @@ public class MeleeWeaponController : WeaponItemController
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log(CalculateDamageDone());
             col.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(CalculateDamageDone());
+            if (item.GetKnockback() > 0)
+            {
+                Vector2 dir = col.transform.position - transform.position;
+                Debug.Log(dir.normalized * item.GetKnockback());
+                col.gameObject.GetComponentInParent<EnemyController>().Knockback(item.GetKnockback() * dir.normalized, 0.75f);
+            }
             GetComponent<Collider2D>().enabled = false;
         }
     }

@@ -13,22 +13,30 @@ public class PlayerHealth : MonoBehaviour
     public static event Action OnHealthChanged;
 
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private PlayerController playerController;
 
     void Awake()
     {
         playerStats = GetComponent<PlayerStats>();
         maxHealthPoints = playerStats.MaxHealthPoints;
-        currentHealthPoints = maxHealthPoints - 1.5f;
+        currentHealthPoints = maxHealthPoints;
+        defence = playerStats.CurrentDefence;
     }
 
     public void ChangeHealth(float healthChange)
     {
-        currentHealthPoints += healthChange;
+        currentHealthPoints += healthChange + (defence / 2);
         OnHealthChanged?.Invoke();
 
         if (currentHealthPoints <= 0)
         {
+            playerController.Death();
             Destroy(gameObject);
+        }
+
+        if (currentHealthPoints > maxHealthPoints)
+        {
+            currentHealthPoints = maxHealthPoints;
         }
     }
 }

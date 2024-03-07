@@ -23,7 +23,7 @@ MonoBehaviour:
   attackSpeed: 4
   attackRange: 7
   criticalHitDamage: 0
-  knockback: 0
+  knockback: 1
   abilityLifeSteal: 0
   abilityPoison: 0
   abilityStun: 0
@@ -31,3 +31,4 @@ MonoBehaviour:
   defenceBoost: 0
   movementSpeedBoost: 0
   attackSpeedBoost: 0
+  prefab: {fileID: 0}

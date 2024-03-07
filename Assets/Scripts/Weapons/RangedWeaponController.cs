@@ -98,6 +98,12 @@ public class RangedWeaponController : WeaponItemController
         if (col.gameObject.CompareTag("Enemy"))
         {
             col.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(-item.GetDamage());
+            if (item.GetKnockback() > 0)
+            {
+                Vector2 dir = col.transform.position - transform.position;
+                Debug.Log(dir.normalized * item.GetKnockback());
+                col.gameObject.GetComponentInParent<EnemyController>().Knockback(item.GetKnockback() * dir.normalized, 0.75f);
+            }
             GetComponent<Collider2D>().enabled = false;
             GetComponentInChildren<SpriteRenderer>().enabled = false;
         }

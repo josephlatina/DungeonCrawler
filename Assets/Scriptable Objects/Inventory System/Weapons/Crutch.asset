@@ -23,7 +23,7 @@ MonoBehaviour:
   attackSpeed: 0
   attackRange: 2
   criticalHitDamage: 0
-  knockback: 1
+  knockback: 2
   abilityLifeSteal: 0
   abilityPoison: 0
   abilityStun: 0

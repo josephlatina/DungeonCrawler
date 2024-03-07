@@ -42,7 +42,7 @@ public class Chest : MonoBehaviour, IUseable
 
     // not enabled when chest is still materializing
     private bool isEnabled = false;
-    
+
     // set the starting chest state to be closed
     private ChestState chestState = ChestState.closed;
     // holds reference to the chest item game object within scene
@@ -52,7 +52,8 @@ public class Chest : MonoBehaviour, IUseable
 
     [SerializeField] private AudioClip interactSound;
 
-    private void Awake() {
+    private void Awake()
+    {
 
         // Cache components
         animator = GetComponent<Animator>();
@@ -64,16 +65,19 @@ public class Chest : MonoBehaviour, IUseable
     /// <summary>
     /// Initialize chest and decide whether to make it visible immediately or materialize
     /// </summary>
-    public void Initialize(bool shouldMaterialize, WeaponItemController weaponItem) {
+    public void Initialize(bool shouldMaterialize, WeaponItemController weaponItem)
+    {
         weaponItemController = weaponItem;
         consumableItemController = GameResources.Instance.consumablePrefab.GetComponent<ConsumableItemController>();
 
         // if chest should be materialized, proceed to materialize it
-        if (shouldMaterialize) {
+        if (shouldMaterialize)
+        {
             StartCoroutine(MaterializeChest());
-        } 
+        }
         // otherwise, just enable it(make visible) immediately
-        else {
+        else
+        {
             EnableChest();
         }
     }
@@ -81,7 +85,8 @@ public class Chest : MonoBehaviour, IUseable
     /// <summary>
     /// Materialize the chest
     /// </summary>
-    private IEnumerator MaterializeChest() {
+    private IEnumerator MaterializeChest()
+    {
 
         // Initialize sprite renderer array (needed for materializing the chest)
         SpriteRenderer[] spriteRendererArray = new SpriteRenderer[] { spriteRenderer };
@@ -96,7 +101,8 @@ public class Chest : MonoBehaviour, IUseable
     /// <summary>
     /// Enable the chest
     /// </summary>
-    private void EnableChest() {
+    private void EnableChest()
+    {
 
         // Set variable to enabled
         isEnabled = true;
@@ -105,13 +111,15 @@ public class Chest : MonoBehaviour, IUseable
     /// <summary>
     /// Check state of the chest and perform appropriate action using a state machine
     /// </summary>
-    public void UseItem() {
+    public void UseItem()
+    {
 
         // check if chest is enabled
         if (!isEnabled) return;
 
         // implement state machine
-        switch (chestState) {
+        switch (chestState)
+        {
 
             case ChestState.closed:
                 OpenChest();
@@ -135,7 +143,8 @@ public class Chest : MonoBehaviour, IUseable
     /// <summary>
     /// Open the chest
     /// </summary>
-    private void OpenChest() {
+    private void OpenChest()
+    {
 
         // use the animator to play the 'chest open' animation by setting the use parameter to true
         animator.SetBool(Settings.use, true);
@@ -147,17 +156,19 @@ public class Chest : MonoBehaviour, IUseable
     /// <summary>
     /// Materialize items randomly and update the chest state accordingly
     /// </summary>
-    private void UpdateChestState() {
+    private void UpdateChestState()
+    {
 
         int randomState = Random.Range(0, 3);
 
-        switch (randomState) {
+        switch (randomState)
+        {
 
             case 0:
                 chestState = ChestState.healthPotionItem;
                 InstantiateHealthPotionItem();
                 break;
-            
+
             case 1:
                 chestState = ChestState.weaponItem;
                 InstantiateWeaponItem();
@@ -167,7 +178,7 @@ public class Chest : MonoBehaviour, IUseable
                 chestState = ChestState.pillItem;
                 InstantiatePillItem();
                 break;
-            
+
             default:
                 return;
         }
@@ -179,7 +190,8 @@ public class Chest : MonoBehaviour, IUseable
     /// <summary>
     /// Instantiate chest item
     /// </summary>
-    private void InstantiateItem() {
+    private void InstantiateItem()
+    {
 
         // Instantiate the chest item prefab as a game object within the scene
         chestItemGameObject = Instantiate(GameResources.Instance.chestItemPrefab, this.transform);
@@ -193,7 +205,8 @@ public class Chest : MonoBehaviour, IUseable
     /// <summary>
     /// Instantiate and materialize the health potion item for player to collect
     /// </summary>
-    private void InstantiateHealthPotionItem() {
+    private void InstantiateHealthPotionItem()
+    {
 
         // Instantiate the chest item
         InstantiateItem();
@@ -211,8 +224,9 @@ public class Chest : MonoBehaviour, IUseable
 
     /// <summary>
     /// Instantiate and materialize the weapon item for player to collect (only item that's not using default icon from GameResources)
-    /// </summary>
-    private void InstantiateWeaponItem() {
+    /// /// </summary>
+    private void InstantiateWeaponItem()
+    {
 
         // Instantiate the chest item
         InstantiateItem();
@@ -223,7 +237,7 @@ public class Chest : MonoBehaviour, IUseable
         chestItemController.item = weaponItemController.item;
         chestItemController.sprite = weaponItemController.sprite;
         chestItemController.showPrice = false;
-        chestItemGameObject.AddComponent<BoxCollider2D>();
+        chestItemGameObject.AddComponent<BoxCollider2D>().isTrigger = true;
 
         // From the Chest Item component pulled from the instantiation, initialize the weapon item by rendering the sprite and materializing it
         chestItem.Initialize(chestItemController.item.itemSprite, itemSpawnPoint.position, materializeColor);
@@ -232,7 +246,8 @@ public class Chest : MonoBehaviour, IUseable
     /// <summary>
     /// Instantiate and materialize the pill item for player to collect
     /// </summary>
-    private void InstantiatePillItem() {
+    private void InstantiatePillItem()
+    {
 
         // Instantiate the chest item
         InstantiateItem();

@@ -54,6 +54,11 @@ public class InventorySystem : MonoBehaviour
         return items.OfType<ConsumableItem>().Count() == maxConsumableSlots - 1;
     }
 
+    public void EmptyConsumable()
+    {
+        items[2] = null;
+    }
+
     public ConsumableItem GetConsumable()
     {
         if (isConsumableFull())
@@ -91,13 +96,13 @@ public class InventorySystem : MonoBehaviour
                 item.sprite = items[i].itemSprite;
                 item.gameObject.SetActive(true);
             }
-            else
-            {
-              item.gameObject.SetActive(false);
-            }
             else if (!items[i])
             {
                 itemSlot.GetComponent<Image>().sprite = null;
+            }
+            else
+            {
+                item.gameObject.SetActive(false);
             }
         }
     }
