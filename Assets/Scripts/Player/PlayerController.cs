@@ -18,7 +18,7 @@ using Random = UnityEngine.Random;
 /// <summary>
 /// Handles player input, movement, and interactions.
 /// </summary>
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IEffectable
 {
     private PlayerStateMachine playerStateMachine;
     [HideInInspector] public Rigidbody2D rb;
@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour
     // Set this to the bubble dialogue view you want to control
     public BubbleDialogueView dialogueView;
     public DialogueRunner dialogueRunner;
+
+    public StatusEffectData effectOnPlayer;
+    private float currentMoveSpeed;
 
     private enum PlayerStatus
     {
@@ -87,6 +90,8 @@ public class PlayerController : MonoBehaviour
         playerStateMachine.Initialize(playerStateMachine.idleState);
         // Initialize inventory
         playerInventory.InitializeInventory();
+
+        currentMoveSpeed = player.CurrentMoveSpeed;
     }
 
     /// <summary>
@@ -96,7 +101,13 @@ public class PlayerController : MonoBehaviour
     {
         // Update the state machine logic
         playerStateMachine.Update();
+        if (effectOnPlayer != null)
+        {
+            HandleEffect();
+        }
     }
+
+
 
     /// <summary>
     /// Called at fixed time intervals, making it suitable for physics-related calculations
@@ -191,9 +202,9 @@ public class PlayerController : MonoBehaviour
             Chest chest = interactableObject.gameObject.GetComponent<Chest>();
 
             if (chest != null)
-                {
-                    chest.UseItem();
-                }
+            {
+                chest.UseItem();
+            }
             if (consumable != null)
             {
                 HandleConsumable(consumable);
@@ -387,6 +398,58 @@ public class PlayerController : MonoBehaviour
             NpcController npcController = interactNPC.GetComponent<NpcController>();
             string node = npcController.randomizeDialogue ? npcController.GetRandomNode() : npcController.GetNode();
             dialogueRunner.StartDialogue(node);
+        }
+    }
+
+    private GameObject effectParticles;
+    public void ApplyEffect(StatusEffectData data)
+    {
+        RemoveEffect();
+        this.effectOnPlayer = data;
+        if (data.movementPenalty != -1)
+        {
+            currentMoveSpeed = data.movementPenalty;
+        }
+        if (data.effectParticles)
+        {
+            effectParticles = Instantiate(data.effectParticles, transform);
+        }
+    }
+
+    private float currentEffectTime = 0f;
+    private float lastTickTime = 0f;
+
+
+    public void RemoveEffect()
+    {
+        effectOnPlayer = null;
+        currentEffectTime = 0f;
+        lastTickTime = 0f;
+        if (effectOnPlayer.movementPenalty != -1)
+        {
+            currentMoveSpeed = player.CurrentMoveSpeed;
+        }
+        if (effectParticles != null)
+        {
+            Destroy(effectParticles);
+        }
+    }
+
+    private void HandleEffect()
+    {
+        currentEffectTime += Time.deltaTime;
+
+        if (currentEffectTime >= effectOnPlayer.lifetime)
+        {
+            RemoveEffect();
+        }
+
+        if (effectOnPlayer == null) return;
+
+        if (effectOnPlayer.damageOverTimeAmount != 0 && currentEffectTime > lastTickTime + effectOnPlayer.tickSpeed)
+        {
+            lastTickTime = currentEffectTime;
+            playerHealth.ChangeHealth(-effectOnPlayer.damageOverTimeAmount);
         }
     }
 }

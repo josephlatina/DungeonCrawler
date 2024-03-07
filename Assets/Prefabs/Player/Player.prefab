@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &619896423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 619896424}
+  m_Layer: 6
+  m_Name: Bubble Anchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &619896424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619896423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6984755896152334962}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &71667594541600393
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,7 +61,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6984755896152334962}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6096895482278706488
 SpriteRenderer:
@@ -128,8 +159,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bd93a8f23432fc4f96f411ba5f37d9c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   melee: {fileID: 0}
   meleeTrigger: {fileID: 0}
   ranged: {fileID: 0}
@@ -177,8 +208,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29edaa2f49d230544bd0af72edf71361, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   mousePos: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &6523951103297536405
@@ -276,6 +307,8 @@ GameObject:
   - component: {fileID: 6443449700755736254}
   - component: {fileID: 235765108}
   - component: {fileID: 782606889}
+  - component: {fileID: 1369380510}
+  - component: {fileID: 1369380518}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -297,6 +330,7 @@ Transform:
   m_Children:
   - {fileID: 7339159537308395094}
   - {fileID: 5276932863551479396}
+  - {fileID: 619896424}
   - {fileID: 6030082295736081354}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -311,22 +345,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 611a970f4fe1f5546ab5a4723ac8c3d9, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  player: {fileID: 0}
+  playerHealth: {fileID: 0}
   anim: {fileID: 0}
   moveVal: {x: 0, y: 0}
   rollSpeed: 35
   rollLength: 0.5
   rollCooldown: 0.5
-  weaponController: {fileID: 0}
+  weaponController: {fileID: 2660615186996927654}
   mousePos: {x: 0, y: 0, z: 0}
+  dialogueView: {fileID: 0}
+  dialogueRunner: {fileID: 0}
   isMeleeAttacking: 0
   isRangedAttacking: 0
   isHealing: 0
   isRolling: 0
-  playerInventory: {fileID: 11400000, guid: d402dee68ae49714aab258863b548f14, type: 2}
+  playerInventory: {fileID: 0}
   text: {fileID: 0}
+  movementSpeed: 0
+  currentMovementSpeed: 0
 --- !u!114 &2341849012200123104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,13 +377,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05cd98e710ce4f44d877f70003d60cd4, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  currentHealth: 1
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthPoints: 4.5
+  currentHealthPoints: 0
   currentMoveSpeed: 10
   currentAttackSpeed: 1
   currentStrength: 1
-  currentDefence: 1
+  currentDefence: 2
   currentIncomingDamage: 1
 --- !u!114 &6984755896152334956
 MonoBehaviour:
@@ -355,8 +396,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: cf5f313cf379c834a92342094c83f02d, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
@@ -422,8 +463,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 741cd86f2f980cf4d85df0f443ba52ab, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   labelText: {fileID: 0}
   player: {fileID: 0}
 --- !u!95 &782606889
@@ -442,11 +483,44 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage:
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1369380510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6984755896152334966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983e4636ae10b4609b3cf2244fb724db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterName: Player
+  bubblePosition: {fileID: 619896424}
+  characterBubbleData: {fileID: 11400000, guid: d1bb73ebf1da1564fad44da0b426b51c, type: 2}
+  characterBubblePrefab: {fileID: 0}
+--- !u!114 &1369380518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6984755896152334966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2821ddff6a8bf34f97023acd608ad9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealthPoints: 0
+  maxHealthPoints: 0
+  defence: 0
+  incomingDamage: 0
+  playerStats: {fileID: 0}
 --- !u!1 &9131580928178502556
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +564,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29edaa2f49d230544bd0af72edf71361, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   mousePos: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}

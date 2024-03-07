@@ -23,7 +23,8 @@ public class EnemyController : MonoBehaviour, IEffectable
     [HideInInspector] public Rigidbody2D rb;
 
     // Movement speed of the enemy
-    protected float movementSpeed;
+    public float movementSpeed;
+    public float currentMovementSpeed;
 
     // Attack speed measured in damage per second
     private float attackSpeed;
@@ -37,16 +38,17 @@ public class EnemyController : MonoBehaviour, IEffectable
     public float maxHealth;
 
     // Status effect of the enemy
-    private enum EnemyStatus
-    {
-        Normal,
-        Stun,
-        Immobilized,
-        Poison
-    };
+    // private enum EnemyStatus
+    // {
+    //     Normal,
+    //     Stun,
+    //     Immobilized,
+    //     Poison
+    // };
     // private EnemyStatus status;
 
-    public StatusEffectData data;
+    public StatusEffectData effectOnEnemy;
+    public StatusEffectData effectEnemyApplies;
 
     // Expose the EnemyStateMachine for external access
     public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
@@ -67,6 +69,8 @@ public class EnemyController : MonoBehaviour, IEffectable
         attackSpeed = enemyStats.AttackSpeed;
         strength = enemyStats.Strength;
         maxHealth = enemyStats.HealthPoints;
+
+        currentMovementSpeed = movementSpeed;
 
         health = GetComponent<EnemyHealth>();
 
@@ -89,7 +93,7 @@ public class EnemyController : MonoBehaviour, IEffectable
     {
         // Update the state machine logic
         enemyStateMachine.Update();
-        if (data != null)
+        if (effectOnEnemy != null)
         {
             HandleEffect();
         }
@@ -108,13 +112,16 @@ public class EnemyController : MonoBehaviour, IEffectable
         return maxHealth;
     }
 
+
     private GameObject effectParticles;
     public void ApplyEffect(StatusEffectData data)
     {
-        this.data = data;
-        if (data.EffectParticles)
+        RemoveEffect();
+        this.effectOnEnemy = data;
+        currentMovementSpeed = data.movementPenalty;
+        if (data.effectParticles)
         {
-            effectParticles = Instantiate(data.EffectParticles, GetComponentInChildren<EnemyDamage>().transform);
+            effectParticles = Instantiate(data.effectParticles, GetComponentInChildren<EnemyDamage>().transform);
         }
     }
 
@@ -122,9 +129,10 @@ public class EnemyController : MonoBehaviour, IEffectable
     private float lastTickTime = 0f;
     public void RemoveEffect()
     {
-        data = null;
+        effectOnEnemy = null;
         currentEffectTime = 0;
         lastTickTime = 0;
+        currentMovementSpeed = movementSpeed;
         if (effectParticles != null)
         {
             Destroy(effectParticles);
@@ -135,17 +143,17 @@ public class EnemyController : MonoBehaviour, IEffectable
     {
         currentEffectTime += Time.deltaTime;
 
-        if (currentEffectTime >= data.Lifetime)
+        if (currentEffectTime >= effectOnEnemy.lifetime)
         {
             RemoveEffect();
         }
 
-        if (data == null) return;
+        if (effectOnEnemy == null) return;
 
-        if (data.DamageOverTimeAmount != 0 && currentEffectTime > lastTickTime + data.TickSpeed)
+        if (effectOnEnemy.damageOverTimeAmount != 0 && currentEffectTime > lastTickTime + effectOnEnemy.tickSpeed)
         {
             lastTickTime = currentEffectTime;
-            health.ChangeHealth(-data.DamageOverTimeAmount);
+            health.ChangeHealth(-effectOnEnemy.damageOverTimeAmount);
         }
     }
 }

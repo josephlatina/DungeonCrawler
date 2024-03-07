@@ -70,7 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 932b7ff2f0efbbc428e6854c38dfa793, type: 2}
   sprite: {fileID: 7371977559124324002}
-  data: {fileID: 11400000, guid: feee855c311bd2747b7b51266b1e0dd4, type: 2}
+  data: {fileID: 11400000, guid: 01f534db990e92047a28d809d7a61ba7, type: 2}
   countdown: 1
 --- !u!60 &1394467208963758866
 PolygonCollider2D:
