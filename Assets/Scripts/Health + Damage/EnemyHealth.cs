@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour
     void Awake()
     {
         enemyController = GetComponent<EnemyController>();
-        currentHealthPoints = enemyController.GetHealthPoints();
+        currentHealthPoints = enemyController.GetMaxHealthPoints();
     }
 
     public void ChangeHealth(float healthChange)

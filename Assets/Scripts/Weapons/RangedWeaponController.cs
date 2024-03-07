@@ -18,6 +18,7 @@ public class RangedWeaponController : WeaponItemController
     public float countdown = 1; // Duration of the attack cooldown.
     Vector3 direction; // Direction of the projectile.
 
+
     protected override void Start()
     {
         base.Start();
@@ -96,11 +97,17 @@ public class RangedWeaponController : WeaponItemController
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            col.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(-item.GetDamage());
+            IEffectable effectable = col.gameObject.GetComponentInParent<IEffectable>();
+            if (effectable != null)
+            {
+                effectable.ApplyEffect(data);
+            }
+            col.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(CalculateDamageDone());
             GetComponent<Collider2D>().enabled = false;
             GetComponentInChildren<SpriteRenderer>().enabled = false;
         }

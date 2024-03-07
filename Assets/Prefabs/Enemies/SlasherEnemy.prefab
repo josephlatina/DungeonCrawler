@@ -49,6 +49,8 @@ MonoBehaviour:
   enemyStats: {fileID: 11400000, guid: e4ca781559a939946901bd59e3a09218, type: 2}
   rb: {fileID: 0}
   strength: 0
+  maxHealth: 0
+  data: {fileID: 0}
 --- !u!114 &8463067697980369379
 MonoBehaviour:
   m_ObjectHideFlags: 0

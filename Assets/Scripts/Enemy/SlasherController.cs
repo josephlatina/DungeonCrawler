@@ -14,6 +14,7 @@ using UnityEngine;
 /// </summary>
 public class SlasherController : EnemyController
 {
+
     // FixedUpdate is used for physics-related updates
     private void FixedUpdate()
     {

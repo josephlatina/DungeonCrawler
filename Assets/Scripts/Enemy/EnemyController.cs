@@ -12,7 +12,7 @@ using UnityEngine;
 /// <summary>
 /// Controls the basic behavior of an enemy, such as movement and state transitions.
 /// </summary>
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IEffectable
 {
     [Header("Enemy Scriptable Object")]
     [Tooltip("EnemyScriptableObject for initial enemy stats")]
@@ -32,7 +32,9 @@ public class EnemyController : MonoBehaviour
     public float strength;
 
     // Health points of the enemy
-    private float healthPoints;
+    // private float currentHealthPoints;
+    protected EnemyHealth health;
+    public float maxHealth;
 
     // Status effect of the enemy
     private enum EnemyStatus
@@ -42,7 +44,9 @@ public class EnemyController : MonoBehaviour
         Immobilized,
         Poison
     };
-    private EnemyStatus status;
+    // private EnemyStatus status;
+
+    public StatusEffectData data;
 
     // Expose the EnemyStateMachine for external access
     public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
@@ -62,9 +66,11 @@ public class EnemyController : MonoBehaviour
         movementSpeed = enemyStats.MovementSpeed;
         attackSpeed = enemyStats.AttackSpeed;
         strength = enemyStats.Strength;
-        healthPoints = enemyStats.HealthPoints;
+        maxHealth = enemyStats.HealthPoints;
 
-        status = EnemyStatus.Normal;
+        health = GetComponent<EnemyHealth>();
+
+        // status = EnemyStatus.Normal;
     }
 
     /// <summary>
@@ -83,6 +89,10 @@ public class EnemyController : MonoBehaviour
     {
         // Update the state machine logic
         enemyStateMachine.Update();
+        if (data != null)
+        {
+            HandleEffect();
+        }
     }
 
     /// <summary>
@@ -93,8 +103,49 @@ public class EnemyController : MonoBehaviour
         this.enemyStats = enemySO;
     }
 
-    public float GetHealthPoints()
+    public float GetMaxHealthPoints()
     {
-        return healthPoints;
+        return maxHealth;
+    }
+
+    private GameObject effectParticles;
+    public void ApplyEffect(StatusEffectData data)
+    {
+        this.data = data;
+        if (data.EffectParticles)
+        {
+            effectParticles = Instantiate(data.EffectParticles, GetComponentInChildren<EnemyDamage>().transform);
+        }
+    }
+
+    private float currentEffectTime = 0f;
+    private float lastTickTime = 0f;
+    public void RemoveEffect()
+    {
+        data = null;
+        currentEffectTime = 0;
+        lastTickTime = 0;
+        if (effectParticles != null)
+        {
+            Destroy(effectParticles);
+        }
+    }
+
+    public void HandleEffect()
+    {
+        currentEffectTime += Time.deltaTime;
+
+        if (currentEffectTime >= data.Lifetime)
+        {
+            RemoveEffect();
+        }
+
+        if (data == null) return;
+
+        if (data.DamageOverTimeAmount != 0 && currentEffectTime > lastTickTime + data.TickSpeed)
+        {
+            lastTickTime = currentEffectTime;
+            health.ChangeHealth(-data.DamageOverTimeAmount);
+        }
     }
 }
