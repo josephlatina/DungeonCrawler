@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Crutch
   description: A perfectly balanced weapon, that funnily enough, also helps you balance
-  price: 10
+  price: 20
   quantity: 1
   gameObject: {fileID: 0}
-  itemSprite: {fileID: -1491157423, guid: c2d05ccd526638c4c86fde28754a41d4, type: 3}
+  itemSprite: {fileID: 21300000, guid: f361ff1540e20664297d4356becfbf85, type: 3}
   weaponType: 0
   damage: 0.5
   attackSpeed: 0
@@ -31,3 +31,4 @@ MonoBehaviour:
   defenceBoost: 0
   movementSpeedBoost: 0
   attackSpeedBoost: 0
+  prefab: {fileID: 0}
