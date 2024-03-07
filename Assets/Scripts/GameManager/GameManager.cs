@@ -231,8 +231,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         yield return StartCoroutine(Fade(0f, 1f, 2f, new Color(0f, 0f, 0f, 0.4f)));
 
         // Display level completed
-        yield return StartCoroutine(DisplayMessageRoutine("WELL DONE \n\n YOU'VE SURVIVED THIS DUNGEON LEVEL", Color.white, 5f));
-        yield return StartCoroutine(DisplayMessageRoutine("PRESS RETURN TO DESCEND \n\n FURTHER INTO THE NEXT LEVEL", Color.white, 5f));
+        yield return StartCoroutine(DisplayMessageRoutine("WELL DONE \n\n YOU'VE SURVIVED \n\n THIS DUNGEON LEVEL", Color.white, 5f));
+        yield return StartCoroutine(DisplayMessageRoutine("PRESS RETURN TO DESCEND \n\n FURTHER INTO THE \n\n NEXT LEVEL", Color.white, 5f));
 
         // Wait for player to press return key
         while (!Input.GetKeyDown(KeyCode.Return)) {
@@ -339,6 +339,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
         // Call static event that room has changed due to play start of level (with room being the entrance)
         StaticEventHandler.CallRoomChangedEvent(currentRoom);
+
+        // Set player roughly mid-room
+        player.gameObject.transform.position = new Vector3(currentRoom.lowerBounds.x + ((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 3f), (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
 
         // Display Dungeon Level Text
         StartCoroutine(DisplayDungeonLevelText());

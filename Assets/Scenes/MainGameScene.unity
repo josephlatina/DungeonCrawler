@@ -358,6 +358,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 784400277}
   dungeonLevelList:
   - {fileID: 11400000, guid: 7b32ec9a777e145f4b70b2533a2abdb8, type: 2}
+  - {fileID: 11400000, guid: 3e1927f32ffee4378a7c5987a2b4089e, type: 2}
   currentDungeonLevelListIndex: 0
   gameState: 0
   previousGameState: 0
@@ -530,9 +531,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1.0006515
-    height: 1
+    y: 0.7210402
+    width: 2.0053227
+    height: 2.0039895
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1639,7 +1640,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784400275}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -2116,7 +2117,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -15, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1306142810
