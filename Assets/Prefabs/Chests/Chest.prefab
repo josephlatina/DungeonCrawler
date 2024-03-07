@@ -185,7 +185,6 @@ MonoBehaviour:
   materializeColor: {r: 15.999729, g: 12.481464, b: 1.507828, a: 0}
   materializeTime: 3
   itemSpawnPoint: {fileID: 1120321011912460404}
-  interactSound: {fileID: 8300000, guid: 7eaf5dae52e5ad2479ffc3941c67d786, type: 3}
 --- !u!1 &6097707591506304498
 GameObject:
   m_ObjectHideFlags: 0

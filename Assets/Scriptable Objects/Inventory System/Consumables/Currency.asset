@@ -17,7 +17,7 @@ MonoBehaviour:
   price: 0
   quantity: 100
   gameObject: {fileID: 0}
-  itemSprite: {fileID: 21300000, guid: 2e3dae901f8502e45b76586dfc95aeb0, type: 3}
+  itemSprite: {fileID: 1818620689, guid: 80bd65d8bfbda3d4abfa7ff291ad65f4, type: 3}
   healthRestore: 0
   attackStrengthUpgrade: 0
   attackSpeedUpgrade: 0
@@ -29,4 +29,3 @@ MonoBehaviour:
   defenceBoost: 0
   movementSpeedBoost: 0
   attackSpeedBoost: 0
-  prefab: {fileID: 0}

@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Yarn.Unity;
 using Yarn.Unity.Addons.SpeechBubbles;
 using Random = UnityEngine.Random;
@@ -37,7 +36,6 @@ public class PlayerController : MonoBehaviour
     public PlayerWeaponController weaponController;
     [HideInInspector] public Vector3 mousePos;
     private Transform interactNPC;
-    private Transform onSaleItem;
 
     // Set this to the bubble dialogue view you want to control
     public BubbleDialogueView dialogueView;
@@ -52,24 +50,13 @@ public class PlayerController : MonoBehaviour
     }
 
     private PlayerStatus status;
-    [HideInInspector] public bool isMeleeAttacking, isRangedAttacking, isHealing, isRolling, isWalking;
-
-    [Header("Conditional Screen UI"), Space(5)]
-    public GameObject upgradeScreen;
+    [HideInInspector] public bool isMeleeAttacking, isRangedAttacking, isHealing, isRolling;
 
     [Header("Inventory System"), Space(5)]
     // Player Inventory System reference to Scriptable Object
     public InventorySystem playerInventory;
 
     public TextMeshProUGUI text;
-
-    [Header("Audio"), Space] public AudioClip pickupSound;
-    public AudioClip meleeAttackSound;
-    public AudioClip rangedAttackSound;
-    public AudioClip rollSound;
-    public AudioClip purchaseSound;
-    public List<AudioClip> footstepSound;
-    private AudioSource audioSource;
 
     /// <summary>
     /// Called once when script is initialized.
@@ -89,8 +76,6 @@ public class PlayerController : MonoBehaviour
         interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
         weaponController = GetComponentInChildren<PlayerWeaponController>();
         anim = GetComponentInChildren<Animator>();
-
-        audioSource = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -111,11 +96,6 @@ public class PlayerController : MonoBehaviour
     {
         // Update the state machine logic
         playerStateMachine.Update();
-
-        if (rb.velocity != Vector2.zero && !isWalking)
-        {
-            StartCoroutine(PlayFootStepSound());
-        }
     }
 
     /// <summary>
@@ -153,19 +133,6 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Play a random footstep sound with delay
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator PlayFootStepSound()
-    {
-        isWalking = true;
-        AudioClip randFootstep = footstepSound[Random.Range(0, footstepSound.Count)];
-        audioSource.PlayOneShot(randFootstep, .4f);
-        yield return new WaitForSeconds(randFootstep.length + .2f);
-        isWalking = false;
-    }
-
-    /// <summary>
     /// Moves the player in all 8 directions.
     /// </summary>
     public void Move()
@@ -182,7 +149,6 @@ public class PlayerController : MonoBehaviour
         if (!isHealing && !isRangedAttacking && !isMeleeAttacking && moveVal.x != 0 || moveVal.y != 0)
         {
             isRolling = value.isPressed;
-            audioSource.PlayOneShot(rollSound, .5f);
         }
     }
 
@@ -195,10 +161,6 @@ public class PlayerController : MonoBehaviour
         if (!isHealing && !isRangedAttacking && !isRolling)
         {
             isMeleeAttacking = value.isPressed;
-            if (playerInventory.isMeleeWeaponFull())
-            {
-                audioSource.PlayOneShot(meleeAttackSound, .5f);
-            }
         }
     }
 
@@ -211,11 +173,6 @@ public class PlayerController : MonoBehaviour
         if (!isHealing && !isMeleeAttacking && !isRolling)
         {
             isRangedAttacking = value.isPressed;
-
-            if (playerInventory.isRangeWeaponFull())
-            {
-                audioSource.PlayOneShot(rangedAttackSound, .5f);
-            }
         }
     }
 
@@ -227,8 +184,6 @@ public class PlayerController : MonoBehaviour
     {
         if (interactableObject)
         {
-            audioSource.PlayOneShot(pickupSound, .5f);
-
             ConsumableItemController consumable =
                 interactableObject.gameObject.GetComponent<ConsumableItemController>();
             WeaponItemController weapon =
@@ -236,10 +191,9 @@ public class PlayerController : MonoBehaviour
             Chest chest = interactableObject.gameObject.GetComponent<Chest>();
 
             if (chest != null)
-            {
-                chest.UseItem();
-            }
-
+                {
+                    chest.UseItem();
+                }
             if (consumable != null)
             {
                 HandleConsumable(consumable);
@@ -265,28 +219,15 @@ public class PlayerController : MonoBehaviour
 
                 playerInventory.SwapItemAt(weapon.item, weaponIndex);
                 weaponController.SetWeapon(weapon.gameObject, weaponIndex);
-            }
 
-            interactableObject = null;
+                interactableObject = null;
+            }
         }
-        else if (onSaleItem)
+        else if (interactNPC)
         {
-            InventoryItemController item = onSaleItem.GetComponent<InventoryItemController>();
-
-            if (item.inventoryItem.price < player.CurrentCurrency && item.itemLocked == false)
+            if (!dialogueView.IsShowingBubble)
             {
-                audioSource.PlayOneShot(purchaseSound);
-
-                // subtract item price from current player currency
-                player.CurrentCurrency -= item.inventoryItem.price;
-
-                item.tag = "interactableObject"; // adding the tag will trigger interactbleObject behaviour
-                onSaleItem.SetParent(null); // remove item relation from NPC object
-                onSaleItem = null; // set to null when interaction with item is done
-            }
-            else
-            {
-                Debug.Log("LOCKED");
+                StartNPCDialogue();
             }
         }
     }
@@ -313,6 +254,16 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
+    /// Listener for when dialogue for nodeName is complete
+    /// </summary>
+    /// <param name="nodeName">string name of node</param>
+    void HandleNodeComplete(string nodeName)
+    {
+        GetComponent<PlayerInput>().enabled = true;
+        dialogueRunner.onNodeComplete.RemoveListener(HandleNodeComplete);
+    }
+
+    /// <summary>
     /// Handles how consumables should be used
     /// </summary>
     /// <param name="consumable">ConsumableItemController reference</param>
@@ -322,7 +273,12 @@ public class PlayerController : MonoBehaviour
 
         if (consumable.item.itemName == "Pill")
         {
-            upgradeScreen.SetActive(true);
+            // listener for when node is complete
+            dialogueRunner.onNodeComplete.AddListener(HandleNodeComplete);
+
+            // pause game when pill is picked up
+            GetComponent<PlayerInput>().enabled = false;
+            dialogueRunner.StartDialogue("PillUpgrade");
         }
         else
         {
@@ -392,10 +348,6 @@ public class PlayerController : MonoBehaviour
         {
             interactableObject = other.transform;
         }
-        else if (other.CompareTag("onSaleItem"))
-        {
-            onSaleItem = other.transform;
-        }
         else if (other.CompareTag("NPC") && interactNPC == null)
         {
             interactNPC = other.transform;
@@ -409,13 +361,10 @@ public class PlayerController : MonoBehaviour
         {
             interactableObject = other.transform;
         }
-        else if (other.CompareTag("onSaleItem"))
-        {
-            onSaleItem = other.transform;
-        }
         else if (other.CompareTag("NPC") && interactNPC == null)
         {
             interactNPC = other.transform;
+            StartNPCDialogue();
         }
     }
 
@@ -424,10 +373,6 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "interactableObject" && interactableObject != null)
         {
             interactableObject = null;
-        }
-        else if (other.CompareTag("onSaleItem"))
-        {
-            onSaleItem = null;
         }
         else if (other.CompareTag("NPC") && interactNPC != null)
         {

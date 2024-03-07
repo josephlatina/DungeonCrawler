@@ -82,10 +82,10 @@ PrefabInstance:
     - target: {fileID: 7681548566630017952, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
       propertyPath: weaponSpawnByLevelList.Array.data[0].spawnableObjectRatios.Array.data[0].dungeonObject
       value: 
-      objectReference: {fileID: 3990666252009524102, guid: f88137b90aa231c43949d4fad01510cd, type: 3}
+      objectReference: {fileID: 11400000, guid: bab14cc87f0a6684da4621773e1e69ce, type: 2}
     - target: {fileID: 7681548566630017952, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
       propertyPath: weaponSpawnByLevelList.Array.data[0].spawnableObjectRatios.Array.data[1].dungeonObject
       value: 
-      objectReference: {fileID: 875347354800326474, guid: 6ef4196a1cc03884b8c3e5ddb83f3d57, type: 3}
+      objectReference: {fileID: 11400000, guid: 4d40ad07e12700c45a29561437b5782a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}

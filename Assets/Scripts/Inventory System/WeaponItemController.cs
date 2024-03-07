@@ -12,7 +12,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class WeaponItemController : InventoryItemController
+public class WeaponItemController : MonoBehaviour
 {
     // Reference to the ScriptableObject of the Weapon Item type
     public WeaponItem item;
@@ -24,7 +24,7 @@ public class WeaponItemController : InventoryItemController
     protected virtual void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
-        playerController =
+        PlayerController playerController =
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
@@ -35,10 +35,6 @@ public class WeaponItemController : InventoryItemController
             sprite.sprite = item.itemSprite;
             sprite.color = Color.white;
         }
-        
-        priceText.GetComponent<Renderer>().sortingLayerName = "Instances";
-        inventoryItem = item;
-        base.Start();
     }
 
     private void OnTriggerExit2D(Collider2D other)

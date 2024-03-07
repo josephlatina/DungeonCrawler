@@ -16,6 +16,11 @@ public class MeleeWeaponController : WeaponItemController
     Vector3 direction; // Direction of the weapon swing.
     private Transform playerParent; // Reference to the parent transform of the player.
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     /// <summary>
     /// Called when the weapon is picked up.
     /// </summary>
