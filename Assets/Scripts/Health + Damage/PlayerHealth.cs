@@ -25,7 +25,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void ChangeHealth(float healthChange)
     {
-        currentHealthPoints += healthChange + (defence / 2);
+        currentHealthPoints += healthChange;
+        if (healthChange < 0) {
+            playerController.Hurt();
+        }
         OnHealthChanged?.Invoke();
 
         if (currentHealthPoints <= 0)

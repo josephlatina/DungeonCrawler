@@ -70,6 +70,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip rangedAttackSound;
     public AudioClip rollSound;
     public AudioClip purchaseSound;
+    public AudioClip hurtSound;
+    public AudioClip healSound;
+    public AudioClip deathSound;
     public List<AudioClip> footstepSound;
     private AudioSource audioSource;
 
@@ -391,6 +394,7 @@ public class PlayerController : MonoBehaviour
         if (!isHealing)
         {
             isHealing = value.isPressed;
+            audioSource.PlayOneShot(healSound, 0.4f);
         }
     }
 
@@ -457,6 +461,12 @@ public class PlayerController : MonoBehaviour
     public void Death()
     {
         paused = true;
+        audioSource.PlayOneShot(deathSound, 0.4f);
         deathScreen.SetActive(true);
+    }
+
+    public void Hurt()
+    {
+        audioSource.PlayOneShot(hurtSound, 0.4f);
     }
 }
