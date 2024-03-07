@@ -15,6 +15,8 @@ using UnityEngine;
 public class PlayerHealState : IState
 {
     private PlayerController player;
+    private PlayerHealth health;
+    private ConsumableItem potion;
 
     private float healCounter;
 
@@ -31,7 +33,13 @@ public class PlayerHealState : IState
     {
         // Change player's color to green when entering the heal state.
         player.anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().color = Color.green;
-        // Heal(); // TODO: Implement this when the health system is implemented.
+        // Get the player's PlayerHealth component
+        health = player.GetComponent<PlayerHealth>();
+        potion = player.playerInventory.GetConsumable();
+        if (potion)
+        {
+            Heal();
+        }
         Debug.Log("Player is healing");
     }
 
@@ -79,6 +87,12 @@ public class PlayerHealState : IState
                 player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.idleState);
             }
         }
+    }
+
+    void Heal()
+    {
+        health.ChangeHealth(potion.healthRestore);
+        player.playerInventory.EmptyConsumable();
     }
 
     /// <summary>

@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Game Manager class that is of singleton mono behaviour type
@@ -44,11 +45,11 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         // Call base class
         base.Awake();
 
-        player = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();    
-    
+        player = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
+
     }
 
-     private void OnEnable()
+    private void OnEnable()
     {
         // Subscribe to room changed event.
         StaticEventHandler.OnRoomChanged += StaticEventHandler_OnRoomChanged;
@@ -72,22 +73,25 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     /// <summary>
     /// Start method - called before the first frame update
     /// </summary>
-    private void Start() {
+    private void Start()
+    {
         // keep track of previous and current game states
         previousGameState = GameState.gameStarted;
-        gameState = GameState.gameStarted; 
+        gameState = GameState.gameStarted;
     }
 
     /// <summary>
     /// Update method - called once per frame
     /// </summary>
-    private void Update() {
+    private void Update()
+    {
         // handle each game state
         HandleGameState();
 
         // For Testing, reset and reload the dungeon level
         // TODO: remove at the end
-        if (Input.GetKeyDown(KeyCode.R)) {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             gameState = GameState.gameStarted;
         }
     }
@@ -95,10 +99,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     /// <summary>
     /// Handle different game states
     /// </summary>
-    private void HandleGameState() {
+    private void HandleGameState()
+    {
 
         // Handle all the different game states
-        switch (gameState) {
+        switch (gameState)
+        {
 
             // Game Started State
             case GameState.gameStarted:
@@ -113,13 +119,15 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     /// <summary>
     /// Handles the play state for the dungeon level
     /// </summary>
-    private void PlayDungeonLevel(int dungeonLevelListIndex) {
+    private void PlayDungeonLevel(int dungeonLevelListIndex)
+    {
 
         // Try to build dungeon for current level and instantiate it
         bool dungeonBuiltSuccessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevelList[dungeonLevelListIndex]);
 
         // If not successful, log an error
-        if (!dungeonBuiltSuccessfully) {
+        if (!dungeonBuiltSuccessfully)
+        {
             Debug.LogError("Couldn't build dungeon from specified rooms and node graphs");
         }
 
@@ -130,7 +138,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     /// <summary>
     /// Get the current dungeon level
     /// </summary>
-    public DungeonLevelSO GetCurrentDungeonLevel() {
+    public DungeonLevelSO GetCurrentDungeonLevel()
+    {
 
         return dungeonLevelList[currentDungeonLevelListIndex];
     }
@@ -151,7 +160,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         currentRoom = room;
     }
 
-     /// <summary>
+    /// <summary>
     /// Get the player
     /// </summary>
     public PlayerController GetPlayer()
@@ -167,21 +176,32 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         player = currentPlayer;
     }
 
+    public void QuitGame()
+    {
+        SceneManager.LoadScene("Home");
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("MainGameScene");
+    }
+
     #region Validation
 
     // Only to be executed in the unity editor
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
 
     /// <summary>
     /// Validation method for this class
     /// </summary>
-    private void OnValidate() {
+    private void OnValidate()
+    {
 
         // Check if dungeon level list is populated and not null
         HelperUtilities.ValidateCheckEnumerableValues(this, nameof(dungeonLevelList), dungeonLevelList);
     }
 
-    #endif
+#endif
 
     #endregion Validation
 }

@@ -54,7 +54,7 @@ public class PlayerRangedState : IState
         RangedAttackCooldown();
 
         // Check conditions to transition to a different state.
-        if (!player.isRangedAttacking)
+        if (player.isRangedAttacking == false)
         {
             if (player.moveVal.x > 0.1f || player.moveVal.y > 0.1f)
             {
@@ -125,8 +125,9 @@ public class PlayerRangedState : IState
     /// </summary>
     void Attack()
     {
-        // Debug draw the ray for visualizing the ranged attack.
-        // Debug.DrawRay(rangedWeapon.position, rotation, Color.yellow, 0.25f);
+        // Enable the ranged trigger collider to detect hits.
+
         player.weaponController.FireRanged();
+
     }
 }

@@ -23,8 +23,10 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerStateMachine playerStateMachine;
     [HideInInspector] public Rigidbody2D rb;
-    public PlayerStats player;
+    [HideInInspector] public PlayerStats player;
+    private PlayerHealth playerHealth;
     public Animator anim;
+    private bool paused;
 
     [HideInInspector] public Vector2 moveVal;
     public float rollSpeed;
@@ -55,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Conditional Screen UI"), Space(5)]
     public GameObject upgradeScreen;
+    public GameObject deathScreen;
 
     [Header("Inventory System"), Space(5)]
     // Player Inventory System reference to Scriptable Object
@@ -67,6 +70,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip rangedAttackSound;
     public AudioClip rollSound;
     public AudioClip purchaseSound;
+    public AudioClip hurtSound;
+    public AudioClip healSound;
+    public AudioClip deathSound;
     public List<AudioClip> footstepSound;
     private AudioSource audioSource;
 
@@ -83,8 +89,7 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<PlayerStats>();
         // Set initial status to normal
         status = PlayerStatus.Normal;
-        // Get player object's melee trigger
-        // meleeTrigger = transform.Find("AimPivot/MeleeCollider").GetComponent<Collider2D>();
+        playerHealth = GetComponent<PlayerHealth>();
         // Get player object's interaction trigger
         interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
         weaponController = GetComponentInChildren<PlayerWeaponController>();
@@ -102,6 +107,7 @@ public class PlayerController : MonoBehaviour
         playerStateMachine.Initialize(playerStateMachine.idleState);
         // Initialize inventory
         playerInventory.InitializeInventory();
+        paused = false;
     }
 
     /// <summary>
@@ -109,12 +115,15 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        // Update the state machine logic
-        playerStateMachine.Update();
-
-        if (rb.velocity != Vector2.zero && !isWalking)
+        if (!paused)
         {
-            StartCoroutine(PlayFootStepSound());
+            // Update the state machine logic
+            playerStateMachine.Update();
+
+            if (rb.velocity != Vector2.zero && !isWalking)
+            {
+                StartCoroutine(PlayFootStepSound());
+            }
         }
     }
 
@@ -124,7 +133,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        playerStateMachine.FixedUpdate();
+        if (!paused)
+        {
+            playerStateMachine.FixedUpdate();
+        }
     }
 
     /// <summary>
@@ -351,7 +363,8 @@ public class PlayerController : MonoBehaviour
         float strength = 0f,
         int defence = 0, float incomingDamage = 0f)
     {
-        player.CurrentHealth += health;
+        playerHealth.ChangeHealth(health);
+        // player.CurrentHealthPoints += health;
         player.CurrentMoveSpeed += moveSpeed;
         player.CurrentAttackSpeed += attackSpeed;
         player.CurrentStrength += strength;
@@ -381,6 +394,7 @@ public class PlayerController : MonoBehaviour
         if (!isHealing)
         {
             isHealing = value.isPressed;
+            audioSource.PlayOneShot(healSound, 0.4f);
         }
     }
 
@@ -442,5 +456,17 @@ public class PlayerController : MonoBehaviour
             string node = npcController.randomizeDialogue ? npcController.GetRandomNode() : npcController.GetNode();
             dialogueRunner.StartDialogue(node);
         }
+    }
+
+    public void Death()
+    {
+        paused = true;
+        audioSource.PlayOneShot(deathSound, 0.4f);
+        deathScreen.SetActive(true);
+    }
+
+    public void Hurt()
+    {
+        audioSource.PlayOneShot(hurtSound, 0.4f);
     }
 }

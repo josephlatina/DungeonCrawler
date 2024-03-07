@@ -51,9 +51,8 @@ public class ConsumableItemController : InventoryItemController
     {
         if (other.gameObject.CompareTag("interactTrigger"))
         {
-            if (gameObject.tag == "interactableObject")
-            {
-                // check if consumable slots are full replace, if not pick up
+            if (gameObject.CompareTag("interactableObject"))
+            { // check if consumable slots are full replace, if not pick up
                 if (playerInventory.isConsumableFull())
                 {
                     actionText.text = $"Press E to replace consumable item with {item.itemName}";

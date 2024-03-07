@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
     private float attackSpeed;
 
     // Strength: amount of damage inflicted by the enemy
-    private float strength;
+    public float strength;
 
     // Health points of the enemy
     private float healthPoints;
@@ -43,6 +43,9 @@ public class EnemyController : MonoBehaviour
         Poison
     };
     private EnemyStatus status;
+
+    public Vector2 knockbackVelocity;
+    public float knockbackDuration;
 
     // Expose the EnemyStateMachine for external access
     public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
@@ -76,6 +79,11 @@ public class EnemyController : MonoBehaviour
         enemyStateMachine.Initialize(enemyStateMachine.idleState);
     }
 
+    protected virtual void FixedUpdate()
+    {
+
+    }
+
     /// <summary>
     /// Called once per frame.
     /// </summary>
@@ -91,5 +99,20 @@ public class EnemyController : MonoBehaviour
     public void EnemyInitialization(EnemyScriptableObject enemySO, int enemySpawnNumber, DungeonLevelSO dungeonLevel)
     {
         this.enemyStats = enemySO;
+    }
+
+    public float GetHealthPoints()
+    {
+        return healthPoints;
+    }
+
+    public void Knockback(Vector2 velocity, float duration)
+    {
+        if (knockbackDuration > 0)
+        {
+            return;
+        }
+        knockbackVelocity = velocity;
+        knockbackDuration = duration;
     }
 }
