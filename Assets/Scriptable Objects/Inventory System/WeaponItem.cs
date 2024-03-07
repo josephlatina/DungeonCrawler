@@ -85,4 +85,14 @@ public class WeaponItem : InventoryItem
     {
         return attackSpeed;
     }
+
+    public float GetDamage()
+    {
+        return damage;
+    }
+
+    public float GetKnockback()
+    {
+        return knockback;
+    }
 }

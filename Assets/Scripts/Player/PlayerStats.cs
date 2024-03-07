@@ -14,8 +14,11 @@ using UnityEngine;
 /// </summary>
 public class PlayerStats : MonoBehaviour
 {
+    // Represents the player's maximum health
+    [SerializeField] private float maxHealthPoints;
+
     // Represents the player's current health
-    [SerializeField] private float currentHealth;
+    [SerializeField] private float currentHealthPoints;
 
     // Represents the player's current movement speed
     [SerializeField] private float currentMoveSpeed;
@@ -36,17 +39,33 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int currentCurrency;
 
     /// <summary>
-    /// Getter and setter for CurrentHealth.
+    /// Getter and setter for MaxHealthPoints.
     /// </summary>
-    public float CurrentHealth
+    public float MaxHealthPoints
     {
-        get { return currentHealth; }
+        get { return maxHealthPoints; }
         set
         {
             // Check if the value has changed
-            if (currentHealth != value)
+            if (maxHealthPoints != value)
             {
-                currentHealth = value;
+                maxHealthPoints = value;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Getter and setter for CurrentHealthPoints.
+    /// </summary>
+    public float CurrentHealthPoints
+    {
+        get { return currentHealthPoints; }
+        set
+        {
+            // Check if the value has changed
+            if (currentHealthPoints != value)
+            {
+                currentHealthPoints = value;
             }
         }
     }

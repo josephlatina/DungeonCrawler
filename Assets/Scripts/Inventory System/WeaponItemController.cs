@@ -21,7 +21,7 @@ public class WeaponItemController : InventoryItemController
     public SpriteRenderer sprite;
 
 
-    protected virtual void Start()
+    protected override void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
         playerController =
@@ -35,7 +35,7 @@ public class WeaponItemController : InventoryItemController
             sprite.sprite = item.itemSprite;
             sprite.color = Color.white;
         }
-        
+
         priceText.GetComponent<Renderer>().sortingLayerName = "Instances";
         inventoryItem = item;
         base.Start();
