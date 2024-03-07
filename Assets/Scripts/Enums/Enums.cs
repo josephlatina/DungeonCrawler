@@ -29,10 +29,10 @@ public enum GameState {
     gameStarted,
     playingLevel,
     bossStage,
-    engagingBoss,
     levelCompleted,
     gameWon,
     gameLost,
     dungeonOverviewMap,
-    restartGame
+    restartGame,
+    gamePaused
 }

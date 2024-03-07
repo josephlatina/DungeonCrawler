@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement; // used to reload the main scene
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Game Manager class that is of singleton mono behaviour type
@@ -22,6 +23,11 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     [Space(10)]
     [Header("GAMEOBJECT REFERENCES")]
     #endregion Header GAMEOBJECT REFERENCES
+
+    #region Tooltip
+    [Tooltip("Populate with pause menu gameobject in hierarchy")]
+    #endregion Tooltip
+    [SerializeField] private GameObject pauseMenu;
 
     #region Tooltip
     [Tooltip("Populate with the MessageText TMPro component in the FadeScreenUI")]
@@ -141,6 +147,22 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
                 break;
 
+            // While playing the current level,
+            case GameState.playingLevel:
+                
+                if (Input.GetKeyDown(KeyCode.Escape)) {
+                    PauseGameMenu();
+                }
+                break;
+
+            // While engaging the boss,
+            case GameState.bossStage:
+                
+                if (Input.GetKeyDown(KeyCode.Escape)) {
+                    PauseGameMenu();
+                }
+                break;
+
             // Level Completed
             case GameState.levelCompleted:
                 // Display level completed UI
@@ -170,14 +192,51 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             case GameState.restartGame:
                 RestartGame();
                 break;
+
+            // While in paused mode,
+            case GameState.gamePaused:
+                
+                if (Input.GetKeyDown(KeyCode.Escape)) {
+                    PauseGameMenu();
+                }
+                break;
         }
     }
 
+    /// <summary>
+    /// Enter the boss room
+    /// </summary>
     private void EnterBossRoom() {
 
         // set the game state to boss stage. This should trigger SpawnEnemies() in EnemySpawner script
         gameState = GameState.bossStage;
         StartCoroutine(BossStage());
+    }
+
+    /// <summary>
+    /// Pause game menu
+    /// </summary>
+    public void PauseGameMenu() {
+
+        // disable player movement and surface the pause menu
+        if (gameState != GameState.gamePaused) {
+            pauseMenu.SetActive(true);
+            player.GetComponent<PlayerInput>().enabled = false;
+
+            // Set game state
+            previousGameState = gameState;
+            gameState = GameState.gamePaused;
+        }
+        // otherwise if already paused, then unpause game
+        else if (gameState == GameState.gamePaused) {
+            // enable player movement again and hide the pause menu
+            pauseMenu.SetActive(false);
+            player.GetComponent<PlayerInput>().enabled = true;
+
+            // Set game state
+            gameState = previousGameState;
+            previousGameState = GameState.gamePaused;
+        }
     }
 
     /// <summary>
@@ -231,7 +290,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         yield return StartCoroutine(Fade(0f, 1f, 2f, new Color(0f, 0f, 0f, 0.4f)));
 
         // Display level completed
-        yield return StartCoroutine(DisplayMessageRoutine("WELL DONE \n\n YOU'VE SURVIVED \n\n THIS DUNGEON LEVEL", Color.white, 5f));
+        yield return StartCoroutine(DisplayMessageRoutine("WELL DONE \n\n YOU'VE SURVIVED \n\n THIS DUNGEON LEVEL", Color.white, 2f));
         yield return StartCoroutine(DisplayMessageRoutine("PRESS RETURN TO DESCEND \n\n FURTHER INTO THE \n\n NEXT LEVEL", Color.white, 5f));
 
         // Wait for player to press return key
@@ -284,10 +343,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
         // Display level completed
         yield return StartCoroutine(DisplayMessageRoutine("WELL DONE \n\n YOU HAVE DEFEATED THE DUNGEON", Color.white, 3f));
-        yield return StartCoroutine(DisplayMessageRoutine("PRESS RETURN TO RESTART THE GAME", Color.white, 5f));
+        yield return StartCoroutine(DisplayMessageRoutine("PRESS RETURN TO \n\n GO BACK TO MAIN MENU", Color.white, 5f));
 
-        // Set game to restart
-        gameState = GameState.restartGame;
+        // Go back to main menu
+        SceneManager.LoadScene("Home");
 
     }
 
@@ -307,10 +366,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
         // Display level completed
         yield return StartCoroutine(DisplayMessageRoutine("YOU HAVE UNFORTUNATELY SUCCUMBED TO THE DARKNESS OF THE SANITORIUM", Color.white, 2f));
-        yield return StartCoroutine(DisplayMessageRoutine("PRESS RETURN TO RESTART THE GAME", Color.white, 5f));
+        yield return StartCoroutine(DisplayMessageRoutine("PRESS RETURN TO \n\n GO BACK TO MAIN MENU", Color.white, 5f));
 
-        // Set game to restart
-        gameState = GameState.restartGame;
+        // Go back to main menu
+        SceneManager.LoadScene("Home");;
 
     }
 
