@@ -72,13 +72,19 @@ public class InventorySystem : MonoBehaviour
     // Watch https://www.youtube.com/watch?v=oJAE6CbsQQA
     public void DisplayInventory()
     {
-        for (int i = 0; i < items.Count(); i++)
+        for (int i = 0; i < items.Count - 1; i++)
         {
-            GameObject itemSlot = inventoryGridLayoutGroup.transform.GetChild(i).transform.GetChild(0).gameObject;
+            Transform itemSlot = inventoryGridLayoutGroup.transform.GetChild(i).transform.GetChild(0);
+            Image item = itemSlot.GetComponent<Image>();
             // Debug.Log(itemSlot);
             if (items[i])
             {
-                itemSlot.GetComponent<Image>().sprite = items[i].itemSprite;
+                item.sprite = items[i].itemSprite;
+                item.gameObject.SetActive(true);
+            }
+            else
+            {
+              item.gameObject.SetActive(false);
             }
         }
     }

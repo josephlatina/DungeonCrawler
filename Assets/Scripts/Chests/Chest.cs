@@ -50,6 +50,8 @@ public class Chest : MonoBehaviour, IUseable
     // holds reference to the chest item component
     private ChestItem chestItem;
 
+    [SerializeField] private AudioClip interactSound;
+
     private void Awake() {
 
         // Cache components
@@ -113,11 +115,21 @@ public class Chest : MonoBehaviour, IUseable
 
             case ChestState.closed:
                 OpenChest();
+                PlaySound();
                 break;
 
             default:
                 return;
         }
+    }
+
+    /// <summary>
+    /// Play chest sound
+    /// </summary>
+    private void PlaySound()
+    {
+        AudioSource playerAudioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
+        playerAudioSource.PlayOneShot(interactSound);
     }
 
     /// <summary>
