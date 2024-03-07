@@ -44,7 +44,7 @@ public class PlayerMoveState : IState
         }
 
         // Check conditions to transition to other states based on player actions.
-        if (player.isRolling && !player.isMeleeAttacking && !player.isRangedAttacking && player.isHealing)
+        if (player.isRolling && !player.isMeleeAttacking && !player.isRangedAttacking && !player.isHealing)
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.rollState);
         }
@@ -54,7 +54,7 @@ public class PlayerMoveState : IState
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.meleeState);
         }
 
-        if (player.isRangedAttacking && !player.isMeleeAttacking && !player.isRangedAttacking && player.isHealing)
+        if (player.isRangedAttacking && !player.isMeleeAttacking && !player.isRolling && !player.isHealing)
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.rangedState);
         }

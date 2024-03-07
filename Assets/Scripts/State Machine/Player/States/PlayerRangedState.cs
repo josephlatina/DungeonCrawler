@@ -54,7 +54,7 @@ public class PlayerRangedState : IState
         RangedAttackCooldown();
 
         // Check conditions to transition to a different state.
-        if (!player.isRangedAttacking)
+        if (player.isRangedAttacking == false)
         {
             if (player.moveVal.x > 0.1f || player.moveVal.y > 0.1f)
             {
