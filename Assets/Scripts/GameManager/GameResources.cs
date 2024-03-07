@@ -85,6 +85,12 @@ public class GameResources : MonoBehaviour
     public GameObject consumablePrefab;
 
     #region Tooltip
+    [Tooltip("Price prefab")]
+    #endregion
+    // This resource is holding the prefab for price item
+    public GameObject pricePrefab;
+
+    #region Tooltip
     [Tooltip("Pill")]
     #endregion
     public ConsumableItem pillSO;
