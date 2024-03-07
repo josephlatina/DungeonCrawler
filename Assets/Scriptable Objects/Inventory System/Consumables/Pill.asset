@@ -17,11 +17,11 @@ MonoBehaviour:
   price: 90
   quantity: 1
   gameObject: {fileID: 0}
-  itemSprite: {fileID: 667925829, guid: 80bd65d8bfbda3d4abfa7ff291ad65f4, type: 3}
+  itemSprite: {fileID: 21300000, guid: 10c61f0c7d7131544b3e35b7298b61ef, type: 3}
   healthRestore: 0
   attackStrengthUpgrade: 1.52
   attackSpeedUpgrade: 1.22
-  defenceUpgrade: 2.23
+  defenceUpgrade: 2
   knockback: 0
   abilityPoison: 0
   abilityStun: 0
@@ -29,3 +29,4 @@ MonoBehaviour:
   defenceBoost: 0
   movementSpeedBoost: 0
   attackSpeedBoost: 0
+  prefab: {fileID: 0}

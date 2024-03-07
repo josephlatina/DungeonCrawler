@@ -8,9 +8,7 @@ using Update = UnityEngine.PlayerLoop.Update;
 public class SaleItemsSpawner : MonoBehaviour
 {
     public List<Transform> itemsForSale;
-    public GameObject consumableItemPrefab;
-
-    public List<ConsumableItem> spawnableConsumableItems;
+    public List<GameObject> spawnableConsumableItems;
     public List<GameObject> spawnableWeaponItems;
 
     // Start is called before the first frame update
@@ -19,8 +17,8 @@ public class SaleItemsSpawner : MonoBehaviour
         foreach (Transform item in itemsForSale)
         {
             InventoryItemController randItem = GetRandomItem().GetComponent<InventoryItemController>();
-            randItem.tag = "onSaleItem";
-            Instantiate(randItem.gameObject, item);
+            GameObject newItem = Instantiate(randItem.gameObject, item);
+            newItem.tag = "onSaleItem";
         }
     }
 
@@ -30,10 +28,10 @@ public class SaleItemsSpawner : MonoBehaviour
         if (Random.Range(0, 2) == 0)
         {
             // choose random consumable from given
-            ConsumableItem randItem = spawnableConsumableItems[Random.Range(0, spawnableConsumableItems.Count)];
-            consumableItemPrefab.GetComponent<ConsumableItemController>().item = randItem;
+            GameObject randItem = spawnableConsumableItems[Random.Range(0, spawnableConsumableItems.Count)];
+            ConsumableItemController itemControl = randItem.GetComponent<ConsumableItemController>();
 
-            return consumableItemPrefab;
+            return itemControl.gameObject;
         }
         else
         {
