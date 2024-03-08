@@ -28,12 +28,11 @@ public enum ChestState {
 public enum GameState {
     gameStarted,
     playingLevel,
-    engagingEnemies,
     bossStage,
-    engagingBoss,
     levelCompleted,
     gameWon,
     gameLost,
     dungeonOverviewMap,
-    restartGame
+    restartGame,
+    gamePaused
 }

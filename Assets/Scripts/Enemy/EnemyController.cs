@@ -50,6 +50,9 @@ public class EnemyController : MonoBehaviour, IEffectable
     public StatusEffectData effectOnEnemy;
     public StatusEffectData effectEnemyApplies;
 
+    public Vector2 knockbackVelocity;
+    public float knockbackDuration;
+
     // Expose the EnemyStateMachine for external access
     public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
 
@@ -84,6 +87,11 @@ public class EnemyController : MonoBehaviour, IEffectable
     {
         // Initialize the state machine with the idle state
         enemyStateMachine.Initialize(enemyStateMachine.idleState);
+    }
+
+    protected virtual void FixedUpdate()
+    {
+
     }
 
     /// <summary>
@@ -155,5 +163,15 @@ public class EnemyController : MonoBehaviour, IEffectable
             lastTickTime = currentEffectTime;
             health.ChangeHealth(-effectOnEnemy.damageOverTimeAmount);
         }
+    }
+
+    public void Knockback(Vector2 velocity, float duration)
+    {
+        if (knockbackDuration > 0)
+        {
+            return;
+        }
+        knockbackVelocity = velocity;
+        knockbackDuration = duration;
     }
 }

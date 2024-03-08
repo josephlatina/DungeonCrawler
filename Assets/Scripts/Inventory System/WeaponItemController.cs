@@ -12,7 +12,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class WeaponItemController : MonoBehaviour
+public class WeaponItemController : InventoryItemController
 {
     // Reference to the ScriptableObject of the Weapon Item type
     public WeaponItem item;
@@ -24,10 +24,10 @@ public class WeaponItemController : MonoBehaviour
     [SerializeField] protected StatusEffectData data;
 
 
-    protected virtual void Start()
+    protected override void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
-        PlayerController playerController =
+        playerController =
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerStats = playerController.GetComponent<PlayerStats>();
         playerInventory = playerController.playerInventory;
@@ -39,6 +39,10 @@ public class WeaponItemController : MonoBehaviour
             sprite.sprite = item.itemSprite;
             sprite.color = Color.white;
         }
+
+        priceText.GetComponent<Renderer>().sortingLayerName = "Instances";
+        inventoryItem = item;
+        base.Start();
     }
 
     private void OnTriggerExit2D(Collider2D other)

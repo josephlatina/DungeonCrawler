@@ -34,6 +34,9 @@ public class PlayerStats : MonoBehaviour
 
     // Represents the player's current incoming damage
     [SerializeField] private float currentIncomingDamage;
+    
+    // Represents the player's current currency
+    [SerializeField] private int currentCurrency;
 
     /// <summary>
     /// Getter and setter for MaxHealthPoints.
@@ -143,6 +146,22 @@ public class PlayerStats : MonoBehaviour
             if (currentIncomingDamage != value)
             {
                 currentIncomingDamage = value;
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Getter and setter for CurrentCurrency.
+    /// </summary>
+    public int CurrentCurrency
+    {
+        get { return currentCurrency; }
+        set
+        {
+            // Check if the value has changed
+            if (currentCurrency != value)
+            {
+                currentCurrency = value;
             }
         }
     }

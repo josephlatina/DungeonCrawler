@@ -17,11 +17,6 @@ public class MeleeWeaponController : WeaponItemController
     Vector3 direction; // Direction of the weapon swing.
     private Transform playerParent; // Reference to the parent transform of the player.
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     /// <summary>
     /// Called when the weapon is picked up.
     /// </summary>
@@ -69,6 +64,12 @@ public class MeleeWeaponController : WeaponItemController
                 effectable.ApplyEffect(data);
             }
             col.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(CalculateDamageDone());
+            if (item.GetKnockback() > 0)
+            {
+                Vector2 dir = col.transform.position - transform.position;
+                Debug.Log(dir.normalized * item.GetKnockback());
+                col.gameObject.GetComponentInParent<EnemyController>().Knockback(item.GetKnockback() * dir.normalized, 0.75f);
+            }
             GetComponent<Collider2D>().enabled = false;
         }
     }

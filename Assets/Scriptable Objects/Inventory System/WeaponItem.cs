@@ -90,4 +90,9 @@ public class WeaponItem : InventoryItem
     {
         return damage;
     }
+
+    public float GetKnockback()
+    {
+        return knockback;
+    }
 }

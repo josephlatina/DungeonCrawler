@@ -11,18 +11,20 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class ConsumableItemController : MonoBehaviour
+public class ConsumableItemController : InventoryItemController
 {
+    [Header("Item Settings"), Space]
     // Reference to the ScriptableObject of the Consumable Item type
     public ConsumableItem item;
+
     private InventorySystem playerInventory;
     private TextMeshProUGUI actionText;
     public SpriteRenderer sprite;
 
-    void Start()
+    protected override void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
-        PlayerController playerController =
+        playerController =
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
@@ -34,6 +36,10 @@ public class ConsumableItemController : MonoBehaviour
             sprite.sprite = item.itemSprite;
             sprite.color = Color.white;
         }
+
+        priceText.GetComponent<Renderer>().sortingLayerName = "Instances";
+        inventoryItem = item;
+        base.Start();
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -58,5 +64,4 @@ public class ConsumableItemController : MonoBehaviour
             }
         }
     }
-
 }
