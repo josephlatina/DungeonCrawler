@@ -16,6 +16,7 @@ public class ConsumableItem : InventoryItem
     [Space(5)]
     [Tooltip("How many hearts(1) or half hearts(0.5) the item restores. Value is 0 if ability doesn't exist")]
     public float healthRestore;
+    public int currencyIncrease;
 
     [Header("Permanent Power Upgrade Attributes (PERK)")] [Space(5)]
     public float attackStrengthUpgrade;

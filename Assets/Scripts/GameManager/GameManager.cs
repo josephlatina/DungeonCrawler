@@ -505,6 +505,27 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         player = currentPlayer;
     }
 
+    /// <summary>
+    /// Spawn an item
+    /// </summary>
+    public void SpawnItem(Vector3 spawnPosition) {
+        // Instantiate the item
+        ConsumableItemController consumableItemController = GameResources.Instance.consumablePrefab.GetComponent<ConsumableItemController>();
+        GameObject lootItemGameObject = Instantiate(GameResources.Instance.chestItemPrefab, spawnPosition, Quaternion.identity);
+        lootItemGameObject.tag = "interactableObject";
+        ChestItem lootItem = lootItemGameObject.GetComponent<ChestItem>();
+
+        // Instantiate teeth
+        ConsumableItemController itemController = lootItemGameObject.AddComponent<ConsumableItemController>();
+        itemController.priceView = consumableItemController.priceView;
+        itemController.priceText = consumableItemController.priceText;
+        itemController.item = GameResources.Instance.currencySO;
+        itemController.sprite = consumableItemController.sprite;
+        lootItemGameObject.AddComponent<CircleCollider2D>();
+
+        lootItem.Initialize(itemController.item.itemSprite, spawnPosition, Color.yellow);
+    }
+
     public void QuitGame()
     {
         SceneManager.LoadScene("Home");
