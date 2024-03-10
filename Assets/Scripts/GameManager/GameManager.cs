@@ -523,7 +523,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         itemController.sprite = consumableItemController.sprite;
         lootItemGameObject.AddComponent<CircleCollider2D>();
 
-        lootItem.Initialize(GameResources.Instance.currencyIcon, spawnPosition, Color.yellow);
+        lootItem.Initialize(itemController.item.itemSprite, spawnPosition, Color.yellow);
     }
 
     public void QuitGame()
