@@ -29,6 +29,8 @@ public class InstantiatedRoom : MonoBehaviour
     [HideInInspector] public Tilemap collisionTilemap;
     // holds info on the box collider bounds around the room
     [HideInInspector] public Bounds roomColliderBounds;
+    // 2D array for storing movement penalties to be used in AStar pathfinding
+    [HideInInspector] public int[,] aStarMovementPenalty;
 
     // reference to the box collider component
     private BoxCollider2D boxCollider2D;
@@ -71,6 +73,9 @@ public class InstantiatedRoom : MonoBehaviour
 
         // close off unused doorways
         BlockOffUnusedDoorWays();
+
+        // Populate penalty array for every obstacles found in this room
+        AddObstaclesAndPreferredPaths();
 
         // we don't want the collision tilemap layer to be displayed
         DisableCollisionTilemapRenderer();
@@ -213,6 +218,49 @@ public class InstantiatedRoom : MonoBehaviour
             }
         }
     } 
+
+    /// <summary>
+    /// Add penalty for every obstacles found in the room for AStar pathfinding (pentalty of 0 for every tile that is unwalkable)
+    /// </summary>
+    private void AddObstaclesAndPreferredPaths()
+    {
+        // this penalty array will be populated with wall obstacles 
+        aStarMovementPenalty = new int[room.templateUpperBounds.x - room.templateLowerBounds.x + 1, room.templateUpperBounds.y - room.templateLowerBounds.y + 1];
+
+        // Loop through all grid squares in this room
+        for (int x = 0; x < (room.templateUpperBounds.x - room.templateLowerBounds.x + 1); x++)
+        {
+            for (int y = 0; y < (room.templateUpperBounds.y - room.templateLowerBounds.y + 1); y++)
+            {
+                // Set default movement penalty for grid sqaures
+                aStarMovementPenalty[x, y] = Settings.defaultAStarMovementPenalty;
+
+                // Add obstacles for collision tiles the enemy can't walk on
+                // get the collision tilemap tile at the specified grid position
+                TileBase tile = collisionTilemap.GetTile(new Vector3Int(x + room.templateLowerBounds.x, y + room.templateLowerBounds.y, 0));
+
+                // check if this tile is one of the unwalkable collision tiles array we've added in the game resources
+                foreach (TileBase collisionTile in GameResources.Instance.enemyUnwalkableCollisionTilesArray)
+                {
+                    if (tile == collisionTile)
+                    {
+                        // if so, then set the penalty to 0
+                        aStarMovementPenalty[x, y] = 0;
+                        break;
+                    }
+                }
+
+                // Add preferred path for enemies (1 is the preferred path value, default value for
+                // a grid location is specified in the Settings).
+                if (tile == GameResources.Instance.preferredEnemyPathTile)
+                {
+                    aStarMovementPenalty[x, y] = Settings.preferredPathAStarMovementPenalty;
+                }
+
+            }
+        }
+
+    }
 
     /// <summary>
     /// Disable the collision tilemap renderer to hide the component

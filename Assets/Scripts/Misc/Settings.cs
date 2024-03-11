@@ -32,4 +32,9 @@ public static class Settings
     #region ANIMATOR PARAMETERS
     public static int use = Animator.StringToHash("use");
     #endregion
+
+    #region ASTAR PATHFINDING PARAMETERS
+    public const int defaultAStarMovementPenalty = 40;
+    public const int preferredPathAStarMovementPenalty = 1;
+    #endregion
 }

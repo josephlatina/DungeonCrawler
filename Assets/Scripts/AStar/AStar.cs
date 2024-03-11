@@ -141,12 +141,12 @@ public static class AStar
                     int newCostToNeighbour;
 
                     // Get the movement penalty
-                    // Unwalkable paths have a value of 0. Default movement penalty is set in
-                    // Settings and applies to other grid squares.
-                    // int movementPenaltyForGridSpace = instantiatedRoom.aStarMovementPenalty[validNeighbourNode.gridPosition.x, validNeighbourNode.gridPosition.y];
+                    // Unwalkable paths have a value of 0. Default movement penalty is set in settings and applies to walkable tiles
+                    int movementPenaltyForGridSpace = instantiatedRoom.aStarMovementPenalty[validNeighbourNode.gridPosition.x, validNeighbourNode.gridPosition.y];
 
-                    // add on to current node's gCost with the distance between these two nodes
-                    newCostToNeighbour = currentNode.gCost + GetDistance(currentNode, validNeighbourNode);
+                    // add on to current node's gCost with the distance between these two nodes as well
+                    // also add penalty cost to the total cost
+                    newCostToNeighbour = currentNode.gCost + GetDistance(currentNode, validNeighbourNode) + movementPenaltyForGridSpace;
 
                     // Check if neighbour node is already in the open list
                     bool isValidNeighbourNodeInOpenList = openNodeList.Contains(validNeighbourNode);
@@ -201,14 +201,14 @@ public static class AStar
         Node neighbourNode = gridNodes.GetGridNode(neighbourNodeXPosition, neighbourNodeYPosition);
 
         // check for obstacle at that position
-        // int movementPenaltyForGridSpace = instantiatedRoom.aStarMovementPenalty[neighbourNodeXPosition, neighbourNodeYPosition];
+        int movementPenaltyForGridSpace = instantiatedRoom.aStarMovementPenalty[neighbourNodeXPosition, neighbourNodeYPosition];
 
         // check for moveable obstacle at that position
         // int itemObstacleForGridSpace = instantiatedRoom.aStarItemObstacles[neighbourNodeXPosition, neighbourNodeYPosition];
 
 
-        // if neighbour is an obstacle or neighbour is already in the closed list then skip. otherwise, return node
-        if (closedNodeHashSet.Contains(neighbourNode))
+        // if neighbour is an obstacle (penalty of 0) or neighbour is already in the closed list then skip. otherwise, return node
+        if (movementPenaltyForGridSpace == 0 || closedNodeHashSet.Contains(neighbourNode))
         {
             return null;
         }
