@@ -374,6 +374,9 @@ MonoBehaviour:
   rangedAttackSound: {fileID: 8300000, guid: a3898d2bcfe2a014abf99420704b0030, type: 3}
   rollSound: {fileID: 8300000, guid: c1a69c846d9d72d4f91cec7d40f6b623, type: 3}
   purchaseSound: {fileID: 8300000, guid: 028c320a8800174418f0437dbdb4292a, type: 3}
+  hurtSound: {fileID: 0}
+  healSound: {fileID: 0}
+  deathSound: {fileID: 0}
   footstepSound:
   - {fileID: 8300000, guid: b4b1118b80aa4b74b8d0f9af43a96b48, type: 3}
   - {fileID: 8300000, guid: d7a568a7f879ecd40a176334568793f4, type: 3}
@@ -513,7 +516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterName: Player
-  bubblePosition: {fileID: 0}
+  bubblePosition: {fileID: 619896424}
   characterBubbleData: {fileID: 11400000, guid: d1bb73ebf1da1564fad44da0b426b51c, type: 2}
   characterBubblePrefab: {fileID: 0}
 --- !u!82 &102686626468149486
