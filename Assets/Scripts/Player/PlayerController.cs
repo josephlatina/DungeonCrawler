@@ -348,6 +348,10 @@ public class PlayerController : MonoBehaviour, IEffectable
         {
             upgradeScreen.SetActive(true);
         }
+        else if (consumable.item.itemName == "Teeth") 
+        {
+            player.CurrentCurrency += consumable.item.currencyIncrease;
+        }
         else
         {
             InventoryItem dropItem = playerInventory.GetItemAt(2);

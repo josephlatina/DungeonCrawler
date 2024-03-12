@@ -19,7 +19,10 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHealthPoints <= 0)
         {
+            Transform childTransform = transform.Find("Body");
+            Vector3 enemyPosition = childTransform.position;
             Destroy(gameObject);
+            GameManager.Instance.SpawnItem(enemyPosition);
         }
     }
 }
