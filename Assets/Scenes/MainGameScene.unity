@@ -5425,6 +5425,18 @@ PrefabInstance:
       propertyPath: itemsForSale.Array.data[5]
       value: 
       objectReference: {fileID: 1856120119}
+    - target: {fileID: 2193794874400841173, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
+      propertyPath: spawnableConsumableItems.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193794874400841173, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
+      propertyPath: spawnableConsumableItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 2360887131288210285, guid: c41c5ee056fbcef40b619d22d61c6144, type: 3}
+    - target: {fileID: 2193794874400841173, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
+      propertyPath: spawnableConsumableItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 996181946665298737, guid: d3bd97a1781acdf46b61f188eab889ef, type: 3}
     - target: {fileID: 2336627268966236151, guid: 133ebcadfa31b7f43af7f6b8b97ab9f7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

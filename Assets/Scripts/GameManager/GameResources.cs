@@ -101,9 +101,9 @@ public class GameResources : MonoBehaviour
     public ConsumableItem healthPotionSO;
 
     #region Tooltip
-    [Tooltip("Scalpel")]
+    [Tooltip("Currency")]
     #endregion
-    public ConsumableItem scalpelSO;
+    public ConsumableItem currencySO;
     
     #region Tooltip
     [Tooltip("Populate with health potion sprite")]
@@ -122,4 +122,10 @@ public class GameResources : MonoBehaviour
     #endregion
     // This resource is for chest item sprite - pill
     public Sprite pillIcon;
+
+    #region Tooltip
+    [Tooltip("Populate with currency sprite")]
+    #endregion
+    // This resource is for chest item sprite - currency
+    public Sprite currencyIcon;
 }
