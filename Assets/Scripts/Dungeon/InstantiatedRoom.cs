@@ -31,6 +31,8 @@ public class InstantiatedRoom : MonoBehaviour
     [HideInInspector] public Bounds roomColliderBounds;
     // 2D array for storing movement penalties to be used in AStar pathfinding
     [HideInInspector] public int[,] aStarMovementPenalty;
+    // used to store position of moveable obstacle items
+    [HideInInspector] public int[,] aStarItemObstacles;
 
     // reference to the box collider component
     private BoxCollider2D boxCollider2D;
@@ -76,7 +78,7 @@ public class InstantiatedRoom : MonoBehaviour
 
         // Populate penalty array for every obstacles found in this room
         AddObstaclesAndPreferredPaths();
-
+        
         // we don't want the collision tilemap layer to be displayed
         DisableCollisionTilemapRenderer();
     }

@@ -59,6 +59,10 @@ public static class AStar
 
             // Retrieve the node in the open list with the lowest fCost and set it as the current node
             Node currentNode = openNodeList[0];
+
+            if (currentNode == null) {
+                break;
+            }
             // Remove the node from the list
             openNodeList.RemoveAt(0);
 

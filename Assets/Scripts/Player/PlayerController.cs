@@ -148,6 +148,14 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
+    /// Returns the player position
+    /// </summary>
+    public Vector3 GetPlayerPosition()
+    {
+        return transform.position;
+    }
+
+    /// <summary>
     /// Listens for the player input and updates moveVal to the current value of movement input.
     /// </summary>
     /// <param name="value">Movement vector sent from Player Input component.</param>

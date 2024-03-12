@@ -11,6 +11,10 @@ GameObject:
   - component: {fileID: 8427603901733194542}
   - component: {fileID: 8415736795681347316}
   - component: {fileID: 8463067697980369379}
+  - component: {fileID: -3203307972015967106}
+  - component: {fileID: -7168373500246847400}
+  - component: {fileID: -56499371353917746}
+  - component: {fileID: -4019387347782417040}
   m_Layer: 0
   m_Name: SlasherEnemy
   m_TagString: Enemy
@@ -48,7 +52,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: e4ca781559a939946901bd59e3a09218, type: 2}
   rb: {fileID: 0}
+  movementToPositionEvent: {fileID: 0}
   strength: 0
+  knockbackVelocity: {x: 0, y: 0}
+  knockbackDuration: 0
 --- !u!114 &8463067697980369379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +70,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyController: {fileID: 0}
   currentHealthPoints: 0
+--- !u!114 &-3203307972015967106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811109188997130492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d37e121ec8c84a7f82c02064e39f95a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0
+  updateFrameNumber: 1
+--- !u!50 &-7168373500246847400
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811109188997130492}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 400
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!114 &-56499371353917746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811109188997130492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa030e1c3fe249639bc43279f0e345f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4019387347782417040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811109188997130492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac84935fdd7f419597157969b2f76df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5231178730306845711
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,9 +228,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 5
-  m_AngularDrag: 0.05
+  m_Mass: 400
+  m_LinearDrag: 0
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 1

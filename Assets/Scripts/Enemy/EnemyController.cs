@@ -17,13 +17,16 @@ public class EnemyController : MonoBehaviour
     [Header("Enemy Scriptable Object")]
     [Tooltip("EnemyScriptableObject for initial enemy stats")]
     [SerializeField]
-    private EnemyScriptableObject enemyStats;
+    public EnemyScriptableObject enemyStats;
 
     private EnemyStateMachine enemyStateMachine;
     [HideInInspector] public Rigidbody2D rb;
 
     // Movement speed of the enemy
     protected float movementSpeed;
+    // Enemy Movement AI component references
+    private EnemyMovementAI enemyMovementAI;
+    [HideInInspector] public MovementToPositionEvent movementToPositionEvent;
 
     // Attack speed measured in damage per second
     private float attackSpeed;
@@ -68,6 +71,10 @@ public class EnemyController : MonoBehaviour
         healthPoints = enemyStats.HealthPoints;
 
         status = EnemyStatus.Normal;
+
+        // Cache the enemy movement components
+        enemyMovementAI = GetComponent<EnemyMovementAI>();
+        movementToPositionEvent = GetComponent<MovementToPositionEvent>();
     }
 
     /// <summary>
@@ -99,6 +106,14 @@ public class EnemyController : MonoBehaviour
     public void EnemyInitialization(EnemyScriptableObject enemySO, int enemySpawnNumber, DungeonLevelSO dungeonLevel)
     {
         this.enemyStats = enemySO;
+    }
+
+    /// <summary>
+    /// Getter method for movement speed
+    /// </summary>
+    public float GetMoveSpeed()
+    {
+        return movementSpeed;
     }
 
     public float GetHealthPoints()

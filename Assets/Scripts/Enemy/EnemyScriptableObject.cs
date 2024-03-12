@@ -51,4 +51,9 @@ public class EnemyScriptableObject : ScriptableObject
     [Tooltip("The gameobject prefab for the enemy)")]
     #endregion Tooltip
     public GameObject prefab;
+
+    #region Tooltip
+    [Tooltip("Distance to the player before enemy starts chasing")]
+    #endregion
+    public float chaseDistance = 50f;
 }
