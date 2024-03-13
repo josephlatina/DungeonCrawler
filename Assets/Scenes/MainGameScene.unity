@@ -2410,6 +2410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalEnemy (No Status Effects)
       objectReference: {fileID: 0}
+    - target: {fileID: 8415736795681347316, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8427603901733194542, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
       propertyPath: m_RootOrder
       value: 3
