@@ -20,12 +20,16 @@ public class WeaponItemController : InventoryItemController
     private TextMeshProUGUI actionText;
     public SpriteRenderer sprite;
 
+    protected PlayerStats playerStats;
+    [SerializeField] protected StatusEffectData statusEffect;
+
 
     protected override void Start()
     {
         item.gameObject = gameObject; // reference current game object to scriptable object
         playerController =
             GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerController>();
+        playerStats = playerController.GetComponent<PlayerStats>();
         playerInventory = playerController.playerInventory;
         actionText = playerController.text;
         // set the sorting layer
@@ -84,4 +88,10 @@ public class WeaponItemController : InventoryItemController
             // playerInventory.DisplayInventory();
         }
     }
+
+    public float CalculateDamageDone()
+    {
+        return item.GetDamage() * playerStats.CurrentStrength * -1;
+    }
+
 }

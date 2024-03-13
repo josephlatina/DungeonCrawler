@@ -351,6 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   player: {fileID: 0}
+  playerHealth: {fileID: 0}
   anim: {fileID: 0}
   moveVal: {x: 0, y: 0}
   rollSpeed: 35
@@ -395,7 +396,7 @@ MonoBehaviour:
   currentMoveSpeed: 10
   currentAttackSpeed: 1
   currentStrength: 1
-  currentDefence: 1
+  currentDefence: 2
   currentIncomingDamage: 1
   currentCurrency: 99
 --- !u!114 &6984755896152334956

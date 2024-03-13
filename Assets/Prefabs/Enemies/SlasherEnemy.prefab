@@ -48,7 +48,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: e4ca781559a939946901bd59e3a09218, type: 2}
   rb: {fileID: 0}
+  movementSpeed: 0
+  currentMovementSpeed: 0
   strength: 0
+  maxHealth: 0
+  effectOnEnemy: {fileID: 0}
+  effectEnemyApplies: {fileID: 0}
+  knockbackVelocity: {x: 0, y: 0}
+  knockbackDuration: 0
 --- !u!114 &8463067697980369379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,3 +206,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449a09826578879479a8b6ffa31c7a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: feee855c311bd2747b7b51266b1e0dd4, type: 2}
