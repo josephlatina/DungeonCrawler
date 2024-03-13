@@ -94,16 +94,14 @@ public class InventorySystem : MonoBehaviour
             if (items[i])
             {
                 item.sprite = items[i].itemSprite;
-                item.gameObject.SetActive(true);
-            }
-            else if (!items[i])
-            {
-                itemSlot.GetComponent<Image>().sprite = null;
+                item.enabled = true;
+
             }
             else
             {
-                item.gameObject.SetActive(false);
-            }
+                itemSlot.GetComponent<Image>().sprite = null;
+                item.enabled = false;
+            }   
         }
     }
 
