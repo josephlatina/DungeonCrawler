@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour, IEffectable
     private PlayerStateMachine playerStateMachine;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public PlayerStats player;
+    private SpriteRenderer characterSprite;
     private PlayerHealth playerHealth;
     public Animator anim;
     private bool paused;
@@ -47,15 +48,6 @@ public class PlayerController : MonoBehaviour, IEffectable
     public StatusEffectData effectOnPlayer;
     private float currentMoveSpeed;
 
-    private enum PlayerStatus
-    {
-        Normal,
-        Stun,
-        Immobilized,
-        Poison
-    }
-
-    private PlayerStatus status;
     [HideInInspector] public bool isMeleeAttacking, isRangedAttacking, isHealing, isRolling, isWalking;
 
     [Header("Conditional Screen UI"), Space(5)]
@@ -90,13 +82,13 @@ public class PlayerController : MonoBehaviour, IEffectable
         rb = GetComponent<Rigidbody2D>();
         // Get player object's stats script
         player = GetComponent<PlayerStats>();
-        // Set initial status to normal
-        status = PlayerStatus.Normal;
         playerHealth = GetComponent<PlayerHealth>();
         // Get player object's interaction trigger
         interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
         weaponController = GetComponentInChildren<PlayerWeaponController>();
         anim = GetComponentInChildren<Animator>();
+        characterSprite = transform.Find("CharacterSprite").GetComponent<SpriteRenderer>();
+        initialSpriteColor = characterSprite.color;
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -125,15 +117,16 @@ public class PlayerController : MonoBehaviour, IEffectable
         {
             // Update the state machine logic
             playerStateMachine.Update();
-            if (effectOnPlayer != null)
-            {
-                HandleEffect();
-            }
+
 
             if (rb.velocity != Vector2.zero && !isWalking)
             {
                 StartCoroutine(PlayFootStepSound());
             }
+        }
+        if (effectOnPlayer != null)
+        {
+            HandleEffect();
         }
     }
 
@@ -166,13 +159,16 @@ public class PlayerController : MonoBehaviour, IEffectable
     void OnMove(InputValue value)
     {
         moveVal = value.Get<Vector2>();
-        if (moveVal.x > 0)
+        if (!paused)
         {
-            anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().flipX = false;
-        }
-        else if (moveVal.x < 0)
-        {
-            anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().flipX = true;
+            if (moveVal.x > 0)
+            {
+                anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else if (moveVal.x < 0)
+            {
+                anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().flipX = true;
+            }
         }
     }
 
@@ -194,7 +190,7 @@ public class PlayerController : MonoBehaviour, IEffectable
     /// </summary>
     public void Move()
     {
-        rb.velocity = moveVal * player.CurrentMoveSpeed;
+        rb.velocity = moveVal * currentMoveSpeed;
     }
 
     /// <summary>
@@ -348,7 +344,7 @@ public class PlayerController : MonoBehaviour, IEffectable
         {
             upgradeScreen.SetActive(true);
         }
-        else if (consumable.item.itemName == "Teeth") 
+        else if (consumable.item.itemName == "Teeth")
         {
             player.CurrentCurrency += consumable.item.currencyIncrease;
         }
@@ -475,37 +471,60 @@ public class PlayerController : MonoBehaviour, IEffectable
     }
 
     private GameObject effectParticles;
+    private Color initialSpriteColor;
+    private float prevAnimSpeed;
     public void ApplyEffect(StatusEffectData data)
     {
         RemoveEffect();
-        this.effectOnPlayer = data;
-        if (data.movementPenalty != -1)
+        effectOnPlayer = data;
+
+        if (data.poisonParticles)
+        {
+            effectParticles = Instantiate(data.poisonParticles, transform);
+        }
+        if (data.effectName == "Immobilized")
         {
             currentMoveSpeed = data.movementPenalty;
+            characterSprite.color = data.immobilizedEffect;
         }
-        if (data.effectParticles)
+        if (data.effectName == "Stun")
         {
-            effectParticles = Instantiate(data.effectParticles, transform);
+            characterSprite.color = data.stunEffect;
+            prevAnimSpeed = anim.speed;
+            anim.speed = 0;
+            paused = true;
         }
     }
 
     private float currentEffectTime = 0f;
     private float lastTickTime = 0f;
 
-
     public void RemoveEffect()
     {
-        effectOnPlayer = null;
         currentEffectTime = 0f;
         lastTickTime = 0f;
-        if (effectOnPlayer.movementPenalty != -1)
+        if (effectOnPlayer)
         {
-            currentMoveSpeed = player.CurrentMoveSpeed;
+            if (effectOnPlayer.movementPenalty != -1)
+            {
+                currentMoveSpeed = player.CurrentMoveSpeed;
+            }
+            if (effectOnPlayer.effectName == "Immobilized" || effectOnPlayer.effectName == "Stun")
+            {
+                characterSprite.color = initialSpriteColor;
+                paused = false;
+            }
+            if (effectOnPlayer.effectName == "Stun")
+            {
+                anim.speed = prevAnimSpeed;
+            }
+
         }
         if (effectParticles != null)
         {
             Destroy(effectParticles);
         }
+        effectOnPlayer = null;
     }
 
     private void HandleEffect()
@@ -525,7 +544,7 @@ public class PlayerController : MonoBehaviour, IEffectable
             playerHealth.ChangeHealth(-effectOnPlayer.damageOverTimeAmount);
         }
     }
-    
+
     public void Death()
     {
         paused = true;

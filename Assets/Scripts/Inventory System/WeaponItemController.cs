@@ -21,7 +21,7 @@ public class WeaponItemController : InventoryItemController
     public SpriteRenderer sprite;
 
     protected PlayerStats playerStats;
-    [SerializeField] protected StatusEffectData data;
+    [SerializeField] protected StatusEffectData statusEffect;
 
 
     protected override void Start()

@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e642c6987fc1e4fa01f9f107c78338, type: 3}
   m_Name: StunEffect
   m_EditorClassIdentifier: 
-  EffectName: 
-  DamageOverTimeAmount: 0
-  MovementPenalty: 0
-  TickSpeed: 0
-  Lifetime: 0
-  EffectParticles: {fileID: 0}
+  effectName: Stun
+  damageOverTimeAmount: 0
+  movementPenalty: -1
+  tickSpeed: 1
+  lifetime: 3
+  immobilizedHealth: 0
+  poisonParticles: {fileID: 0}
+  immobilizedEffect: {r: 0, g: 0, b: 0, a: 0}
+  stunEffect: {r: 1, g: 0.92, b: 0.016, a: 1}

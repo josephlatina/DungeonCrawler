@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour, IEffectable
     [Tooltip("EnemyScriptableObject for initial enemy stats")]
     [SerializeField]
     private EnemyScriptableObject enemyStats;
+    private SpriteRenderer enemySprite;
 
     private EnemyStateMachine enemyStateMachine;
     [HideInInspector] public Rigidbody2D rb;
@@ -36,6 +37,7 @@ public class EnemyController : MonoBehaviour, IEffectable
     // private float currentHealthPoints;
     protected EnemyHealth health;
     public float maxHealth;
+    private bool paused;
 
     // Status effect of the enemy
     // private enum EnemyStatus
@@ -67,6 +69,8 @@ public class EnemyController : MonoBehaviour, IEffectable
         // Get the object's Rigidbody2D component
         rb = GetComponentInChildren<Rigidbody2D>();
 
+        enemySprite = GetComponentInChildren<SpriteRenderer>();
+
         // Set the enemy's stats based on the EnemyScriptableObject
         movementSpeed = enemyStats.MovementSpeed;
         attackSpeed = enemyStats.AttackSpeed;
@@ -76,8 +80,7 @@ public class EnemyController : MonoBehaviour, IEffectable
         currentMovementSpeed = movementSpeed;
 
         health = GetComponent<EnemyHealth>();
-
-        // status = EnemyStatus.Normal;
+        initialSpriteColor = enemySprite.color;
     }
 
     /// <summary>
@@ -99,8 +102,11 @@ public class EnemyController : MonoBehaviour, IEffectable
     /// </summary>
     public virtual void Update()
     {
-        // Update the state machine logic
-        enemyStateMachine.Update();
+        if (!paused)
+        {
+            // Update the state machine logic
+            enemyStateMachine.Update();
+        }
         if (effectOnEnemy != null)
         {
             HandleEffect();
@@ -122,14 +128,31 @@ public class EnemyController : MonoBehaviour, IEffectable
 
 
     private GameObject effectParticles;
+    private Color initialSpriteColor;
     public void ApplyEffect(StatusEffectData data)
     {
         RemoveEffect();
-        this.effectOnEnemy = data;
-        currentMovementSpeed = data.movementPenalty;
-        if (data.effectParticles)
+        effectOnEnemy = data;
+
+        if (data.poisonParticles)
         {
-            effectParticles = Instantiate(data.effectParticles, GetComponentInChildren<EnemyDamage>().transform);
+            effectParticles = Instantiate(data.poisonParticles, GetComponentInChildren<EnemyDamage>().transform);
+        }
+        if (data.effectName == "Health Steal")
+        {
+            GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().ChangeHealth(0.5f);
+        }
+        if (data.effectName == "Immobilized")
+        {
+            currentMovementSpeed = data.movementPenalty;
+            enemySprite.color = data.immobilizedEffect;
+        }
+        if (data.effectName == "Stun")
+        {
+            enemySprite.color = data.stunEffect;
+            //prevAnimSpeed = anim.speed;
+            //anim.speed = 0;
+            paused = true;
         }
     }
 
@@ -137,14 +160,29 @@ public class EnemyController : MonoBehaviour, IEffectable
     private float lastTickTime = 0f;
     public void RemoveEffect()
     {
-        effectOnEnemy = null;
         currentEffectTime = 0;
         lastTickTime = 0;
-        currentMovementSpeed = movementSpeed;
+        if (effectOnEnemy)
+        {
+            if (effectOnEnemy.movementPenalty != -1)
+            {
+                currentMovementSpeed = enemyStats.MovementSpeed;
+            }
+            if (effectOnEnemy.effectName == "Immobilized" || effectOnEnemy.effectName == "Stun")
+            {
+                enemySprite.color = initialSpriteColor;
+                paused = false;
+            }
+            if (effectOnEnemy.effectName == "Stun")
+            {
+                //anim.speed = prevAnimSpeed;
+            }
+        }
         if (effectParticles != null)
         {
             Destroy(effectParticles);
         }
+        effectOnEnemy = null;
     }
 
     public void HandleEffect()

@@ -13,5 +13,7 @@ public class StatusEffectData : ScriptableObject
 
     public int immobilizedHealth;
 
-    public GameObject effectParticles;
+    public GameObject poisonParticles;
+    public Color immobilizedEffect;
+    public Color stunEffect;
 }

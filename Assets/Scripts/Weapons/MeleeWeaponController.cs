@@ -61,7 +61,7 @@ public class MeleeWeaponController : WeaponItemController
             IEffectable effectable = col.GetComponent<IEffectable>();
             if (effectable != null)
             {
-                effectable.ApplyEffect(data);
+                effectable.ApplyEffect(statusEffect);
             }
             col.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(CalculateDamageDone());
             if (item.GetKnockback() > 0)

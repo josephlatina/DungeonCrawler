@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e642c6987fc1e4fa01f9f107c78338, type: 3}
   m_Name: PoisonEffect
   m_EditorClassIdentifier: 
-  EffectName: Poison
-  DamageOverTimeAmount: 0.5
-  MovementPenalty: 0
-  TickSpeed: 2
-  Lifetime: 3
-  EffectParticles: {fileID: 0}
+  effectName: Poison
+  damageOverTimeAmount: 0.5
+  movementPenalty: -1
+  tickSpeed: 1
+  lifetime: 3
+  immobilizedHealth: 0
+  poisonParticles: {fileID: 6454555500249207420, guid: d2eae5b3a2527d44a8a4a09852acdd71, type: 3}
+  immobilizedEffect: {r: 0, g: 0, b: 0, a: 0}
+  stunEffect: {r: 0, g: 0, b: 0, a: 0}
