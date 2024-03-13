@@ -160,6 +160,7 @@ MonoBehaviour:
   inventoryItem: {fileID: 0}
   item: {fileID: 11400000, guid: bab14cc87f0a6684da4621773e1e69ce, type: 2}
   sprite: {fileID: 6704431098750362222}
+  statusEffect: {fileID: 0}
   aim: {fileID: 0}
 --- !u!61 &4442802324741195054
 BoxCollider2D:
