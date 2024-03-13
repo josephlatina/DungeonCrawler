@@ -53,7 +53,7 @@ MonoBehaviour:
   strength: 0
   maxHealth: 0
   effectOnEnemy: {fileID: 0}
-  effectEnemyApplies: {fileID: 11400000, guid: aa5e5971b871d5240b6c34501cd41647, type: 2}
+  effectEnemyApplies: {fileID: 0}
   knockbackVelocity: {x: 0, y: 0}
   knockbackDuration: 0
 --- !u!114 &8463067697980369379

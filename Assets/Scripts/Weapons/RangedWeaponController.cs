@@ -36,6 +36,7 @@ public class RangedWeaponController : WeaponItemController
         transform.parent = null;
         aim = null;
         transform.localRotation = Quaternion.identity;
+        GetComponent<Collider2D>().enabled = true;
     }
 
     /// <summary>

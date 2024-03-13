@@ -478,21 +478,24 @@ public class PlayerController : MonoBehaviour, IEffectable
         RemoveEffect();
         effectOnPlayer = data;
 
-        if (data.poisonParticles)
+        if (effectOnPlayer)
         {
-            effectParticles = Instantiate(data.poisonParticles, transform);
-        }
-        if (data.effectName == "Immobilized")
-        {
-            currentMoveSpeed = data.movementPenalty;
-            characterSprite.color = data.immobilizedEffect;
-        }
-        if (data.effectName == "Stun")
-        {
-            characterSprite.color = data.stunEffect;
-            prevAnimSpeed = anim.speed;
-            anim.speed = 0;
-            paused = true;
+            if (data.poisonParticles)
+            {
+                effectParticles = Instantiate(data.poisonParticles, transform);
+            }
+            if (data.effectName == "Immobilized")
+            {
+                currentMoveSpeed = data.movementPenalty;
+                characterSprite.color = data.immobilizedEffect;
+            }
+            if (data.effectName == "Stun")
+            {
+                characterSprite.color = data.stunEffect;
+                prevAnimSpeed = anim.speed;
+                anim.speed = 0;
+                paused = true;
+            }
         }
     }
 

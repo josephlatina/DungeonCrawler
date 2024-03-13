@@ -134,25 +134,28 @@ public class EnemyController : MonoBehaviour, IEffectable
         RemoveEffect();
         effectOnEnemy = data;
 
-        if (data.poisonParticles)
+        if (effectOnEnemy)
         {
-            effectParticles = Instantiate(data.poisonParticles, GetComponentInChildren<EnemyDamage>().transform);
-        }
-        if (data.effectName == "Health Steal")
-        {
-            GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().ChangeHealth(0.5f);
-        }
-        if (data.effectName == "Immobilized")
-        {
-            currentMovementSpeed = data.movementPenalty;
-            enemySprite.color = data.immobilizedEffect;
-        }
-        if (data.effectName == "Stun")
-        {
-            enemySprite.color = data.stunEffect;
-            //prevAnimSpeed = anim.speed;
-            //anim.speed = 0;
-            paused = true;
+            if (data.poisonParticles)
+            {
+                effectParticles = Instantiate(data.poisonParticles, GetComponentInChildren<EnemyDamage>().transform);
+            }
+            if (data.effectName == "Health Steal")
+            {
+                GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().ChangeHealth(0.5f);
+            }
+            if (data.effectName == "Immobilized")
+            {
+                currentMovementSpeed = data.movementPenalty;
+                enemySprite.color = data.immobilizedEffect;
+            }
+            if (data.effectName == "Stun")
+            {
+                enemySprite.color = data.stunEffect;
+                //prevAnimSpeed = anim.speed;
+                //anim.speed = 0;
+                paused = true;
+            }
         }
     }
 
