@@ -11,6 +11,7 @@ using UnityEngine;
 
 public class MeleeWeaponController : WeaponItemController
 {
+
     public PlayerAim aim; // Reference to the player's aim script.
     private Animator anim; // Reference to the animator component.
     Vector3 direction; // Direction of the weapon swing.
@@ -53,15 +54,15 @@ public class MeleeWeaponController : WeaponItemController
         }
     }
 
-    public float CalculateDamageDone()
-    {
-        return item.GetDamage() * GetComponentInParent<PlayerStats>().CurrentStrength * -1;
-    }
-
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Enemy"))
+        if (col.CompareTag("Enemy"))
         {
+            IEffectable effectable = col.GetComponent<IEffectable>();
+            if (effectable != null)
+            {
+                effectable.ApplyEffect(statusEffect);
+            }
             col.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(CalculateDamageDone());
             if (item.GetKnockback() > 0)
             {

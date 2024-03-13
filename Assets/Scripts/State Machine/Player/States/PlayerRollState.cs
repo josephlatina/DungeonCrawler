@@ -31,8 +31,6 @@ public class PlayerRollState : IState
     /// </summary>
     public void Enter()
     {
-        // Change player's color to red when entering the roll state.
-        player.anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().color = Color.red;
         // Initiate the roll logic.
         Roll();
     }
@@ -71,8 +69,6 @@ public class PlayerRollState : IState
     /// </summary>
     public void Exit()
     {
-        // Reset player's color to white when exiting the roll state.
-        player.anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().color = Color.white;
         // Set counters back to 0
         rollCounter = 0;
         rollCoolCounter = 0;

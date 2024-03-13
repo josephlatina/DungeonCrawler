@@ -36,6 +36,7 @@ public class RangedWeaponController : WeaponItemController
         transform.parent = null;
         aim = null;
         transform.localRotation = Quaternion.identity;
+        GetComponent<Collider2D>().enabled = true;
     }
 
     /// <summary>
@@ -93,11 +94,17 @@ public class RangedWeaponController : WeaponItemController
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            col.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(-item.GetDamage());
+            IEffectable effectable = col.gameObject.GetComponentInParent<IEffectable>();
+            if (effectable != null)
+            {
+                effectable.ApplyEffect(statusEffect);
+            }
+            col.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(CalculateDamageDone());
             if (item.GetKnockback() > 0)
             {
                 Vector2 dir = col.transform.position - transform.position;

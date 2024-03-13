@@ -30,8 +30,6 @@ public class PlayerMeleeState : IState
     /// </summary>
     public void Enter()
     {
-        // Change player's color to blue when entering the Melee Attack state.
-        player.anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().color = Color.blue;
         // Get player's stats component.
         stats = player.GetComponent<PlayerStats>();
         // Initiate the melee attack logic.
@@ -79,9 +77,6 @@ public class PlayerMeleeState : IState
     /// </summary>
     public void Exit()
     {
-        // Reset player's color to white when exiting the Melee Attack state.
-        player.anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().color = Color.white;
-
         // Disable the melee trigger collider.
         if (player.weaponController.melee)
         {
