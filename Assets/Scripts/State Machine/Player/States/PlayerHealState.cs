@@ -31,8 +31,6 @@ public class PlayerHealState : IState
     /// </summary>
     public void Enter()
     {
-        // Change player's color to green when entering the heal state.
-        player.anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().color = Color.green;
         // Get the player's PlayerHealth component
         health = player.GetComponent<PlayerHealth>();
         potion = player.playerInventory.GetConsumable();
@@ -48,8 +46,6 @@ public class PlayerHealState : IState
     /// </summary>
     public void Exit()
     {
-        // Reset player's color to white when exiting the heal state.
-        player.anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().color = Color.white;
         Debug.Log("Player is finished healing");
 
         // Reset the heal counter.

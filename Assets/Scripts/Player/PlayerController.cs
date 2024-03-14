@@ -19,11 +19,12 @@ using Random = UnityEngine.Random;
 /// <summary>
 /// Handles player input, movement, and interactions.
 /// </summary>
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IEffectable
 {
     private PlayerStateMachine playerStateMachine;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public PlayerStats player;
+    private SpriteRenderer characterSprite;
     private PlayerHealth playerHealth;
     public Animator anim;
     private bool paused;
@@ -44,15 +45,9 @@ public class PlayerController : MonoBehaviour
     public BubbleDialogueView dialogueView;
     public DialogueRunner dialogueRunner;
 
-    private enum PlayerStatus
-    {
-        Normal,
-        Stun,
-        Immobilized,
-        Poison
-    }
+    public StatusEffectData effectOnPlayer;
+    private float currentMoveSpeed;
 
-    private PlayerStatus status;
     [HideInInspector] public bool isMeleeAttacking, isRangedAttacking, isHealing, isRolling, isWalking;
 
     [Header("Conditional Screen UI"), Space(5)]
@@ -87,13 +82,13 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         // Get player object's stats script
         player = GetComponent<PlayerStats>();
-        // Set initial status to normal
-        status = PlayerStatus.Normal;
         playerHealth = GetComponent<PlayerHealth>();
         // Get player object's interaction trigger
         interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
         weaponController = GetComponentInChildren<PlayerWeaponController>();
         anim = GetComponentInChildren<Animator>();
+        characterSprite = transform.Find("CharacterSprite").GetComponent<SpriteRenderer>();
+        initialSpriteColor = characterSprite.color;
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -107,6 +102,8 @@ public class PlayerController : MonoBehaviour
         playerStateMachine.Initialize(playerStateMachine.idleState);
         // Initialize inventory
         playerInventory.InitializeInventory();
+
+        currentMoveSpeed = player.CurrentMoveSpeed;
         paused = false;
     }
 
@@ -115,17 +112,25 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Update()
     {
+
         if (!paused)
         {
             // Update the state machine logic
             playerStateMachine.Update();
+
 
             if (rb.velocity != Vector2.zero && !isWalking)
             {
                 StartCoroutine(PlayFootStepSound());
             }
         }
+        if (effectOnPlayer != null)
+        {
+            HandleEffect();
+        }
     }
+
+
 
     /// <summary>
     /// Called at fixed time intervals, making it suitable for physics-related calculations
@@ -154,13 +159,16 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveVal = value.Get<Vector2>();
-        if (moveVal.x > 0)
+        if (!paused)
         {
-            anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().flipX = false;
-        }
-        else if (moveVal.x < 0)
-        {
-            anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().flipX = true;
+            if (moveVal.x > 0)
+            {
+                anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else if (moveVal.x < 0)
+            {
+                anim.transform.Find("CharacterSprite").GetComponent<SpriteRenderer>().flipX = true;
+            }
         }
     }
 
@@ -182,7 +190,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Move()
     {
-        rb.velocity = moveVal * player.CurrentMoveSpeed;
+        rb.velocity = moveVal * currentMoveSpeed;
     }
 
     /// <summary>
@@ -336,7 +344,7 @@ public class PlayerController : MonoBehaviour
         {
             upgradeScreen.SetActive(true);
         }
-        else if (consumable.item.itemName == "Teeth") 
+        else if (consumable.item.itemName == "Teeth")
         {
             player.CurrentCurrency += consumable.item.currencyIncrease;
         }
@@ -459,6 +467,84 @@ public class PlayerController : MonoBehaviour
             NpcController npcController = interactNPC.GetComponent<NpcController>();
             string node = npcController.randomizeDialogue ? npcController.GetRandomNode() : npcController.GetNode();
             dialogueRunner.StartDialogue(node);
+        }
+    }
+
+    private GameObject effectParticles;
+    private Color initialSpriteColor;
+    private float prevAnimSpeed;
+    public void ApplyEffect(StatusEffectData data)
+    {
+        RemoveEffect();
+        effectOnPlayer = data;
+
+        if (effectOnPlayer)
+        {
+            if (data.poisonParticles)
+            {
+                effectParticles = Instantiate(data.poisonParticles, transform);
+            }
+            if (data.effectName == "Immobilized")
+            {
+                currentMoveSpeed = data.movementPenalty;
+                characterSprite.color = data.immobilizedEffect;
+            }
+            if (data.effectName == "Stun")
+            {
+                characterSprite.color = data.stunEffect;
+                prevAnimSpeed = anim.speed;
+                anim.speed = 0;
+                paused = true;
+            }
+        }
+    }
+
+    private float currentEffectTime = 0f;
+    private float lastTickTime = 0f;
+
+    public void RemoveEffect()
+    {
+        currentEffectTime = 0f;
+        lastTickTime = 0f;
+        if (effectOnPlayer)
+        {
+            if (effectOnPlayer.movementPenalty != -1)
+            {
+                currentMoveSpeed = player.CurrentMoveSpeed;
+            }
+            if (effectOnPlayer.effectName == "Immobilized" || effectOnPlayer.effectName == "Stun")
+            {
+                characterSprite.color = initialSpriteColor;
+                paused = false;
+            }
+            if (effectOnPlayer.effectName == "Stun")
+            {
+                anim.speed = prevAnimSpeed;
+            }
+
+        }
+        if (effectParticles != null)
+        {
+            Destroy(effectParticles);
+        }
+        effectOnPlayer = null;
+    }
+
+    private void HandleEffect()
+    {
+        currentEffectTime += Time.deltaTime;
+
+        if (currentEffectTime >= effectOnPlayer.lifetime)
+        {
+            RemoveEffect();
+        }
+
+        if (effectOnPlayer == null) return;
+
+        if (effectOnPlayer.damageOverTimeAmount != 0 && currentEffectTime > lastTickTime + effectOnPlayer.tickSpeed)
+        {
+            lastTickTime = currentEffectTime;
+            playerHealth.ChangeHealth(-effectOnPlayer.damageOverTimeAmount);
         }
     }
 
