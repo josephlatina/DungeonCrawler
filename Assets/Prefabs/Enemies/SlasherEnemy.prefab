@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7168373500246847400}
   - component: {fileID: -56499371353917746}
   - component: {fileID: -4019387347782417040}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SlasherEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -52,9 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: e4ca781559a939946901bd59e3a09218, type: 2}
   rb: {fileID: 0}
-  movementToPositionEvent: {fileID: 0}
-  strength: 0
   movementSpeed: 0
+  movementToPositionEvent: {fileID: 0}
   currentMovementSpeed: 0
   strength: 0
   maxHealth: 0
@@ -148,7 +147,7 @@ GameObject:
   - component: {fileID: 8702535532445019143}
   - component: {fileID: 6647401442545185668}
   - component: {fileID: 1503561577501233611}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
