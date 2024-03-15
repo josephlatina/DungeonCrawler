@@ -37,7 +37,7 @@ public class NpcController : MonoBehaviour
     void Start()
     {
         collider = GetComponent<CapsuleCollider2D>();
-        collider.size = new Vector2(dialogueDetectRange, collider.size.y);
+        collider.size = new Vector2(dialogueDetectRange, dialogueDetectRange);
         bubbleAnchor = GetComponent<CharacterBubbleAnchor>();
         bubbleAnchor.CharacterName = npc.displayName;
     }

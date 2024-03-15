@@ -21,8 +21,8 @@ MonoBehaviour:
   roomNodeTypeList: {fileID: 11400000, guid: 5f08e0ddcee0a4c65b5bd110a68dcccd, type: 2}
   rect:
     serializedVersion: 2
-    x: 667
-    y: 364
+    x: 586
+    y: 256
     width: 160
     height: 75
   isLeftClickDragging: 0
@@ -48,8 +48,8 @@ MonoBehaviour:
   roomNodeTypeList: {fileID: 11400000, guid: 5f08e0ddcee0a4c65b5bd110a68dcccd, type: 2}
   rect:
     serializedVersion: 2
-    x: 251
-    y: 139
+    x: 23
+    y: 171
     width: 160
     height: 75
   isLeftClickDragging: 0
@@ -70,14 +70,14 @@ MonoBehaviour:
   parentRoomNodeIDList:
   - 6d197f3f-97ac-410f-a21c-8c8d4e051ddc
   childRoomNodeIDList:
-  - e1bdbab8-cbcf-4844-a405-11307c96fdd7
+  - b6376c03-4867-4125-93e4-caeba49af728
   roomNodeGraph: {fileID: 11400000}
   roomNodeType: {fileID: 11400000, guid: 355b445d5bb4d46b5ae213d37aee3f15, type: 2}
   roomNodeTypeList: {fileID: 11400000, guid: 5f08e0ddcee0a4c65b5bd110a68dcccd, type: 2}
   rect:
     serializedVersion: 2
-    x: 469
-    y: 138
+    x: 204
+    y: 173
     width: 160
     height: 75
   isLeftClickDragging: 0
@@ -104,8 +104,8 @@ MonoBehaviour:
   roomNodeTypeList: {fileID: 11400000, guid: 5f08e0ddcee0a4c65b5bd110a68dcccd, type: 2}
   rect:
     serializedVersion: 2
-    x: 667
-    y: 265
+    x: 574
+    y: 178.00002
     width: 160
     height: 75
   isLeftClickDragging: 0
@@ -129,8 +129,66 @@ MonoBehaviour:
   - {fileID: -4379789792345110224}
   - {fileID: -3868830335327673500}
   - {fileID: -5958580097625447665}
+  - {fileID: 2963959722645530700}
+  - {fileID: 974211517895378520}
   roomNodeToDrawLineFrom: {fileID: 0}
   linePosition: {x: 0, y: 0}
+--- !u!114 &974211517895378520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03d75d15437e498bb498707340614fb, type: 3}
+  m_Name: RoomNode
+  m_EditorClassIdentifier: 
+  id: 026372d3-eee1-4bf4-938b-6b0ca7eabaee
+  parentRoomNodeIDList:
+  - b6376c03-4867-4125-93e4-caeba49af728
+  childRoomNodeIDList:
+  - e1bdbab8-cbcf-4844-a405-11307c96fdd7
+  roomNodeGraph: {fileID: 11400000}
+  roomNodeType: {fileID: 11400000, guid: 355b445d5bb4d46b5ae213d37aee3f15, type: 2}
+  roomNodeTypeList: {fileID: 11400000, guid: 5f08e0ddcee0a4c65b5bd110a68dcccd, type: 2}
+  rect:
+    serializedVersion: 2
+    x: 406
+    y: 76.66667
+    width: 160
+    height: 75
+  isLeftClickDragging: 0
+  isSelected: 0
+--- !u!114 &2963959722645530700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03d75d15437e498bb498707340614fb, type: 3}
+  m_Name: RoomNode
+  m_EditorClassIdentifier: 
+  id: b6376c03-4867-4125-93e4-caeba49af728
+  parentRoomNodeIDList:
+  - c8358007-7216-4dfd-9165-bc5f89cf4927
+  childRoomNodeIDList:
+  - 026372d3-eee1-4bf4-938b-6b0ca7eabaee
+  roomNodeGraph: {fileID: 11400000}
+  roomNodeType: {fileID: 11400000, guid: c437fb01854944f869a4d0aa108dbce0, type: 2}
+  roomNodeTypeList: {fileID: 11400000, guid: 5f08e0ddcee0a4c65b5bd110a68dcccd, type: 2}
+  rect:
+    serializedVersion: 2
+    x: 222
+    y: 76.666664
+    width: 160
+    height: 75
+  isLeftClickDragging: 0
+  isSelected: 0
 --- !u!114 &4880026111846843749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: e1bdbab8-cbcf-4844-a405-11307c96fdd7
   parentRoomNodeIDList:
-  - c8358007-7216-4dfd-9165-bc5f89cf4927
+  - 026372d3-eee1-4bf4-938b-6b0ca7eabaee
   childRoomNodeIDList:
   - 5a0f8453-b3f9-42c7-89d9-2bec03b48571
   roomNodeGraph: {fileID: 11400000}
@@ -153,8 +211,8 @@ MonoBehaviour:
   roomNodeTypeList: {fileID: 11400000, guid: 5f08e0ddcee0a4c65b5bd110a68dcccd, type: 2}
   rect:
     serializedVersion: 2
-    x: 670
-    y: 140
+    x: 411
+    y: 172
     width: 160
     height: 75
   isLeftClickDragging: 0
