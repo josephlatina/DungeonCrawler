@@ -44,6 +44,10 @@ public class EnemyMoveState : IState
         {
             enemy.EnemyStateMachine.TransitionTo(enemy.EnemyStateMachine.idleState);
         }
+        if (Vector3.Distance(enemy.transform.position, GameManager.Instance.GetPlayer().GetPlayerPosition()) < 10f)
+        {
+            enemy.EnemyStateMachine.TransitionTo(enemy.EnemyStateMachine.meleeState);
+        }
     }
 
     public void FixedUpdate()
