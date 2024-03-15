@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour, IEffectable
     [Header("Enemy Scriptable Object")]
     [Tooltip("EnemyScriptableObject for initial enemy stats")]
     [SerializeField]
-    private EnemyScriptableObject enemyStats;
+    public EnemyScriptableObject enemyStats;
     private SpriteRenderer enemySprite;
 
     private EnemyStateMachine enemyStateMachine;
@@ -25,6 +25,9 @@ public class EnemyController : MonoBehaviour, IEffectable
 
     // Movement speed of the enemy
     public float movementSpeed;
+    // Enemy Movement AI component references
+    private EnemyMovementAI enemyMovementAI;
+    [HideInInspector] public MovementToPositionEvent movementToPositionEvent;
     public float currentMovementSpeed;
 
     // Attack speed measured in damage per second
@@ -77,6 +80,9 @@ public class EnemyController : MonoBehaviour, IEffectable
         strength = enemyStats.Strength;
         maxHealth = enemyStats.HealthPoints;
 
+        // Cache the enemy movement components
+        enemyMovementAI = GetComponent<EnemyMovementAI>();
+        movementToPositionEvent = GetComponent<MovementToPositionEvent>();
         currentMovementSpeed = movementSpeed;
 
         health = GetComponent<EnemyHealth>();
@@ -119,6 +125,14 @@ public class EnemyController : MonoBehaviour, IEffectable
     public void EnemyInitialization(EnemyScriptableObject enemySO, int enemySpawnNumber, DungeonLevelSO dungeonLevel)
     {
         this.enemyStats = enemySO;
+    }
+
+    /// <summary>
+    /// Getter method for movement speed
+    /// </summary>
+    public float GetMoveSpeed()
+    {
+        return movementSpeed;
     }
 
     public float GetMaxHealthPoints()

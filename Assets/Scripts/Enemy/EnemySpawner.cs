@@ -102,15 +102,18 @@ public class EnemySpawner : SingletonMonoBehavior<EnemySpawner>
                 while (currentEnemyCount >= enemyMaxConcurrentSpawnNumber) {
                     yield return null;
                 }
-            
-                // pick a cell position to spawn from
-                Vector3Int cellPosition = (Vector3Int) currentRoom.spawnPositionArray[Random.Range(0, currentRoom.spawnPositionArray.Length)];
 
-                // Instantiate the enemy at grid position
-                CreateEnemy(randomEnemyHelperClass.GetItem(), grid.CellToWorld(cellPosition));
+                int randomIndex = Random.Range(0, currentRoom.spawnPositionArray.Length);
+                if (randomIndex >= 0 && randomIndex < currentRoom.spawnPositionArray.Length) {
+                    // pick a cell position to spawn from
+                    Vector3Int cellPosition = (Vector3Int) currentRoom.spawnPositionArray[randomIndex];
 
-                // wait for number of interval seconds until spawning
-                yield return new WaitForSeconds(GetEnemySpawnInterval());
+                    // Instantiate the enemy at grid position
+                    CreateEnemy(randomEnemyHelperClass.GetItem(), grid.CellToWorld(cellPosition));
+
+                    // wait for number of interval seconds until spawning
+                    yield return new WaitForSeconds(GetEnemySpawnInterval());
+                }
             }
         }
     } 

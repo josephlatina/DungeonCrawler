@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b38d3131729144046b7f0a3e99674338, type: 3}
   m_Name: Slasher
   m_EditorClassIdentifier: 
-  movementSpeed: 20
+  movementSpeed: 7
   attackSpeed: 1
   strength: 0.5
   healthPoints: 5
   prefab: {fileID: 811109188997130492, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
+  chaseDistance: 12
