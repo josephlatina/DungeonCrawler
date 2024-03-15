@@ -72,8 +72,7 @@ public class EnemyController : MonoBehaviour, IEffectable
 
         // Get the object's Rigidbody2D component
         anim = GetComponent<Animator>();
-        rb = GetComponentInChildren<Rigidbody2D>();
-        Debug.Log(anim);
+        rb = GetComponent<Rigidbody2D>();
 
         enemySprite = GetComponentInChildren<SpriteRenderer>();
 
