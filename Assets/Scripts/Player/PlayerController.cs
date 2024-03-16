@@ -153,6 +153,14 @@ public class PlayerController : MonoBehaviour, IEffectable
     }
 
     /// <summary>
+    /// Returns the player position
+    /// </summary>
+    public Vector3 GetPlayerPosition()
+    {
+        return transform.position;
+    }
+
+    /// <summary>
     /// Listens for the player input and updates moveVal to the current value of movement input.
     /// </summary>
     /// <param name="value">Movement vector sent from Player Input component.</param>
@@ -314,7 +322,7 @@ public class PlayerController : MonoBehaviour, IEffectable
     void OnAdvanceDialogue(InputValue value)
     {
         // If we're not showing bubbles, do nothing
-        if (dialogueView.IsShowingBubble == false)
+        if (dialogueView == null || dialogueView.IsShowingBubble == false)
         {
             return;
         }
@@ -462,7 +470,7 @@ public class PlayerController : MonoBehaviour, IEffectable
 
     void StartNPCDialogue()
     {
-        if (!dialogueView.IsShowingBubble)
+        if (dialogueView != null && !dialogueView.IsShowingBubble)
         {
             NpcController npcController = interactNPC.GetComponent<NpcController>();
             string node = npcController.randomizeDialogue ? npcController.GetRandomNode() : npcController.GetNode();

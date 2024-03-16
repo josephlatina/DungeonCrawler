@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 /// <summary>
 /// Acts as a singleton class (only one prefab instance to exist) that can be accessed by all components or scripts
@@ -61,6 +62,19 @@ public class GameResources : MonoBehaviour
     [Tooltip("Populate with the Materialize Shader")]
     #endregion
     public Shader materializeShader;
+
+    #region Header SPECIAL TILEMAP TILES
+    [Space(10)]
+    [Header("SPECIAL TILEMAP TILES")]
+    #endregion Header SPECIAL TILEMAP TILES
+    #region Tooltip
+    [Tooltip("Collision tiles that the enemies can navigate to")]
+    #endregion Tooltip
+    public TileBase[] enemyUnwalkableCollisionTilesArray;
+    #region Tooltip
+    [Tooltip("Preferred path tile for enemy navigation")]
+    #endregion Tooltip
+    public TileBase preferredEnemyPathTile;
 
     #region Header CHESTS
     [Space(10)]
