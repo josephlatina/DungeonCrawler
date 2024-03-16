@@ -26,13 +26,14 @@ public class EnemyIdleState : IState
     public void Enter()
     {
         Debug.Log("Enemy entering idle state");
+        enemy.anim.SetBool("isWalking", false);
     }
 
     // Called every frame while in the idle state
     public void Update()
     {
         // Check if there is significant movement; if yes, transition to the move state
-        if (Mathf.Abs(enemy.rb.velocity.x) > 0.1f || Mathf.Abs(enemy.rb.velocity.y) > 0.1f)
+        if (Mathf.Abs(enemy.rb.velocity.x) > 0f || Mathf.Abs(enemy.rb.velocity.y) > 0f)
         {
             enemy.EnemyStateMachine.TransitionTo(enemy.EnemyStateMachine.moveState);
         }

@@ -17,6 +17,7 @@ public class EnemyStateMachine : BaseStateMachine
     // States of the enemy state machine
     public EnemyMoveState moveState;
     public EnemyIdleState idleState;
+    public EnemyMeleeState meleeState;
 
     /// <summary>
     /// Constructor to initialize the enemy state machine with its states.
@@ -26,5 +27,6 @@ public class EnemyStateMachine : BaseStateMachine
         // Create instances of the states and associate them with the provided enemy controller
         this.moveState = new EnemyMoveState(enemy);
         this.idleState = new EnemyIdleState(enemy);
+        this.meleeState = new EnemyMeleeState(enemy);
     }
 }

@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour, IEffectable
 
     private EnemyStateMachine enemyStateMachine;
     [HideInInspector] public Rigidbody2D rb;
+    public Animator anim;
 
     // Movement speed of the enemy
     public float movementSpeed;
@@ -70,7 +71,8 @@ public class EnemyController : MonoBehaviour, IEffectable
         enemyStateMachine = new EnemyStateMachine(this);
 
         // Get the object's Rigidbody2D component
-        rb = GetComponentInChildren<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
 
         enemySprite = GetComponentInChildren<SpriteRenderer>();
 
