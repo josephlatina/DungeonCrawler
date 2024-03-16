@@ -31,6 +31,7 @@ public static class Settings
 
     #region ANIMATOR PARAMETERS
     public static int use = Animator.StringToHash("use");
+    public static int isWalking = Animator.StringToHash("isWalking");
     #endregion
 
     #region ASTAR PATHFINDING PARAMETERS

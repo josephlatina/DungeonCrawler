@@ -30,6 +30,7 @@ public class EnemyMoveState : IState
     public void Enter()
     {
         Debug.Log("Enemy entering move state");
+        enemy.anim.SetBool("isWalking", true);
     }
 
     /// <summary>
@@ -39,9 +40,13 @@ public class EnemyMoveState : IState
     public void Update()
     {
         // Check if the enemy's velocity is below a certain threshold; if yes, transition to idle state
-        if (Mathf.Abs(enemy.rb.velocity.x) < 0.1f && Mathf.Abs(enemy.rb.velocity.y) < 0.1f)
+        if (Mathf.Abs(enemy.rb.velocity.x) < 0f && Mathf.Abs(enemy.rb.velocity.y) < 0f)
         {
             enemy.EnemyStateMachine.TransitionTo(enemy.EnemyStateMachine.idleState);
+        }
+        if (Vector3.Distance(enemy.transform.position, GameManager.Instance.GetPlayer().GetPlayerPosition()) < 3f)
+        {
+            enemy.EnemyStateMachine.TransitionTo(enemy.EnemyStateMachine.meleeState);
         }
     }
 

@@ -14,12 +14,14 @@ public class MovementToPosition : MonoBehaviour
 {
     private Rigidbody2D rigidBody2D;
     private Rigidbody2D childRigidbody2D;
+    private SpriteRenderer spriteRenderer;
     private MovementToPositionEvent movementToPositionEvent;
 
     private void Awake()
     {
         // Load Components
         rigidBody2D = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         movementToPositionEvent = GetComponent<MovementToPositionEvent>();
         // Get the child object's Transform component
         Transform childTransform = transform.GetChild(0); // Adjust index as needed
@@ -52,9 +54,14 @@ public class MovementToPosition : MonoBehaviour
     private void MoveRigidBody(Vector3 movePosition, Vector3 currentPosition, float moveSpeed)
     {
         Vector2 unitVector = Vector3.Normalize(movePosition - currentPosition);
-    
+        if (unitVector.x > 0) {
+            spriteRenderer.flipX = false;
+        } 
+        else if (unitVector.x < 0) {
+            spriteRenderer.flipX = true;
+        }
+        rigidBody2D.velocity = unitVector * moveSpeed;
         rigidBody2D.MovePosition(rigidBody2D.position + (unitVector * moveSpeed * Time.fixedDeltaTime));
-        childRigidbody2D.MovePosition(rigidBody2D.position + (unitVector * moveSpeed * Time.fixedDeltaTime));
 
     }
 }
