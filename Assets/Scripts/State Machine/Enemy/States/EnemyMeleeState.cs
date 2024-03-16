@@ -29,9 +29,11 @@ public class EnemyMeleeState : IState
     /// </summary>
     public void Update()
     {
-        if (Vector3.Distance(enemy.transform.position, GameManager.Instance.GetPlayer().GetPlayerPosition()) > 3f)
-        {
-            enemy.EnemyStateMachine.TransitionTo(enemy.EnemyStateMachine.moveState);
+        if (GameManager.Instance.GetPlayer() != null) {
+            if (Vector3.Distance(enemy.transform.position, GameManager.Instance.GetPlayer().GetPlayerPosition()) > 3f)
+            {
+                enemy.EnemyStateMachine.TransitionTo(enemy.EnemyStateMachine.moveState);
+            }
         }
     }
 
