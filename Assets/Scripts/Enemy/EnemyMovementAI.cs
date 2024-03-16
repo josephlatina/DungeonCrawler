@@ -84,6 +84,9 @@ public class EnemyMovementAI : MonoBehaviour
         // Only process A Star path rebuild on certain frames to spread the load between enemies
         if (Time.frameCount % Settings.targetFrameRateToSpreadPathfindingOver != updateFrameNumber) return;
 
+        if (GameManager.Instance.GetPlayer() == null) {
+            return;
+        }
         // if the movement cooldown timer has been reached or player has moved more than required distance, then rebuild the enemy path and move the enemy
         if (currentEnemyPathRebuildCooldown <= 0f || (Vector3.Distance(playerReferencePosition, GameManager.Instance.GetPlayer().GetPlayerPosition()) > Settings.playerMoveDistanceToRebuildPath))
         {
