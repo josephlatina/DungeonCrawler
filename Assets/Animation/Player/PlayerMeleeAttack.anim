@@ -103,7 +103,18 @@ AnimationClip:
     path: WeaponHolder/Pivot/Melee
   m_ScaleCurves: []
   m_FloatCurves: []
-  m_PPtrCurves: []
+  m_PPtrCurves:
+  - curve:
+    - time: 0
+      value: {fileID: -1032565000, guid: 5597ac08b569ec54897678676d94de88, type: 3}
+    - time: 0.16666667
+      value: {fileID: 21300000, guid: f6865f1903ffd0f42ba3d67065274781, type: 3}
+    - time: 0.41666666
+      value: {fileID: 21300000, guid: f6865f1903ffd0f42ba3d67065274781, type: 3}
+    attribute: m_Sprite
+    path: CharacterSprite
+    classID: 212
+    script: {fileID: 0}
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -125,13 +136,23 @@ AnimationClip:
       typeID: 4
       customType: 4
       isPPtrCurve: 0
-    pptrCurveMapping: []
+    - serializedVersion: 2
+      path: 3465527240
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    pptrCurveMapping:
+    - {fileID: -1032565000, guid: 5597ac08b569ec54897678676d94de88, type: 3}
+    - {fileID: 21300000, guid: f6865f1903ffd0f42ba3d67065274781, type: 3}
+    - {fileID: 21300000, guid: f6865f1903ffd0f42ba3d67065274781, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.41666666
+    m_StopTime: 0.43333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
