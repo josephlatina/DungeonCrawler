@@ -1,10 +1,17 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class ParasiticInfectionController : EnemyController
+public class BossMinion : EnemyController
 {
     private Transform target;
     private bool isIdle = true;
+    
+    [Header("Boss Minion Settings"), Space]
+    // Distance to stop between player and enemy
+    public float stopDistance = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,17 +24,42 @@ public class ParasiticInfectionController : EnemyController
     void Update()
     {
         base.Update();
-
         if (health.currentHealthPoints <= 0)
         {
             anim.SetBool("isDead", true);
         }
-        else
+
+        // Update velocity based on boolean
+        if (isIdle)
         {
-            Move();
+            rb.velocity = Vector2.zero;
         }
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.transform == target)
+        {
+            float distance = Vector2.Distance(transform.position, target.position);
+            if (distance > stopDistance)
+            {
+                isIdle = false;
+                Move();
+            }
+            else
+            {
+                isIdle = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.transform == target)
+        {
+            isIdle = true;
+        }
+    }
 
     void Move()
     {
@@ -62,21 +94,5 @@ public class ParasiticInfectionController : EnemyController
             EnemyStateMachine.TransitionTo(EnemyStateMachine.idleState);
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.transform == target)
-        {
-            isIdle = true;
-            rb.velocity = Vector2.zero;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.transform == target)
-        {
-            isIdle = false;
-        }
-    }
+    
 }
