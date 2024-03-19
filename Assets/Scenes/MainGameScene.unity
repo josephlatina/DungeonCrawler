@@ -618,9 +618,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: 0.2361111
+    width: 0.09661459
+    height: 0.096614584
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2313,7 +2313,7 @@ SpriteRenderer:
   m_SortingLayerID: -1024326055
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1403835035, guid: b2cb1fca16685d64c964bc825eeaa54f, type: 3}
+  m_Sprite: {fileID: 1055400928, guid: 9babcb6b7ddf06546ae62b99dd67fa95, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2339,7 +2339,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 6
 --- !u!114 &1008233681
 MonoBehaviour:
   m_ObjectHideFlags: 0

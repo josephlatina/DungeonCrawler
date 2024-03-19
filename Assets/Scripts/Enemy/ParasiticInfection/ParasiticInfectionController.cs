@@ -36,6 +36,7 @@ public class ParasiticInfectionController : EnemyController
 
         if (rb.velocity != Vector2.zero)
         {
+            enemySprite.flipX = rb.velocity.x < 0; // flip sprite to direction of movement
             anim.SetBool("isWalking", true);
             EnemyStateMachine.TransitionTo(EnemyStateMachine.moveState);
         }

@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour, IEffectable
     [Tooltip("EnemyScriptableObject for initial enemy stats")]
     [SerializeField]
     public EnemyScriptableObject enemyStats;
-    private SpriteRenderer enemySprite;
+    protected SpriteRenderer enemySprite;
 
     private EnemyStateMachine enemyStateMachine;
     [HideInInspector] public Rigidbody2D rb;
