@@ -32,6 +32,7 @@ public class PlayerRollState : IState
     public void Enter()
     {
         // Initiate the roll logic.
+        player.playerCollider.enabled = false;
         Roll();
     }
 
@@ -72,6 +73,7 @@ public class PlayerRollState : IState
         // Set counters back to 0
         rollCounter = 0;
         rollCoolCounter = 0;
+        player.playerCollider.enabled = true;
     }
 
     /// <summary>
