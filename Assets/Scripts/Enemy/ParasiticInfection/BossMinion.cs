@@ -7,14 +7,16 @@ using UnityEngine.Serialization;
 public class BossMinion : EnemyController
 {
     [Header("Boss Minion Settings"), Space]
-    private Transform target;
-
-    private bool isIdle = true;
 
     // Distance to stop between player and enemy
     public float stopDistance = 1f;
+
+    public float detectionRadius = 5f;
     public float attackDelaySeconds = 2f;
     private bool hasAttacked = false;
+
+    private Transform target;
+    private bool isIdle = true;
 
     // Start is called before the first frame update
     void Start()
@@ -30,45 +32,42 @@ public class BossMinion : EnemyController
         if (health.currentHealthPoints <= 0)
         {
             anim.SetBool("isDead", true);
+            gameObject.SetActive(false);
         }
 
         // Update velocity based on boolean
         if (isIdle)
         {
             rb.velocity = Vector2.zero;
+            EnemyStateMachine.TransitionTo(EnemyStateMachine.idleState);
         }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.transform == target)
+        else
         {
-            isIdle = true;
+            EnemyStateMachine.TransitionTo(EnemyStateMachine.moveState);
+        }
 
-            float distance = Vector2.Distance(transform.position, target.position);
-            if (distance > stopDistance)
+
+        // Move enemy towards player when in detection radius
+        float distance = Vector2.Distance(transform.position, target.position);
+        if (distance <= detectionRadius)
+        {
+            if (distance <= stopDistance)
             {
-                isIdle = false;
-                Move();
+                isIdle = true;
             }
             else
             {
+                Move();
+            }
+
+            if (!hasAttacked && Time.time >= attackDelaySeconds)
+            {
                 isIdle = true;
-                
-                // hasAttacked ensures 1 attack
-                // attackDelaySeconds ensures cooldown between attacks
-                if (!hasAttacked && Time.time >= attackDelaySeconds)
-                {
-                    StartCoroutine(Attack());
-                    hasAttacked = true; // attack has been executed 
-                }
+                StartCoroutine(Attack());
+                hasAttacked = true; // attack has been executed 
             }
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.transform == target)
+        else
         {
             isIdle = true;
         }
@@ -78,7 +77,7 @@ public class BossMinion : EnemyController
     {
         anim.SetTrigger("isAttacking");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(attackDelaySeconds / 2);
 
         hasAttacked = false; // reset for next attack
     }
@@ -97,7 +96,7 @@ public class BossMinion : EnemyController
     public void AttackPlayer()
     {
         float distance = Vector2.Distance(transform.position, target.position);
-        
+
         // if distance from player is stopDistance + 1 while on attack frame, take damage 
         if (distance <= stopDistance + 1)
         {
@@ -107,6 +106,7 @@ public class BossMinion : EnemyController
 
     void Move()
     {
+        isIdle = false;
         MoveDirection();
 
         if (rb.velocity != Vector2.zero)
@@ -134,5 +134,14 @@ public class BossMinion : EnemyController
         {
             EnemyStateMachine.TransitionTo(EnemyStateMachine.idleState);
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Set the color of the wireframe circle
+        Gizmos.color = Color.red;
+
+        // Draw wireframe circle
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }

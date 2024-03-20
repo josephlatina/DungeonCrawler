@@ -1353,14 +1353,14 @@ GameObject:
   m_Component:
   - component: {fileID: 659864429}
   - component: {fileID: 659864432}
-  - component: {fileID: 659864431}
   - component: {fileID: 659864430}
   - component: {fileID: 659864433}
   - component: {fileID: 659864428}
   - component: {fileID: 659864427}
+  - component: {fileID: 659864434}
   m_Layer: 0
   m_Name: BossMinion
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1478,23 +1478,8 @@ MonoBehaviour:
   knockbackVelocity: {x: 0, y: 0}
   knockbackDuration: 0
   stopDistance: 1
-  attackDelaySeconds: 2
---- !u!58 &659864431
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659864426}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 5
+  detectionRadius: 6
+  attackDelaySeconds: 1
 --- !u!50 &659864432
 Rigidbody2D:
   serializedVersion: 4
@@ -1529,7 +1514,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyController: {fileID: 659864430}
-  currentHealthPoints: 1.5
+  currentHealthPoints: 10
+--- !u!61 &659864434
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659864426}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.6875}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 2.25, y: 1.375}
+    newSize: {x: 1.3125, y: 0.75}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.25, y: 1.375}
+  m_EdgeRadius: 0
 --- !u!1 &692285383
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,7 +2383,7 @@ GameObject:
   - component: {fileID: 1008233678}
   m_Layer: 0
   m_Name: ParasiticInfection
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5131,10 +5142,6 @@ PrefabInstance:
       propertyPath: characterBubblePrefab
       value: 
       objectReference: {fileID: 96125403}
-    - target: {fileID: 2341849012200123104, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
-      propertyPath: maxHealthPoints
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6984755896152334957, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
       propertyPath: text
       value: 
