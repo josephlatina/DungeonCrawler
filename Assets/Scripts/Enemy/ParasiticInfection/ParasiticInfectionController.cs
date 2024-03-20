@@ -21,6 +21,7 @@ public class ParasiticInfectionController : EnemyController
     public float bulletWaveInterval = 5f;
     private float nextWave = 0f;
     private bool hasShootAttacked = false;
+    private bool hasAttacked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -50,32 +51,42 @@ public class ParasiticInfectionController : EnemyController
             EnemyStateMachine.TransitionTo(EnemyStateMachine.moveState);
         }
 
-       
 
+        // conditions that would reset shooting attack
         if (Vector3.Distance(bullets.Last().transform.position, transform.position) > 20f)
         {
             for (int i = 0; i < bullets.Count; i++)
             {
                 bullets[i].Reset();
             }
-            hasShootAttacked = false;
 
+            // reset trigger
+            hasShootAttacked = false;
         }
 
         float distance = Vector2.Distance(transform.position, target.position);
+        // player is within detection range
         if (distance <= detectionRadius && !hasShootAttacked)
         {
-            // within enemy's detection range
-            isIdle = true;
-            if (Time.time > nextFire)
+            if (!hasAttacked)
             {
-                nextFire = Time.time + attackDelaySeconds;
-                bullets[bulletIndex++].Shoot();
-                if (bulletIndex == bullets.Count)
+                StartCoroutine(ReleaseMinion());
+                hasAttacked = true;
+            }
+            else
+            {
+                // within enemy's detection range
+                isIdle = true;
+                if (Time.time > nextFire)
                 {
-                    bulletIndex = 0;
-                    hasShootAttacked = false;
-            
+                    nextFire = Time.time + bulletWaveInterval;
+                    bullets[bulletIndex++].Shoot();
+
+                    if (bulletIndex == bullets.Count)
+                    {
+                        bulletIndex = 0;
+                        hasShootAttacked = false;
+                    }
                 }
             }
         }
@@ -85,6 +96,21 @@ public class ParasiticInfectionController : EnemyController
         }
     }
 
+    IEnumerator ReleaseMinion()
+    {
+        anim.SetTrigger("isAttacking");
+        yield return new WaitForSeconds(attackDelaySeconds);
+
+        hasAttacked = false; // reset for next attack
+    }
+
+    /// <summary>
+    /// Animation event for spawning minion at specific animation frame
+    /// </summary>
+    public void SpawnMinion()
+    {
+        Instantiate(minionObjectPrefab, transform);
+    }
 
     void Move()
     {

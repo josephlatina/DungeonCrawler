@@ -2692,8 +2692,8 @@ MonoBehaviour:
   - {fileID: 1316915922}
   - {fileID: 1632240787}
   detectionRadius: 8
-  attackDelaySeconds: 0.2
-  bulletWaveInterval: 5
+  attackDelaySeconds: 15
+  bulletWaveInterval: 0.2
 --- !u!50 &1008233677
 Rigidbody2D:
   serializedVersion: 4
@@ -2819,7 +2819,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.1875, y: 1.8125}
+    oldSize: {x: 3.375, y: 3.8125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
