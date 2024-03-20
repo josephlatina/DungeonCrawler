@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ParasiticInfectionController : EnemyController
@@ -9,10 +12,15 @@ public class ParasiticInfectionController : EnemyController
     [Header("Parasitic Boss Settings"), Space]
     public GameObject minionObjectPrefab;
 
-    public GameObject projectilePrefab;
+    public List<Bullet> bullets;
+    private int bulletIndex = 0;
+    private float nextFire = 0f;
 
     public float detectionRadius = 5f;
-    private bool hasAttacked = false;
+    public float attackDelaySeconds = 2f;
+    public float bulletWaveInterval = 5f;
+    private float nextWave = 0f;
+    private bool hasShootAttacked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,10 +50,34 @@ public class ParasiticInfectionController : EnemyController
             EnemyStateMachine.TransitionTo(EnemyStateMachine.moveState);
         }
 
-        float distance = Vector2.Distance(transform.position, target.position);
-        if (distance <= detectionRadius)
+       
+
+        if (Vector3.Distance(bullets.Last().transform.position, transform.position) > 20f)
         {
+            for (int i = 0; i < bullets.Count; i++)
+            {
+                bullets[i].Reset();
+            }
+            hasShootAttacked = false;
+
+        }
+
+        float distance = Vector2.Distance(transform.position, target.position);
+        if (distance <= detectionRadius && !hasShootAttacked)
+        {
+            // within enemy's detection range
             isIdle = true;
+            if (Time.time > nextFire)
+            {
+                nextFire = Time.time + attackDelaySeconds;
+                bullets[bulletIndex++].Shoot();
+                if (bulletIndex == bullets.Count)
+                {
+                    bulletIndex = 0;
+                    hasShootAttacked = false;
+            
+                }
+            }
         }
         else
         {
