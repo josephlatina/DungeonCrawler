@@ -6,7 +6,13 @@ public class ParasiticInfectionController : EnemyController
     private Transform target;
     private bool isIdle = true;
 
+    [Header("Parasitic Boss Settings"), Space]
     public GameObject minionObjectPrefab;
+
+    public GameObject projectilePrefab;
+
+    public float detectionRadius = 5f;
+    private bool hasAttacked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +30,23 @@ public class ParasiticInfectionController : EnemyController
         {
             anim.SetBool("isDead", true);
         }
+
+        // Update velocity based on boolean
+        if (isIdle)
+        {
+            rb.velocity = Vector2.zero;
+            EnemyStateMachine.TransitionTo(EnemyStateMachine.idleState);
+        }
+        else
+        {
+            EnemyStateMachine.TransitionTo(EnemyStateMachine.moveState);
+        }
+
+        float distance = Vector2.Distance(transform.position, target.position);
+        if (distance <= detectionRadius)
+        {
+            isIdle = true;
+        }
         else
         {
             Move();
@@ -33,6 +56,7 @@ public class ParasiticInfectionController : EnemyController
 
     void Move()
     {
+        isIdle = false;
         MoveDirection();
 
         if (rb.velocity != Vector2.zero)
@@ -65,20 +89,12 @@ public class ParasiticInfectionController : EnemyController
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnDrawGizmosSelected()
     {
-        if (other.transform == target)
-        {
-            isIdle = true;
-            rb.velocity = Vector2.zero;
-        }
-    }
+        // Set the color of the wireframe circle
+        Gizmos.color = Color.red;
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.transform == target)
-        {
-            isIdle = false;
-        }
+        // Draw wireframe circle
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }
