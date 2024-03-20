@@ -29,6 +29,7 @@ public class Bullet : MonoBehaviour
 
     public void Shoot()
     {
+        gameObject.SetActive(true);
         if (rb.velocity == Vector2.zero)
         {
             rb.AddForce(forceDirection * forceMagnitude, ForceMode2D.Impulse);
@@ -38,8 +39,18 @@ public class Bullet : MonoBehaviour
 
     public void Reset()
     {
+        gameObject.SetActive(false);
         rb.velocity = Vector2.zero;
         // transform.position = Vector3.zero;
         transform.localPosition = Vector3.zero;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerController>().UpdatePlayerStats(health:-.5f);
+            Reset();
+        }
     }
 }
