@@ -1375,7 +1375,7 @@ Animator:
   m_GameObject: {fileID: 659864426}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 963a1a85b1f4e374c8a97ce557bdbff1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3460c2074dff83d4ba9c8dfed9a541b2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1427,7 +1427,7 @@ SpriteRenderer:
   m_SortingLayerID: -1024326055
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1423211208, guid: 737fd9bb8779bb344ab95fc5f9f26d5e, type: 3}
+  m_Sprite: {fileID: -1701221420, guid: eb4e68eddeb205643ac885beeec24141, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1446,12 +1446,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 659864426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: -0.74, z: 0}
+  m_LocalPosition: {x: -0.6, y: -6.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &659864430
 MonoBehaviour:
@@ -1468,17 +1468,17 @@ MonoBehaviour:
   enemyStats: {fileID: 11400000, guid: a0e335a404620654c9812608c21282a0, type: 2}
   rb: {fileID: 0}
   anim: {fileID: 659864427}
-  movementSpeed: 0
+  movementSpeed: 1
   movementToPositionEvent: {fileID: 0}
-  currentMovementSpeed: 0
-  strength: 0
-  maxHealth: 10
+  currentMovementSpeed: 1
+  strength: 0.5
+  maxHealth: 1.5
   effectOnEnemy: {fileID: 0}
   effectEnemyApplies: {fileID: 0}
   knockbackVelocity: {x: 0, y: 0}
   knockbackDuration: 0
-  target: {fileID: 0}
   stopDistance: 1
+  attackDelaySeconds: 2
 --- !u!58 &659864431
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1494,7 +1494,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 5
 --- !u!50 &659864432
 Rigidbody2D:
   serializedVersion: 4
@@ -2390,7 +2390,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1008233676
 MonoBehaviour:
@@ -2410,13 +2410,13 @@ MonoBehaviour:
   movementSpeed: 3
   movementToPositionEvent: {fileID: 0}
   currentMovementSpeed: 3
-  strength: 10
+  strength: 1
   maxHealth: 10
   effectOnEnemy: {fileID: 0}
   effectEnemyApplies: {fileID: 0}
   knockbackVelocity: {x: 0.5, y: 0.5}
   knockbackDuration: 1
-  target: {fileID: 0}
+  minionObjectPrefab: {fileID: 0}
 --- !u!50 &1008233677
 Rigidbody2D:
   serializedVersion: 4
@@ -3425,63 +3425,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4657569050215368283, guid: 51cd4d4f67fd7af4786ee7ade5140631, type: 3}
   m_PrefabInstance: {fileID: 1506502564}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1369222506
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 811109188997130492, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
-      propertyPath: m_Name
-      value: SlasherEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8427603901733194542, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
-      propertyPath: m_RootOrder
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 8427603901733194542, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.4060512
-      objectReference: {fileID: 0}
-    - target: {fileID: 8427603901733194542, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.6232727
-      objectReference: {fileID: 0}
-    - target: {fileID: 8427603901733194542, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8427603901733194542, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8427603901733194542, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8427603901733194542, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8427603901733194542, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8427603901733194542, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8427603901733194542, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8427603901733194542, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e4e3153d98cd0cd44b9d502dd1c0d59d, type: 3}
 --- !u!114 &1369380516 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2341849012200123104, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
@@ -5188,6 +5131,10 @@ PrefabInstance:
       propertyPath: characterBubblePrefab
       value: 
       objectReference: {fileID: 96125403}
+    - target: {fileID: 2341849012200123104, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
+      propertyPath: maxHealthPoints
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6984755896152334957, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
       propertyPath: text
       value: 

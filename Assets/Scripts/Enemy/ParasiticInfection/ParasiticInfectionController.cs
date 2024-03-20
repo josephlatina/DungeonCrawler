@@ -6,6 +6,8 @@ public class ParasiticInfectionController : EnemyController
     private Transform target;
     private bool isIdle = true;
 
+    public GameObject minionObjectPrefab;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -379,7 +379,7 @@ public class PlayerController : MonoBehaviour, IEffectable
     /// <param name="strength"></param>
     /// <param name="defence"></param>
     /// <param name="incomingDamage"></param>
-    void UpdatePlayerStats(float health = 0f, float moveSpeed = 0f, float attackSpeed = 0f,
+    public void UpdatePlayerStats(float health = 0f, float moveSpeed = 0f, float attackSpeed = 0f,
         float strength = 0f,
         int defence = 0, float incomingDamage = 0f)
     {
