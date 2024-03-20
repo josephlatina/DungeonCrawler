@@ -309,7 +309,6 @@ GameObject:
   - component: {fileID: 782606889}
   - component: {fileID: 2767143214881663896}
   - component: {fileID: 102686626468149486}
-  - component: {fileID: 1369380510}
   - component: {fileID: 1369380525}
   - component: {fileID: 7259615680217550276}
   m_Layer: 6
@@ -617,22 +616,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1369380510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6984755896152334966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 983e4636ae10b4609b3cf2244fb724db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CharacterName: Player
-  bubblePosition: {fileID: 619896424}
-  characterBubbleData: {fileID: 11400000, guid: d1bb73ebf1da1564fad44da0b426b51c, type: 2}
-  characterBubblePrefab: {fileID: 0}
 --- !u!114 &1369380525
 MonoBehaviour:
   m_ObjectHideFlags: 0

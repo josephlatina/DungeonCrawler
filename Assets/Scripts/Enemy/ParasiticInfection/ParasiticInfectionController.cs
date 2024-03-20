@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Yarn.Unity;
 
 public class ParasiticInfectionController : EnemyController
 {
@@ -22,6 +23,11 @@ public class ParasiticInfectionController : EnemyController
     private float nextWave = 0f;
     private bool hasShootAttacked = false;
     private bool hasAttacked = false;
+
+    private bool hasTalked = false;
+    private bool dialogueComplete = false;
+    [SerializeField] private YarnProject project;
+    [YarnNode(nameof(project))] public string bossBattleNode;
 
     // Start is called before the first frame update
     void Start()
@@ -68,24 +74,37 @@ public class ParasiticInfectionController : EnemyController
         // player is within detection range
         if (distance <= detectionRadius && !hasShootAttacked)
         {
-            if (!hasAttacked)
+            if (!hasTalked && distance <= detectionRadius-.5f)
             {
-                StartCoroutine(ReleaseMinion());
-                hasAttacked = true;
-            }
-            else
-            {
-                // within enemy's detection range
+                PlayerController player = target.GetComponent<PlayerController>();
+                player.paused = true;
+                player.dialogueRunner.StartDialogue(bossBattleNode);
+                player.dialogueRunner.onNodeComplete.AddListener(DialogueComplete);
+                hasTalked = true;
                 isIdle = true;
-                if (Time.time > nextFire)
-                {
-                    nextFire = Time.time + bulletWaveInterval;
-                    bullets[bulletIndex++].Shoot();
+            }
 
-                    if (bulletIndex == bullets.Count)
+            else if (dialogueComplete)
+            {
+                if (!hasAttacked)
+                {
+                    StartCoroutine(ReleaseMinion());
+                    hasAttacked = true;
+                }
+                else
+                {
+                    // within enemy's detection range
+                    isIdle = true;
+                    if (Time.time > nextFire)
                     {
-                        bulletIndex = 0;
-                        hasShootAttacked = false;
+                        nextFire = Time.time + bulletWaveInterval;
+                        bullets[bulletIndex++].Shoot();
+
+                        if (bulletIndex == bullets.Count)
+                        {
+                            bulletIndex = 0;
+                            hasShootAttacked = false;
+                        }
                     }
                 }
             }
@@ -94,6 +113,12 @@ public class ParasiticInfectionController : EnemyController
         {
             Move();
         }
+    }
+
+    void DialogueComplete(string arg)
+    {
+        dialogueComplete = true;
+        target.GetComponent<PlayerController>().paused = false;
     }
 
     IEnumerator ReleaseMinion()
@@ -111,7 +136,6 @@ public class ParasiticInfectionController : EnemyController
     {
         Transform minion = Instantiate(minionObjectPrefab, transform).transform;
         minion.parent = null;
-
     }
 
     void Move()
@@ -134,7 +158,7 @@ public class ParasiticInfectionController : EnemyController
 
     void MoveDirection()
     {
-        if (!isIdle)
+        if (!isIdle && dialogueComplete)
         {
             // Calculate the direction from current position to the target
             Vector2 direction = ((Vector2)target.position - rb.position).normalized;

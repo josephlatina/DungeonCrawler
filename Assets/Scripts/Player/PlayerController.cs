@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour, IEffectable
     private SpriteRenderer characterSprite;
     private PlayerHealth playerHealth;
     public Animator anim;
-    private bool paused;
+    public bool paused;
 
     [HideInInspector] public Vector2 moveVal;
     public float rollSpeed;

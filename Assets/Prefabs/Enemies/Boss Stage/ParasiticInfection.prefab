@@ -100,8 +100,10 @@ MonoBehaviour:
   - {fileID: 2850307738048844745}
   - {fileID: 2850307737445338199}
   detectionRadius: 8
-  attackDelaySeconds: 15
+  attackDelaySeconds: 8
   bulletWaveInterval: 0.2
+  project: {fileID: 7545569452688597077, guid: dedffbe1bc41013438200d17eae8a64f, type: 3}
+  bossBattleNode: BossBattle1
 --- !u!114 &7773933459590588891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,7 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Parasite
   bubblePosition: {fileID: 1919349741072667931}
-  characterBubbleData: {fileID: 0}
+  characterBubbleData: {fileID: 11400000, guid: 94225676413ea9248b6eea1644e84d9a, type: 2}
   characterBubblePrefab: {fileID: 0}
 --- !u!1001 &5073827491060027840
 PrefabInstance:
