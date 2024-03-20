@@ -109,7 +109,9 @@ public class ParasiticInfectionController : EnemyController
     /// </summary>
     public void SpawnMinion()
     {
-        Instantiate(minionObjectPrefab, transform);
+        Transform minion = Instantiate(minionObjectPrefab, transform).transform;
+        minion.parent = null;
+
     }
 
     void Move()
