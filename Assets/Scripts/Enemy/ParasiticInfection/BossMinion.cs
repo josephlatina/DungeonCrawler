@@ -32,7 +32,6 @@ public class BossMinion : EnemyController
         if (health.currentHealthPoints <= 0)
         {
             anim.SetBool("isDead", true);
-            gameObject.SetActive(false);
         }
         else
         {
@@ -76,8 +75,7 @@ public class BossMinion : EnemyController
             }
         }
     }
-
-
+    
     IEnumerator Attack()
     {
         anim.SetTrigger("isAttacking");

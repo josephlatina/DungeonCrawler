@@ -43,7 +43,7 @@ public class ParasiticInfectionController : EnemyController
 
         if (health.currentHealthPoints <= 0)
         {
-            StartCoroutine(Death());
+            anim.SetBool("isDead", true);
         }
         else
         {
@@ -120,14 +120,7 @@ public class ParasiticInfectionController : EnemyController
             }
         }
     }
-
-    IEnumerator Death()
-    {
-        anim.SetBool("isDead", true);
-        yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1);
-        gameObject.SetActive(false);
-    }
-
+    
     void DialogueComplete(string arg)
     {
         dialogueComplete = true;

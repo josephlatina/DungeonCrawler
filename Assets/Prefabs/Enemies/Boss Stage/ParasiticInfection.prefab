@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: bb64bb938829f944bb74da4fe2c73c35, type: 2}
+  enemySprite: {fileID: 0}
   rb: {fileID: 0}
   anim: {fileID: 7773933459590588868}
   movementSpeed: 3
@@ -118,6 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyController: {fileID: 7773933459590588870}
   currentHealthPoints: 10
+  customDeath: 1
 --- !u!212 &7773933459590588869
 SpriteRenderer:
   m_ObjectHideFlags: 0

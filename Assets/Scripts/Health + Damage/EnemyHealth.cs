@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private EnemyController enemyController;
     public float currentHealthPoints;
+
+    public bool customDeath = false;
 
     void Awake()
     {
@@ -19,16 +22,26 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHealthPoints <= 0)
         {
-            StartCoroutine(DieTimer());
+            if (!customDeath)
+            {
+                StartCoroutine(DieTimer());
+            }
         }
         else if (healthChange < 0 && currentHealthPoints > 0)
         {
             enemyController.Hurt();
         }
-
-
     }
 
+    /// <summary>
+    /// Animation event to control death behaviour of enemy in a specific animation frame
+    /// </summary>
+    public void Death()
+    {
+        Debug.Log("DIE");
+        Destroy(gameObject);
+    }
+    
     private IEnumerator DieTimer()
     {
         enemyController.Dead();
