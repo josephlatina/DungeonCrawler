@@ -1058,6 +1058,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 980553106}
     m_Modifications:
+    - target: {fileID: 8567826351130727451, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567826351448517179, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8567826351448517316, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1065,6 +1073,26 @@ PrefabInstance:
     - target: {fileID: 8567826351448517316, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RestartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567826351818698775, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567826351818698775, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 3090379474
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567826351952728578, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567826351952728578, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 3090379474
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567826352407824456, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
+      propertyPath: m_Color.a
+      value: 0.64705884
       objectReference: {fileID: 0}
     - target: {fileID: 8567826352407824457, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
       propertyPath: m_Pivot.x
@@ -1153,6 +1181,14 @@ PrefabInstance:
     - target: {fileID: 8567826352407824458, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
       propertyPath: m_Name
       value: GameOverScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567826352407824458, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567826352730953328, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8567826352730953329, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2514,6 +2550,27 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8567826352407824457, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
   m_PrefabInstance: {fileID: 541471272}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1051267241
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051267237}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f2df965b9f8324b49ab855cb3906fb95, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1120822528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4841,6 +4898,18 @@ PrefabInstance:
     - target: {fileID: 6984755896152334966, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7259615680217550276, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7259615680217550276, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7259615680217550276, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}

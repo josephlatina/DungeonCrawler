@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour, IEffectable
 
     public PlayerStateMachine PlayerStateMachine => playerStateMachine;
     private Collider2D interactTrigger;
+    public Collider2D playerCollider;
     private Transform interactableObject;
     public PlayerWeaponController weaponController;
     [HideInInspector] public Vector3 mousePos;
@@ -85,6 +86,7 @@ public class PlayerController : MonoBehaviour, IEffectable
         playerHealth = GetComponent<PlayerHealth>();
         // Get player object's interaction trigger
         interactTrigger = transform.Find("InteractTrigger").GetComponent<Collider2D>();
+        playerCollider = GetComponent<Collider2D>();
         weaponController = GetComponentInChildren<PlayerWeaponController>();
         anim = GetComponentInChildren<Animator>();
         characterSprite = transform.Find("CharacterSprite").GetComponent<SpriteRenderer>();
@@ -560,11 +562,16 @@ public class PlayerController : MonoBehaviour, IEffectable
     {
         paused = true;
         audioSource.PlayOneShot(deathSound, 0.4f);
+        playerCollider.enabled = false;
+        anim.SetBool("isWalking", false);
+        anim.SetTrigger("isDead");
         deathScreen.SetActive(true);
+        deathScreen.GetComponent<Animator>().SetTrigger("fadeIn");
     }
 
     public void Hurt()
     {
+        anim.SetTrigger("isHurt");
         audioSource.PlayOneShot(hurtSound, 0.4f);
     }
 }

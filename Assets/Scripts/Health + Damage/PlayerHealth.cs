@@ -34,7 +34,6 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealthPoints <= 0)
         {
             playerController.Death();
-            Destroy(gameObject);
         }
 
         if (currentHealthPoints > maxHealthPoints)
