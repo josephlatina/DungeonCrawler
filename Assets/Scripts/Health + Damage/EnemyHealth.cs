@@ -38,7 +38,6 @@ public class EnemyHealth : MonoBehaviour
     /// </summary>
     public void Death()
     {
-        Debug.Log("DIE");
         Destroy(gameObject);
     }
     
