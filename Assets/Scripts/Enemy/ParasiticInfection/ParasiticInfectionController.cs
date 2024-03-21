@@ -30,14 +30,14 @@ public class ParasiticInfectionController : EnemyController
     [YarnNode(nameof(project))] public string bossBattleNode;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         base.Start();
         target = GameObject.FindWithTag("Player").transform;
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         base.Update();
 

@@ -14,7 +14,9 @@ using UnityEngine;
 /// </summary>
 public class EnemyController : MonoBehaviour, IEffectable
 {
-    [Header("Enemy Scriptable Object")] [Tooltip("EnemyScriptableObject for initial enemy stats")] [SerializeField]
+    [Header("Enemy Scriptable Object")]
+    [Tooltip("EnemyScriptableObject for initial enemy stats")]
+    [SerializeField]
     public EnemyScriptableObject enemyStats;
 
     public SpriteRenderer enemySprite;
@@ -56,7 +58,7 @@ public class EnemyController : MonoBehaviour, IEffectable
     /// <summary>
     /// Called once when the script is initialized.
     /// </summary>
-    protected virtual void Awake()
+    public virtual void Awake()
     {
         // Initialize the state machine on the enemy
         enemyStateMachine = new EnemyStateMachine(this);
@@ -85,13 +87,13 @@ public class EnemyController : MonoBehaviour, IEffectable
     /// <summary>
     /// Called once after Awake.
     /// </summary>
-    protected virtual void Start()
+    public virtual void Start()
     {
         // Initialize the state machine with the idle state
         enemyStateMachine.Initialize(enemyStateMachine.idleState);
     }
 
-    protected virtual void FixedUpdate()
+    public virtual void FixedUpdate()
     {
     }
 

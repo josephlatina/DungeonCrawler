@@ -16,14 +16,14 @@ public class SlasherController : EnemyController
 {
     public Collider2D slashCollider;
 
-    protected override void Awake()
+    public override void Awake()
     {
         base.Awake();
         slashCollider = transform.Find("SlashCollider").GetComponent<Collider2D>();
     }
 
     // FixedUpdate is used for physics-related updates
-    protected override void FixedUpdate()
+    public override void FixedUpdate()
     {
         // Call the Move method for the slasher's movement
         Move();

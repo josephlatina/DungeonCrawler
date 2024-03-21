@@ -33,8 +33,8 @@ public abstract class InventoryItem : ScriptableObject
     }
     void OnGUI()
     {
-        GUIStyle style = new GUIStyle(EditorStyles.textArea);
-        style.wordWrap = true; // Allow for string wrapping in the inspector
-        description = EditorGUILayout.TextArea(description, style);
+        // GUIStyle style = new GUIStyle(EditorStyles.textArea);
+        // style.wordWrap = true; // Allow for string wrapping in the inspector
+        // description = EditorGUILayout.TextArea(description, style);
     }
 }
