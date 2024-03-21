@@ -7,6 +7,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class MeleeWeaponController : WeaponItemController
@@ -71,6 +72,8 @@ public class MeleeWeaponController : WeaponItemController
                 col.gameObject.GetComponentInParent<EnemyController>().Knockback(item.GetKnockback() * dir.normalized, 0.75f);
             }
             GetComponent<Collider2D>().enabled = false;
+            
+            col.GetComponent<EnemyController>().anim.SetTrigger("isHurt");
         }
     }
 }

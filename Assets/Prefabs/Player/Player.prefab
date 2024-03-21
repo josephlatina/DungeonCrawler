@@ -351,7 +351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   player: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 782606889}
+  paused: 0
   moveVal: {x: 0, y: 0}
   rollSpeed: 35
   rollLength: 0.5

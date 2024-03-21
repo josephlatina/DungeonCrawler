@@ -43,77 +43,89 @@ public class ParasiticInfectionController : EnemyController
 
         if (health.currentHealthPoints <= 0)
         {
-            anim.SetBool("isDead", true);
-        }
-
-        // Update velocity based on boolean
-        if (isIdle)
-        {
-            rb.velocity = Vector2.zero;
-            EnemyStateMachine.TransitionTo(EnemyStateMachine.idleState);
+            StartCoroutine(Death());
         }
         else
         {
-            EnemyStateMachine.TransitionTo(EnemyStateMachine.moveState);
-        }
-
-
-        // conditions that would reset shooting attack
-        if (Vector3.Distance(bullets.Last().transform.position, transform.position) > 20f)
-        {
-            for (int i = 0; i < bullets.Count; i++)
+            // Update velocity based on boolean
+            if (isIdle)
             {
-                bullets[i].Reset();
+                rb.velocity = Vector2.zero;
+                EnemyStateMachine.TransitionTo(EnemyStateMachine.idleState);
+            }
+            else
+            {
+                EnemyStateMachine.TransitionTo(EnemyStateMachine.moveState);
             }
 
-            // reset trigger
-            hasShootAttacked = false;
-        }
 
-        float distance = Vector2.Distance(transform.position, target.position);
-        // player is within detection range
-        if (distance <= detectionRadius && !hasShootAttacked)
-        {
-            if (!hasTalked && distance <= detectionRadius-.5f)
+            // conditions that would reset shooting attack
+            if (Vector3.Distance(bullets.Last().transform.position, transform.position) > 20f)
             {
-                PlayerController player = target.GetComponent<PlayerController>();
-                player.anim.SetBool("isWalking", false);
-                player.paused = true;
-                player.dialogueRunner.StartDialogue(bossBattleNode);
-                player.dialogueRunner.onNodeComplete.AddListener(DialogueComplete);
-                hasTalked = true;
-                isIdle = true;
-            }
-
-            else if (dialogueComplete)
-            {
-                if (!hasAttacked)
+                for (int i = 0; i < bullets.Count; i++)
                 {
-                    StartCoroutine(ReleaseMinion());
-                    hasAttacked = true;
+                    bullets[i].Reset();
                 }
-                else
-                {
-                    // within enemy's detection range
-                    isIdle = true;
-                    if (Time.time > nextFire)
-                    {
-                        nextFire = Time.time + bulletWaveInterval;
-                        bullets[bulletIndex++].Shoot();
 
-                        if (bulletIndex == bullets.Count)
+                // reset trigger
+                hasShootAttacked = false;
+            }
+
+            // check if target is null
+            target = target == null ? transform : target;
+
+            float distance = Vector2.Distance(transform.position, target.position);
+            // player is within detection range
+            if (distance <= detectionRadius && !hasShootAttacked)
+            {
+                if (!hasTalked && distance <= detectionRadius - .5f)
+                {
+                    PlayerController player = target.GetComponent<PlayerController>();
+                    player.anim.SetBool("isWalking", false);
+                    player.paused = true;
+                    player.dialogueRunner.StartDialogue(bossBattleNode);
+                    player.dialogueRunner.onNodeComplete.AddListener(DialogueComplete);
+                    hasTalked = true;
+                    isIdle = true;
+                }
+
+                else if (dialogueComplete)
+                {
+                    if (!hasAttacked)
+                    {
+                        StartCoroutine(ReleaseMinion());
+                        hasAttacked = true;
+                    }
+                    else
+                    {
+                        // within enemy's detection range
+                        isIdle = true;
+                        if (Time.time > nextFire)
                         {
-                            bulletIndex = 0;
-                            hasShootAttacked = false;
+                            nextFire = Time.time + bulletWaveInterval;
+                            bullets[bulletIndex++].Shoot();
+
+                            if (bulletIndex == bullets.Count)
+                            {
+                                bulletIndex = 0;
+                                hasShootAttacked = false;
+                            }
                         }
                     }
                 }
             }
+            else
+            {
+                Move();
+            }
         }
-        else
-        {
-            Move();
-        }
+    }
+
+    IEnumerator Death()
+    {
+        anim.SetBool("isDead", true);
+        yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1);
+        gameObject.SetActive(false);
     }
 
     void DialogueComplete(string arg)

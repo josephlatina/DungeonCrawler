@@ -34,44 +34,49 @@ public class BossMinion : EnemyController
             anim.SetBool("isDead", true);
             gameObject.SetActive(false);
         }
-
-        // Update velocity based on boolean
-        if (isIdle)
-        {
-            rb.velocity = Vector2.zero;
-            EnemyStateMachine.TransitionTo(EnemyStateMachine.idleState);
-        }
         else
         {
-            EnemyStateMachine.TransitionTo(EnemyStateMachine.moveState);
-        }
-
-
-        // Move enemy towards player when in detection radius
-        float distance = Vector2.Distance(transform.position, target.position);
-        if (distance <= detectionRadius)
-        {
-            if (distance <= stopDistance)
+            // Update velocity based on boolean
+            if (isIdle)
             {
-                isIdle = true;
+                rb.velocity = Vector2.zero;
+                EnemyStateMachine.TransitionTo(EnemyStateMachine.idleState);
             }
             else
             {
-                Move();
+                EnemyStateMachine.TransitionTo(EnemyStateMachine.moveState);
             }
+            
+            // check if target is null
+            target = target == null ? transform : target;
+            
+            // Move enemy towards player when in detection radius
+            float distance = Vector2.Distance(transform.position, target.position);
+            if (distance <= detectionRadius)
+            {
+                if (distance <= stopDistance)
+                {
+                    isIdle = true;
+                }
+                else
+                {
+                    Move();
+                }
 
-            if (!hasAttacked && Time.time >= attackDelaySeconds)
+                if (!hasAttacked && Time.time >= attackDelaySeconds)
+                {
+                    isIdle = true;
+                    StartCoroutine(Attack());
+                    hasAttacked = true; // attack has been executed 
+                }
+            }
+            else
             {
                 isIdle = true;
-                StartCoroutine(Attack());
-                hasAttacked = true; // attack has been executed 
             }
         }
-        else
-        {
-            isIdle = true;
-        }
     }
+
 
     IEnumerator Attack()
     {
