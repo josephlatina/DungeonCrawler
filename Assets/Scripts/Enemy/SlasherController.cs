@@ -14,6 +14,13 @@ using UnityEngine;
 /// </summary>
 public class SlasherController : EnemyController
 {
+    public Collider2D slashCollider;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        slashCollider = transform.Find("SlashCollider").GetComponent<Collider2D>();
+    }
 
     // FixedUpdate is used for physics-related updates
     protected override void FixedUpdate()
@@ -38,13 +45,22 @@ public class SlasherController : EnemyController
         {
             rb.velocity = Vector3.zero;
         }
-        // Add force to the Rigidbody for horizontal movement (USED FOR DEBUGGING ONLY)
-        // Note: Using Time.deltaTime to make the movement frame-rate independent
-        // rb.AddForce(new Vector2(movementSpeed * Time.deltaTime, 0), ForceMode2D.Impulse);
     }
 
     public float DoDamage()
     {
         return strength;
+    }
+
+    public override void Dead()
+    {
+        base.Dead();
+        anim.SetBool("isWalking", false);
+        anim.SetTrigger("isDead");
+    }
+
+    public override void Hurt()
+    {
+        anim.SetTrigger("isHurt");
     }
 }

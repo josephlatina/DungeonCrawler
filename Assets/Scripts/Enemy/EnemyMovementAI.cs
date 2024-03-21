@@ -255,4 +255,8 @@ public class EnemyMovementAI : MonoBehaviour
 
         }
     }
+
+    public void StopMovement() {
+        moveSpeed = 0;
+    }
 }

@@ -46,6 +46,12 @@ public class PlayerHealthDisplay : MonoBehaviour
         GameObject newHeart = Instantiate(heartPrefab);
         newHeart.transform.SetParent(transform);
 
+        // Get the RectTransform component of the instantiated heart prefab
+        RectTransform heartRectTransform = newHeart.GetComponent<RectTransform>();
+
+        // Set the scale to (1, 1, 1)
+        heartRectTransform.localScale = Vector3.one;
+
         HealthHeart heartComponent = newHeart.GetComponent<HealthHeart>();
         heartComponent.SetHeartImage(HeartStatus.Empty);
         hearts.Add(heartComponent);
