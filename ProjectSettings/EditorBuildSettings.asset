@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Home.unity
     guid: 66ac9ad6a6d92d041ba37c0496e94f7a
   - enabled: 1
-    path: Assets/Scenes/StatusEffectTestScene.unity
-    guid: 9ea0e482f78dd406f9fdbdb81f9172ce
+    path: Assets/Scenes/MainGameScene.unity
+    guid: 13b118d6e08aceb4cbb22b7c53b56afc
   m_configObjects: {}

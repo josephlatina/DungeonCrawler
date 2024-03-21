@@ -19,14 +19,14 @@ public class BossMinion : EnemyController
     private bool isIdle = true;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         base.Start();
         target = GameObject.FindWithTag("Player").transform;
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         base.Update();
         if (health.currentHealthPoints <= 0)
@@ -45,10 +45,10 @@ public class BossMinion : EnemyController
             {
                 EnemyStateMachine.TransitionTo(EnemyStateMachine.moveState);
             }
-            
+
             // check if target is null
             target = target == null ? transform : target;
-            
+
             // Move enemy towards player when in detection radius
             float distance = Vector2.Distance(transform.position, target.position);
             if (distance <= detectionRadius)
@@ -75,7 +75,7 @@ public class BossMinion : EnemyController
             }
         }
     }
-    
+
     IEnumerator Attack()
     {
         anim.SetTrigger("isAttacking");
