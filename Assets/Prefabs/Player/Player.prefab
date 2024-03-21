@@ -357,6 +357,7 @@ MonoBehaviour:
   rollSpeed: 35
   rollLength: 0.5
   rollCooldown: 0.5
+  playerCollider: {fileID: 0}
   weaponController: {fileID: 2660615186996927654}
   mousePos: {x: 0, y: 0, z: 0}
   dialogueView: {fileID: 0}
@@ -467,8 +468,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.5}
-  m_Size: {x: 0.9, y: 1.46}
+  m_Offset: {x: 0, y: 1.372402}
+  m_Size: {x: 0.9, y: 2.6402826}
   m_Direction: 0
 --- !u!114 &235765108
 MonoBehaviour:
