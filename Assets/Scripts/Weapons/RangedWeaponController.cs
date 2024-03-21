@@ -113,6 +113,7 @@ public class RangedWeaponController : WeaponItemController
             }
             GetComponent<Collider2D>().enabled = false;
             GetComponentInChildren<SpriteRenderer>().enabled = false;
+            col.GetComponent<EnemyController>().anim.SetTrigger("isHurt");
         }
     }
 }
