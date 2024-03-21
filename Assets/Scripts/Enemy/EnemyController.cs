@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour, IEffectable
     [Tooltip("EnemyScriptableObject for initial enemy stats")]
     [SerializeField]
     public EnemyScriptableObject enemyStats;
-    private SpriteRenderer enemySprite;
+    public SpriteRenderer enemySprite;
 
     private EnemyStateMachine enemyStateMachine;
     [HideInInspector] public Rigidbody2D rb;
@@ -43,21 +43,13 @@ public class EnemyController : MonoBehaviour, IEffectable
     public float maxHealth;
     private bool paused;
 
-    // Status effect of the enemy
-    // private enum EnemyStatus
-    // {
-    //     Normal,
-    //     Stun,
-    //     Immobilized,
-    //     Poison
-    // };
-    // private EnemyStatus status;
-
     public StatusEffectData effectOnEnemy;
     public StatusEffectData effectEnemyApplies;
 
     public Vector2 knockbackVelocity;
     public float knockbackDuration;
+
+
 
     // Expose the EnemyStateMachine for external access
     public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
@@ -65,7 +57,7 @@ public class EnemyController : MonoBehaviour, IEffectable
     /// <summary>
     /// Called once when the script is initialized.
     /// </summary>
-    public virtual void Awake()
+    protected virtual void Awake()
     {
         // Initialize the state machine on the enemy
         enemyStateMachine = new EnemyStateMachine(this);
@@ -94,7 +86,7 @@ public class EnemyController : MonoBehaviour, IEffectable
     /// <summary>
     /// Called once after Awake.
     /// </summary>
-    public virtual void Start()
+    protected virtual void Start()
     {
         // Initialize the state machine with the idle state
         enemyStateMachine.Initialize(enemyStateMachine.idleState);
@@ -228,7 +220,18 @@ public class EnemyController : MonoBehaviour, IEffectable
         {
             return;
         }
+
         knockbackVelocity = velocity;
         knockbackDuration = duration;
+    }
+
+    public virtual void Dead()
+    {
+        enemyMovementAI.StopMovement();
+    }
+
+    public virtual void Hurt()
+    {
+
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMeleeState : IState
 {
     private EnemyController enemy;
-   
+
 
     private float meleeCounter, meleeCoolCounter;
 
@@ -21,7 +21,7 @@ public class EnemyMeleeState : IState
     public void Enter()
     {
         Debug.Log("Enemy entering melee state");
-        enemy.anim.SetBool("isAttacking", true);
+        Attack();
     }
 
     /// <summary>
@@ -29,7 +29,8 @@ public class EnemyMeleeState : IState
     /// </summary>
     public void Update()
     {
-        if (GameManager.Instance.GetPlayer() != null) {
+        if (GameManager.Instance.GetPlayer() != null)
+        {
             if (Vector3.Distance(enemy.transform.position, GameManager.Instance.GetPlayer().GetPlayerPosition()) > 3f)
             {
                 enemy.EnemyStateMachine.TransitionTo(enemy.EnemyStateMachine.moveState);
@@ -39,7 +40,7 @@ public class EnemyMeleeState : IState
 
     public void FixedUpdate()
     {
-        
+
     }
 
     /// <summary>
@@ -48,7 +49,6 @@ public class EnemyMeleeState : IState
     public void Exit()
     {
         Debug.Log("Enemy exiting melee state");
-        enemy.anim.SetBool("isAttacking", false);
     }
 
 
@@ -57,6 +57,6 @@ public class EnemyMeleeState : IState
     /// </summary>
     void Attack()
     {
-        enemy.anim.SetBool("isAttacking", true);
+        enemy.anim.SetTrigger("isAttacking");
     }
 }
