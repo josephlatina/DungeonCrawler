@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1df07bf8258a432fb2534119ebf0c20, type: 3}
-  m_Name: EntranceRoom_1
+  m_Name: UpgradeRoom_2
   m_EditorClassIdentifier: 
-  guid: 4c31a1e99574a4171acb90322f9e6ac8
-  previousPrefab: {fileID: 1875396859818147482, guid: 322305dbc5db34d55b9422d1d5685fbf, type: 3}
-  prefab: {fileID: 1875396859818147482, guid: 322305dbc5db34d55b9422d1d5685fbf, type: 3}
-  roomNodeType: {fileID: 11400000, guid: c699fd65259a64908833c953fcb59f91, type: 2}
+  guid: 00f96d4b572bf401a824c006bcea8046
+  previousPrefab: {fileID: 1875396859818147482, guid: a1e2c2e71d4014d879d4241b9e65b1c6, type: 3}
+  prefab: {fileID: 1875396859818147482, guid: a1e2c2e71d4014d879d4241b9e65b1c6, type: 3}
+  roomNodeType: {fileID: 11400000, guid: c437fb01854944f869a4d0aa108dbce0, type: 2}
   lowerBounds: {x: -10, y: -13}
   upperBounds: {x: 25, y: 13}
   doorwayList:
@@ -53,9 +53,3 @@ MonoBehaviour:
     isUnavailable: 0
   spawnPositionArray:
   - {x: 8, y: -1}
-  - {x: 12, y: -1}
-  - {x: 12, y: -5}
-  enemiesByLevelList:
-  - dungeonLevel: {fileID: 11400000, guid: 7b32ec9a777e145f4b70b2533a2abdb8, type: 2}
-    spawnableObjectRatios: []
-  roomEnemySpawnParametersList: []
