@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b38d3131729144046b7f0a3e99674338, type: 3}
   m_Name: Slasher
   m_EditorClassIdentifier: 
-  movementSpeed: 7
+  movementSpeed: 5
   attackSpeed: 1
   strength: 0.5
   healthPoints: 5
