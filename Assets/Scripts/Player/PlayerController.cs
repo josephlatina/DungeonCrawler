@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour, IEffectable
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public PlayerStats player;
     private SpriteRenderer characterSprite;
-    private PlayerHealth playerHealth;
+    public PlayerHealth playerHealth;
     public Animator anim;
     public bool paused;
 

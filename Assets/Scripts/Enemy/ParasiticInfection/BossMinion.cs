@@ -96,11 +96,12 @@ public class BossMinion : EnemyController
     public void AttackPlayer()
     {
         float distance = Vector2.Distance(transform.position, target.position);
+        PlayerController player = target.GetComponent<PlayerController>();
 
         // if distance from player is stopDistance + 1 while on attack frame, take damage 
-        if (distance <= stopDistance + 1)
+        if (distance <= stopDistance + 1 && player.playerHealth.currentHealthPoints > 0)
         {
-            target.GetComponent<PlayerController>().UpdatePlayerStats(health: -strength);
+            player.UpdatePlayerStats(health: -strength);
         }
     }
 
