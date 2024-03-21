@@ -77,6 +77,7 @@ public class ParasiticInfectionController : EnemyController
             if (!hasTalked && distance <= detectionRadius-.5f)
             {
                 PlayerController player = target.GetComponent<PlayerController>();
+                player.anim.SetBool("isWalking", false);
                 player.paused = true;
                 player.dialogueRunner.StartDialogue(bossBattleNode);
                 player.dialogueRunner.onNodeComplete.AddListener(DialogueComplete);
