@@ -72,7 +72,7 @@ public class MeleeWeaponController : WeaponItemController
             }
             GetComponent<Collider2D>().enabled = false;
             
-            col.GetComponent<EnemyController>().anim.SetTrigger("isHurt");
+            col.gameObject.GetComponentInParent<EnemyController>().anim.SetTrigger("isHurt");
         }
     }
 }
