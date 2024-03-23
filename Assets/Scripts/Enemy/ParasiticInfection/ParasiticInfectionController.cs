@@ -44,6 +44,7 @@ public class ParasiticInfectionController : EnemyController
         if (health.currentHealthPoints <= 0)
         {
             anim.SetBool("isDead", true);
+            StaticEventHandler.CallBossDefeatedEvent(true);
         }
         else
         {
