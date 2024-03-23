@@ -56,6 +56,10 @@ PrefabInstance:
       value: ChestSpawner_BossDefeated
       objectReference: {fileID: 0}
     - target: {fileID: 7681548566630017952, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
+      propertyPath: chestPrefab
+      value: 
+      objectReference: {fileID: 500052024457644246, guid: 71953d4ede7fb4cd782df4d9107e4e97, type: 3}
+    - target: {fileID: 7681548566630017952, guid: 57c32268c2a37429486f4ee982b71e9d, type: 3}
       propertyPath: chestSpawnEvent
       value: 1
       objectReference: {fileID: 0}
