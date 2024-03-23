@@ -183,10 +183,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1215654478034429456}
     m_Modifications:
+    - target: {fileID: 2375222679657170150, guid: 1d7003f3366004f83a1be9272fc528da, type: 3}
+      propertyPath: m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d701fcf3135374c67bbf573213afbe94, type: 3}
     - target: {fileID: 3381491085019717092, guid: 1d7003f3366004f83a1be9272fc528da, type: 3}
       propertyPath: m_Name
       value: Price
       objectReference: {fileID: 0}
+    - target: {fileID: 3634885180722780776, guid: 1d7003f3366004f83a1be9272fc528da, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d701fcf3135374c67bbf573213afbe94, type: 3}
     - target: {fileID: 8472208737479004495, guid: 1d7003f3366004f83a1be9272fc528da, type: 3}
       propertyPath: m_RootOrder
       value: 1
