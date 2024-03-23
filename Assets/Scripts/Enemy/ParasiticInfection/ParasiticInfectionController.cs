@@ -26,6 +26,7 @@ public class ParasiticInfectionController : EnemyController
 
     private bool hasTalked = false;
     private bool dialogueComplete = false;
+    private bool itemSpawned = false;
     [SerializeField] private YarnProject project;
     [YarnNode(nameof(project))] public string bossBattleNode;
 
@@ -45,6 +46,12 @@ public class ParasiticInfectionController : EnemyController
         {
             anim.SetBool("isDead", true);
             StaticEventHandler.CallBossDefeatedEvent(true);
+            if (!itemSpawned)
+            {
+                Vector3 enemyPosition = transform.position;
+                GameManager.Instance.SpawnItem(enemyPosition);
+                itemSpawned = true;
+            }
         }
         else
         {
