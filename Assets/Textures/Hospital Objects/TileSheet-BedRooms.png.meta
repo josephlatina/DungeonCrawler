@@ -1,0 +1,1643 @@
+fileFormatVersion: 2
+guid: b6e764a07855c2f4e8bcafcb3d63b026
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 268
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db9ecfe3041782f4f8375947aef409ef
+      internalID: -652871704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_1
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 268
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3de3c25170e8391439957fe322a1957b
+      internalID: -1968975323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_2
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 268
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 640269781ff38fd44b29c34f345086a4
+      internalID: -334977448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_3
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 268
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5c7f36d4366f4144ba771d0167c17c3
+      internalID: 949871239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 261
+        width: 40
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe03738317f136941a367b8ac7947c67
+      internalID: -759815309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_5
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 260
+        width: 25
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a864a41c6ab83a74aaadc8306df2d3d1
+      internalID: -564500688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_6
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 260
+        width: 23
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56d6d71527fb2ab45baf3a924be2a5b6
+      internalID: 2074508846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_7
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 260
+        width: 23
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94023e416cf4bf1418e1f6a0853991ee
+      internalID: 1498789382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_8
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 260
+        width: 25
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cacfe518cf139034da4329c56f4d2340
+      internalID: 1032045951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_9
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 245
+        width: 51
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f83a7c60b819fc1439d423313ef678bb
+      internalID: 1496681372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_10
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 245
+        width: 51
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edc373f2e85be284d887d68a47a6a6d1
+      internalID: 2101789845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_11
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 244
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 564682eedb30aba4e88d3069c1a6683a
+      internalID: 1814616678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_12
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 244
+        width: 52
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86c3aada1965c2f4b83def19f857f07d
+      internalID: 2105193529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_13
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 228
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81f22b4bab1cf4e4797b75768538d275
+      internalID: -1272755599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_14
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 228
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64bd27cd5b448c84d808e8434e027678
+      internalID: 353770926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_15
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 228
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08c1c06f3bc12324480a101deeca04e7
+      internalID: 853542937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_16
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 228
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faa3538b279d6b846ad2878f8a5f4969
+      internalID: -1218654825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_17
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 221
+        width: 40
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 020ad6cc65eb8174ba627d4028edcb31
+      internalID: 1033651923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_18
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 222
+        width: 11
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b00dde88c3f775c48972fd455603001f
+      internalID: 1232328614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_19
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 222
+        width: 11
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba2734cbdc53f1a4c9198b26a3f2ab31
+      internalID: 488895124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_20
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 222
+        width: 11
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47894b03717129a4d8fda17c5f2ca267
+      internalID: -1646417817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_21
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 222
+        width: 11
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50362cd3719d5ed459a354b99abfb95d
+      internalID: 1963060198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_22
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 222
+        width: 11
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f2fb05839cb32743b57ae11d54a4e7b
+      internalID: 1008690812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_23
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 222
+        width: 11
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4c62acf1271d184383c776750b13190
+      internalID: 572184288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_24
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 222
+        width: 11
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51454399e6b9b6149b2e2603969a66c0
+      internalID: 758189099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_25
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 222
+        width: 11
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3952f2d3e2a5ee141ac637b7e99121c4
+      internalID: 2038673482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_26
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 184
+        width: 54
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b780da57a343c64489971446948deb8
+      internalID: 1091641808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_27
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 184
+        width: 52
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13c53cfae58423a468fbe0fd8f72a5b9
+      internalID: -763653323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_28
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 184
+        width: 52
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f21a2df72766da948b7a16717f8b3d95
+      internalID: -79760298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_29
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 184
+        width: 52
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44e5dd6705025ee46a2045d5e6be4942
+      internalID: -1207229532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_30
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 188
+        width: 40
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 456a8b4cb45588f4abd4f92cf4ab8299
+      internalID: -1050048150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_31
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 184
+        width: 40
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f144ceb520eeaf842b065f415ed91ffe
+      internalID: 514155334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_32
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 168
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f8389c7face2a941aa7fa6367da9507
+      internalID: -1835304966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_33
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 168
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bd62ca4805bd4a479681b60869aa37c
+      internalID: -1865522179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_34
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 165
+        width: 52
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 328eb9131df3033458736cf1bb02b724
+      internalID: -586914972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_35
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 164
+        width: 52
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84096992467d4eb469358a4b0e1aef30
+      internalID: 506398114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_36
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 148
+        width: 40
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65646aa65cf05eb4e9b47f8067f5611f
+      internalID: 286492987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_37
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 144
+        width: 40
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91924e056b43e0e4c9d88b6a854355e5
+      internalID: 1479665303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_38
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 104
+        width: 43
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aea70619fc4129042b73499f8ab02ea0
+      internalID: -1819665641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_39
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 105
+        width: 43
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18a205e39ae5ec44495242d4a96df1cc
+      internalID: 1775293018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_40
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 104
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 177cf5c3ec14e3b49a906dbb395384ec
+      internalID: -1797075723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_41
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 124
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdd33d938006b894dba440611de3b8d9
+      internalID: 1483405903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_42
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 124
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c10102a67513334e9f4f600d4ea78b0
+      internalID: -2080015780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_43
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 124
+        width: 54
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5028b95f6f910d140bb87a565f40d93f
+      internalID: 381384650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_44
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 124
+        width: 52
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1691ad6187853a44dbf1afbcb1189457
+      internalID: 1069727015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_45
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 89
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 223fff8e4b35c3f41b7f6c6baec996b0
+      internalID: -697655247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_46
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 61
+        width: 35
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab602ef657d67b647b75a097ddfb9532
+      internalID: 832301729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_47
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 61
+        width: 36
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 709f4b29a083ae3409a71cc87ffdc9cf
+      internalID: 1403532382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_48
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 120
+        width: 40
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 031b891e325de444aa2cbc06dc654e9f
+      internalID: 1913119284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_49
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 61
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d6a1afd886ba444293e69f7b8d6c9ba
+      internalID: -1259324887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_50
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 61
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 385c2ab418b22b64aa32d99d07dbcacf
+      internalID: -887455868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_51
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 47
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92187dfc45501d244abc5ec497847f34
+      internalID: 269013036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_52
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 66
+        width: 20
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc984e4c84b393f45959d0b1b80d4775
+      internalID: -1594430823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_53
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 42
+        width: 43
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcfa8646d85d2eb4a9059c6241de0a68
+      internalID: -1639853400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_54
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 42
+        width: 26
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 096241a9908acfe4ba0c2e1e4684792d
+      internalID: 1603024050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_55
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 50
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2e35466309f4474dbd48332186c77dd
+      internalID: -1354955311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_56
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 44
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 793b57aa41ed0fb4c84a4b794fe9fa08
+      internalID: -2112573625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_57
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 64
+        width: 52
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f4c75bb273da5342ac5c5b5afec738a
+      internalID: -147967203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_58
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 64
+        width: 56
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9a21e48d49b9944095c7e8dd9e74b79
+      internalID: 968516174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_59
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 64
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ffacf9986f05bb4da3b1eceb94a30cb
+      internalID: -837110417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_60
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 64
+        width: 52
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29011c246c8f202448b3193b0d1bf490
+      internalID: 1842532360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_61
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 46
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77db8254af659b44a9f84eec9b23e74e
+      internalID: 1017606466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_62
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 42
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca38654dae5fb1f41abed5f86acdf9d2
+      internalID: -1777587755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_63
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 41
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0986cb731459bba48ac0dde0923c2757
+      internalID: -291159848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_64
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 4
+        width: 54
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d77fc9fc4fb6dd49bdc616b17b85600
+      internalID: -1739525562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_65
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 4
+        width: 54
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acb019ac858473f4bbf3dd0345ecbf12
+      internalID: -713172479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_66
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 4
+        width: 52
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d75027b5345f9474e80623801f63133d
+      internalID: -1921489571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileSheet-BedRooms_67
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 4
+        width: 52
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 356f004b1fe4c8440848f66a261ec5af
+      internalID: 27323604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      TileSheet-BedRooms_0: -652871704
+      TileSheet-BedRooms_1: -1968975323
+      TileSheet-BedRooms_10: 2101789845
+      TileSheet-BedRooms_11: 1814616678
+      TileSheet-BedRooms_12: 2105193529
+      TileSheet-BedRooms_13: -1272755599
+      TileSheet-BedRooms_14: 353770926
+      TileSheet-BedRooms_15: 853542937
+      TileSheet-BedRooms_16: -1218654825
+      TileSheet-BedRooms_17: 1033651923
+      TileSheet-BedRooms_18: 1232328614
+      TileSheet-BedRooms_19: 488895124
+      TileSheet-BedRooms_2: -334977448
+      TileSheet-BedRooms_20: -1646417817
+      TileSheet-BedRooms_21: 1963060198
+      TileSheet-BedRooms_22: 1008690812
+      TileSheet-BedRooms_23: 572184288
+      TileSheet-BedRooms_24: 758189099
+      TileSheet-BedRooms_25: 2038673482
+      TileSheet-BedRooms_26: 1091641808
+      TileSheet-BedRooms_27: -763653323
+      TileSheet-BedRooms_28: -79760298
+      TileSheet-BedRooms_29: -1207229532
+      TileSheet-BedRooms_3: 949871239
+      TileSheet-BedRooms_30: -1050048150
+      TileSheet-BedRooms_31: 514155334
+      TileSheet-BedRooms_32: -1835304966
+      TileSheet-BedRooms_33: -1865522179
+      TileSheet-BedRooms_34: -586914972
+      TileSheet-BedRooms_35: 506398114
+      TileSheet-BedRooms_36: 286492987
+      TileSheet-BedRooms_37: 1479665303
+      TileSheet-BedRooms_38: -1819665641
+      TileSheet-BedRooms_39: 1775293018
+      TileSheet-BedRooms_4: -759815309
+      TileSheet-BedRooms_40: -1797075723
+      TileSheet-BedRooms_41: 1483405903
+      TileSheet-BedRooms_42: -2080015780
+      TileSheet-BedRooms_43: 381384650
+      TileSheet-BedRooms_44: 1069727015
+      TileSheet-BedRooms_45: -697655247
+      TileSheet-BedRooms_46: 832301729
+      TileSheet-BedRooms_47: 1403532382
+      TileSheet-BedRooms_48: 1913119284
+      TileSheet-BedRooms_49: -1259324887
+      TileSheet-BedRooms_5: -564500688
+      TileSheet-BedRooms_50: -887455868
+      TileSheet-BedRooms_51: 269013036
+      TileSheet-BedRooms_52: -1594430823
+      TileSheet-BedRooms_53: -1639853400
+      TileSheet-BedRooms_54: 1603024050
+      TileSheet-BedRooms_55: -1354955311
+      TileSheet-BedRooms_56: -2112573625
+      TileSheet-BedRooms_57: -147967203
+      TileSheet-BedRooms_58: 968516174
+      TileSheet-BedRooms_59: -837110417
+      TileSheet-BedRooms_6: 2074508846
+      TileSheet-BedRooms_60: 1842532360
+      TileSheet-BedRooms_61: 1017606466
+      TileSheet-BedRooms_62: -1777587755
+      TileSheet-BedRooms_63: -291159848
+      TileSheet-BedRooms_64: -1739525562
+      TileSheet-BedRooms_65: -713172479
+      TileSheet-BedRooms_66: -1921489571
+      TileSheet-BedRooms_67: 27323604
+      TileSheet-BedRooms_7: 1498789382
+      TileSheet-BedRooms_8: 1032045951
+      TileSheet-BedRooms_9: 1496681372
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
