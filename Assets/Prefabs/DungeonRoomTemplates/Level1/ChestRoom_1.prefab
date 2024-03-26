@@ -230,7 +230,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 196
-      m_TileSpriteIndex: 184
+      m_TileSpriteIndex: 183
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -250,7 +250,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 196
-      m_TileSpriteIndex: 183
+      m_TileSpriteIndex: 185
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -260,7 +260,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 196
-      m_TileSpriteIndex: 184
+      m_TileSpriteIndex: 185
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -270,7 +270,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 196
-      m_TileSpriteIndex: 185
+      m_TileSpriteIndex: 183
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -300,7 +300,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 196
-      m_TileSpriteIndex: 184
+      m_TileSpriteIndex: 185
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -310,7 +310,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 196
-      m_TileSpriteIndex: 184
+      m_TileSpriteIndex: 185
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -330,7 +330,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 196
-      m_TileSpriteIndex: 183
+      m_TileSpriteIndex: 185
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -340,7 +340,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 196
-      m_TileSpriteIndex: 184
+      m_TileSpriteIndex: 185
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1411,9 +1411,9 @@ Tilemap:
     m_Data: {fileID: -1745699944, guid: a9770317cb5be334aa184fdb636e37c1, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: -870972379, guid: a9770317cb5be334aa184fdb636e37c1, type: 3}
-  - m_RefCount: 5
-    m_Data: {fileID: -1971278157, guid: a9770317cb5be334aa184fdb636e37c1, type: 3}
-  - m_RefCount: 14
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 19
     m_Data: {fileID: -843140663, guid: a9770317cb5be334aa184fdb636e37c1, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -7430,7 +7430,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 6
-      m_TileSpriteIndex: 19
+      m_TileSpriteIndex: 23
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -8009,16 +8009,16 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: -1217482023, guid: a9770317cb5be334aa184fdb636e37c1, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 20
     m_Data: {fileID: 1039972126, guid: a9770317cb5be334aa184fdb636e37c1, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 742978070, guid: a9770317cb5be334aa184fdb636e37c1, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -1217482023, guid: a9770317cb5be334aa184fdb636e37c1, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1164190385, guid: a9770317cb5be334aa184fdb636e37c1, type: 3}
   - m_RefCount: 1
@@ -16940,18 +16940,6 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 6151047864738074293}
     m_ColliderPaths:
-    - - X: 260000000
-        Y: 140000000
-      - X: 110000000
-        Y: 140000000
-      - X: 110000000
-        Y: 60000000
-      - X: 230000000
-        Y: 60000000
-      - X: 230000000
-        Y: 0
-      - X: 260000000
-        Y: 0
     - - X: -70000000
         Y: 60000000
       - X: 80000000
@@ -16963,6 +16951,18 @@ CompositeCollider2D:
       - X: -100000000
         Y: 0
       - X: -70000000
+        Y: 0
+    - - X: 260000000
+        Y: 140000000
+      - X: 110000000
+        Y: 140000000
+      - X: 110000000
+        Y: 60000000
+      - X: 230000000
+        Y: 60000000
+      - X: 230000000
+        Y: 0
+      - X: 260000000
         Y: 0
     - - X: 260000000
         Y: -35000000

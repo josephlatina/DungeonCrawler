@@ -17122,6 +17122,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChestSpawner_ChestRoomEntry
       objectReference: {fileID: 0}
+    - target: {fileID: 7961666607902570261, guid: 475b22ebdc6554b019c132d4758d0401, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7961666607902570261, guid: 475b22ebdc6554b019c132d4758d0401, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].min
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7961666607902570261, guid: 475b22ebdc6554b019c132d4758d0401, type: 3}
+      propertyPath: weaponSpawnByLevelList.Array.data[0].dungeonLevel
+      value: 
+      objectReference: {fileID: 11400000, guid: 3e1927f32ffee4378a7c5987a2b4089e, type: 2}
+    - target: {fileID: 7961666607902570261, guid: 475b22ebdc6554b019c132d4758d0401, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].dungeonLevel
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 475b22ebdc6554b019c132d4758d0401, type: 3}
 --- !u!4 &2835093779582290169 stripped
