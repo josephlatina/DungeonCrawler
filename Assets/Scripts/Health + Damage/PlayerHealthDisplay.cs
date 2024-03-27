@@ -20,6 +20,10 @@ public class PlayerHealthDisplay : MonoBehaviour
 
     void Start()
     {
+        playerHealth = playerHealth == null
+            ? GameObject.FindWithTag("Player").GetComponent<PlayerHealth>()
+            : playerHealth;
+        
         DrawHearts();
     }
 
@@ -63,6 +67,7 @@ public class PlayerHealthDisplay : MonoBehaviour
         {
             Destroy(t.gameObject);
         }
+
         hearts = new List<HealthHeart>();
     }
 }
