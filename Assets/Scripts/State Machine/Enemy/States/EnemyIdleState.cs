@@ -25,7 +25,7 @@ public class EnemyIdleState : IState
     // Called when entering the idle state
     public void Enter()
     {
-        Debug.Log("Enemy entering idle state");
+        //Debug.Log("Enemy entering idle state");
         enemy.anim.SetBool("isWalking", false);
     }
 
@@ -47,7 +47,7 @@ public class EnemyIdleState : IState
     // Called when exiting the idle state
     public void Exit()
     {
-        Debug.Log("Enemy exiting idle state");
+        // Debug.Log("Enemy exiting idle state");
     }
 
 }
