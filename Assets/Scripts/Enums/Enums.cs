@@ -10,7 +10,7 @@ public enum Orientation
 
 public enum ChestSpawnEvent {
     onRoomEntry,
-    onEnemiesDefeated
+    onBossDefeated
 }
 
 public enum ChestSpawnPosition {

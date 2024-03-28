@@ -47,6 +47,7 @@ public class Room
     public bool isLit = false;
     public bool isClearedOfEnemies = false;
     public bool isPreviouslyVisited = false;
+    public bool isClearedOfBoss = false;
 
     /// <summary>
     /// Constructor method for when room is created

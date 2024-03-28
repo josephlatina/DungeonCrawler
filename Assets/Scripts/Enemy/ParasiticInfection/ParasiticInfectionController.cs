@@ -17,7 +17,7 @@ public class ParasiticInfectionController : EnemyController
     private int bulletIndex = 0;
     private float nextFire = 0f;
 
-    public float detectionRadius = 5f;
+    public float detectionRadius = 3f;
     public float attackDelaySeconds = 2f;
     public float bulletWaveInterval = 5f;
     private float nextWave = 0f;
@@ -26,8 +26,10 @@ public class ParasiticInfectionController : EnemyController
 
     private bool hasTalked = false;
     private bool dialogueComplete = false;
+    private bool itemSpawned = false;
     [SerializeField] private YarnProject project;
     [YarnNode(nameof(project))] public string bossBattleNode;
+
 
     // Start is called before the first frame update
     public override void Start()
@@ -44,6 +46,14 @@ public class ParasiticInfectionController : EnemyController
         if (health.currentHealthPoints <= 0)
         {
             anim.SetBool("isDead", true);
+            StaticEventHandler.CallBossDefeatedEvent(true);
+            if (!itemSpawned)
+            {
+                Vector3 enemyPosition = transform.position;
+                GameManager.Instance.SpawnItem(enemyPosition);
+                itemSpawned = true;
+                GameManager.Instance.GetCurrentRoom().isClearedOfBoss = true;
+            }
         }
         else
         {
@@ -87,6 +97,7 @@ public class ParasiticInfectionController : EnemyController
                     player.dialogueRunner.onNodeComplete.AddListener(DialogueComplete);
                     hasTalked = true;
                     isIdle = true;
+                    GameManager.Instance.EnterBossRoom();
                 }
 
                 else if (dialogueComplete)

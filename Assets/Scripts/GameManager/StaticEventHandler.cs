@@ -30,11 +30,11 @@ public class StaticEventHandler
     /// <summary>
     /// Method for invoking the static event 'RoomEnemiesDefeatedEvent' with a room argument
     /// </summary>
-    public static event Action<RoomEnemiesDefeatedArgs> OnRoomEnemiesDefeated;
+    public static event Action<BossDefeatedArgs> OnBossDefeated;
 
-    public static void CallRoomEnemiesDefeatedEvent(Room room)
+    public static void CallBossDefeatedEvent(Boolean isBossDefeated)
     {
-        OnRoomEnemiesDefeated?.Invoke(new RoomEnemiesDefeatedArgs() { room = room });
+        OnBossDefeated?.Invoke(new BossDefeatedArgs() { isBossDefeated = isBossDefeated });
     }
 }
 
@@ -46,7 +46,7 @@ public class RoomChangedEventArgs : EventArgs
     public Room room;
 }
 
-public class RoomEnemiesDefeatedArgs : EventArgs
+public class BossDefeatedArgs : EventArgs
 {
-    public Room room;
+    public Boolean isBossDefeated;
 }
