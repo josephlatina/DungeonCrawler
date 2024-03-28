@@ -15,6 +15,6 @@ MonoBehaviour:
   movementSpeed: 3
   attackSpeed: 1.2
   strength: 1.5
-  healthPoints: 10
+  healthPoints: 1
   prefab: {fileID: 0}
   chaseDistance: 50
