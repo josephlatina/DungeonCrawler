@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1df07bf8258a432fb2534119ebf0c20, type: 3}
-  m_Name: UpgradeRoom_2
+  m_Name: BossRoom_2
   m_EditorClassIdentifier: 
-  guid: 0892e2ba34cdf477dafa4d43a1852bf4
-  previousPrefab: {fileID: 1875396859818147482, guid: 7daa9ff95ebd9423f858c969aee1dba2, type: 3}
-  prefab: {fileID: 1875396859818147482, guid: 7daa9ff95ebd9423f858c969aee1dba2, type: 3}
-  roomNodeType: {fileID: 11400000, guid: c437fb01854944f869a4d0aa108dbce0, type: 2}
+  guid: 5fe19232e6a7943e6a864e2a7228cf34
+  previousPrefab: {fileID: 1875396859818147482, guid: 0e3a5d31c7516459e87b691aa173e728, type: 3}
+  prefab: {fileID: 1875396859818147482, guid: 0e3a5d31c7516459e87b691aa173e728, type: 3}
+  roomNodeType: {fileID: 11400000, guid: 8fd6ea5b8dd2041519e75ca2a352c3fe, type: 2}
   lowerBounds: {x: -10, y: -13}
   upperBounds: {x: 25, y: 13}
   doorwayList:
@@ -51,7 +51,6 @@ MonoBehaviour:
     doorwayCopyTileHeight: 8
     isConnected: 0
     isUnavailable: 0
-  spawnPositionArray:
-  - {x: 8, y: -1}
+  spawnPositionArray: []
   enemiesByLevelList: []
   roomEnemySpawnParametersList: []

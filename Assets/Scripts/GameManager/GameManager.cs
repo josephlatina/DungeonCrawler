@@ -177,8 +177,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
             // Game won (only triggered once)
             case GameState.gameWon:
-                Debug.Log("hello4");
-                Debug.Log(previousGameState);
                 // check if this is the first time entering this game state
                 if (previousGameState != GameState.gameWon) {
                     // if it is, proceed
@@ -269,9 +267,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     /// </summary>
     private void BossRoomEnemyDefeated(Room bossRoom)
     {
-        Debug.Log("hello there");
-        Debug.Log(bossRoom.isClearedOfBoss);
-        Debug.Log(isBossDefeated);
         // check if boss has been cleared
         if (bossRoom.isClearedOfBoss && !isBossDefeated) {
 
@@ -298,15 +293,11 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
             // if there are more dungeon levels to traverse through
             if (currentDungeonLevelListIndex < dungeonLevelList.Count - 1) {
-                Debug.Log("hello");
-                Debug.Log(gameState);
                 // then set game state to have current level completed
                 gameState = GameState.levelCompleted;
             }
             // if we've defeated the boss in the last level,
             else {
-                Debug.Log("hello2");
-                Debug.Log(gameState);
                 // game has been won
                 gameState = GameState.gameWon;
             }
