@@ -617,10 +617,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.484375
     y: 0
-    width: 1
-    height: 1
+    width: 0.03125
+    height: 0.03125
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -4753,7 +4753,7 @@ PrefabInstance:
     - target: {fileID: 6984755896152334957, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
       propertyPath: deathScreen
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2110947968}
     - target: {fileID: 6984755896152334957, guid: 24fc884d226257e41b7b7f8b519bd210, type: 3}
       propertyPath: dialogueView
       value: 
@@ -5398,6 +5398,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
+--- !u!1 &2110947968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8567826352407824458, guid: 3a02923b3bd50204f8cc5de4e6c909e5, type: 3}
+  m_PrefabInstance: {fileID: 2110947967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &87115937857137080
 RectTransform:
   m_ObjectHideFlags: 0
