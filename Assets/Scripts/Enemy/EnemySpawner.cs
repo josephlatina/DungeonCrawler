@@ -136,7 +136,7 @@ public class EnemySpawner : SingletonMonoBehavior<EnemySpawner>
         GameObject spawnedEnemy = Instantiate(enemySO.prefab, position, Quaternion.identity, transform);
 
         // initialize enemy
-        spawnedEnemy.GetComponent<EnemyController>().EnemyInitialization(enemySO, enemiesSpawnedSoFar, dungeonLevel);
+        spawnedEnemy.GetComponent<EnemyController>().EnemyInitialization(enemySO, enemiesSpawnedSoFar, dungeonLevel, currentRoom.id);
        
     }
 

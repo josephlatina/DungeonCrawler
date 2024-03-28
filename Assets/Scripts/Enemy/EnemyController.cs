@@ -51,6 +51,8 @@ public class EnemyController : MonoBehaviour, IEffectable
     public Vector2 knockbackVelocity;
     public float knockbackDuration;
 
+    public string spawnRoomID;
+
 
     // Expose the EnemyStateMachine for external access
     public EnemyStateMachine EnemyStateMachine => enemyStateMachine;
@@ -117,9 +119,10 @@ public class EnemyController : MonoBehaviour, IEffectable
     /// <summary>
     /// Initialize the enemy
     /// </summary>
-    public void EnemyInitialization(EnemyScriptableObject enemySO, int enemySpawnNumber, DungeonLevelSO dungeonLevel)
+    public void EnemyInitialization(EnemyScriptableObject enemySO, int enemySpawnNumber, DungeonLevelSO dungeonLevel, string spawnRoomID)
     {
         this.enemyStats = enemySO;
+        this.spawnRoomID = spawnRoomID;
     }
 
     /// <summary>

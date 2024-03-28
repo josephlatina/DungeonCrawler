@@ -20,7 +20,7 @@ public class EnemyMeleeState : IState
     /// </summary>
     public void Enter()
     {
-        Debug.Log("Enemy entering melee state");
+        // Debug.Log("Enemy entering melee state");
         Attack();
     }
 
@@ -48,7 +48,7 @@ public class EnemyMeleeState : IState
     /// </summary>
     public void Exit()
     {
-        Debug.Log("Enemy exiting melee state");
+        // Debug.Log("Enemy exiting melee state");
     }
 
 
