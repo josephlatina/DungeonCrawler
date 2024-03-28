@@ -56,9 +56,15 @@ public class EnemyMovementAI : MonoBehaviour
     {
         // move enemy on every frame if player should be chased
         MoveEnemy();
-        // destroy enemy if player already exited the room
-        if (GameManager.Instance.GetCurrentRoom().roomNodeType.isCorridorEW || GameManager.Instance.GetCurrentRoom().roomNodeType.isCorridorNS) {
-            Destroy(gameObject);
+
+        // change enemy state to idle if player already exited the room
+        if (GameManager.Instance.GetCurrentRoom().roomNodeType.isCorridorEW
+            || GameManager.Instance.GetCurrentRoom().roomNodeType.isCorridorNS
+            || Vector3.Distance(transform.position, GameManager.Instance.GetPlayer().GetPlayerPosition()) >= enemy.enemyStats.chaseDistance)
+        {
+            enemy.EnemyStateMachine.TransitionTo(enemy.EnemyStateMachine.idleState);
+            chasePlayer = false;
+            StopMovement();
         }
     }
 
@@ -75,6 +81,7 @@ public class EnemyMovementAI : MonoBehaviour
         if (!chasePlayer && Vector3.Distance(transform.position, GameManager.Instance.GetPlayer().GetPlayerPosition()) < enemy.enemyStats.chaseDistance)
         {
             chasePlayer = true;
+            moveSpeed = enemy.GetMoveSpeed();
         }
 
         // If not close enough to chase player then return
@@ -84,7 +91,8 @@ public class EnemyMovementAI : MonoBehaviour
         // Only process A Star path rebuild on certain frames to spread the load between enemies
         if (Time.frameCount % Settings.targetFrameRateToSpreadPathfindingOver != updateFrameNumber) return;
 
-        if (GameManager.Instance.GetPlayer() == null) {
+        if (GameManager.Instance.GetPlayer() == null)
+        {
             return;
         }
         // if the movement cooldown timer has been reached or player has moved more than required distance, then rebuild the enemy path and move the enemy
@@ -135,7 +143,7 @@ public class EnemyMovementAI : MonoBehaviour
                 // Trigger movement event to the next position in the direction passed
                 enemy.movementToPositionEvent.CallMovementToPositionEvent(nextPosition, transform.position, moveSpeed, (nextPosition - transform.position).normalized);
                 // moving the enemy using 2D physics so wait until the next fixed update
-                yield return waitForFixedUpdate; 
+                yield return waitForFixedUpdate;
             }
 
             yield return waitForFixedUpdate;
@@ -153,23 +161,26 @@ public class EnemyMovementAI : MonoBehaviour
         // Get the grid component of the room
         Grid grid = currentRoom.instantiatedRoom.grid;
 
-        // Get players position on this room grid that we want to pathfind to
-        Vector3Int playerGridPosition = GetNearestNonObstaclePlayerPosition(currentRoom);
-
-        // Convert it to the cell position
-        Vector3Int enemyGridPosition = grid.WorldToCell(transform.position);
-
-        // Build a path (stack of movement steps) for the enemy to move on using the enemy's position as start node and player's position as the target node
-        movementSteps = AStar.BuildPath(currentRoom, enemyGridPosition, playerGridPosition);
-
-        // If path is found, pop off first step on stack of movement steps - this is the grid square the enemy is already on
-        if (movementSteps != null)
+        // Get players position on this room grid that we want to pathfind to, if they are in the same room
+        if (enemy.spawnRoomID == currentRoom.id)
         {
-            movementSteps.Pop();
-        }
-        else
-        {
+            Vector3Int playerGridPosition = GetNearestNonObstaclePlayerPosition(currentRoom);
 
+            // Convert it to the cell position
+            Vector3Int enemyGridPosition = grid.WorldToCell(transform.position);
+
+            // Build a path (stack of movement steps) for the enemy to move on using the enemy's position as start node and player's position as the target node
+            movementSteps = AStar.BuildPath(currentRoom, enemyGridPosition, playerGridPosition);
+
+            // If path is found, pop off first step on stack of movement steps - this is the grid square the enemy is already on
+            if (movementSteps != null)
+            {
+                movementSteps.Pop();
+            }
+            else
+            {
+
+            }
         }
     }
 
@@ -256,7 +267,8 @@ public class EnemyMovementAI : MonoBehaviour
         }
     }
 
-    public void StopMovement() {
+    public void StopMovement()
+    {
         moveSpeed = 0;
     }
 }

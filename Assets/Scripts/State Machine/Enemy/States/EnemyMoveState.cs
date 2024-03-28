@@ -29,7 +29,7 @@ public class EnemyMoveState : IState
     /// </summary>
     public void Enter()
     {
-        Debug.Log("Enemy entering move state");
+        // Debug.Log("Enemy entering move state");
         enemy.anim.SetBool("isWalking", true);
     }
 
@@ -60,6 +60,6 @@ public class EnemyMoveState : IState
     /// </summary>
     public void Exit()
     {
-        Debug.Log("Enemy exiting move state");
+        // Debug.Log("Enemy exiting move state");
     }
 }
