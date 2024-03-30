@@ -78,7 +78,7 @@ public class ChestSpawner : MonoBehaviour
         StaticEventHandler.OnRoomChanged += StaticEventHandler_OnRoomChanged;
 
         // Subscribe to room enemies defeated event
-        StaticEventHandler.OnRoomEnemiesDefeated += StaticEventHandler_OnRoomEnemiesDefeated;
+        StaticEventHandler.OnBossDefeated += StaticEventHandler_OnBossDefeated;
     }
 
     private void OnDisable()
@@ -87,7 +87,7 @@ public class ChestSpawner : MonoBehaviour
         StaticEventHandler.OnRoomChanged -= StaticEventHandler_OnRoomChanged;
 
         // Unsubscribe from room enemies defeated event
-        StaticEventHandler.OnRoomEnemiesDefeated -= StaticEventHandler_OnRoomEnemiesDefeated;
+        StaticEventHandler.OnBossDefeated -= StaticEventHandler_OnBossDefeated;
     }
 
     /// <summary>
@@ -112,17 +112,12 @@ public class ChestSpawner : MonoBehaviour
     /// <summary>
     /// Subscriber method for On Room Enemies Defeated Event that requires the current room object as parameter
     /// </summary>
-    private void StaticEventHandler_OnRoomEnemiesDefeated(RoomEnemiesDefeatedArgs roomEnemiesDefeatedArgs)
+    private void StaticEventHandler_OnBossDefeated(BossDefeatedArgs bossDefeatedArgs)
     {
-        // Get the room the chest is in if we don't already have it
-        if (chestRoom == null)
-        {
-            chestRoom = GetComponentInParent<InstantiatedRoom>().room;
-        }
 
         // If the chest event is it being spawned when enemies are defeated and the chest is in the room that the
         // enemies have been defeated
-        if (!chestSpawned && chestSpawnEvent == ChestSpawnEvent.onEnemiesDefeated && chestRoom == roomEnemiesDefeatedArgs.room)
+        if (!chestSpawned && chestSpawnEvent == ChestSpawnEvent.onBossDefeated && bossDefeatedArgs.isBossDefeated)
         {
             SpawnChest();
         }

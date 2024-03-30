@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement; // used to reload the main scene
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System;
+using UnityEngine.Tilemaps;
 
 /// <summary>
 /// Game Manager class that is of singleton mono behaviour type
@@ -58,6 +60,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     // private fields
     private Room currentRoom;
     private PlayerController player;
+    private Boolean isBossDefeated;
 
 
     // public variable for holding the current and previous game state
@@ -93,14 +96,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         // set the new room as the current room
         SetCurrentRoom(roomChangedEventArgs.room);
 
-        // if player enters boss room
-        if (currentRoom.roomNodeType.isBossRoom) {
-            EnterBossRoom();
-        }
-
         // if player enters the exit room, apply logic to determine whether player has level completed or game is won
         if (currentRoom.roomNodeType.isExit) {
-            BossRoomEnemyDefeated(currentRoom);
+            ExitRoomCheck();
         }
     }
 
@@ -163,6 +161,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             // While engaging the boss,
             case GameState.bossStage:
                 
+                // check if boss has been defeated
+                BossRoomEnemyDefeated(currentRoom);
+
                 if (Input.GetKeyDown(KeyCode.Escape)) {
                     PauseGameMenu();
                 }
@@ -211,10 +212,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     /// <summary>
     /// Enter the boss room
     /// </summary>
-    private void EnterBossRoom() {
+    public void EnterBossRoom() {
 
-        // set the game state to boss stage. This should trigger SpawnEnemies() in EnemySpawner script
-        gameState = GameState.bossStage;
         StartCoroutine(BossStage());
     }
 
@@ -249,10 +248,15 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     /// </summary>
     private IEnumerator BossStage()
     {
+        gameState = GameState.bossStage;
+        // Ensure player does not escape room until boss is defeated
+        Tilemap tilemapObject = currentRoom.instantiatedRoom.bossCollisionTilemap;
+        TilemapCollider2D tilemapCollider = tilemapObject.GetComponent<TilemapCollider2D>();
 
-        // TODO: Room Lock Functionality
-       // Unlock boss room
-    //    bossRoom.UnlockDoors(0f);
+        if (tilemapCollider != null)
+        {
+            tilemapCollider.enabled = true;
+        }
        // Wait 2 seconds
        yield return new WaitForSeconds(2f);
 
@@ -263,9 +267,29 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     /// </summary>
     private void BossRoomEnemyDefeated(Room bossRoom)
     {
+        // check if boss has been cleared
+        if (bossRoom.isClearedOfBoss && !isBossDefeated) {
+
+            isBossDefeated = true;
+
+            Tilemap tilemapObject = currentRoom.instantiatedRoom.bossCollisionTilemap;
+            TilemapCollider2D tilemapCollider = tilemapObject.GetComponent<TilemapCollider2D>();
+
+            if (tilemapCollider != null)
+            {
+                tilemapCollider.enabled = false;
+            }
+        }
+    }
+
+    // <summary>
+    /// Check if prerequisite is cleared
+    /// </summary>
+    private void ExitRoomCheck()
+    {
 
         // check if boss has been cleared
-        if (bossRoom.isClearedOfEnemies) {
+        if (isBossDefeated) {
 
             // if there are more dungeon levels to traverse through
             if (currentDungeonLevelListIndex < dungeonLevelList.Count - 1) {
@@ -277,7 +301,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
                 // game has been won
                 gameState = GameState.gameWon;
             }
-        }
+        } 
     }
 
     /// <summary>
@@ -408,6 +432,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
         // Set player roughly mid-room
         player.gameObject.transform.position = new Vector3(currentRoom.lowerBounds.x + ((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 3f), (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
+
+        // set boolean to false
+        isBossDefeated = false;
 
         // Display Dungeon Level Text
         StartCoroutine(DisplayDungeonLevelText());
