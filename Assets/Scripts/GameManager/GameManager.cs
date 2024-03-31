@@ -35,11 +35,20 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     [Tooltip("Populate with the MessageText TMPro component in the FadeScreenUI")]
     #endregion Tooltip
     [SerializeField] private TextMeshProUGUI messageTextTMP;
+    [SerializeField] private TextMeshProUGUI teethValue;
+    [SerializeField] private TextMeshProUGUI strengthValue;
+    [SerializeField] private TextMeshProUGUI defenceValue;
+    [SerializeField] private TextMeshProUGUI attackSpeedValue;
 
      #region Tooltip
     [Tooltip("Populate with the FadeImage canvasgroup component in the FadeScreenUI")]
     #endregion Tooltip
     [SerializeField] private CanvasGroup canvasGroup;
+
+    #region Tooltip
+    [Tooltip("Populate with the FadeImage canvasgroup component in the PlayerStatsUI")]
+    #endregion Tooltip
+    [SerializeField] private CanvasGroup playerStats;
 
     // serialized private field for containing the list of dungeon levels for this game session
     #region Header DUNGEON LEVELS
@@ -358,6 +367,46 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         }
     }
 
+    /// <summary>
+    /// Fade Canvas Group
+    /// </summary>
+    private IEnumerator SurfaceUI(CanvasGroup canvas, float startFadeAlpha, float targetFadeAlpha, float fadeSeconds, Color backgroundColor)
+    {
+        // Modify the image component
+        Image image = canvas.GetComponent<Image>();
+        image.color = backgroundColor;
+
+        float time = 0;
+
+        while (time <= fadeSeconds) {
+            // increment time
+            time += Time.deltaTime;
+            // set the alpha value gradually as time increments
+            canvas.alpha = Mathf.Lerp(startFadeAlpha, targetFadeAlpha, time / fadeSeconds);
+            yield return null;
+        }
+    }
+
+    /// <summary>
+    /// Display the message text in x display seconds
+    /// </summary>
+    public IEnumerator DisplayStats(CanvasGroup canvas, Color textColor) {
+
+        // set the string
+        teethValue.SetText(player.player.CurrentCurrency.ToString());
+        strengthValue.SetText(player.player.CurrentStrength.ToString());
+        defenceValue.SetText(player.player.CurrentDefence.ToString());
+        attackSpeedValue.SetText(player.player.CurrentAttackSpeed.ToString());
+
+        while (!Input.GetKeyDown(KeyCode.Return)) {
+            yield return null;
+        }
+
+        yield return null;
+
+        teethValue.SetText("");
+    }
+
 
     /// <summary>
     /// Handles game state of game being won
@@ -438,6 +487,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
         // Display Dungeon Level Text
         StartCoroutine(DisplayDungeonLevelText());
+
+        // StartCoroutine(DisplayPlayerStatsUI());
     }
 
     /// <summary>
@@ -489,6 +540,22 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
         // Clear the text
         messageTextTMP.SetText("");
+    }
+
+    /// <summary>
+    /// Display the player stats UI
+    /// </summary>
+    public IEnumerator DisplayPlayerStatsUI() {
+
+        Color backgroundColor = new Color(34f / 255f, 34f / 255f, 34f / 255f);
+
+        // set screen to black
+        StartCoroutine(SurfaceUI(playerStats, 0f, 1f, 0f, backgroundColor));
+        
+        yield return StartCoroutine(DisplayStats(playerStats, Color.white));
+
+        // Fade In to the game scene
+        yield return StartCoroutine(SurfaceUI(playerStats, 1f, 0f, 2f, backgroundColor));
     }
 
     /// <summary>
