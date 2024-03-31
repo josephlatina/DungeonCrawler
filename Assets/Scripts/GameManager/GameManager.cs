@@ -30,6 +30,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     [Tooltip("Populate with pause menu gameobject in hierarchy")]
     #endregion Tooltip
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject playerStatsScreen;
 
     #region Tooltip
     [Tooltip("Populate with the MessageText TMPro component in the FadeScreenUI")]
@@ -44,11 +45,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     [Tooltip("Populate with the FadeImage canvasgroup component in the FadeScreenUI")]
     #endregion Tooltip
     [SerializeField] private CanvasGroup canvasGroup;
-
-    #region Tooltip
-    [Tooltip("Populate with the FadeImage canvasgroup component in the PlayerStatsUI")]
-    #endregion Tooltip
-    [SerializeField] private CanvasGroup playerStats;
 
     // serialized private field for containing the list of dungeon levels for this game session
     #region Header DUNGEON LEVELS
@@ -244,12 +240,33 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         else if (gameState == GameState.gamePaused) {
             // enable player movement again and hide the pause menu
             pauseMenu.SetActive(false);
+            playerStatsScreen.SetActive(false);
             player.GetComponent<PlayerInput>().enabled = true;
 
             // Set game state
             gameState = previousGameState;
             previousGameState = GameState.gamePaused;
         }
+    }
+
+    /// <summary>
+    /// Show Pause Menu Sub Item
+    /// </summary>
+    public void ShowPauseMenuSubItem(GameObject previousScreen, GameObject nextScreen) {
+
+        previousScreen.SetActive(false);
+        nextScreen.SetActive(true);
+    }
+
+    /// <summary>
+    /// Player Stats Screen
+    /// </summary>
+    public void ShowPlayerStatsScreen() {
+        ShowPauseMenuSubItem(pauseMenu, playerStatsScreen);
+        DisplayStats();
+    }
+    public void UnshowPlayerStatsScreen() {
+        ShowPauseMenuSubItem(playerStatsScreen, pauseMenu);
     }
 
     /// <summary>
@@ -390,21 +407,13 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     /// <summary>
     /// Display the message text in x display seconds
     /// </summary>
-    public IEnumerator DisplayStats(CanvasGroup canvas, Color textColor) {
+    public void DisplayStats() {
 
         // set the string
         teethValue.SetText(player.player.CurrentCurrency.ToString());
         strengthValue.SetText(player.player.CurrentStrength.ToString());
         defenceValue.SetText(player.player.CurrentDefence.ToString());
         attackSpeedValue.SetText(player.player.CurrentAttackSpeed.ToString());
-
-        while (!Input.GetKeyDown(KeyCode.Return)) {
-            yield return null;
-        }
-
-        yield return null;
-
-        teethValue.SetText("");
     }
 
 
@@ -487,8 +496,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
         // Display Dungeon Level Text
         StartCoroutine(DisplayDungeonLevelText());
-
-        // StartCoroutine(DisplayPlayerStatsUI());
     }
 
     /// <summary>
@@ -540,22 +547,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
         // Clear the text
         messageTextTMP.SetText("");
-    }
-
-    /// <summary>
-    /// Display the player stats UI
-    /// </summary>
-    public IEnumerator DisplayPlayerStatsUI() {
-
-        Color backgroundColor = new Color(34f / 255f, 34f / 255f, 34f / 255f);
-
-        // set screen to black
-        StartCoroutine(SurfaceUI(playerStats, 0f, 1f, 0f, backgroundColor));
-        
-        yield return StartCoroutine(DisplayStats(playerStats, Color.white));
-
-        // Fade In to the game scene
-        yield return StartCoroutine(SurfaceUI(playerStats, 1f, 0f, 2f, backgroundColor));
     }
 
     /// <summary>
