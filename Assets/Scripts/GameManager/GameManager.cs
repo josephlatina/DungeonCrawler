@@ -40,6 +40,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     [SerializeField] private TextMeshProUGUI strengthValue;
     [SerializeField] private TextMeshProUGUI defenceValue;
     [SerializeField] private TextMeshProUGUI attackSpeedValue;
+    [SerializeField] private GameObject heartDisplay;
 
      #region Tooltip
     [Tooltip("Populate with the FadeImage canvasgroup component in the FadeScreenUI")]
@@ -231,6 +232,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if (gameState != GameState.gamePaused) {
             pauseMenu.SetActive(true);
             player.GetComponent<PlayerInput>().enabled = false;
+            player.GetComponent<Collider2D>().enabled = false;
 
             // Set game state
             previousGameState = gameState;
@@ -242,6 +244,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             pauseMenu.SetActive(false);
             playerStatsScreen.SetActive(false);
             player.GetComponent<PlayerInput>().enabled = true;
+            player.GetComponent<Collider2D>().enabled = true;
 
             // Set game state
             gameState = previousGameState;
@@ -414,6 +417,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         strengthValue.SetText(player.player.CurrentStrength.ToString());
         defenceValue.SetText(player.player.CurrentDefence.ToString());
         attackSpeedValue.SetText(player.player.CurrentAttackSpeed.ToString());
+
+        PlayerHealthDisplay playerHealthDisplay = heartDisplay.GetComponent<PlayerHealthDisplay>();
+        playerHealthDisplay.DrawHearts();
     }
 
 
