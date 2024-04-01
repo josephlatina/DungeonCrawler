@@ -31,6 +31,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     #endregion Tooltip
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject playerStatsScreen;
+    [SerializeField] private GameObject instructionsScreen;
+
 
     #region Tooltip
     [Tooltip("Populate with the MessageText TMPro component in the FadeScreenUI")]
@@ -72,6 +74,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     // public variable for holding the current and previous game state
     [HideInInspector] public GameState gameState;
     [HideInInspector] public GameState previousGameState;
+
+    private GameObject continueText;
+    private GameObject backText;
 
     protected override void Awake()
     {
@@ -116,6 +121,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         // keep track of previous and current game states
         previousGameState = GameState.gameStarted;
         gameState = GameState.gameStarted; 
+
+        // Instruction Screen
+        continueText = FindChildGameObject(instructionsScreen.transform, "ContinueButton");
+        backText = FindChildGameObject(instructionsScreen.transform, "BackButton");
 
         // set screen to black
         StartCoroutine(Fade(0f, 1f, 0f, Color.black));
@@ -243,6 +252,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             // enable player movement again and hide the pause menu
             pauseMenu.SetActive(false);
             playerStatsScreen.SetActive(false);
+            instructionsScreen.SetActive(false);
             player.GetComponent<PlayerInput>().enabled = true;
             player.GetComponent<Collider2D>().enabled = true;
 
@@ -270,6 +280,56 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
     public void UnshowPlayerStatsScreen() {
         ShowPauseMenuSubItem(playerStatsScreen, pauseMenu);
+    }
+
+    /// <summary>
+    /// Instructions Screen
+    /// </summary>
+    public void ShowInstructionsScreen() {
+        ShowPauseMenuSubItem(pauseMenu, instructionsScreen);
+    }
+    public void UnshowInstructionsScreen() {
+        ShowPauseMenuSubItem(instructionsScreen, pauseMenu);
+    }
+    public void ShowStartInstructionsScreen() {
+        Debug.Log("hello");
+        if (currentDungeonLevelListIndex == 0) {
+            if (instructionsScreen.activeSelf) {
+                instructionsScreen.SetActive(false);
+                continueText.SetActive(false);
+                backText.SetActive(true);
+                Debug.Log("hello2");
+            }
+            else {
+                Debug.Log("hello3");
+                continueText.SetActive(true);
+                backText.SetActive(false);
+                instructionsScreen.SetActive(true);
+            }
+        }
+        Debug.Log("hello1");
+    }
+
+
+    /// <summary>
+    /// Find child object
+    /// </summary>
+    private GameObject FindChildGameObject(Transform parent, string childName)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name == childName)
+            {
+                return child.gameObject;
+            }
+
+            GameObject foundChild = FindChildGameObject(child, childName);
+            if (foundChild != null)
+            {
+                return foundChild;
+            }
+        }
+        return null;
     }
 
     /// <summary>
@@ -520,6 +580,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
         // Fade In to the game scene
         yield return StartCoroutine(Fade(1f, 0f, 2f, Color.black));
+
+        // Display Instruction Screen if first level
+        ShowStartInstructionsScreen();
     }
 
     /// <summary>
