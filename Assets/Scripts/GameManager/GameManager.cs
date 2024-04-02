@@ -292,22 +292,24 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         ShowPauseMenuSubItem(instructionsScreen, pauseMenu);
     }
     public void ShowStartInstructionsScreen() {
-        Debug.Log("hello");
         if (currentDungeonLevelListIndex == 0) {
             if (instructionsScreen.activeSelf) {
                 instructionsScreen.SetActive(false);
                 continueText.SetActive(false);
                 backText.SetActive(true);
-                Debug.Log("hello2");
+                // Display Dungeon Level Text
+                StartCoroutine(DisplayDungeonLevelText());
             }
             else {
-                Debug.Log("hello3");
                 continueText.SetActive(true);
                 backText.SetActive(false);
                 instructionsScreen.SetActive(true);
             }
+        } else 
+        {
+            // Display Dungeon Level Text
+            StartCoroutine(DisplayDungeonLevelText());
         }
-        Debug.Log("hello1");
     }
 
 
@@ -560,8 +562,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         // set boolean to false
         isBossDefeated = false;
 
-        // Display Dungeon Level Text
-        StartCoroutine(DisplayDungeonLevelText());
+        // Display Instruction Screen if first level
+        ShowStartInstructionsScreen();
     }
 
     /// <summary>
@@ -580,9 +582,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
         // Fade In to the game scene
         yield return StartCoroutine(Fade(1f, 0f, 2f, Color.black));
-
-        // Display Instruction Screen if first level
-        ShowStartInstructionsScreen();
     }
 
     /// <summary>
