@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement; // used to reload the main scene
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System;
+using UnityEngine.Tilemaps;
 
 /// <summary>
 /// Game Manager class that is of singleton mono behaviour type
@@ -28,11 +30,19 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     [Tooltip("Populate with pause menu gameobject in hierarchy")]
     #endregion Tooltip
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject playerStatsScreen;
+    [SerializeField] private GameObject instructionsScreen;
+
 
     #region Tooltip
     [Tooltip("Populate with the MessageText TMPro component in the FadeScreenUI")]
     #endregion Tooltip
     [SerializeField] private TextMeshProUGUI messageTextTMP;
+    [SerializeField] private TextMeshProUGUI teethValue;
+    [SerializeField] private TextMeshProUGUI strengthValue;
+    [SerializeField] private TextMeshProUGUI defenceValue;
+    [SerializeField] private TextMeshProUGUI attackSpeedValue;
+    [SerializeField] private GameObject heartDisplay;
 
      #region Tooltip
     [Tooltip("Populate with the FadeImage canvasgroup component in the FadeScreenUI")]
@@ -58,11 +68,15 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     // private fields
     private Room currentRoom;
     private PlayerController player;
+    private Boolean isBossDefeated;
 
 
     // public variable for holding the current and previous game state
     [HideInInspector] public GameState gameState;
     [HideInInspector] public GameState previousGameState;
+
+    private GameObject continueText;
+    private GameObject backText;
 
     protected override void Awake()
     {
@@ -93,14 +107,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         // set the new room as the current room
         SetCurrentRoom(roomChangedEventArgs.room);
 
-        // if player enters boss room
-        if (currentRoom.roomNodeType.isBossRoom) {
-            EnterBossRoom();
-        }
-
         // if player enters the exit room, apply logic to determine whether player has level completed or game is won
         if (currentRoom.roomNodeType.isExit) {
-            BossRoomEnemyDefeated(currentRoom);
+            ExitRoomCheck();
         }
     }
 
@@ -112,6 +121,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         // keep track of previous and current game states
         previousGameState = GameState.gameStarted;
         gameState = GameState.gameStarted; 
+
+        // Instruction Screen
+        continueText = FindChildGameObject(instructionsScreen.transform, "ContinueButton");
+        backText = FindChildGameObject(instructionsScreen.transform, "BackButton");
 
         // set screen to black
         StartCoroutine(Fade(0f, 1f, 0f, Color.black));
@@ -163,6 +176,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             // While engaging the boss,
             case GameState.bossStage:
                 
+                // check if boss has been defeated
+                BossRoomEnemyDefeated(currentRoom);
+
                 if (Input.GetKeyDown(KeyCode.Escape)) {
                     PauseGameMenu();
                 }
@@ -211,10 +227,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     /// <summary>
     /// Enter the boss room
     /// </summary>
-    private void EnterBossRoom() {
+    public void EnterBossRoom() {
 
-        // set the game state to boss stage. This should trigger SpawnEnemies() in EnemySpawner script
-        gameState = GameState.bossStage;
         StartCoroutine(BossStage());
     }
 
@@ -227,6 +241,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if (gameState != GameState.gamePaused) {
             pauseMenu.SetActive(true);
             player.GetComponent<PlayerInput>().enabled = false;
+            player.GetComponent<Collider2D>().enabled = false;
 
             // Set game state
             previousGameState = gameState;
@@ -236,7 +251,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         else if (gameState == GameState.gamePaused) {
             // enable player movement again and hide the pause menu
             pauseMenu.SetActive(false);
+            playerStatsScreen.SetActive(false);
+            instructionsScreen.SetActive(false);
             player.GetComponent<PlayerInput>().enabled = true;
+            player.GetComponent<Collider2D>().enabled = true;
 
             // Set game state
             gameState = previousGameState;
@@ -245,14 +263,91 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
 
     /// <summary>
+    /// Show Pause Menu Sub Item
+    /// </summary>
+    public void ShowPauseMenuSubItem(GameObject previousScreen, GameObject nextScreen) {
+
+        previousScreen.SetActive(false);
+        nextScreen.SetActive(true);
+    }
+
+    /// <summary>
+    /// Player Stats Screen
+    /// </summary>
+    public void ShowPlayerStatsScreen() {
+        ShowPauseMenuSubItem(pauseMenu, playerStatsScreen);
+        DisplayStats();
+    }
+    public void UnshowPlayerStatsScreen() {
+        ShowPauseMenuSubItem(playerStatsScreen, pauseMenu);
+    }
+
+    /// <summary>
+    /// Instructions Screen
+    /// </summary>
+    public void ShowInstructionsScreen() {
+        ShowPauseMenuSubItem(pauseMenu, instructionsScreen);
+    }
+    public void UnshowInstructionsScreen() {
+        ShowPauseMenuSubItem(instructionsScreen, pauseMenu);
+    }
+    public void ShowStartInstructionsScreen() {
+        if (currentDungeonLevelListIndex == 0) {
+            if (instructionsScreen.activeSelf) {
+                instructionsScreen.SetActive(false);
+                continueText.SetActive(false);
+                backText.SetActive(true);
+                // Display Dungeon Level Text
+                StartCoroutine(DisplayDungeonLevelText());
+            }
+            else {
+                continueText.SetActive(true);
+                backText.SetActive(false);
+                instructionsScreen.SetActive(true);
+            }
+        } else 
+        {
+            // Display Dungeon Level Text
+            StartCoroutine(DisplayDungeonLevelText());
+        }
+    }
+
+
+    /// <summary>
+    /// Find child object
+    /// </summary>
+    private GameObject FindChildGameObject(Transform parent, string childName)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name == childName)
+            {
+                return child.gameObject;
+            }
+
+            GameObject foundChild = FindChildGameObject(child, childName);
+            if (foundChild != null)
+            {
+                return foundChild;
+            }
+        }
+        return null;
+    }
+
+    /// <summary>
     /// Enter the boss stage - TODO: lock doors
     /// </summary>
     private IEnumerator BossStage()
     {
+        gameState = GameState.bossStage;
+        // Ensure player does not escape room until boss is defeated
+        Tilemap tilemapObject = currentRoom.instantiatedRoom.bossCollisionTilemap;
+        TilemapCollider2D tilemapCollider = tilemapObject.GetComponent<TilemapCollider2D>();
 
-        // TODO: Room Lock Functionality
-       // Unlock boss room
-    //    bossRoom.UnlockDoors(0f);
+        if (tilemapCollider != null)
+        {
+            tilemapCollider.enabled = true;
+        }
        // Wait 2 seconds
        yield return new WaitForSeconds(2f);
 
@@ -263,9 +358,29 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     /// </summary>
     private void BossRoomEnemyDefeated(Room bossRoom)
     {
+        // check if boss has been cleared
+        if (bossRoom.isClearedOfBoss && !isBossDefeated) {
+
+            isBossDefeated = true;
+
+            Tilemap tilemapObject = currentRoom.instantiatedRoom.bossCollisionTilemap;
+            TilemapCollider2D tilemapCollider = tilemapObject.GetComponent<TilemapCollider2D>();
+
+            if (tilemapCollider != null)
+            {
+                tilemapCollider.enabled = false;
+            }
+        }
+    }
+
+    // <summary>
+    /// Check if prerequisite is cleared
+    /// </summary>
+    private void ExitRoomCheck()
+    {
 
         // check if boss has been cleared
-        if (bossRoom.isClearedOfEnemies) {
+        if (isBossDefeated) {
 
             // if there are more dungeon levels to traverse through
             if (currentDungeonLevelListIndex < dungeonLevelList.Count - 1) {
@@ -277,7 +392,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
                 // game has been won
                 gameState = GameState.gameWon;
             }
-        }
+        } 
     }
 
     /// <summary>
@@ -332,6 +447,41 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             canvasGroup.alpha = Mathf.Lerp(startFadeAlpha, targetFadeAlpha, time / fadeSeconds);
             yield return null;
         }
+    }
+
+    /// <summary>
+    /// Fade Canvas Group
+    /// </summary>
+    private IEnumerator SurfaceUI(CanvasGroup canvas, float startFadeAlpha, float targetFadeAlpha, float fadeSeconds, Color backgroundColor)
+    {
+        // Modify the image component
+        Image image = canvas.GetComponent<Image>();
+        image.color = backgroundColor;
+
+        float time = 0;
+
+        while (time <= fadeSeconds) {
+            // increment time
+            time += Time.deltaTime;
+            // set the alpha value gradually as time increments
+            canvas.alpha = Mathf.Lerp(startFadeAlpha, targetFadeAlpha, time / fadeSeconds);
+            yield return null;
+        }
+    }
+
+    /// <summary>
+    /// Display the message text in x display seconds
+    /// </summary>
+    public void DisplayStats() {
+
+        // set the string
+        teethValue.SetText(player.player.CurrentCurrency.ToString());
+        strengthValue.SetText(player.player.CurrentStrength.ToString());
+        defenceValue.SetText(player.player.CurrentDefence.ToString());
+        attackSpeedValue.SetText(player.player.CurrentAttackSpeed.ToString());
+
+        PlayerHealthDisplay playerHealthDisplay = heartDisplay.GetComponent<PlayerHealthDisplay>();
+        playerHealthDisplay.DrawHearts();
     }
 
 
@@ -409,8 +559,11 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         // Set player roughly mid-room
         player.gameObject.transform.position = new Vector3(currentRoom.lowerBounds.x + ((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 3f), (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
 
-        // Display Dungeon Level Text
-        StartCoroutine(DisplayDungeonLevelText());
+        // set boolean to false
+        isBossDefeated = false;
+
+        // Display Instruction Screen if first level
+        ShowStartInstructionsScreen();
     }
 
     /// <summary>

@@ -13,6 +13,8 @@ TagManager:
   - interactTrigger
   - NPC
   - onSaleItem
+  - Enemy
+  - bossCollisionTilemap
   layers:
   - Default
   - TransparentFX

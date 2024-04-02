@@ -27,6 +27,7 @@ public class InstantiatedRoom : MonoBehaviour
     [HideInInspector] public Tilemap decoration2Tilemap;
     [HideInInspector] public Tilemap wallTilemap;
     [HideInInspector] public Tilemap collisionTilemap;
+    [HideInInspector] public Tilemap bossCollisionTilemap;
     // holds info on the box collider bounds around the room
     [HideInInspector] public Bounds roomColliderBounds;
     // 2D array for storing movement penalties to be used in AStar pathfinding
@@ -112,6 +113,9 @@ public class InstantiatedRoom : MonoBehaviour
             else if (tilemap.gameObject.tag == "collisionTilemap") {
                 collisionTilemap = tilemap;
             }
+            else if (tilemap.gameObject.tag == "bossCollisionTilemap") {
+                bossCollisionTilemap = tilemap;
+            }
         }
     }
 
@@ -134,6 +138,9 @@ public class InstantiatedRoom : MonoBehaviour
             }
             if (collisionTilemap != null) {
                 BlockADoorwayOnTilemapLayer(collisionTilemap, doorway);
+            }
+            if (bossCollisionTilemap != null) {
+                BlockADoorwayOnTilemapLayer(bossCollisionTilemap, doorway);
             }
             if (decoration1Tilemap != null) {
                 BlockADoorwayOnTilemapLayer(decoration1Tilemap, doorway);
@@ -270,5 +277,9 @@ public class InstantiatedRoom : MonoBehaviour
     private void DisableCollisionTilemapRenderer() {
 
        collisionTilemap.gameObject.GetComponent<TilemapRenderer>().enabled = false;
+       if (bossCollisionTilemap != null) 
+       {
+            bossCollisionTilemap.gameObject.GetComponent<TilemapRenderer>().enabled = false;
+       }
     }
 }
