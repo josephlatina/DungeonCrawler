@@ -54,7 +54,8 @@ public class PlayerHealthDisplay : MonoBehaviour
         RectTransform heartRectTransform = newHeart.GetComponent<RectTransform>();
 
         // Set the scale to (1, 1, 1)
-        heartRectTransform.localScale = Vector3.one;
+        const float scale = 0.8f;
+        heartRectTransform.localScale =  new Vector3(scale,scale, scale);
 
         HealthHeart heartComponent = newHeart.GetComponent<HealthHeart>();
         heartComponent.SetHeartImage(HeartStatus.Empty);
